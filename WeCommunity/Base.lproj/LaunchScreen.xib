@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="509"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="启动页" translatesAutoresizingMaskIntoConstraints="NO" id="Zmf-SI-3oF">
+                    <rect key="frame" x="91" y="0.0" width="298" height="509"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="366" id="27W-8X-Yx0"/>
+                        <constraint firstAttribute="width" constant="298" id="M3b-nH-clj"/>
+                        <constraint firstAttribute="width" secondItem="Zmf-SI-3oF" secondAttribute="height" multiplier="1:1" id="etW-5I-Bre"/>
+                        <constraint firstAttribute="width" constant="480" id="fCb-pv-BLn"/>
+                        <constraint firstAttribute="width" secondItem="Zmf-SI-3oF" secondAttribute="height" multiplier="298:509" id="vw1-Jm-kLT"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="27W-8X-Yx0"/>
+                            <exclude reference="etW-5I-Bre"/>
+                            <exclude reference="fCb-pv-BLn"/>
+                        </mask>
+                    </variation>
+                </imageView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Zmf-SI-3oF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="Fu1-Jb-aNW"/>
+                <constraint firstItem="Zmf-SI-3oF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Pl0-UR-RVg"/>
+                <constraint firstItem="Zmf-SI-3oF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uaf-b6-aHP"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Fu1-Jb-aNW"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="91" y="486.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="启动页" width="720" height="1280"/>
+    </resources>
+</document>

@@ -1,0 +1,61 @@
+//
+//  WeCommunity-Prefix.pch
+//  WeCommunity
+//
+//  Created by Harry on 9/12/15.
+//  Copyright (c) 2015 Harry. All rights reserved.
+//
+
+#ifndef WeCommunity_WeCommunity_Prefix_pch
+#define WeCommunity_WeCommunity_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+//#import "UIImageView+AFNetworking.h"
+#import "AFHTTPRequestOperation.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "AFURLSessionManager.h"
+#import "MWPhotoBrowser.h"
+#import "DOPDropDownMenu.h"
+#import "RDRStickyKeyboardView.h"
+// ELC image picker
+#import "ELCAlbumPickerController.h"
+#import "ELCImagePickerController.h"
+#import "ELCAssetTablePicker.h"
+#import "UzysAssetsPickerController.h"
+#import <PgySDK/PgyManager.h>
+//#import <PgyUpdate/PgyUpdateManager.h>
+#import "MJRefresh.h"
+
+//category
+
+#import "UIButton+BottomBtn.h"
+#import "UIImageView+Scale.h"
+#import "UILabel+style.h"
+
+#import <SDWebImage/UIImageView+WebCache.h>
+//framework
+#import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
+
+
+
+//basic class
+#import "Util.h"
+#import "LoadingView.h"
+#import "BasicTableViewCell.h"
+#import "Networking.h"
+#import "FileManager.h"
+#import "WebViewController.h"
+#import "PageView.h"
+#import "User.h"
+#import "BottomButton.h"
+#import "WebViewController.h"
+#import "PickerView.h"
+
+
+
+
+#endif

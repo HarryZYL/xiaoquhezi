@@ -1,0 +1,57 @@
+PODS:
+  - AFNetworking (2.6.0):
+    - AFNetworking/NSURLConnection (= 2.6.0)
+    - AFNetworking/NSURLSession (= 2.6.0)
+    - AFNetworking/Reachability (= 2.6.0)
+    - AFNetworking/Security (= 2.6.0)
+    - AFNetworking/Serialization (= 2.6.0)
+    - AFNetworking/UIKit (= 2.6.0)
+  - AFNetworking/NSURLConnection (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.0)
+  - AFNetworking/Security (2.6.0)
+  - AFNetworking/Serialization (2.6.0)
+  - AFNetworking/UIKit (2.6.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - DACircularProgress (2.3.1)
+  - MBProgressHUD (0.9.1)
+  - MJRefresh (2.4.11)
+  - MWPhotoBrowser (2.1.1):
+    - DACircularProgress (~> 2.3)
+    - MBProgressHUD (~> 0.9)
+    - SDWebImage (!= 3.7.2, ~> 3.7)
+  - Pgyer (2.8)
+  - PgyUpdate (1.1)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - UzysAssetsPickerController (0.9.9)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.0)
+  - MJRefresh
+  - MWPhotoBrowser
+  - Pgyer
+  - PgyUpdate
+  - SDWebImage (~> 3.7)
+  - UzysAssetsPickerController
+
+SPEC CHECKSUMS:
+  AFNetworking: 79f7eb1a0fcfa7beb409332b2ca49afe9ce53b05
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MJRefresh: b327947f35ab3eb16ca42646b26f7347e6aa7186
+  MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  Pgyer: d09c7429ad458ed0f27a3116d9cbe6c053d32f85
+  PgyUpdate: 931955fa93969dd2ce03f4a0b49102bb7af58099
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  UzysAssetsPickerController: 47c27bd96955467925f3d4d80b1e2e8aaeff766d
+
+COCOAPODS: 0.38.2
