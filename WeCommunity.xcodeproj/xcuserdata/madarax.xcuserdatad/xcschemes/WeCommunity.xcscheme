@@ -15,14 +15,14 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4ADDB97E1B5D235F002A188E"
-               BuildableName = "WeCommunity.app"
+               BuildableName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;.app"
                BlueprintName = "WeCommunity"
                ReferencedContainer = "container:WeCommunity.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
+            buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
@@ -37,10 +37,10 @@
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -57,27 +57,30 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4ADDB97E1B5D235F002A188E"
-            BuildableName = "WeCommunity.app"
+            BuildableName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;.app"
             BlueprintName = "WeCommunity"
             ReferencedContainer = "container:WeCommunity.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4ADDB97E1B5D235F002A188E"
-            BuildableName = "WeCommunity.app"
+            BuildableName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;.app"
             BlueprintName = "WeCommunity"
             ReferencedContainer = "container:WeCommunity.xcodeproj">
          </BuildableReference>
@@ -86,17 +89,17 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4ADDB97E1B5D235F002A188E"
-            BuildableName = "WeCommunity.app"
+            BuildableName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;.app"
             BlueprintName = "WeCommunity"
             ReferencedContainer = "container:WeCommunity.xcodeproj">
          </BuildableReference>
