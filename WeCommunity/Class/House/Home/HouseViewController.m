@@ -50,7 +50,6 @@
     }else{
         
         if (![Util judgeChooseCommunity]) {
-            
             LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
             [self.navigationController presentViewController:nav animated:YES completion:nil];
@@ -194,11 +193,9 @@
 
 -(void)userOption:(id)sender{
     
-
-    
     self.userBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+60)];
     self.userBgView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.5];
-    [self.view addSubview:self.userBgView];
+    [self.view.window addSubview:self.userBgView];
     
     self.userView = [[UserView alloc] initWithFrame:CGRectMake(-self.view.frame.size.width*0.7, 0, self.view.frame.size.width*0.7, self.view.frame.size.height+60)];
     User *user = [[User alloc] initWithData];
@@ -217,9 +214,9 @@
         self.userView.center = CGPointMake(self.userView.center.x + self.userView.frame.size.width , self.userView.center.y);
     }];
     
-    [self.navigationController.view addSubview:self.userView];
-    [self hideTabBar];
+    [self.navigationController.view.window addSubview:self.userView];
     
+    [self hideTabBar];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeUserview)];
     tapGesture.numberOfTouchesRequired = 1;
     [self.userBgView addGestureRecognizer:tapGesture];
@@ -229,10 +226,10 @@
 
 -(void)removeUserview{
     [UIView animateWithDuration:0.25 animations:^{
+        [self.userBgView removeFromSuperview];
         self.userView.center = CGPointMake(self.userView.center.x - self.userView.frame.size.width, self.userView.center.y);
     } completion:^(BOOL finished) {
         [self.userView removeFromSuperview];
-        [self.userBgView removeFromSuperview];
         [self showTabBar];
     }];
 }
@@ -301,13 +298,9 @@
 }
 
 -(void)userDetail:(id)sender{
-    
-        UserDetailTableViewController *userDetailVC = [[UserDetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-        [self pushVC:userDetailVC title:@"个人信息"];
-        [self removeUserview];
-    
-    
-    
+    UserDetailTableViewController *userDetailVC = [[UserDetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    [self pushVC:userDetailVC title:@"个人信息"];
+    [self removeUserview];
 }
 
 -(void)authentication{

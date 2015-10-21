@@ -171,8 +171,6 @@
     
 }
 
-
-
 -(void)post:(id)sender{
     
     if (self.postID == nil) {
@@ -220,10 +218,9 @@
 #pragma mark imagepicker
 
 -(void)imagePicker:(id)sender{
-    
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
-    picker.maximumNumberOfSelectionMedia = 9 - self.chosenImages.count;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
     [self presentViewController:picker animated:YES completion:nil];
     
 }

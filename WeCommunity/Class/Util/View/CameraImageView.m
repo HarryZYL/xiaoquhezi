@@ -8,7 +8,7 @@
 
 #import "CameraImageView.h"
 
-static CGFloat height = 65;
+static CGFloat height = 80;
 
 @implementation CameraImageView
 
@@ -28,25 +28,25 @@ static CGFloat height = 65;
 
 -(void)configureImage:(NSMutableArray*)imageArr{
     
-    CGFloat margin = (self.frame.size.width - 5*height)/4;
+    CGFloat margin = (self.frame.size.width - 4*height)/3;
     
     for (int i = 0; i<imageArr.count; i++) {
         UIImage *image = imageArr[i];
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.image = image;
-        if (i<5) {
+        if (i<4) {
             imageView.frame = CGRectMake((height+margin)*i, 0, height, height);
         }else{
-            imageView.frame = CGRectMake((height+margin)*(i-5), height+margin, height, height);
+            imageView.frame = CGRectMake((height+margin)*(i-4), height+margin-5, height, height);
         }
         
         [self addSubview:imageView];
     }
     
-    if (imageArr.count<5) {
+    if (imageArr.count<4) {
         self.addImageBtn.frame = CGRectMake((height+margin) * imageArr.count, 0, height, height);
     }else{
-        self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-5), height+margin, height, height);
+        self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin, height, height);
     }
 
     

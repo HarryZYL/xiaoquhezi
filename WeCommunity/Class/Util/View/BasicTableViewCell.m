@@ -202,7 +202,8 @@
     // cardTypeName
     self.detailLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y+self.titleLabel.frame.size.height, 300, textHeight);
     [self.detailLabel grayColorStyle:15];
-    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@ (%@)",accreditation.cardNumber,accreditation.cardTypeName];
+    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@",accreditation.cardNumber];
+//    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@ (%@)",accreditation.cardNumber,accreditation.cardTypeName]; 2015.10.20
     
     // building
     self.priceLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.detailLabel.frame.origin.y+self.detailLabel.frame.size.height, 300, textHeight);

@@ -248,7 +248,6 @@
 #pragma mark picker
 
 -(void)selectPicker:(id)sender{
-    
     UIButton *button = (UIButton*)sender;
     [self.view endEditing:YES];
     
@@ -310,7 +309,6 @@
 //返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
     if ([self.pickerTag isEqualToString:@"1"]) {
         self.pickerStr =  self.owerTypeArr[row];
         self.owerType = self.owerTypeArrEn[row];
@@ -357,7 +355,6 @@
     }
     
     self.pickerStr = nil;
-    
 }
 
 -(void)cancelPicker:(id)sender{
@@ -375,15 +372,7 @@
             self.houseId = nil;
         }
     }
-    
     self.pickerStr = nil;
-
-    
-    
 }
-
-
-
-
 
 @end
