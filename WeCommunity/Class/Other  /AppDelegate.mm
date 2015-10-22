@@ -5,7 +5,6 @@
 //  Created by Harry on 7/20/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -18,7 +17,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self customizeUserInterface];
-    [self initBMKMapViewManager];
+    [self initBMKMapViewManagerAndNotification];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
@@ -32,6 +31,17 @@
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    //注册成功，把deviceToken发给后台
+    NSLog(@"------>%@",[[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding]);
+    NSLog(@"------>%@",deviceToken);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    //推送消息
+    NSLog(@"----->%@",userInfo);
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -92,17 +102,21 @@
 //    
 //    
     
-    
-    
-    
 }
 
-- (void)initBMKMapViewManager{
-//    _mapManager = [[BMKMapManager alloc] init];
-//    BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
-//    if (!ret) {
-//        NSLog(@"manager start failed!");
-//    }
+- (void)initBMKMapViewManagerAndNotification{
+    _mapManager = [[BMKMapManager alloc] init];
+    BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
+    if ([[UIDevice currentDevice] systemVersion].floatValue < 8.0) {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
+    }else{
+        UIUserNotificationSettings * s =[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:s];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
 }
 
 

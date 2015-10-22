@@ -75,7 +75,12 @@
     [self.scrollView addSubview:self.functionView];
     
     self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 100)];
-    self.describleView.placeholder=@"说点什么";
+    if ([self.function isEqualToString:@"praise"]) {
+        self.describleView.placeholder = @"物业服务很好，赞一个";
+    }else{
+        self.describleView.placeholder=@"说点什么";
+    }
+    
     self.describleView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
     self.describleView.font=[UIFont fontWithName:@"Arial" size:15];
     self.describleView.returnKeyType = UIReturnKeyDone;

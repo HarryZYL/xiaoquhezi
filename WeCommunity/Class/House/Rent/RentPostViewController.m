@@ -298,7 +298,7 @@
     
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
-    picker.maximumNumberOfSelectionMedia = 9 - self.chosenImages.count;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
     [self presentViewController:picker animated:YES completion:nil];
     
 }
@@ -341,7 +341,7 @@
         [Networking upload:self.chosenImages success:^(id responseObject) {
             NSDictionary *parameters = @{
                                          @"token":[User getUserToken],
-                                         @"communityId":@1,
+                                         @"communityId":[Util getCommunityID],
                                          @"houseDealType":@"Rent",
                                          @"title":self.houseData.title,
                                          @"content":self.houseData.content,
@@ -366,7 +366,7 @@
     }else{
         NSDictionary *parameters = @{
                                      @"token":[User getUserToken],
-                                     @"communityId":@1,
+                                     @"communityId":[Util getCommunityID],
                                      @"houseDealType":@"Rent",
                                      @"title":self.houseData.title,
                                      @"content":self.houseData.content,

@@ -8,7 +8,7 @@
 
 #import "CameraImageView.h"
 
-static CGFloat height = 80;
+static CGFloat height = 70;
 
 @implementation CameraImageView
 

@@ -112,23 +112,26 @@
             
         }else{
             NSString *owerType = @"";
-            if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
-                owerType = @"认证户主";
-            }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
-                owerType = @"认证业主";
+            if([responseObject[@"auditStatus"] isEqualToString:@"Success"]){
+                if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
+                    owerType = @"认证户主";
+                }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
+                    owerType = @"认证业主";
+                }
+            }else if([responseObject[@"auditStatus"] isEqualToString:@"Pending"]){
+                 owerType = @"未受理";
+            }else if ([responseObject[@"auditStatus"] isEqualToString:@"Handing"]){
+                owerType = @"认证中";
+            }else{
+                owerType = @"认证失败";
             }
-            
             NSDictionary *authentication = @{
                                              @"communityName":responseObject[@"community"][@"name"],
                                              @"addressName":[NSString stringWithFormat:@"%@%@",responseObject[@"buildingName"],responseObject[@"houseName"]],
                                              @"owerType":owerType
                                              };
             [FileManager saveDataToFile:authentication filePath:@"Authentication"];
-            
         }
-        
-        
-        
     }];
 
 }

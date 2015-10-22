@@ -533,7 +533,6 @@
 		4A118E961BA4900400BC2C4E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				D4D9D0D01BD8807100613AAC /* BaiduMap_IOSSDK_v2 */,
 				D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */,
 				D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */,
 				4AFFD6871BCC736000D33F5C /* RDRStickyKeyboardView */,
@@ -1029,6 +1028,7 @@
 		5B97ACE67E79CB56101CD0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4D9D0D01BD8807100613AAC /* BaiduMap_IOSSDK_v2 */,
 				D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */,
 				D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */,
 				D4B6ACB71BD7BA88005CC778 /* Security.framework */,
@@ -1055,7 +1055,8 @@
 				D4D9D0D61BD8807100613AAC /* BaiduMapAPI_Search.framework */,
 				D4D9D0D71BD8807100613AAC /* BaiduMapAPI_Utils.framework */,
 			);
-			path = BaiduMap_IOSSDK_v2;
+			name = BaiduMap_IOSSDK_v2;
+			path = WeCommunity/Vendor/BaiduMap_IOSSDK_v2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

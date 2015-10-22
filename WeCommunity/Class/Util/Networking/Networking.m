@@ -87,9 +87,11 @@
 //        NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
         NSDictionary *path = responseObject[@"msg"];
         NSMutableArray *pathResultArr = [NSMutableArray arrayWithCapacity:10];
-        for (NSString *key in path) {
-            NSString *value = path[key];
-            [pathResultArr addObject:value];
+        if ([responseObject[@"stage"] boolValue]) {
+            for (NSString *key in path) {
+                NSString *value = path[key];
+                [pathResultArr addObject:value];
+            }
         }
         ablock(pathResultArr);
         
