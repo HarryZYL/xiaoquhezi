@@ -8,7 +8,7 @@
 
 #import "TextTableViewController.h"
 
-@interface TextTableViewController ()
+@interface TextTableViewController ()<TextPostViewControllerDelegate>
 
 @end
 
@@ -177,6 +177,7 @@
     if ([Util judgeAuthentication]) {
         TextPostViewController *textPostVC = [[TextPostViewController alloc] init];
         textPostVC.function = self.function;
+        textPostVC.delegate = self;
         NSString *firstTitle = self.navigationItem.title;
         NSString *title = [NSString stringWithFormat:@"发布%@",firstTitle];
         textPostVC.navigationItem.title = title;
@@ -187,7 +188,8 @@
     
 }
 
-
-
+- (void)issueInformationSeccess{
+    [self refreshHeader];
+}
 
 @end

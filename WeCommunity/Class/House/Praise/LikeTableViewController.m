@@ -4,11 +4,11 @@
 //
 //  Created by Harry on 7/21/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
-//
+// 表扬
 
 #import "LikeTableViewController.h"
 
-@interface LikeTableViewController ()
+@interface LikeTableViewController ()<TextPostViewControllerDelegate>
 
 @end
 
@@ -106,6 +106,7 @@
 -(void)post:(id)sender{
     if ([Util judgeAuthentication]) {
         TextPostViewController *textPostVC = [[TextPostViewController alloc] init];
+        textPostVC.delegate = self;
         textPostVC.navigationItem.title = @"发布表扬";
         textPostVC.function = @"praise";
         [self.navigationController pushViewController:textPostVC animated:YES];
@@ -174,6 +175,10 @@
     vc.navigationItem.title = title;
     [vc setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)issueInformationSeccess{
+    [self refreshHeader];
 }
 
 @end

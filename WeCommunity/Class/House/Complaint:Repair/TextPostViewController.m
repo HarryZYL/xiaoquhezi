@@ -4,7 +4,7 @@
 //
 //  Created by Harry on 7/21/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
-//
+// 发布，报修，表扬，批评
 #import "UIViewController+HUD.h"
 #import "TextPostViewController.h"
 
@@ -213,6 +213,7 @@
         if (responseObject) {
             [self showHint:@"发布成功"];
         }
+        [self.delegate issueInformationSeccess];
         [self.navigationController popViewControllerAnimated:YES];
     } addition:^{
         [self.loadingView removeFromSuperview];
