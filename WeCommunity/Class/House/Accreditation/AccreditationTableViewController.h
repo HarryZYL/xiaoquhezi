@@ -11,7 +11,7 @@
 #import "LoadingView.h"
 #import "User.h"
 #import "AccreditationPostViewController.h"
-@interface AccreditationTableViewController : UITableViewController
+@interface AccreditationTableViewController : UITableViewController<AccreditationPostViewControllerDelegate>
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) LoadingView *loadingView;

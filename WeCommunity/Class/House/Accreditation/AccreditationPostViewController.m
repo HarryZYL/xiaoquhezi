@@ -233,6 +233,7 @@
                                      };
         [Networking retrieveData:applyAuthentication parameters:parameters success:^(id responseObject) {
             [self.loadingView removeFromSuperview];
+            [self.delegate issueCertifySeccessful];
             [self.navigationController popViewControllerAnimated:YES];
         } addition:^{
             [self.loadingView removeFromSuperview];

@@ -280,11 +280,9 @@ static inline UIViewAnimationOptions RDRAnimationOptionsForCurve(UIViewAnimation
         return _leftButton;
     }
     
-    _leftButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _leftButton.titleLabel.font = [UIFont systemFontOfSize:15.0f];
-    
-    [_leftButton setTitle:NSLocalizedString(@"图片", nil)
-                 forState:UIControlStateNormal];
+    [_leftButton setImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
     
     return _leftButton;
 }
@@ -295,9 +293,9 @@ static inline UIViewAnimationOptions RDRAnimationOptionsForCurve(UIViewAnimation
         return _rightButton;
     }
     
-    _rightButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     _rightButton.titleLabel.font = [UIFont systemFontOfSize:14.0f];
-    
+    [_rightButton setTitleColor:[UIColor colorWithRed:81/255.0 green:179/255.0 blue:151/255.0 alpha:1] forState:UIControlStateNormal];
     [_rightButton setTitle:NSLocalizedString(@"发送", nil)
                   forState:UIControlStateNormal];
     

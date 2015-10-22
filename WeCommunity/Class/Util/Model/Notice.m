@@ -5,7 +5,7 @@
 //  Created by Harry on 8/17/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
+#import "NSString+HTML.h"
 #import "Notice.h"
 
 @implementation Notice
@@ -16,7 +16,7 @@
         self.Objectid = data[@"id"];
         self.title = data[@"title"];
         self.content = data[@"content"];
-        self.contentTxt = data[@"contentTxt"];
+        self.contentTxt = [NSString filterHTML:data[@"contentTxt"]];
         self.pictures = [Util modifyArray:data[@"pictures"]];
         self.createTime = [Util formattedDate:data[@"createTime"] type:1];
         self.creator = data[@"creator"];

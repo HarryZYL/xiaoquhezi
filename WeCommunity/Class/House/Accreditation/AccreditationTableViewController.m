@@ -88,7 +88,8 @@
 -(void)retrireveData{
     
     [self.view addSubview:self.loadingView];
-    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+//    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+    NSDictionary *parameters = @{@"token":[User getUserToken],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
@@ -99,7 +100,8 @@
 }
 
 -(void)refreshHeader{
-    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+//    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+    NSDictionary *parameters = @{@"token":[User getUserToken],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
@@ -111,7 +113,8 @@
 
 -(void)refreshFooter{
     self.page ++;
-    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSString stringWithFormat:@"%d",self.page*row]};
+//    NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSString stringWithFormat:@"%d",self.page*row]};
+    NSDictionary *parameters = @{@"token":[User getUserToken],@"page":@1,@"row":[NSString stringWithFormat:@"%d",self.page*row]};
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
@@ -122,11 +125,15 @@
     }];
 }
 
+- (void)issueCertifySeccessful{
+    [self refreshHeader];
+}
 
 #pragma mark action
 
 -(void)post:(id)sender{
     AccreditationPostViewController *acVC = [[AccreditationPostViewController alloc] init];
+    acVC.delegate = self;
     [self.navigationController pushViewController:acVC animated:YES];
 }
 

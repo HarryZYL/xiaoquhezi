@@ -68,6 +68,7 @@
 +(void)upload:(NSMutableArray*)imageArr success:(void (^)(id responseObject))ablock{
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
     NSMutableArray *imageDataArr = [NSMutableArray arrayWithCapacity:10];
     for (UIImage *image in imageArr) {
          NSData *imageData = UIImageJPEGRepresentation(image, 0.5);

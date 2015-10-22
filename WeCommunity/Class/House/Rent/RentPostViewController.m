@@ -172,7 +172,8 @@
             
             break;
         case 2:
-            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0 || self.chosenImages.count == 0) {
+//            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0 || self.chosenImages.count == 0) {
+            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0) {
                 [Util alertNetworingError:@"信息不完整"];
                 break;
             }else{
@@ -335,16 +336,40 @@
 -(void)uploadRentInfo{
     
     [self.view addSubview:self.loadingView];
-   
-    [Networking upload:self.chosenImages success:^(id responseObject) {
+    
+    if (self.chosenImages.count) {
+        [Networking upload:self.chosenImages success:^(id responseObject) {
+            NSDictionary *parameters = @{
+                                         @"token":[User getUserToken],
+                                         @"communityId":@1,
+                                         @"houseDealType":@"Rent",
+                                         @"title":self.houseData.title,
+                                         @"content":self.houseData.content,
+                                         @"pictures":responseObject,
+                                         @"room":self.houseData.room,
+                                         @"sittingRoom":self.houseData.sittingRoom,
+                                         @"bathRoom":self.houseData.bathRoom,
+                                         @"area":self.houseData.area,
+                                         @"floor":self.houseData.floor,
+                                         @"totalFloor":self.houseData.totalFloor,
+                                         @"houseOrientation":self.houseData.houseOrientation,
+                                         @"houseType":self.houseData.houseType,
+                                         @"price":self.houseData.price
+                                         };
+            [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            } addition:^{
+                [self.loadingView removeFromSuperview];
+            }];
+        }];
 
+    }else{
         NSDictionary *parameters = @{
                                      @"token":[User getUserToken],
                                      @"communityId":@1,
                                      @"houseDealType":@"Rent",
                                      @"title":self.houseData.title,
                                      @"content":self.houseData.content,
-                                     @"pictures":responseObject,
                                      @"room":self.houseData.room,
                                      @"sittingRoom":self.houseData.sittingRoom,
                                      @"bathRoom":self.houseData.bathRoom,
@@ -360,8 +385,8 @@
         } addition:^{
             [self.loadingView removeFromSuperview];
         }];
-    }];
-
+    }
+       
 }
 
 

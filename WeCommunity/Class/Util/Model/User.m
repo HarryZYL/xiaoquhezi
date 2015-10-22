@@ -114,7 +114,7 @@
             NSString *owerType = @"";
             if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
                 owerType = @"认证户主";
-            }else if ([responseObject[@"OwnerType"] isEqualToString:@"NoOwner"]){
+            }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
                 owerType = @"认证业主";
             }
             

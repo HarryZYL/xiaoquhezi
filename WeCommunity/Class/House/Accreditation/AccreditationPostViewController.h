@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AccreditationPostViewControllerDelegate <NSObject>
+
+- (void)issueCertifySeccessful;
+
+@end
+
 @interface AccreditationPostViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
+
+@property (nonatomic,weak) id delegate;
 
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) NSArray *titleArray;

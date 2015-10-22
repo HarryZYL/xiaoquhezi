@@ -8,7 +8,7 @@
 
 #import "TextPostViewController.h"
 
-@interface TextPostViewController ()
+@interface TextPostViewController ()<UITextViewDelegate>
 
 @end
 
@@ -78,6 +78,8 @@
     self.describleView.placeholder=@"说点什么";
     self.describleView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
     self.describleView.font=[UIFont fontWithName:@"Arial" size:15];
+    self.describleView.returnKeyType = UIReturnKeyDone;
+    self.describleView.delegate = self;
     [self.scrollView addSubview:self.describleView];
     
     self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.size.height+self.describleView.frame.origin.y+5, self.view.frame.size.width-20, 150)];
@@ -190,19 +192,21 @@
 }
 
 -(void)uploadInfo:(NSArray*)pictures{
+//    小区信息 communityId
+    
     NSDictionary *parameters = @{};
     NSString *url = @"";
     if ([self.function isEqualToString:@"complaint"]) {
         url =complaint_add;
-        parameters = @{@"token":[User getUserToken],@"communityId":@"1",@"content":self.describleView.text,@"pictures":pictures,@"complaintTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":self.describleView.text,@"pictures":pictures,@"complaintTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         
     }else if([self.function isEqualToString:@"repair"]){
         url = repair_add;
-        parameters = @{@"token":[User getUserToken],@"communityId":@"1",@"content":self.describleView.text,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":self.describleView.text,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         
     }else if ([self.function isEqualToString:@"praise"]){
         url = praise_add;
-        parameters = @{@"token":[User getUserToken],@"communityId":@"1",@"praiseTypeId":self.postID,@"content":self.describleView.text,@"pictures":pictures};
+        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"praiseTypeId":self.postID,@"content":self.describleView.text,@"pictures":pictures};
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
@@ -213,7 +217,15 @@
 
 }
 
+#pragma mark UITextViewDelegate
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
 
 #pragma mark imagepicker
 
@@ -250,7 +262,5 @@
     }
     
 }
-
-
 
 @end

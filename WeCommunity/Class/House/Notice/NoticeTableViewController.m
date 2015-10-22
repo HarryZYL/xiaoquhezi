@@ -65,8 +65,6 @@
     return 140;
 }
 
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];

@@ -41,6 +41,9 @@
 #define getMyRepairsOfCommunity (HOST_URL @"/repair/user/getMyRepairsOfCommunity")
 #define getMyComplaintsOfCommunity (HOST_URL @"/complaint/user/getMyComplaintsOfCommunity")
 
+#pragma mark - NearbyCommunityOfCity
+#define getNearbyCommnity (HOST_URL @"/community/getNearby")
+#define getCommnityOfCity (HOST_URL @"/community/getCommunityOfCity")
 
 
 
@@ -52,3 +55,29 @@
 +(void)upload:(NSMutableArray*)imageArr success:(void (^)(id responseObject))ablock;
 +(void)uploadOne:(UIImage*)image success:(void (^)(id responseObject))ablock;
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

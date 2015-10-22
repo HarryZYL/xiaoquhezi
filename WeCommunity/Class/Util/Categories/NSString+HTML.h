@@ -1,0 +1,15 @@
+//
+//  NSString+HTML.h
+//  WeCommunity
+//
+//  Created by madarax on 15/10/21.
+//  Copyright © 2015年 Harry. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface NSString (NSString_HTML)
+
++ (NSString *)filterHTML:(NSString *)html;
+
+@end

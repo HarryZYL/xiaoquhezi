@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3611BC9A83171F384CDA3C36 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A6A45E73D8E9EF485B0A714 /* libPods.a */; };
-		4A118E721BA48FFC00BC2C4E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A118DDA1BA48FFC00BC2C4E /* AppDelegate.m */; };
+		4A118E721BA48FFC00BC2C4E /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A118DDA1BA48FFC00BC2C4E /* AppDelegate.mm */; };
 		4A118E831BA48FFC00BC2C4E /* UIButton+BottomBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A118E091BA48FFC00BC2C4E /* UIButton+BottomBtn.m */; };
 		4A118E851BA48FFC00BC2C4E /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A118E0E1BA48FFC00BC2C4E /* MainViewController.m */; };
 		4A118E881BA48FFC00BC2C4E /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A118E171BA48FFC00BC2C4E /* FileManager.m */; };
@@ -112,6 +112,13 @@
 		4AFFD68D1BCC736000D33F5C /* RDRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD68B1BCC736000D33F5C /* RDRTextView.m */; };
 		4AFFD6901BCD3D5000D33F5C /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD68F1BCD3D5000D33F5C /* PickerView.m */; };
 		4AFFD6931BCE042E00D33F5C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD6921BCE042E00D33F5C /* AboutViewController.m */; };
+		D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */; };
+		D4B6ACB21BD7BA5A005CC778 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB11BD7BA59005CC778 /* QuartzCore.framework */; };
+		D4B6ACB41BD7BA65005CC778 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB31BD7BA65005CC778 /* OpenGLES.framework */; };
+		D4B6ACB61BD7BA7A005CC778 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB51BD7BA79005CC778 /* CoreGraphics.framework */; };
+		D4B6ACB81BD7BA88005CC778 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB71BD7BA88005CC778 /* Security.framework */; };
+		D4B6ACBA1BD7BA99005CC778 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */; };
+		D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +133,7 @@
 
 /* Begin PBXFileReference section */
 		4A118DD91BA48FFC00BC2C4E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4A118DDA1BA48FFC00BC2C4E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4A118DDA1BA48FFC00BC2C4E /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		4A118E081BA48FFC00BC2C4E /* UIButton+BottomBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+BottomBtn.h"; sourceTree = "<group>"; };
 		4A118E091BA48FFC00BC2C4E /* UIButton+BottomBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+BottomBtn.m"; sourceTree = "<group>"; };
 		4A118E0D1BA48FFC00BC2C4E /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -328,6 +335,14 @@
 		4AFFD6921BCE042E00D33F5C /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		9914193A5A7538191672005B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9A6A45E73D8E9EF485B0A714 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
+		D4B6ACB11BD7BA59005CC778 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D4B6ACB31BD7BA65005CC778 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		D4B6ACB51BD7BA79005CC778 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D4B6ACB71BD7BA88005CC778 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -336,6 +351,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */,
+				D4B6ACBA1BD7BA99005CC778 /* libsqlite3.0.tbd in Frameworks */,
+				D4B6ACB81BD7BA88005CC778 /* Security.framework in Frameworks */,
+				D4B6ACB61BD7BA7A005CC778 /* CoreGraphics.framework in Frameworks */,
+				D4B6ACB41BD7BA65005CC778 /* OpenGLES.framework in Frameworks */,
+				D4B6ACB21BD7BA5A005CC778 /* QuartzCore.framework in Frameworks */,
 				4A4C15E71BAAB0760040085C /* CoreTelephony.framework in Frameworks */,
 				4A4C15E51BAAA2750040085C /* SystemConfiguration.framework in Frameworks */,
 				4AA9F8301BA71EDB006284FF /* CoreLocation.framework in Frameworks */,
@@ -379,7 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				4A118DD91BA48FFC00BC2C4E /* AppDelegate.h */,
-				4A118DDA1BA48FFC00BC2C4E /* AppDelegate.m */,
+				4A118DDA1BA48FFC00BC2C4E /* AppDelegate.mm */,
 			);
 			path = "Other  ";
 			sourceTree = "<group>";
@@ -416,6 +437,8 @@
 				4A118EC01BA490EB00BC2C4E /* UIImageView+Scale.m */,
 				4AA9F8351BA87685006284FF /* UILabel+style.h */,
 				4AA9F8361BA87685006284FF /* UILabel+style.m */,
+				D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */,
+				D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -979,6 +1002,12 @@
 		5B97ACE67E79CB56101CD0BA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */,
+				D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */,
+				D4B6ACB71BD7BA88005CC778 /* Security.framework */,
+				D4B6ACB51BD7BA79005CC778 /* CoreGraphics.framework */,
+				D4B6ACB31BD7BA65005CC778 /* OpenGLES.framework */,
+				D4B6ACB11BD7BA59005CC778 /* QuartzCore.framework */,
 				4A4C15E61BAAB0760040085C /* CoreTelephony.framework */,
 				4A4C15E41BAAA2750040085C /* SystemConfiguration.framework */,
 				4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */,
@@ -1149,7 +1178,7 @@
 				4A6037201BBC99F000D3A067 /* BottomButton.m in Sources */,
 				4ACCD0531BBF49600001227A /* RentPostView.m in Sources */,
 				4A118EB41BA4900400BC2C4E /* ELCAsset.m in Sources */,
-				4A118E721BA48FFC00BC2C4E /* AppDelegate.m in Sources */,
+				4A118E721BA48FFC00BC2C4E /* AppDelegate.mm in Sources */,
 				4A118E851BA48FFC00BC2C4E /* MainViewController.m in Sources */,
 				4ACCCEDE1BBF456F0001227A /* ActivityPostView.m in Sources */,
 				4A118EB91BA4900400BC2C4E /* ELCOverlayImageView.m in Sources */,
@@ -1161,6 +1190,7 @@
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,
 				4A118EB61BA4900400BC2C4E /* ELCAssetTablePicker.m in Sources */,
+				D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */,
 				4ACCD04B1BBF49600001227A /* ImagePickerCollectionVC.m in Sources */,
 				4ACCCE721BBF3E840001227A /* BasicHeader.m in Sources */,
 				4ACCD0371BBF49600001227A /* AccreditationPostViewController.m in Sources */,
@@ -1355,6 +1385,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeCommunity",
+					"$(PROJECT_DIR)/WeCommunity/Vendor/BaiduMap_IOSSDK_v2",
+					"$(PROJECT_DIR)/BaiduMapAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WeCommunity/Class/Util/Common/WeCommunity-Prefix.pch";
@@ -1381,6 +1413,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WeCommunity",
+					"$(PROJECT_DIR)/WeCommunity/Vendor/BaiduMap_IOSSDK_v2",
+					"$(PROJECT_DIR)/BaiduMapAPI",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WeCommunity/Class/Util/Common/WeCommunity-Prefix.pch";
