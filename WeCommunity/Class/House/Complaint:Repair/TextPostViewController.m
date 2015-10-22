@@ -5,7 +5,7 @@
 //  Created by Harry on 7/21/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
+#import "UIViewController+HUD.h"
 #import "TextPostViewController.h"
 
 @interface TextPostViewController ()<UITextViewDelegate>
@@ -210,6 +210,9 @@
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
+        if (responseObject) {
+            [self showHint:@"发布成功"];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     } addition:^{
         [self.loadingView removeFromSuperview];

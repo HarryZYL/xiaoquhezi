@@ -119,6 +119,7 @@
 		D4B6ACB81BD7BA88005CC778 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB71BD7BA88005CC778 /* Security.framework */; };
 		D4B6ACBA1BD7BA99005CC778 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */; };
 		D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */; };
+		D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +344,8 @@
 		D4B6ACB71BD7BA88005CC778 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
+		D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 		E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -509,6 +512,8 @@
 		4A118E961BA4900400BC2C4E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */,
+				D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */,
 				4AFFD6871BCC736000D33F5C /* RDRStickyKeyboardView */,
 				4AA9F8311BA81592006284FF /* DOPDropDownMenu */,
 				4A118E971BA4900400BC2C4E /* Advertisement */,
@@ -1237,6 +1242,7 @@
 				4ACCD04D1BBF49600001227A /* RentDetailViewController.m in Sources */,
 				4AA9F8371BA87685006284FF /* UILabel+style.m in Sources */,
 				4ACCD03F1BBF49600001227A /* HouseFooterView.m in Sources */,
+				D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */,
 				4ACCD03D1BBF49600001227A /* HouseViewController.m in Sources */,
 				4ACCCEA11BBF40120001227A /* EditDetailTableViewController.m in Sources */,
 				4ACCD0541BBF49600001227A /* SigninViewController.m in Sources */,
