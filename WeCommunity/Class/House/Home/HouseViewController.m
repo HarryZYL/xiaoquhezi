@@ -237,7 +237,6 @@
 #pragma mark networking
 
 -(void)retrireveData{
-    
     [Networking retrieveData:getNoticesOfCommunity parameters:@{ @"communityId":[Util getCommunityID],@"page":@"1",@"row":@3} success:^(id responseObject) {
         self.noticeData = responseObject[@"rows"];
         [self.headView.pageView removeFromSuperview];

@@ -117,8 +117,17 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:s];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
+    
+    _serviceLocation = [[BMKLocationService alloc] init];
+    _serviceLocation.delegate = self;
+    [_serviceLocation startUserLocationService];
 }
 
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation{
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude] forKey:@"USER_LONG"];
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] forKey:@"USER_LAT"];
+    [_serviceLocation stopUserLocationService];
+}
 
 @end
 

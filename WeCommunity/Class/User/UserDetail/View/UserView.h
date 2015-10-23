@@ -28,4 +28,5 @@
 @property (nonatomic,strong) UIButton *fifthBtn;
 @property (nonatomic,strong) UIButton *sixthBtn;
 -(void)configureHead:(NSURL*)image title:(NSString*)username;
+
 @end
