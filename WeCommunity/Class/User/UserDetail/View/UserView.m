@@ -7,6 +7,16 @@
 //
 
 #import "UserView.h"
+#import "SummerUserViewTableViewCell.h"
+
+@interface UserView()
+{
+    User *user;
+    NSString *authenType;
+    UserViewTableViewCellType viewType;
+}
+
+@end
 
 @implementation UserView
 
@@ -14,7 +24,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+        /*
         self.backgroundColor = [UIColor colorWithRed:29.0/255.0 green:165.0/255.0 blue:146.0/255.0 alpha:0.9];
 //        上半部分颜色初始化
         UIView *topView = [[UIView alloc] init];
@@ -124,21 +134,134 @@
             [self addSubview:selectImg];
 
         }
-
+*/
+        user = [[User alloc] initWithData];
+        authenType = [User getAuthenticationOwnerType];
+        if ([authenType isEqualToString:@"认证户主"]) {
+            _functionArray = @[@"租售管理",@"消息中心",@"缴费记录",@"设置",@"成员管理"];
+            _functionImage = @[@"我的活动",@"消息中心",@"缴费记录",@"设置",@"我的房屋"];
+        }else{
+            _functionArray = @[@"租售管理",@"消息中心",@"缴费记录",@"设置"];
+            _functionImage = @[@"我的活动",@"消息中心",@"缴费记录",@"设置"];
+        }
+        _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+        _mTableView.backgroundColor = [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1];
+        _mTableView.rowHeight = 50;
         
-        
+        [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
+        _mTableView.delegate = self;
+        _mTableView.dataSource = self;
+        [self addSubview:_mTableView];
+        [self setTableViewHeaderView];
+        [_mTableView setTableFooterView:[[UIView alloc] init]];
     }
     return self;
 }
 
-//设置头像和用户名
--(void)configureHead:(NSURL*)image title:(NSString*)username{
+- (void)setTableViewHeaderView{
+    self.backgroundColor = [UIColor colorWithRed:29.0/255.0 green:165.0/255.0 blue:146.0/255.0 alpha:0.9];
+    //        上半部分颜色初始化
+    UIView *topView = [[UIView alloc] init];
+    topView.backgroundColor = [UIColor colorWithRed:21.0/255.0 green:186.0/255.0 blue:154.0/255.0 alpha:1];
+    [self addSubview:topView];
     
-    [self.userHeadImg sd_setImageWithURL:image placeholderImage:[UIImage imageNamed:@"smile"]];
-    self.title.text = username;
+    //        设置头像
+    UIImageView *userHeadImg = [[UIImageView alloc] init];
+    userHeadImg.frame = CGRectMake(20, 50, 65, 65);
+    userHeadImg.layer.masksToBounds = YES;
+    userHeadImg.layer.cornerRadius = userHeadImg.frame.size.width/2;
+    userHeadImg.image = [UIImage imageNamed:@"smile"];
+    [userHeadImg sd_setImageWithURL:user.headPhoto placeholderImage:[UIImage imageNamed:@"smile"]];
+    [self addSubview:userHeadImg];
     
+    //        设置用户名
+    UILabel *title = [[UILabel alloc] init];
+    title.frame = CGRectMake(userHeadImg.frame.origin.x+userHeadImg.frame.size.width+10, userHeadImg.frame.origin.y+userHeadImg.frame.size.height/2 - 15, 100, 30);
+    title.text = user.userName;
+    title.textColor = [UIColor whiteColor];
+    [self addSubview:title];
+    
+    UIButton *topBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [topBtn addTarget:self action:@selector(userHeaderView) forControlEvents:UIControlEventTouchUpInside];
+    topBtn.frame = CGRectMake(0, userHeadImg.frame.origin.y, self.frame.size.width, userHeadImg.frame.size.height);
+    [self addSubview:topBtn];
+    
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(userHeadImg.frame.origin.x, userHeadImg.frame.origin.y +userHeadImg.frame.size.height +40 , 20, 20)];
+    iconImg.image = [UIImage imageNamed:@"认证"];
+    [self addSubview:iconImg];
+    
+    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-30, iconImg.frame.origin.y+5, 20, 20)];
+    selectImg.image = [UIImage imageNamed:@"箭头"];
+    [self addSubview:selectImg];
+    //      设置地址
+    UILabel *address = [[UILabel alloc] init];
+    address.frame = CGRectMake(50, 140, 150, 30);
+    address.text = [Util getCommunityName];
+    address.textColor = [UIColor whiteColor];
+    [self addSubview:address];
+    
+    UILabel *detail = [[UILabel alloc] init];
+    detail.frame = CGRectMake(address.frame.origin.x, address.frame.origin.y+address.frame.size.height, 150, 20);
+    detail.text = [User getAuthenticationAddress];
+    detail.textColor = [UIColor whiteColor];
+    [self addSubview:detail];
+    
+    UILabel *owerType = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-95, address.frame.origin.y+15, 60, 25)];
+    owerType.backgroundColor = [UIColor redColor];
+    owerType.font = [UIFont fontWithName:fontName size:12];
+    owerType.textColor = [UIColor whiteColor];
+    owerType.textAlignment = NSTextAlignmentCenter;
+    owerType.text = [User getAuthenticationOwnerType];
+    owerType.layer.masksToBounds = YES;
+    owerType.layer.cornerRadius = 10;
+    [self addSubview:owerType];
+    
+    UIButton *addressBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    addressBtn.frame = CGRectMake(0, address.frame.origin.y, self.frame.size.width, 50 );
+    [addressBtn addTarget:self action:@selector(userRoomAuthen) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:addressBtn];
+    topView.frame = CGRectMake(0, 0, self.frame.size.width, addressBtn.frame.origin.y+addressBtn.frame.size.height+20);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 210;
+}
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _functionArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerUserViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"summercell" forIndexPath:indexPath];
+    cell.imageView.image = [UIImage imageNamed:_functionImage[indexPath.row]];
+    cell.nameLab.text = _functionArray[indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    viewType = indexPath.row;
+    [self.delegate userViewDidSelectType:viewType];
+}
+
+- (void)userRoomAuthen{
+    viewType = UserViewTableViewCellTypeRoomAuthen;
+    [self.delegate userViewDidSelectType:viewType];
+}
+
+- (void)userHeaderView{
+    viewType = UserViewTableViewCellTypeUserInformation;
+    [self.delegate userViewDidSelectType:viewType];
+}
+
+- (void)dealloc{
+    _mTableView.delegate = nil;
+    _mTableView = nil;
+    _functionImage = nil;
+    _functionArray = nil;
+}
 
 @end

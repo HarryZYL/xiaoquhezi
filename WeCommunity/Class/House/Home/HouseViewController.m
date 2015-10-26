@@ -7,7 +7,7 @@
 //
 
 #import "HouseViewController.h"
-@interface HouseViewController ()
+@interface HouseViewController ()<UserViewDelegate>
 
 @end
 
@@ -198,16 +198,17 @@
     [self.view.window addSubview:self.userBgView];
     
     self.userView = [[UserView alloc] initWithFrame:CGRectMake(-self.view.frame.size.width*0.7, 0, self.view.frame.size.width*0.7, self.view.frame.size.height+60)];
-    User *user = [[User alloc] initWithData];
+    self.userView.delegate = self;
+//    User *user = [[User alloc] initWithData];
     
-    [self.userView.topBtn addTarget:self action:@selector(userDetail:) forControlEvents:UIControlEventTouchUpInside];
-    [self.userView.addressBtn addTarget:self action:@selector(userAccreditation:) forControlEvents:UIControlEventTouchUpInside];
-    [self.userView.firstBtn addTarget:self action:@selector(userRent:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.userView.topBtn addTarget:self action:@selector(userDetail:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.userView.addressBtn addTarget:self action:@selector(userAccreditation:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.userView.firstBtn addTarget:self action:@selector(userRent:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.userView.fourthBtn addTarget:self action:@selector(userActivity:) forControlEvents:UIControlEventTouchUpInside];
 //    [self.userView.fifthBtn addTarget:self action:@selector(userSecondHand:) forControlEvents:UIControlEventTouchUpInside];
-    [self.userView.secondBtn addTarget:self action:@selector(userSetting:) forControlEvents:UIControlEventTouchUpInside];
+//    [self.userView.secondBtn addTarget:self action:@selector(userSetting:) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.userView configureHead:user.headPhoto title:user.nickName];
+//    [self.userView configureHead:user.headPhoto title:user.nickName];
 
     
     [UIView animateWithDuration:0.25 animations:^{
@@ -232,6 +233,37 @@
         [self.userView removeFromSuperview];
         [self showTabBar];
     }];
+}
+
+- (void)userViewDidSelectType:(UserViewTableViewCellType)viewType{
+    switch (viewType) {
+        case 0:
+            [self userRent];
+            break;
+        case 1:
+            
+            break;
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            
+            break;
+        case 5:
+        {
+            [self userDetail];
+        }
+            break;
+        case 6:
+            [self authentication];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 #pragma mark networking
@@ -260,7 +292,7 @@
 
 #pragma mark user action
 
--(void)userSetting:(id)sender{
+-(void)userSetting{
     
     SettingTableViewController *setting = [[SettingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self pushVC:setting title:@"设置"];
@@ -281,8 +313,8 @@
     [self pushVC:activityVC title:@"我的活动"];
     [self removeUserview];
 }
-
--(void)userRent:(id)sender{
+//租售管理
+-(void)userRent{
     RentViewController *rentVC = [[RentViewController alloc] init];
     rentVC.function = @"rent";
     rentVC.playAdvertise = NO;
@@ -290,13 +322,13 @@
     [self removeUserview];
 }
 
--(void)userAccreditation:(id)sender{
+-(void)userAccreditation{
     AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
     [self pushVC:accreditation title:@"认证信息"];
     [self removeUserview];
 }
 
--(void)userDetail:(id)sender{
+-(void)userDetail{
     UserDetailTableViewController *userDetailVC = [[UserDetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self pushVC:userDetailVC title:@"个人信息"];
     [self removeUserview];
