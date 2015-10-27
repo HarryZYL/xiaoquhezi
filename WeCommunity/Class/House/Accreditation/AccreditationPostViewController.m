@@ -7,8 +7,10 @@
 //
 
 #import "AccreditationPostViewController.h"
+#import "UIViewController+HUD.h"
+#import "NSString+HTML.h"
 
-@interface AccreditationPostViewController ()
+@interface AccreditationPostViewController ()<UITextFieldDelegate>
 
 @end
 
@@ -91,6 +93,7 @@
                             self.cardNumberField = [[UITextField alloc] initWithFrame:self.nameField.frame];
                             self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
                             self.cardNumberField.placeholder = self.titleArray[i][j];
+                            self.cardNumberField.delegate = self;
                             [background addSubview:self.cardNumberField];
                             break;
                             
@@ -245,6 +248,11 @@
     
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+//    if (textField == self.cardNumberField && ![NSString filterIDCard:textField.text]) {
+//        [textField becomeFirstResponder];
+//    }
+}
 
 #pragma mark picker
 

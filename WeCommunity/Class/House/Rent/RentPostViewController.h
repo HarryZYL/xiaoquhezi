@@ -13,6 +13,14 @@
 #import "ImagePickerLayout.h"
 #import "HouseDeal.h"
 #import "RentViewController.h"
+
+typedef NS_ENUM(NSUInteger, SummerHouseDealType) {
+    SummerHouseDealTypeSale,
+    SummerHouseDealTypeBuy,
+    SummerHouseDealTypeRent,//出租
+    SummerHouseDealTypeHire,//求租
+};
+
 @interface RentPostViewController : UIViewController <UIScrollViewDelegate,UzysAssetsPickerControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic,strong) RentPostView *postView;
@@ -33,5 +41,7 @@
 @property (nonatomic,strong) HouseDeal *houseData;
 @property (nonatomic,strong) LoadingView *loadingView;
 @property (nonatomic,strong) PickerView *pickerView;
+
+@property (nonatomic ,assign)SummerHouseDealType houseDealType;
 
 @end

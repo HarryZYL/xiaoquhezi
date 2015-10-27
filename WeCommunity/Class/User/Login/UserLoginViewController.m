@@ -8,7 +8,7 @@
 
 #import "UserLoginViewController.h"
 
-static int timeToGetCaptcha = 30;
+static int timeToGetCaptcha = 60;
 
 @implementation UserLoginViewController
 
@@ -46,11 +46,7 @@ static int timeToGetCaptcha = 30;
         self.loadingView.titleLabel.text = @"正在注册";
 
     }
-    
     [self.view addSubview:self.loginView];
-    
-   
-    
     // cache data
     
 }

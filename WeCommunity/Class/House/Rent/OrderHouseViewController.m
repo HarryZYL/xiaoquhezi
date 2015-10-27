@@ -7,6 +7,7 @@
 //
 
 #import "OrderHouseViewController.h"
+#import "UIViewController+HUD.h"
 
 @interface OrderHouseViewController ()
 
@@ -59,24 +60,30 @@
 
 -(void)booking{
     
-    [self.view addSubview:self.loadingView];
-    
-    NSDictionary *parameters = @{
-                                 @"token":[User getUserToken],
-                                 @"id":self.houseID,
-                                 @"name":self.nameField.text,
-                                 @"phone":self.tellField.text,
-                                 @"time":self.dateBtn.titleLabel.text
-                                 };
-    [Networking retrieveData:bookingHouse parameters:parameters success:^(id responseObject) {
-       
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    } addition:^{
-        [self.loadingView removeFromSuperview];
-    }];
-    
-    
+    if (self.nameField.text.length < 1 || [self.nameField.text isEqualToString:@" "]) {
+        [self showHint:@"请输入姓名"];
+        return;
+    }
+    if ([self.dateBtn.titleLabel.text isEqualToString:@"请选择预约时间"]) {
+        [self showHint:@"请选择预约时间"];
+    }else{
+        [self.view addSubview:self.loadingView];
+        NSDictionary *parameters = @{
+                                     @"token":[User getUserToken],
+                                     @"id":self.houseID,
+                                     @"name":self.nameField.text,
+                                     @"phone":self.tellField.text,
+                                     @"time":self.dateBtn.titleLabel.text
+                                     };
+        [Networking retrieveData:bookingHouse parameters:parameters success:^(id responseObject) {
+            [self showHint:@"预约成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        } addition:^{
+            [self.loadingView removeFromSuperview];
+        }];
+
+    }
 }
 
 #pragma mark date picker
@@ -86,12 +93,14 @@
     [self.view endEditing:YES];
     [self.oneDatePicker removeFromSuperview];
     self.oneDatePicker = [[UIDatePicker alloc] init];
-    self.oneDatePicker.frame = CGRectMake(0, self.view.frame.size.height-250, self.view.frame.size.width, 250); // 设置显示的位置和大小
+    self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, self.view.frame.size.height-self.orderBtn.frame.origin.y + 40); // 设置显示的位置和大小
+    NSDate *minDate = [NSDate dateWithTimeIntervalSinceNow:15*60];
+    self.oneDatePicker.minimumDate = minDate;
     
     self.oneDatePicker.date = [NSDate date]; // 设置初始时间
     // [oneDatePicker setDate:[NSDate dateWithTimeIntervalSinceNow:48 * 20 * 18] animated:YES]; // 设置时间，有动画效果
     self.oneDatePicker.timeZone = [NSTimeZone timeZoneWithName:@"GTM+8"]; // 设置时区，中国在东八区
-    self.oneDatePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 30 * 60 * 60 * -1]; // 设置最小时间
+//    self.oneDatePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 30 * 60 * 60 * -1]; // 设置最小时间
     self.oneDatePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 30 * 60 * 60]; // 设置最大时间
     
     self.oneDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
@@ -103,7 +112,6 @@
 
 #pragma mark - 实现oneDatePicker的监听方法
 - (void)oneDatePickerValueChanged:(UIDatePicker *) sender {
-    
     NSDate *select = [sender date]; // 获取被选中的时间
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
     selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
@@ -112,5 +120,11 @@
     
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
+    [UIView animateWithDuration:.3 animations:^{
+        self.oneDatePicker.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 250);
+    }];
+}
 
 @end

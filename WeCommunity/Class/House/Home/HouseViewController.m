@@ -7,6 +7,10 @@
 //
 
 #import "HouseViewController.h"
+#import "SummerMessageCenterTableViewController.h"
+#import "SummerPaymentRecordsTableViewController.h"
+#import "SummerMemberManagerTableViewController.h"
+
 @interface HouseViewController ()<UserViewDelegate>
 
 @end
@@ -25,7 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem *user = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"管家2"] style:UIBarButtonItemStylePlain target:self action:@selector(userOption:)];
-    user.title = @"用户";
     self.navigationItem.leftBarButtonItem = user;
     
     [self setupAppearance];
@@ -71,9 +74,9 @@
 
     self.scrollView.backgroundColor = [UIColor whiteColor];
     self.scrollView.showsVerticalScrollIndicator = NO;
-    if (is_IOS_8_Later) {
+//    if (is_IOS_8_Later) { 2015.10.26
         self.scrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    }
+//    }
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.scrollView.frame.size.height+70);
         if (self.view.frame.size.height<650) {
             self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 700);
@@ -90,7 +93,7 @@
     [self.scrollView addSubview:self.headView];
     
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
-    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"账单" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"访客" title5:@"访客" Sixth:@"其他Home" title6:@"管家"];
+    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"账单" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"访客" title5:@"访客" Sixth:@"其他Home" title6:@"其它"];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(repair:) forControlEvents:UIControlEventTouchUpInside];
@@ -192,24 +195,24 @@
 #pragma mark user option
 
 -(void)userOption:(id)sender{
-    
+    [self configurationSlider];
+}
+
+- (void)configurationSlider{
     self.userBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+60)];
-    self.userBgView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.5];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+        self.userBgView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.5];
+    }else{
+        UIBlurEffect *effectBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effectBlur];
+        effectView.frame = self.userBgView.frame;
+        effectView.alpha = .8;
+        [self.userBgView addSubview:effectView];
+    }
     [self.view.window addSubview:self.userBgView];
     
     self.userView = [[UserView alloc] initWithFrame:CGRectMake(-self.view.frame.size.width*0.7, 0, self.view.frame.size.width*0.7, self.view.frame.size.height+60)];
     self.userView.delegate = self;
-//    User *user = [[User alloc] initWithData];
-    
-//    [self.userView.topBtn addTarget:self action:@selector(userDetail:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.userView.addressBtn addTarget:self action:@selector(userAccreditation:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.userView.firstBtn addTarget:self action:@selector(userRent:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.userView.fourthBtn addTarget:self action:@selector(userActivity:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.userView.fifthBtn addTarget:self action:@selector(userSecondHand:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.userView.secondBtn addTarget:self action:@selector(userSetting:) forControlEvents:UIControlEventTouchUpInside];
-    
-//    [self.userView configureHead:user.headPhoto title:user.nickName];
-
     
     [UIView animateWithDuration:0.25 animations:^{
         self.userView.center = CGPointMake(self.userView.center.x + self.userView.frame.size.width , self.userView.center.y);
@@ -221,7 +224,6 @@
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeUserview)];
     tapGesture.numberOfTouchesRequired = 1;
     [self.userBgView addGestureRecognizer:tapGesture];
-    
 }
 
 
@@ -236,21 +238,31 @@
 }
 
 - (void)userViewDidSelectType:(UserViewTableViewCellType)viewType{
+    [self removeUserview];
     switch (viewType) {
         case 0:
-            [self userRent];
+            [self userRent];//租售管理
             break;
         case 1:
-            
+        {
+//            @"消息中心",@"缴费记录",@"设置"
+            [self.navigationController pushViewController:[[SummerMessageCenterTableViewController alloc] init] animated:YES];
+        }
             break;
         case 2:
-            
+        {
+            [self.navigationController pushViewController:[[SummerPaymentRecordsTableViewController alloc] init] animated:YES];
+        }
             break;
         case 3:
-            
+        {
+            [self userSetting];
+        }
             break;
         case 4:
-            
+        {//成员管理
+            [self.navigationController pushViewController:[[SummerMemberManagerTableViewController alloc] init] animated:YES];
+        }
             break;
         case 5:
         {
@@ -258,7 +270,9 @@
         }
             break;
         case 6:
-            [self authentication];
+        {//认证信息
+            [self userAccreditation];
+        }
             break;
             
         default:
@@ -293,7 +307,6 @@
 #pragma mark user action
 
 -(void)userSetting{
-    
     SettingTableViewController *setting = [[SettingTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     [self pushVC:setting title:@"设置"];
     [self removeUserview];
@@ -319,7 +332,6 @@
     rentVC.function = @"rent";
     rentVC.playAdvertise = NO;
     [self pushVC:rentVC title:@"我的租售"];
-    [self removeUserview];
 }
 
 -(void)userAccreditation{

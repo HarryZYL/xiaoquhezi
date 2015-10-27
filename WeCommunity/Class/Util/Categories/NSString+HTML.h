@@ -11,5 +11,7 @@
 @interface NSString (NSString_HTML)
 
 + (NSString *)filterHTML:(NSString *)html;
++ (BOOL)filterPhoneNumber:(NSString *)phoneNumer;
++ (BOOL)filterIDCard:(NSString *)identityCard;
 
 @end

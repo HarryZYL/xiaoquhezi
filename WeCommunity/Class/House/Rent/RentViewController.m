@@ -216,7 +216,7 @@
     if ([self.function isEqualToString:@"rent"]) {
         
         HouseDeal *houseDeal = [[HouseDeal alloc] initWithData:self.dataArray[indexPath.row]];
-        NSString *detail = [NSString stringWithFormat:@"%@ %@室-%@厅-%@卫-%@m2",houseDeal.community[@"name"],houseDeal.room,houseDeal.sittingRoom,houseDeal.bathRoom,houseDeal.area];
+        NSString *detail = [NSString stringWithFormat:@"%@ %@室-%@厅-%@卫-%@m²",houseDeal.community[@"name"],houseDeal.room,houseDeal.sittingRoom,houseDeal.bathRoom,houseDeal.area];
         [cell configureRentCellImage:houseDeal.pictures[0] title:houseDeal.title detail:detail price:[NSString stringWithFormat:@"%@",houseDeal.price] priceUnit:@"元/月" date: [Util formattedDate:self.dataArray[indexPath.row][@"createTime"] type:3]];
 
     }else  if ([self.function isEqualToString:@"activity"]){

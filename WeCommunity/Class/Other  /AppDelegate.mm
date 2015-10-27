@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
 #import "AppDelegate.h"
+#import "BPush.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self customizeUserInterface];
-    [self initBMKMapViewManagerAndNotification];
+    [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
@@ -37,11 +38,30 @@
     //注册成功，把deviceToken发给后台
     NSLog(@"------>%@",[[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding]);
     NSLog(@"------>%@",deviceToken);
+    [BPush registerDeviceToken:deviceToken];
+//    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
+//        <#code#>
+//    }];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //推送消息
     NSLog(@"----->%@",userInfo);
+    if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
+        NSLog(@"acitve or background");
+        UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+//    else//杀死状态下，直接跳转到跳转页面。
+//    {
+//        SkipViewController *skipCtr = [[SkipViewController alloc]init];
+//        // 根视图是nav 用push 方式跳转
+//        [_tabBarCtr.selectedViewController pushViewController:skipCtr animated:YES];
+//        /*
+//         // 根视图是普通的viewctr 用present跳转
+//         [_tabBarCtr.selectedViewController presentViewController:skipCtr animated:YES completion:nil]; */
+//    }
+//    [self.viewController addLogString:[NSString stringWithFormat:@"backgroud : %@",userInfo]];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -104,12 +124,14 @@
     
 }
 
-- (void)initBMKMapViewManagerAndNotification{
+- (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins{
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
     if (!ret) {
         NSLog(@"manager start failed!");
     }
+    
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
     if ([[UIDevice currentDevice] systemVersion].floatValue < 8.0) {
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
     }else{
@@ -117,6 +139,18 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:s];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
+
+    [BPush registerChannel:launchOptins apiKey:@"<#string#>" pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+    NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        NSLog(@"从消息启动:%@",userInfo);
+        [BPush handleNotification:userInfo];
+    }
+#if TARGET_IPHONE_SIMULATOR
+    Byte dt[32] = {0xc6, 0x1e, 0x5a, 0x13, 0x2d, 0x04, 0x83, 0x82, 0x12, 0x4c, 0x26, 0xcd, 0x0c, 0x16, 0xf6, 0x7c, 0x74, 0x78, 0xb3, 0x5f, 0x6b, 0x37, 0x0a, 0x42, 0x4f, 0xe7, 0x97, 0xdc, 0x9f, 0x3a, 0x54, 0x10};
+    [self application:application didRegisterForRemoteNotificationsWithDeviceToken:[NSData dataWithBytes:dt length:32]];
+#endif
+    //角标清0
     
     _serviceLocation = [[BMKLocationService alloc] init];
     _serviceLocation.delegate = self;

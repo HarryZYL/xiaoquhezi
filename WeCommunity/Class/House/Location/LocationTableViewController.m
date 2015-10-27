@@ -29,10 +29,10 @@
     self.title = @"切换小区";
     _dataArrary = [[NSMutableArray alloc] init];
     [self.tableView registerClass:[BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+//    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+//    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.tableView.tableFooterView = [[UIView alloc]init];
-    [self refreshHeader];
+//    [self refreshHeader];
     self.locationArr = @[@"玉兰香苑",@"幸福小区"];
     self.locationID = @[@"1",@"813"];
     
@@ -95,25 +95,29 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-//    return self.locationArr.count;
-    return self.dataArrary.count;
+    return self.locationArr.count;
+//    return self.dataArrary.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-//    cell.textLabel.text = self.locationArr[indexPath.row];
-    NSDictionary * tempDic = self.dataArrary[indexPath.row];
-    cell.textLabel.text = tempDic[@"name"];
+    cell.textLabel.text = self.locationArr[indexPath.row];
+//    NSDictionary * tempDic = self.dataArrary[indexPath.row];
+//    cell.textLabel.text = tempDic[@"name"];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary * tempDic = self.dataArrary[indexPath.row];
+//    NSDictionary * tempDic = self.dataArrary[indexPath.row];
+//    NSDictionary *community = @{
+//                                @"communityName":tempDic[@"name"],
+//                                @"communityID":tempDic[@"id"]
+//                                };
     NSDictionary *community = @{
-                                @"communityName":tempDic[@"name"],
-                                @"communityID":tempDic[@"id"]
+                                @"communityName":self.locationArr[indexPath.row],
+                                @"communityID":self.locationID[indexPath.row]
                                 };
     [FileManager saveDataToFile:community filePath:@"Community"];
     [User SaveAuthentication];
