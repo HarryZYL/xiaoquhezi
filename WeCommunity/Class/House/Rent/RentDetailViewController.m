@@ -128,18 +128,18 @@
 
 -(void)previewFullImage:(id)sender{
     
-        self.photos = [[NSMutableArray alloc] initWithCapacity:10];
-    
-        for (int i = 0; i<self.houseDeal.pictures.count; i++) {
-            MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:self.houseDeal.pictures[i]]];
-            [self.photos addObject:photo];
-        }
-        // Create browser
-        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-        browser = [Util fullImageSetting:browser];
-        [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
-    
-        [self.navigationController pushViewController:browser animated:YES];
+    self.photos = [[NSMutableArray alloc] initWithCapacity:0];
+
+    for (int i = 0; i<self.houseDeal.pictures.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:self.houseDeal.pictures[i]]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = NO;
+    browser = [Util fullImageSetting:browser];
+    [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
+    [self.navigationController pushViewController:browser animated:YES];
     
 }
 

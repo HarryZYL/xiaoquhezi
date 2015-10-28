@@ -8,6 +8,10 @@
 
 #import "RentPostView.h"
 
+@interface RentPostView()<UITextFieldDelegate>
+
+@end
+
 @implementation RentPostView
 
 -(id)initWithFrame:(CGRect)frame{
@@ -89,14 +93,19 @@
                 }
                 
                 self.roomField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x , title.frame.origin.y, labelWidth/3-30, textHeight)];
+                self.roomField.delegate = self;
                 self.roomField.keyboardType = UIKeyboardTypeNumberPad;
                 self.roomField.textAlignment = NSTextAlignmentRight;
                 [self addSubview:self.roomField];
+                
                 self.sittingRoomField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x + labelWidth/3, title.frame.origin.y, labelWidth/3-30, textHeight)];
+                self.sittingRoomField.delegate = self;
                 self.sittingRoomField.keyboardType = UIKeyboardTypeNumberPad;
                 self.sittingRoomField.textAlignment = NSTextAlignmentRight;
                 [self addSubview:self.sittingRoomField];
+                
                 self.bathRoomField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x +2*labelWidth/3, title.frame.origin.y, labelWidth/3-30, textHeight)];
+                self.bathRoomField.delegate = self;
                 self.bathRoomField.keyboardType = UIKeyboardTypeNumberPad;
                 self.bathRoomField.textAlignment = NSTextAlignmentRight;
                 [self addSubview:self.bathRoomField];
@@ -113,11 +122,14 @@
                 self.floorField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x , title.frame.origin.y,labelWidth/2-30 , textHeight)];
                 self.floorField.keyboardType = UIKeyboardTypeNumberPad;
                 self.floorField.textAlignment = NSTextAlignmentRight;
+                self.floorField.delegate = self;
                 self.floorField.placeholder = @"楼层数";
                 [self addSubview:self.floorField];
+                
                 self.totalFloorField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x +(bottomLine.frame.size.width - title.frame.size.width)/2, title.frame.origin.y, labelWidth/2 -30, textHeight)];
                 self.totalFloorField.keyboardType = UIKeyboardTypeNumberPad;
                 self.totalFloorField.textAlignment = NSTextAlignmentRight;
+                self.totalFloorField.delegate = self;
                 self.totalFloorField.placeholder = @"总楼层数";
                 [self addSubview:self.totalFloorField];
 
@@ -140,6 +152,58 @@
         
     }
 
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (textField == self.roomField && [self.houseTypeBtn.titleLabel.text isEqualToString:@"-点击选择房屋类型-"]) {
+//        [self.delegate textFieldReturnWarning:@"请选择房屋类型"];
+//        [self.roomField resignFirstResponder];
+//        return;
+    }else if (textField == self.sittingRoomField && (self.roomField.text.length < 1 || self.roomField.text.intValue < 1)){
+        [self.delegate textFieldReturnWarning:@"房间不能为空，至少为1"];
+        [self.roomField becomeFirstResponder];
+        return;
+    }else if (textField == self.bathRoomField && self.sittingRoomField.text.length < 1){
+        [self.delegate textFieldReturnWarning:@"房间不能为空，至少为0"];
+        [self.sittingRoomField becomeFirstResponder];
+        return;
+    }else if (textField == self.floorField && self.bathRoomField.text.length < 1){
+        [self.delegate textFieldReturnWarning:@"房间不能为空，至少为0"];
+        [self.bathRoomField becomeFirstResponder];
+        return;
+    }else if (textField == self.totalFloorField && self.floorField.text.length < 1){
+        [self.delegate textFieldReturnWarning:@"楼层不能为空，至少为0"];
+        [self.floorField becomeFirstResponder];
+        return;
+    }
+    if (textField == self.priceField && self.areaField.text.length < 1) {
+        [self.delegate textFieldReturnWarning:@"房间面积不能为空"];
+        [self.areaField becomeFirstResponder];
+        return;
+    }
+    if (textField == self.priceField && self.areaField.text.intValue < 1) {
+        [self.delegate textFieldReturnWarning:@"房间面积不能太小哦"];
+        [self.areaField becomeFirstResponder];
+        return;
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == self.totalFloorField && self.totalFloorField.text < self.floorField.text) {
+        [self.delegate textFieldReturnWarning:@"楼层数不能大于总层数"];
+        [self.totalFloorField becomeFirstResponder];
+        return;
+    }
+    if (textField == self.priceField && self.priceField.text.length < 1) {
+        [self.delegate textFieldReturnWarning:@"别忘记填写租金了"];
+        [self.priceField becomeFirstResponder];
+        return;
+    }
+    if (textField == self.priceField && self.priceField.text.intValue == 0) {
+        [self.delegate textFieldReturnWarning:@"租金不能太小"];
+        [self.priceField becomeFirstResponder];
+        return;
+    }
 }
 
 -(void)setupSecondPart{
@@ -177,6 +241,7 @@
                 self.areaField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+10, title.frame.origin.y, bottomLine.frame.size.width - title.frame.size.width -60, textHeight)];
                 self.areaField.keyboardType = UIKeyboardTypeNumberPad;
                 self.areaField.textAlignment = NSTextAlignmentRight;
+                self.areaField.delegate = self;
                 [self addSubview:self.areaField];
 
                 break;
@@ -190,6 +255,7 @@
                 self.priceField= [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+10, title.frame.origin.y, bottomLine.frame.size.width - title.frame.size.width -60, textHeight)];
                 self.priceField.keyboardType = UIKeyboardTypeNumberPad;
                 self.priceField.textAlignment = NSTextAlignmentRight;
+                self.priceField.delegate = self;
                 [self addSubview:self.priceField];
 
                 break;
@@ -249,6 +315,10 @@
     self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, self.frame.size.width-10, 150)];
     [self addSubview:self.cameraView];
 
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self endEditing:YES];
 }
 
 @end

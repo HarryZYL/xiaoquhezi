@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, SummerHouseDealType) {
     SummerHouseDealTypeHire,//求租
 };
 
-@interface RentPostViewController : UIViewController <UIScrollViewDelegate,UzysAssetsPickerControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface RentPostViewController : UIViewController <UIScrollViewDelegate,UzysAssetsPickerControllerDelegate,UIPickerViewDelegate,UIPickerViewDataSource ,RentPostViewDelegate>
 
 @property (nonatomic,strong) RentPostView *postView;
 @property (nonatomic,strong) UIScrollView *scollView;

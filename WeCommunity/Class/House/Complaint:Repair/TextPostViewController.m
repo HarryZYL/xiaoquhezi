@@ -10,8 +10,9 @@
 
 #import "SummerPriceListViewController.h"
 
-@interface TextPostViewController ()<UITextViewDelegate>
+@interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate>
 {
+    NSMutableArray *photos;
     NSString *strPhoneNumber;
 }
 @end
@@ -22,9 +23,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    
+    photos = [[NSMutableArray alloc] init];
     if ([self.function isEqualToString:@"complaint"] || [self.function isEqualToString:@"praise"] ) {
-        
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
         
@@ -33,15 +33,13 @@
         self.navigationItem.rightBarButtonItem = postBtn;
     }
     
-    
     self.user = [[User alloc] initWithData];
-
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在上传";
     [self setupAppearance];
     self.postType = @"";
-    self.chosenImages = [[NSMutableArray alloc] initWithCapacity:9];
-    self.chosenImagesSmall = [[NSMutableArray alloc] initWithCapacity:9];
+    self.chosenImages = [[NSMutableArray alloc] initWithCapacity:0];
+    self.chosenImagesSmall = [[NSMutableArray alloc] initWithCapacity:0];
     [self getCommunityPhone];
 }
 
@@ -59,7 +57,7 @@
         [self.functionView setupFunctionViewFirst:@"服务" title1:@"服务" Second:@"绿化" title2:@"环境绿化" Third:@"报修" title3:@"设备保养" Fourth:@"保安" title4:@"治安秩序" Fifth:@"保洁" title5:@"保洁服务" Sixth:@"其他" title6:@"其他"];
 
     }else if([self.function isEqualToString:@"repair"]) {
-        [self.functionView setupFunctionViewFirst:@"公共设施" title1:@"公共设施" Second:@"房屋维修" title2:@"房屋维修" Third:@"水电燃气" title3:@"水电燃气" Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
+        [self.functionView setupFunctionViewFirst:@"公共设施" title1:@"公共设施" Second:@"房屋维修" title2:@"房屋维修" Third:nil title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
     }
     
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(chosen:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,11 +90,13 @@
     [self.scrollView addSubview:self.describleView];
     
     self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.size.height+self.describleView.frame.origin.y+5, self.view.frame.size.width-20, 150)];
+    self.cameraView.delegate = self;
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.cameraView];
     
     if (![self.function isEqualToString:@"praise"]) {
     self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.cameraView.frame.origin.y+self.cameraView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 50)];
+        
     self.nickNameField.placeholder = @"昵称";
     self.nickNameField.borderStyle = UITextBorderStyleRoundedRect;
     self.nickNameField.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
@@ -256,6 +256,14 @@
     return YES;
 }
 
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    self.scrollView.contentInset = UIEdgeInsetsMake(-180, 0, 0, 0);
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+}
+
 #pragma mark imagepicker
 
 -(void)imagePicker:(id)sender{
@@ -290,6 +298,47 @@
         
     }
     
+}
+
+#pragma mark - cameraViewDelegate
+
+- (void)returnTapImageViewTagIndex:(NSInteger)index{
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.enableSwipeToDismiss = NO;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.chosenImages.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.chosenImages.count)
+        return [photos objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    // If we subscribe to this method we must dismiss the view controller ourselves
+    NSLog(@"Did finish modal presentation");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenImagesSmall removeObjectAtIndex:index];
+    [self.cameraView chuckSubViews];
+    [self.cameraView configureImage:self.chosenImagesSmall];
+    [photoBrowser reloadData];
 }
 
 @end

@@ -78,6 +78,7 @@
                         case 0:
                             self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(60, 10, self.view.frame.size.width - 40, 30)];
                             self.nameField.placeholder = self.titleArray[i][j];
+                            self.nameField.delegate = self;
                             [background addSubview:self.nameField];
                             break;
                             
@@ -87,11 +88,6 @@
                             self.cardNumberField.placeholder = self.titleArray[i][j];
                             self.cardNumberField.delegate = self;
                             [background addSubview:self.cardNumberField];
-//                            self.cardTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//                            self.cardTypeBtn.frame = self.nameField.frame;
-//                            [self.cardTypeBtn leftStyle];
-//                            [self.cardTypeBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
-//                            [background addSubview:self.cardTypeBtn];
                             break;
                             
                         case 2:
@@ -238,17 +234,23 @@
         } addition:^{
             [self.loadingView removeFromSuperview];
         }];
-
-        
     }
-    
-    
 }
 
+#pragma mark - textFieldDelegate
+
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-//    if (textField == self.cardNumberField && ![NSString filterIDCard:textField.text]) {
-//        [textField becomeFirstResponder];
-//    }
+    if (textField == self.nameField && (self.nameField.text.length < 1 || [self.nameField.text isEqualToString:@" "])) {
+        [self.nameField becomeFirstResponder];
+        [self.cardNumberField resignFirstResponder];
+        [self showHint:@"请填写姓名" yOffset:-170.0];
+        return;
+    }
+    if (textField == self.cardNumberField && ![NSString filterIDCard:textField.text]) {
+        [self showHint:@"请填写有效的证件号码" yOffset:-170.0];
+        [self.cardNumberField becomeFirstResponder];
+        return;
+    }
 }
 
 #pragma mark picker

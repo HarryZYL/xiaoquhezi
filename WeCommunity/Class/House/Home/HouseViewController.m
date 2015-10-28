@@ -89,6 +89,7 @@
     [self.scrollView addSubview:bgImg];
     
     self.headView = [[HousePostView alloc] initWithFrame:CGRectMake(10, 70, self.view.frame.size.width-20, 190)];
+    self.headView.pageView.isTimeUp = YES;
     [self.headView.moreButton addTarget:self action:@selector(moreNotice:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.headView];
     

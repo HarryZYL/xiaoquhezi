@@ -19,7 +19,7 @@
     // Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = @"管家";
+    self.navigationItem.title = @"更多";
     [self setupAppearance];
 
 }

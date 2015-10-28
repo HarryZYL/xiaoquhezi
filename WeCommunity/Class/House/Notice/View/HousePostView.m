@@ -16,7 +16,6 @@
     if (self) {
         
         UIColor *fontColor = [UIColor whiteColor];
-    
         
         self.noticeImg = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, 20, 20)];
         self.noticeImg.image = [UIImage imageNamed:@"notice"];

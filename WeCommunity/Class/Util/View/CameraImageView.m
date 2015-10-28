@@ -7,6 +7,7 @@
 //
 
 #import "CameraImageView.h"
+#import "UITapGestureRecognizer+Data.h"
 
 static CGFloat height = 70;
 
@@ -33,13 +34,17 @@ static CGFloat height = 70;
     for (int i = 0; i<imageArr.count; i++) {
         UIImage *image = imageArr[i];
         UIImageView *imageView = [[UIImageView alloc] init];
+        imageView.userInteractionEnabled = YES;
+        imageView.tag = 1000 + i;
         imageView.image = image;
         if (i<4) {
             imageView.frame = CGRectMake((height+margin)*i, 0, height, height);
         }else{
             imageView.frame = CGRectMake((height+margin)*(i-4), height+margin-5, height, height);
         }
-        
+        UITapGestureRecognizer_Data *tap = [[UITapGestureRecognizer_Data alloc] initWithTarget:self action:@selector(selectImgView:)];
+        tap.tapTagImg = imageView.tag;
+        [imageView addGestureRecognizer:tap];
         [self addSubview:imageView];
     }
     
@@ -48,9 +53,16 @@ static CGFloat height = 70;
     }else{
         self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin, height, height);
     }
-
-    
 }
 
+- (void)selectImgView:(UITapGestureRecognizer_Data *)sender{
+    [self.delegate returnTapImageViewTagIndex:sender.tapTagImg - 1000];
+}
+
+- (void)chuckSubViews{
+    for (UIView *imgView in self.subviews) {
+        [imgView removeFromSuperview];
+    }
+}
 
 @end

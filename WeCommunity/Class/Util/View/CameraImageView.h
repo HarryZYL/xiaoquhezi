@@ -8,8 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CameraImageViewDelegate <NSObject>
+
+@optional
+- (void)returnTapImageViewTagIndex:(NSInteger)index;
+
+@end
+
 @interface CameraImageView : UIView
 
-@property (nonatomic,strong) UIButton *addImageBtn;
--(void)configureImage:(NSMutableArray*)imageArr;
+@property (nonatomic ,strong) UIButton *addImageBtn;
+@property (nonatomic ,weak) id delegate;
+
+- (void)configureImage:(NSMutableArray*)imageArr;
+- (void)chuckSubViews;
+
 @end

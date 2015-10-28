@@ -7,6 +7,7 @@
 //
 
 #import "RentPostViewController.h"
+#import "UIViewController+HUD.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
 @interface RentPostViewController ()
@@ -44,14 +45,17 @@
     switch (self.step) {
         case 0:
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,190)] ;
+            self.postView.delegate = self;
             [self.postView setupFirstPart];
             break;
         case 1:
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,92)] ;
+            self.postView.delegate = self;
             [self.postView setupSecondPart];
             break;
         case 2:
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
+            self.postView.delegate = self;
             [self.postView setupThirdPart];
             break;
             
@@ -132,8 +136,8 @@
     
     switch (self.step) {
         case 0:
-            if (self.houseType.length ==0 || self.postView.roomField.text.length == 0 || self.postView.sittingRoomField.text.length == 0 || self.postView.bathRoomField.text.length == 0 || self.postView.floorField.text.length == 0 || self.postView.totalFloorField.text.length == 0 || self.houseOrientation.length == 0) {
-                [Util alertNetworingError:@"信息不完整"];
+            if (self.houseType.length == 0 || self.postView.roomField.text.length == 0 || self.postView.sittingRoomField.text.length == 0 || self.postView.bathRoomField.text.length == 0 || self.postView.floorField.text.length == 0 || self.postView.totalFloorField.text.length == 0 || self.houseOrientation.length == 0) {
+                [self showHint:@"信息不完整"];
                 break;
             }else if([self.postView.floorField.text isEqualToString: @"0"] || [self.postView.totalFloorField.text isEqualToString: @"0"] ){
                 [Util alertNetworingError:@"楼层数不能为0"];
@@ -225,14 +229,11 @@
 
 // pickerView 每列个数
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    
     if ([self.pickerTag isEqualToString:@"1"]) {
         return self.houseTypeArr.count;
     }else{
         return self.houseOrientationArr.count;
     }
-
 }
 
 // 每列宽度
@@ -389,8 +390,8 @@
        
 }
 
-
-
-
+- (void)textFieldReturnWarning:(NSString *)strError{
+    [self showHint:strError yOffset:-150.0];
+}
 
 @end

@@ -119,6 +119,7 @@
 		D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */ = {isa = PBXBuildFile; fileRef = D413705B1BD9FDE3003BE559 /* SummerNearbyCity.m */; };
 		D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */; };
 		D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */; };
+		D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */; };
 		D452F2381BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */; };
 		D452F23B1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F23A1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m */; };
 		D452F23F1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F23D1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m */; };
@@ -377,6 +378,8 @@
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
 		D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserViewTableViewCell.m; sourceTree = "<group>"; };
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
+		D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+Data.h"; sourceTree = "<group>"; };
+		D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+Data.m"; sourceTree = "<group>"; };
 		D452F2361BDDC3340031C5C8 /* SummerMessageCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMessageCenterTableViewController.h; sourceTree = "<group>"; };
 		D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerMessageCenterTableViewController.m; sourceTree = "<group>"; };
 		D452F2391BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPaymentRecordsTableViewController.h; sourceTree = "<group>"; };
@@ -523,6 +526,8 @@
 				4AA9F8361BA87685006284FF /* UILabel+style.m */,
 				D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */,
 				D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */,
+				D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */,
+				D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1416,6 +1421,7 @@
 				4ACCCEE01BBF456F0001227A /* CommunityViewController.m in Sources */,
 				4A118E951BA48FFC00BC2C4E /* BasicViewController.m in Sources */,
 				4ACCD04D1BBF49600001227A /* RentDetailViewController.m in Sources */,
+				D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */,
 				4AA9F8371BA87685006284FF /* UILabel+style.m in Sources */,
 				4ACCD03F1BBF49600001227A /* HouseFooterView.m in Sources */,
 				D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */,
