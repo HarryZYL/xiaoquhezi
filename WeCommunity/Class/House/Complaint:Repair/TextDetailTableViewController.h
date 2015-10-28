@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "TextDeal.h"
 #import "Notice.h"
+
+typedef NS_ENUM(NSUInteger, TextDetailInformationNoticeStyle) {
+    SettingTableViewControllerStyleNotice,
+    SettingTableViewControllerStyleRepair,
+    SettingTableViewControllerStyleComplain,
+};
+
 @interface TextDetailTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;

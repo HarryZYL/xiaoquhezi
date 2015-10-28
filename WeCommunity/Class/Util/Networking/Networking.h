@@ -41,9 +41,17 @@
 #define getMyRepairsOfCommunity (HOST_URL @"/repair/user/getMyRepairsOfCommunity")
 #define getMyComplaintsOfCommunity (HOST_URL @"/complaint/user/getMyComplaintsOfCommunity")
 
+#pragma mark - GET_Repair
+#define GET_REPAIR       (HOST_URL @"/repair/getRepair")   //报修详情
+#define GET_REPLISE      (HOST_URL @"/repair/getReplies")  //查询报修回复
+#define GET_REPAIR_REPLY (HOST_URL @"/repair/reply")       //查询回复报修
+
 #pragma mark - NearbyCommunityOfCity
 #define getNearbyCommnity (HOST_URL @"/community/getNearby")
 #define getCommnityOfCity (HOST_URL @"/community/getCommunityOfCity")
+#define get_COMMNITY_PRICE (HOST_URL @"/repair/getPrice")
+#define get_COMMNITY_PHONE_NMBER (HOST_URL @"/community/getPropertyPhone")
+
 
 
 

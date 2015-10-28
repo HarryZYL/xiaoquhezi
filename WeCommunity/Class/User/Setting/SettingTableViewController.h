@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FileManager.h"
 #import "AboutViewController.h"
+
 @interface SettingTableViewController : UITableViewController
 
 @property (nonatomic,strong) NSArray *functionArr;

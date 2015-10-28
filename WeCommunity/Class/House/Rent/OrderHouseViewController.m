@@ -8,6 +8,7 @@
 
 #import "OrderHouseViewController.h"
 #import "UIViewController+HUD.h"
+#import "NSString+HTML.h"
 
 @interface OrderHouseViewController ()
 
@@ -29,8 +30,8 @@
     User *user = [[User alloc] initWithData];
     
     self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, 40)];
-    self.nameField.placeholder = @"请输入您的姓名";
     [self.nameField setBorderStyle:UITextBorderStyleRoundedRect];
+    self.nameField.text = user.userName;
     [self.view addSubview:self.nameField];
     
     self.tellField = [[UITextField alloc] initWithFrame:CGRectMake(self.nameField.frame.origin.x, self.nameField.frame.origin.y+self.nameField.frame.size.height+5, self.nameField.frame.size.width, self.nameField.frame.size.height)];
@@ -59,13 +60,16 @@
 }
 
 -(void)booking{
-    
+    [self selfViewEndEditing];
     if (self.nameField.text.length < 1 || [self.nameField.text isEqualToString:@" "]) {
         [self showHint:@"请输入姓名"];
         return;
     }
     if ([self.dateBtn.titleLabel.text isEqualToString:@"请选择预约时间"]) {
         [self showHint:@"请选择预约时间"];
+    }else if (![NSString filterPhoneNumber:self.tellField.text]){
+        [self showHint:@"手机号码不正确"];
+        return;
     }else{
         [self.view addSubview:self.loadingView];
         NSDictionary *parameters = @{
@@ -121,6 +125,10 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self selfViewEndEditing];
+}
+
+- (void)selfViewEndEditing{
     [self.view endEditing:YES];
     [UIView animateWithDuration:.3 animations:^{
         self.oneDatePicker.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, 250);

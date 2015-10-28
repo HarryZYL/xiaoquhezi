@@ -8,8 +8,12 @@
 #import "UIViewController+HUD.h"
 #import "TextPostViewController.h"
 
-@interface TextPostViewController ()<UITextViewDelegate>
+#import "SummerPriceListViewController.h"
 
+@interface TextPostViewController ()<UITextViewDelegate>
+{
+    NSString *strPhoneNumber;
+}
 @end
 
 @implementation TextPostViewController
@@ -38,7 +42,7 @@
     self.postType = @"";
     self.chosenImages = [[NSMutableArray alloc] initWithCapacity:9];
     self.chosenImagesSmall = [[NSMutableArray alloc] initWithCapacity:9];
-
+    [self getCommunityPhone];
 }
 
 -(void)setupAppearance{
@@ -111,9 +115,9 @@
         
         BottomButton *bottomBtn = [[BottomButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
         [bottomBtn.secondBtn addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
+        [bottomBtn.firstBtn addTarget:self action:@selector(phonePost:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:bottomBtn];   
     }
-    
     
 }
 
@@ -122,7 +126,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)getCommunityPhone{
+    [Networking retrieveData:get_COMMNITY_PHONE_NMBER parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+        strPhoneNumber = responseObject[@"name"];
+        NSLog(@"-->%@",responseObject);
+    }];
+}
 
 
 -(void)chosen:(id)sender{
@@ -172,10 +181,10 @@
 }
 
 
-# pragma mark retrieve data
+# pragma mark retrieve data 价格单
 
 -(void)priceList{
-    
+    [self.navigationController pushViewController:[[SummerPriceListViewController alloc] init] animated:YES];
 }
 
 -(void)post:(id)sender{
@@ -192,6 +201,17 @@
             }];
         }
         
+    }
+    
+}
+//电话报修
+- (void)phonePost:(UIButton *)sender{
+    NSString *phoneNumber = strPhoneNumber;
+    NSURL *phoneUrl = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"telprompt:%@",phoneNumber]];
+    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
+        [[UIApplication sharedApplication] openURL:phoneUrl];
+    }else{
+        [self showHint:@"当前设备不支持打电话哦"];
     }
     
 }

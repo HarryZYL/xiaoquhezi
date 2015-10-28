@@ -25,7 +25,7 @@
 }
 
 - (IBAction)deletePaymentRecords:(UIButton *)sender{
-    
+    [self.delegate summerPaymentRecordsDeleteCellDataWithData:sender];
 }
 
 @end

@@ -38,7 +38,7 @@
     self.view.backgroundColor = self.tableView.backgroundColor;
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"SummerMemberManagerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    
+    [self receivePersonalsData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -158,6 +158,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)receivePersonalsData{
+    
+}
 
 - (void)cellSpreadOrContract:(UIButton *)sender{
     if (sender.tag - 1 == selectIndex && cellSpread) {

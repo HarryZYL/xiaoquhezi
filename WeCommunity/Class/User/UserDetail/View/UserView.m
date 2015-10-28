@@ -138,11 +138,11 @@
         user = [[User alloc] initWithData];
         authenType = [User getAuthenticationOwnerType];
         if ([authenType isEqualToString:@"认证户主"]) {
-            _functionArray = @[@"租售管理",@"消息中心",@"缴费记录",@"设置",@"成员管理"];
-            _functionImage = @[@"我的活动",@"消息中心",@"缴费记录",@"设置",@"我的房屋"];
+            _functionArray = @[@"租售管理",@"缴费记录",@"消息中心",@"设置",@"成员管理"];
+            _functionImage = @[@"我的活动",@"缴费记录",@"消息中心",@"设置",@"我的房屋"];
         }else{
-            _functionArray = @[@"租售管理",@"消息中心",@"缴费记录",@"设置"];
-            _functionImage = @[@"我的活动",@"消息中心",@"缴费记录",@"设置"];
+            _functionArray = @[@"租售管理",@"缴费记录",@"消息中心",@"设置"];
+            _functionImage = @[@"我的活动",@"缴费记录",@"消息中心",@"设置"];
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.backgroundColor = [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1];
@@ -187,27 +187,21 @@
     topBtn.frame = CGRectMake(0, userHeadImg.frame.origin.y, self.frame.size.width, userHeadImg.frame.size.height);
     [self addSubview:topBtn];
     
-    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(userHeadImg.frame.origin.x, userHeadImg.frame.origin.y +userHeadImg.frame.size.height +40 , 20, 20)];
+    UIImageView *iconImg = [[UIImageView alloc] initWithFrame:CGRectMake(userHeadImg.frame.origin.x - 3, userHeadImg.frame.origin.y +userHeadImg.frame.size.height +30, 20, 20)];
     iconImg.image = [UIImage imageNamed:@"认证"];
     [self addSubview:iconImg];
     
-    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-30, iconImg.frame.origin.y+5, 20, 20)];
+    UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-30, iconImg.frame.origin.y, 20, 20)];
     selectImg.image = [UIImage imageNamed:@"箭头"];
     [self addSubview:selectImg];
     //      设置地址
     UILabel *address = [[UILabel alloc] init];
-    address.frame = CGRectMake(50, 140, 150, 30);
+    address.frame = CGRectMake(60, 140, 150, 30);
     address.text = [Util getCommunityName];
     address.textColor = [UIColor whiteColor];
     [self addSubview:address];
     
-    UILabel *detail = [[UILabel alloc] init];
-    detail.frame = CGRectMake(address.frame.origin.x, address.frame.origin.y+address.frame.size.height, 150, 20);
-    detail.text = [User getAuthenticationAddress];
-    detail.textColor = [UIColor whiteColor];
-    [self addSubview:detail];
-    
-    UILabel *owerType = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-95, address.frame.origin.y+15, 60, 25)];
+    UILabel *owerType = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-95, address.frame.origin.y + 2, 60, 25)];
     owerType.backgroundColor = [UIColor redColor];
     owerType.font = [UIFont fontWithName:fontName size:12];
     owerType.textColor = [UIColor whiteColor];
@@ -221,11 +215,11 @@
     addressBtn.frame = CGRectMake(0, address.frame.origin.y, self.frame.size.width, 50 );
     [addressBtn addTarget:self action:@selector(userRoomAuthen) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:addressBtn];
-    topView.frame = CGRectMake(0, 0, self.frame.size.width, addressBtn.frame.origin.y+addressBtn.frame.size.height+20);
+    topView.frame = CGRectMake(0, 0, self.frame.size.width, 180);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 210;
+    return 180;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{

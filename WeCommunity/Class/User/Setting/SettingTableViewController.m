@@ -7,6 +7,7 @@
 //
 
 #import "SettingTableViewController.h"
+#import "UIViewController+HUD.h"
 
 @interface SettingTableViewController ()
 
@@ -18,7 +19,7 @@
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    self.functionArr = @[@"关于我们",@"退出"];
+    self.functionArr = @[@"推送提醒",@"关于我们",@"退出"];
     
 }
 
@@ -44,7 +45,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
+    if (indexPath.row == 0) {
+        UISwitch *pushDownOrOn = [[UISwitch alloc] initWithFrame:CGRectMake(cell.frame.size.width - 100, 0, 60, 44)];
+        pushDownOrOn.center = CGPointMake(cell.frame.size.width - 50, cell.frame.size.height/2.0);
+        [pushDownOrOn addTarget:self action:@selector(pushNotificatinSeetingView) forControlEvents:UIControlEventValueChanged];
+        [cell addSubview:pushDownOrOn];
+        UIUserNotificationSettings *notificationSettings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        if (notificationSettings.types == UIUserNotificationTypeNone) {
+            pushDownOrOn.on = NO;
+        }else{
+            pushDownOrOn.on = YES;
+        }
+    }
     // (加载到cell上)Configure the cell...
     cell.textLabel.text = self.functionArr[indexPath.row];
     
@@ -53,21 +65,27 @@
 
 //用户退出，把储存在用户的信息的用户名设置为0
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {
-       
+        
+    }else if (indexPath.row == 1) {
         AboutViewController *aboutVC = [[AboutViewController alloc] init];
         aboutVC.title = @"关于我们";
         [self.navigationController pushViewController:aboutVC animated:YES];
-        
-    }else if (indexPath.row == 1) {
+    }else{
         NSDictionary *data = @{@"userName":@"0"};
         [FileManager saveDataToFile:data filePath:@"MyAppCache"];
         [self.navigationController popToRootViewControllerAnimated:NO];
-
     }
   
 }
 
+- (void)pushNotificatinSeetingView{
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+    }else{
+        [self showHint:@"需要设置授权小区盒子接收通知"];
+    }
+}
 
 @end

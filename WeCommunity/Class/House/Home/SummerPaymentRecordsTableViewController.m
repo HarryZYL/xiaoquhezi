@@ -8,9 +8,12 @@
 
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerPaymentRecordsTableViewCell.h"
+#import "SummerAlertView.h"
 
-@interface SummerPaymentRecordsTableViewController ()
+@interface SummerPaymentRecordsTableViewController ()<SummerPaymentRecordsTableViewCellDelegate ,SummerAlertViewDelegate>
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
+@property (nonatomic ,assign) NSInteger indexRow;
+
 @end
 
 @implementation SummerPaymentRecordsTableViewController
@@ -24,11 +27,12 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
-    [self.tableView registerNib:[UINib nibWithNibName:@"SummerPaymentRecordsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SummerPaymentRecordsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellpayment"];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.rowHeight = 125;
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 8)];
-    self.tableView.tableHeaderView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    self.tableView.frame = CGRectMake(0, 9, self.view.frame.size.width, self.view.frame.size.height - 9);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,22 +42,35 @@
 
 #pragma mark - Table view data source
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForFooterInSection:(NSInteger)section{
-    return 9;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SummerPaymentRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    SummerPaymentRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellpayment" forIndexPath:indexPath];
+    cell.delegate = self;
+    
     [cell confirmCellWithData:_dataArrary[indexPath.row]];
     return cell;
 }
 
+#pragma mark - CellDelegate And AlerViewDelegate
 
+- (void)summerPaymentRecordsDeleteCellDataWithData:(UIButton *)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender.superview.superview];
+    
+    self.indexRow = indexPath.row;
+    SummerAlertView *alertView = [[NSBundle mainBundle] loadNibNamed:@"SummerAlertView" owner:self options:nil].firstObject;
+    alertView.frame = [UIScreen mainScreen].bounds;
+    alertView.delegate = self;
+    [self.view.window addSubview:alertView];
+}
+
+- (void)summerAlertViewClickIndex:(NSInteger)index{
+    NSLog(@"----->%d",index);
+    NSLog(@"你要删除第%d行---->%d",self.indexRow);
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

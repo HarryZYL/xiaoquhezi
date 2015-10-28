@@ -12,8 +12,8 @@
 
 typedef enum : NSUInteger {
     UserViewTableViewCellTypeSalesManagement,
-    UserViewTableViewCellTypeMessage,
     UserViewTableViewCellTypePaymentRecords,
+    UserViewTableViewCellTypeMessage,
     UserViewTableViewCellTypeSeeting,
     UserViewTableViewCellTypeMemberManager,
     UserViewTableViewCellTypeUserInformation,

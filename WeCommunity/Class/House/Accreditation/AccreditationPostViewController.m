@@ -35,7 +35,7 @@
 }
 
 -(void)setupData{
-    NSArray *section1 = @[@"请输入你的真实姓名",@"身份证",@"请输入你的证件号码",@"点击选择身份类型"];
+    NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
     NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择房号"];
     self.titleArray = @[section1,section2];
 
@@ -43,7 +43,7 @@
 
 -(void)setupAppearance{
     
-    NSArray *picArr = @[@"姓名",@"证件类型",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
+    NSArray *picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
@@ -66,7 +66,7 @@
             if (i==0) {
                 index = j;
             }else{
-                index = 4+j;
+                index = 3+j;
             }
             iconImage.image = [UIImage imageNamed:picArr[index]];
             [background addSubview:iconImage];
@@ -82,22 +82,19 @@
                             break;
                             
                         case 1:
-                            self.cardTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                            self.cardTypeBtn.frame = self.nameField.frame;
-                            [self.cardTypeBtn leftStyle];
-                            [self.cardTypeBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
-                            [background addSubview:self.cardTypeBtn];
-                            break;
-                            
-                        case 2:
                             self.cardNumberField = [[UITextField alloc] initWithFrame:self.nameField.frame];
                             self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
                             self.cardNumberField.placeholder = self.titleArray[i][j];
                             self.cardNumberField.delegate = self;
                             [background addSubview:self.cardNumberField];
+//                            self.cardTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//                            self.cardTypeBtn.frame = self.nameField.frame;
+//                            [self.cardTypeBtn leftStyle];
+//                            [self.cardTypeBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+//                            [background addSubview:self.cardTypeBtn];
                             break;
                             
-                        case 3:
+                        case 2:
                             self.owerTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.owerTypeBtn.frame = self.nameField.frame;
                             [self.owerTypeBtn leftStyle];

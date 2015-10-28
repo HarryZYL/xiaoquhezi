@@ -457,6 +457,12 @@
     if (!detailDisplay) {
         self.grayLine2.frame = CGRectMake(0, self.frame.size.height-10, SCREENSIZE.width, 10);
     }
+    self.commentImage.frame = CGRectMake(self.frame.size.width-60, self.dateLabel.frame.origin.y, 20, 20);
+    self.commentImage.image = [UIImage imageNamed:@"comment"];
+    
+    self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
+    self.commentLabel.textColor = [UIColor lightGrayColor];
+    self.commentLabel.text = @"0";
     
 }
 

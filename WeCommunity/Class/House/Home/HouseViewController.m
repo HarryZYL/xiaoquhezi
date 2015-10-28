@@ -93,7 +93,7 @@
     [self.scrollView addSubview:self.headView];
     
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
-    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"账单" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"访客" title5:@"访客" Sixth:@"其他Home" title6:@"其它"];
+    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"访客" title5:@"访客" Sixth:@"其他Home" title6:@"更多"];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(repair:) forControlEvents:UIControlEventTouchUpInside];
@@ -246,12 +246,12 @@
         case 1:
         {
 //            @"消息中心",@"缴费记录",@"设置"
-            [self.navigationController pushViewController:[[SummerMessageCenterTableViewController alloc] init] animated:YES];
+            [self.navigationController pushViewController:[[SummerPaymentRecordsTableViewController alloc] init] animated:YES];
         }
             break;
         case 2:
         {
-            [self.navigationController pushViewController:[[SummerPaymentRecordsTableViewController alloc] init] animated:YES];
+            [self.navigationController pushViewController:[[SummerMessageCenterTableViewController alloc] init] animated:YES];
         }
             break;
         case 3:

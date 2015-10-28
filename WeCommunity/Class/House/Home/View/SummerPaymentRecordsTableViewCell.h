@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SummerPaymentRecordsTableViewCellDelegate <NSObject>
+
+- (void)summerPaymentRecordsDeleteCellDataWithData:(UIButton *)sender;
+
+@end
+
 @interface SummerPaymentRecordsTableViewCell : UITableViewCell
+
+@property(nonatomic, weak) id delegate;
 
 @property(nonatomic, weak) IBOutlet UILabel *cellLabPaymentProject;
 @property(nonatomic, weak) IBOutlet UILabel *cellLabPropertyManagement;

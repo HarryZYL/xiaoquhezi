@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.cellPointCenter.layer.cornerRadius = self.cellPointCenter.frame.size.width/2.0;
+    self.cellPointCenter.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

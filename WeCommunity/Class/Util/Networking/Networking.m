@@ -68,7 +68,7 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    NSMutableArray *imageDataArr = [NSMutableArray arrayWithCapacity:10];
+    NSMutableArray *imageDataArr = [NSMutableArray arrayWithCapacity:0];
     for (UIImage *image in imageArr) {
          NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         [imageDataArr addObject:imageData];
@@ -86,8 +86,8 @@
         
 //        NSLog(@"Success: %@ ***** %@", operation.responseString, responseObject);
         NSDictionary *path = responseObject[@"msg"];
-        NSMutableArray *pathResultArr = [NSMutableArray arrayWithCapacity:10];
-        if ([responseObject[@"stage"] boolValue]) {
+        NSMutableArray *pathResultArr = [NSMutableArray arrayWithCapacity:0];
+        if ([responseObject[@"state"] boolValue]) {
             for (NSString *key in path) {
                 NSString *value = path[key];
                 [pathResultArr addObject:value];

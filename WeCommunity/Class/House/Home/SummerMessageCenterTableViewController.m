@@ -23,9 +23,15 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"SummerMessageCenterTableViewCell" bundle:nil] forCellReuseIdentifier:@"summermessagecenter"];
-    self.tableView.estimatedRowHeight = 44;
+    self.tableView.rowHeight = 53;
+//    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.tableHeaderView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    self.tableView.tableFooterView = [UIView new];
+    self.tableView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +44,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 9;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SummerMessageCenterTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"summermessagecenter" forIndexPath:indexPath];

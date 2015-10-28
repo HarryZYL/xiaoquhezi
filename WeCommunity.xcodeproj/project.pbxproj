@@ -134,6 +134,13 @@
 		D4B6ACBA1BD7BA99005CC778 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */; };
 		D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */; };
 		D4D4007B1BDF059B005F6095 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D4007A1BDF059B005F6095 /* libBPush.a */; };
+		D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4007E1BDF160F005F6095 /* SummerAlertView.m */; };
+		D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D400801BDF1625005F6095 /* SummerAlertView.xib */; };
+		D4D400841BDF6A9B005F6095 /* SummerPriceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D400831BDF6A9B005F6095 /* SummerPriceListViewController.m */; };
+		D4D400891BDF72EC005F6095 /* SummerPriceListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D400871BDF72EC005F6095 /* SummerPriceListTableViewCell.m */; };
+		D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D400881BDF72EC005F6095 /* SummerPriceListTableViewCell.xib */; };
+		D4D4008D1BDF7EFB005F6095 /* SummerPriceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4008C1BDF7EFB005F6095 /* SummerPriceHeaderView.m */; };
+		D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D4008E1BDF7F13005F6095 /* SummerPriceHeaderView.xib */; };
 		D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */; };
 		D4D9D0D81BD8807100613AAC /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D9D0D11BD8807100613AAC /* BaiduMapAPI_Base.framework */; };
 		D4D9D0D91BD8807100613AAC /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D9D0D21BD8807100613AAC /* BaiduMapAPI_Cloud.framework */; };
@@ -392,6 +399,17 @@
 		D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		D4D400791BDF059B005F6095 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		D4D4007A1BDF059B005F6095 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
+		D4D4007D1BDF160F005F6095 /* SummerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerAlertView.h; sourceTree = "<group>"; };
+		D4D4007E1BDF160F005F6095 /* SummerAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerAlertView.m; sourceTree = "<group>"; };
+		D4D400801BDF1625005F6095 /* SummerAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerAlertView.xib; sourceTree = "<group>"; };
+		D4D400821BDF6A9B005F6095 /* SummerPriceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPriceListViewController.h; sourceTree = "<group>"; };
+		D4D400831BDF6A9B005F6095 /* SummerPriceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerPriceListViewController.m; sourceTree = "<group>"; };
+		D4D400861BDF72EC005F6095 /* SummerPriceListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceListTableViewCell.h; path = ComplaintCell/SummerPriceListTableViewCell.h; sourceTree = "<group>"; };
+		D4D400871BDF72EC005F6095 /* SummerPriceListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceListTableViewCell.m; path = ComplaintCell/SummerPriceListTableViewCell.m; sourceTree = "<group>"; };
+		D4D400881BDF72EC005F6095 /* SummerPriceListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerPriceListTableViewCell.xib; path = ComplaintCell/SummerPriceListTableViewCell.xib; sourceTree = "<group>"; };
+		D4D4008B1BDF7EFB005F6095 /* SummerPriceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceHeaderView.h; path = ComplaintCell/SummerPriceHeaderView.h; sourceTree = "<group>"; };
+		D4D4008C1BDF7EFB005F6095 /* SummerPriceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceHeaderView.m; path = ComplaintCell/SummerPriceHeaderView.m; sourceTree = "<group>"; };
+		D4D4008E1BDF7F13005F6095 /* SummerPriceHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerPriceHeaderView.xib; sourceTree = "<group>"; };
 		D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
 		D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 		D4D9D0D11BD8807100613AAC /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -838,12 +856,15 @@
 		4ACCCFF01BBF49600001227A /* Complaint:Repair */ = {
 			isa = PBXGroup;
 			children = (
+				D4D400851BDF7298005F6095 /* views */,
 				4ACCCFF11BBF49600001227A /* TextPostViewController.h */,
 				4ACCCFF21BBF49600001227A /* TextPostViewController.m */,
 				4ACCCFF31BBF49600001227A /* TextTableViewController.h */,
 				4ACCCFF41BBF49600001227A /* TextTableViewController.m */,
 				4A6B357F1BBF754D007D3BFE /* TextDetailTableViewController.h */,
 				4A6B35801BBF754D007D3BFE /* TextDetailTableViewController.m */,
+				D4D400821BDF6A9B005F6095 /* SummerPriceListViewController.h */,
+				D4D400831BDF6A9B005F6095 /* SummerPriceListViewController.m */,
 			);
 			path = "Complaint:Repair";
 			sourceTree = "<group>";
@@ -869,19 +890,14 @@
 		4ACCCFF81BBF49600001227A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D452F23C1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.h */,
-				D452F23D1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m */,
-				D452F23E1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib */,
-				D452F2441BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.h */,
-				D452F2451BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.m */,
-				D452F2461BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib */,
-				D41275EE1BDE044C008BD610 /* SummerMemberManagerTableViewCell.h */,
-				D41275EF1BDE044C008BD610 /* SummerMemberManagerTableViewCell.m */,
-				D41275F01BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib */,
 				4ACCCFF91BBF49600001227A /* FunctionView.h */,
 				4ACCCFFA1BBF49600001227A /* FunctionView.m */,
 				4ACCCFFB1BBF49600001227A /* HouseFooterView.h */,
 				4ACCCFFC1BBF49600001227A /* HouseFooterView.m */,
+				D4D4007D1BDF160F005F6095 /* SummerAlertView.h */,
+				D4D4007E1BDF160F005F6095 /* SummerAlertView.m */,
+				D4D400801BDF1625005F6095 /* SummerAlertView.xib */,
+				D4D4007C1BDF15C3005F6095 /* cell */,
 				4ACCCFFD1BBF49600001227A /* Item */,
 			);
 			path = View;
@@ -1120,6 +1136,35 @@
 			path = BaiduPush;
 			sourceTree = "<group>";
 		};
+		D4D4007C1BDF15C3005F6095 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				D452F23C1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.h */,
+				D452F23D1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m */,
+				D452F23E1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib */,
+				D452F2441BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.h */,
+				D452F2451BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.m */,
+				D452F2461BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib */,
+				D41275EE1BDE044C008BD610 /* SummerMemberManagerTableViewCell.h */,
+				D41275EF1BDE044C008BD610 /* SummerMemberManagerTableViewCell.m */,
+				D41275F01BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib */,
+			);
+			name = cell;
+			sourceTree = "<group>";
+		};
+		D4D400851BDF7298005F6095 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D4D400861BDF72EC005F6095 /* SummerPriceListTableViewCell.h */,
+				D4D400871BDF72EC005F6095 /* SummerPriceListTableViewCell.m */,
+				D4D400881BDF72EC005F6095 /* SummerPriceListTableViewCell.xib */,
+				D4D4008B1BDF7EFB005F6095 /* SummerPriceHeaderView.h */,
+				D4D4008C1BDF7EFB005F6095 /* SummerPriceHeaderView.m */,
+				D4D4008E1BDF7F13005F6095 /* SummerPriceHeaderView.xib */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		D4D9D0D01BD8807100613AAC /* BaiduMap_IOSSDK_v2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1218,14 +1263,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */,
 				4A118EBD1BA4900400BC2C4E /* Overlay.png in Resources */,
 				D452F2401BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib in Resources */,
 				4A118EBA1BA4900400BC2C4E /* ELCAlbumPickerController.xib in Resources */,
+				D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */,
 				4A118EBE1BA4900400BC2C4E /* Overlay@2x.png in Resources */,
 				D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */,
 				4ADDB98E1B5D235F002A188E /* Main.storyboard in Resources */,
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D452F2481BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib in Resources */,
+				D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */,
 				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,
@@ -1338,15 +1386,18 @@
 				4ACCCE5D1BBF36910001227A /* Notice.m in Sources */,
 				4A118E881BA48FFC00BC2C4E /* FileManager.m in Sources */,
 				4AD126201BAB05ED0017B220 /* Util.m in Sources */,
+				D4D400841BDF6A9B005F6095 /* SummerPriceListViewController.m in Sources */,
 				4ACCD0491BBF49600001227A /* OverView.m in Sources */,
 				D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */,
 				4A6B35811BBF754D007D3BFE /* TextDetailTableViewController.m in Sources */,
 				4AFFD6901BCD3D5000D33F5C /* PickerView.m in Sources */,
 				4AA9F8341BA81592006284FF /* DOPDropDownMenu.m in Sources */,
 				4A118E8F1BA48FFC00BC2C4E /* GrayLine.m in Sources */,
+				D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */,
 				4ACCCEA01BBF40120001227A /* SettingTableViewController.m in Sources */,
 				4ACCD04A1BBF49600001227A /* LikeTableViewController.m in Sources */,
 				D41275ED1BDDFE9D008BD610 /* SummerMessageDetailViewController.m in Sources */,
+				D4D4008D1BDF7EFB005F6095 /* SummerPriceHeaderView.m in Sources */,
 				4ACCD03E1BBF49600001227A /* FunctionView.m in Sources */,
 				4ACCD0431BBF49600001227A /* LocationTableViewController.m in Sources */,
 				4A118E8A1BA48FFC00BC2C4E /* WebViewController.m in Sources */,
@@ -1379,6 +1430,7 @@
 				4ACCCEA21BBF40120001227A /* UserDetailTableViewController.m in Sources */,
 				4AFFD68C1BCC736000D33F5C /* RDRStickyKeyboardView.m in Sources */,
 				4ACCCEDC1BBF456F0001227A /* ActivityPostViewController.m in Sources */,
+				D4D400891BDF72EC005F6095 /* SummerPriceListTableViewCell.m in Sources */,
 				4ACCD03B1BBF49600001227A /* TextPostViewController.m in Sources */,
 				4ACCD0521BBF49600001227A /* RentDetailView.m in Sources */,
 				4ACCCE621BBF36EA0001227A /* HouseDeal.m in Sources */,
