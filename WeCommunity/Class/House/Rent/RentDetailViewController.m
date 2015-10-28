@@ -7,9 +7,11 @@
 //
 
 #import "RentDetailViewController.h"
+#import "UIViewController+HUD.h"
 
 @interface RentDetailViewController ()
-
+@property (nonatomic ,strong)NSMutableDictionary *dicRoomData;
+@property (assign) BOOL isBooking;
 @end
 
 @implementation RentDetailViewController
@@ -25,9 +27,7 @@
     
     [self setupFuncitonView];
     //设置底部功能界面
-    
     [self setupBottomButton];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,7 +48,16 @@
     self.houseDeal = [[HouseDeal alloc] initWithData:self.detailData];
     self.activity = [[Activity alloc] initWithData:self.detailData];
     self.secondHand = [[SecondHand alloc] initWithData:self.detailData];
-    
+    [self setupLoadRoomData];
+}
+
+- (void)setupLoadRoomData{
+    NSDictionary *parama = @{@"token": [User getUserToken],
+                             @"houseDealId":self.houseDeal.objectId};
+    [Networking retrieveData:GET_USER_BOOK parameters:parama roomSuccess:^(id responseObject) {
+        _isBooking = [responseObject[@"state"] boolValue];
+        [self confirmBootomButtonTitle];
+    }];
 }
 
 -(void)setupFuncitonView{
@@ -81,17 +90,27 @@
     
     self.functionBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.functionBtn.frame = CGRectMake(0, self.view.frame.size.height-40, self.view.frame.size.width, 40);
+    [self confirmBootomButtonTitle];
+    [self.functionBtn addTarget:self action:@selector(order:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.functionBtn];
+
+}
+
+- (void)confirmBootomButtonTitle{
+    User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
-        [self.functionBtn configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+        if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
+            [self.functionBtn configureButtonTitle:@"查看预约记录" backgroundColor:THEMECOLOR];
+        }else if (_isBooking){
+            [self.functionBtn configureButtonTitle:@"取消预约" backgroundColor:THEMECOLOR];
+        }else{
+            [self.functionBtn configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+        }
     }else if([self.function isEqualToString:@"activity"]) {
         [self.functionBtn configureButtonTitle:@"参加活动" backgroundColor:THEMECOLOR];
     }else if([self.function isEqualToString:@"secondHand"]) {
         [self.functionBtn configureButtonTitle:@"购买" backgroundColor:THEMECOLOR];
     }
-    
-    [self.functionBtn addTarget:self action:@selector(order:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.functionBtn];
-
 }
 
 -(void)getBookingList{
@@ -111,9 +130,16 @@
 
 #pragma mark action
 -(void)order:(id)sender{
-    OrderHouseViewController *orderVC = [[OrderHouseViewController alloc] init];
-    orderVC.houseID = self.houseDeal.objectId;
-    [self pushVC:orderVC title:@"预约看房"];
+    if ([self.functionBtn.currentTitle isEqualToString:@"预约看房"]) {
+        OrderHouseViewController *orderVC = [[OrderHouseViewController alloc] init];
+        orderVC.houseID = self.houseDeal.objectId;
+        [self pushVC:orderVC title:@"预约看房"];
+    }else if ([self.functionBtn.currentTitle isEqualToString:@"查看预约记录"]){
+        
+    }else{
+        //取消预约
+        [self cansoleBooking];
+    }
     
 }
 
@@ -123,6 +149,17 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)cansoleBooking{
+    NSDictionary *parama = @{@"token":[User getUserToken],
+                             @"houseDealId":self.houseDeal.objectId};
+    [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama roomSuccess:^(id responseObject) {
+        if ([responseObject[@"state"] boolValue]) {
+            [self showHint:@"取消预约成功"];
+        }else{
+            [self showHint:responseObject[@"msg"]];
+        }
+    }];
+}
 
 #pragma mark preview photos
 

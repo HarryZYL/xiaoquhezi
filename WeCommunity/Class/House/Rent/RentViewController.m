@@ -249,8 +249,6 @@
     }else if([self.function isEqualToString:@"secondHand"]){
         [self pushVC:rentVC title:@"详情"];
     }
-    
-    
 }
 
 -(void)pushVC:(UIViewController*)vc title:(NSString*)title{
@@ -265,11 +263,10 @@
 -(void)post:(id)sender{
     
     if ([Util judgeAuthentication]) {
-        if ([self.function isEqualToString:@"rent"]) {
-            RentPostViewController *postVC  = [[RentPostViewController alloc] init];
-            postVC.step = 0;
-            [self pushVC:postVC title:@"发布"];
-            
+        if ([self.function isEqualToString:@"rent"]) {//房屋租售／卖房
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你要出售还是出租" delegate:self cancelButtonTitle:@"出售" otherButtonTitles:@"出租", nil];
+            alertView.tag = 11;
+            [alertView show];
         }else if([self.function isEqualToString:@"activity"]){
             ActivityPostViewController *postVC  = [[ActivityPostViewController alloc] init];
             [self pushVC:postVC title:@"发布"];
@@ -406,14 +403,25 @@
 #pragma mark alertView
 -(void)authentication{
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在认证？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+    alertView.tag = 10;
     [alertView show];
     
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1) {
+    if (buttonIndex == 1 && alertView.tag == 10) {
         AccreditationPostViewController *postView = [[AccreditationPostViewController alloc] init];
         [self pushVC:postView title:@"发布认证"];
+    }
+    if (alertView.tag == 11) {
+        RentPostViewController *postVC  = [[RentPostViewController alloc] init];
+        postVC.step = 0;
+        if (buttonIndex == 0) {
+            postVC.houseDealType = SummerHouseDealTypeSale;
+        }else{
+            postVC.houseDealType = SummerHouseDealTypeRent;
+        }
+        [self pushVC:postVC title:@"发布"];
     }
 }
 

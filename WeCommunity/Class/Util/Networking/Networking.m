@@ -52,12 +52,25 @@
     
 }
 
++(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters roomSuccess:(void(^)(id responseObject))ablock{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        id json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+//        NSString  *event = [NSString stringWithFormat:@"%@",json[@"state"]];
+        ablock(json);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+
+}
+
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters{
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

@@ -194,6 +194,7 @@
     
     if (post) {
         postVC.step = self.step + 1;
+        postVC.houseDealType = self.houseDealType;
         [self.navigationController pushViewController:postVC animated:YES];
     }
     
@@ -337,13 +338,18 @@
 -(void)uploadRentInfo{
     
     [self.view addSubview:self.loadingView];
-    
+    NSString *houseType ;
+    if (self.houseDealType == SummerHouseDealTypeSale) {
+        houseType = @"Sale";
+    }else if (self.houseDealType == SummerHouseDealTypeRent){
+        houseType = @"Rent";
+    }
     if (self.chosenImages.count) {
         [Networking upload:self.chosenImages success:^(id responseObject) {
             NSDictionary *parameters = @{
                                          @"token":[User getUserToken],
                                          @"communityId":[Util getCommunityID],
-                                         @"houseDealType":@"Rent",
+                                         @"houseDealType":houseType,
                                          @"title":self.houseData.title,
                                          @"content":self.houseData.content,
                                          @"pictures":responseObject,
@@ -358,6 +364,7 @@
                                          @"price":self.houseData.price
                                          };
             [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
+                
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } addition:^{
                 [self.loadingView removeFromSuperview];
@@ -368,7 +375,7 @@
         NSDictionary *parameters = @{
                                      @"token":[User getUserToken],
                                      @"communityId":[Util getCommunityID],
-                                     @"houseDealType":@"Rent",
+                                     @"houseDealType":houseType,
                                      @"title":self.houseData.title,
                                      @"content":self.houseData.content,
                                      @"room":self.houseData.room,

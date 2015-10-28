@@ -11,7 +11,7 @@
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
 
-@interface HouseViewController ()<UserViewDelegate>
+@interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
 
 @end
 

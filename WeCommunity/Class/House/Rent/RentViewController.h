@@ -18,6 +18,7 @@
 #import "AccreditationPostViewController.h"
 
 @interface RentViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,DOPDropDownMenuDataSource, DOPDropDownMenuDelegate,UIAlertViewDelegate>
+
 @property (nonatomic,strong) UITableView *tableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) LoadingView *loadingView;
@@ -28,4 +29,7 @@
 @property (nonatomic) int page;
 @property (nonatomic,strong) NSArray *houseTypeArr;
 @property (nonatomic) BOOL communityAll;
+
+
+
 @end

@@ -20,7 +20,7 @@
             
             NSDictionary *dataAll = [FileManager getData:@"MyAppCache"];
             NSDictionary *data = dataAll[@"user"];
-            
+            self.Userid = data[@"id"];
             self.token = dataAll[@"token"];
             self.userName = data[@"userName"];
             self.continuousSignDay = data[@"continuousSignDay"];

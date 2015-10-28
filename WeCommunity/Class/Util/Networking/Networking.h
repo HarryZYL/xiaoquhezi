@@ -36,10 +36,17 @@
 #define complaint_add (HOST_URL @"/complaint/add")
 #define repair_add (HOST_URL @"/repair/add")
 #define praise_add (HOST_URL @"/praise/add")
+
 #define bookingHouse (HOST_URL @"/houseDeal/bookingHouse")
-#define getBooking (HOST_URL @"/houseDeal/getBooking")
+#define POST_CANCELL_BOOKING (HOST_URL @"/houseDeal/cancelBooking") //取消预约
+#define getBooking           (HOST_URL @"/houseDeal/getBooking") //查询预约看房纪录
+#define GET_USER_BOOK        (HOST_URL @"/houseDeal/isUserBooking") //查询用户是否在当前租售上预约过
+#define GET_USER_BOOK_DETAIL (HOST_URL @"/houseDeal/getUserBookingOfHouseDeal") //查询用户在指定房屋上的预约看房记录
+
 #define getMyRepairsOfCommunity (HOST_URL @"/repair/user/getMyRepairsOfCommunity")
 #define getMyComplaintsOfCommunity (HOST_URL @"/complaint/user/getMyComplaintsOfCommunity")
+
+
 
 #pragma mark - GET_Repair
 #define GET_REPAIR       (HOST_URL @"/repair/getRepair")   //报修详情
@@ -47,10 +54,10 @@
 #define GET_REPAIR_REPLY (HOST_URL @"/repair/reply")       //查询回复报修
 
 #pragma mark - NearbyCommunityOfCity
-#define getNearbyCommnity (HOST_URL @"/community/getNearby")
-#define getCommnityOfCity (HOST_URL @"/community/getCommunityOfCity")
-#define get_COMMNITY_PRICE (HOST_URL @"/repair/getPrice")
-#define get_COMMNITY_PHONE_NMBER (HOST_URL @"/community/getPropertyPhone")
+#define getNearbyCommnity         (HOST_URL @"/community/getNearby")//附近小区
+#define getCommnityOfCity         (HOST_URL @"/community/getCommunityOfCity")
+#define get_COMMNITY_PRICE        (HOST_URL @"/repair/getPrice")
+#define get_COMMNITY_PHONE_NMBER  (HOST_URL @"/community/getPropertyPhone")
 
 
 
@@ -59,6 +66,8 @@
 
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters success:(void (^)(id responseObject))ablock;
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters success:(void (^)(id responseObject))ablock addition:(void (^)())ablock2;
++(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters roomSuccess:(void(^)(id responseObject))ablock;
+
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters;
 +(void)upload:(NSMutableArray*)imageArr success:(void (^)(id responseObject))ablock;
 +(void)uploadOne:(UIImage*)image success:(void (^)(id responseObject))ablock;

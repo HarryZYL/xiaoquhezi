@@ -15,7 +15,7 @@
 #import "RentViewController.h"
 
 typedef NS_ENUM(NSUInteger, SummerHouseDealType) {
-    SummerHouseDealTypeSale,
+    SummerHouseDealTypeSale,//出售
     SummerHouseDealTypeBuy,
     SummerHouseDealTypeRent,//出租
     SummerHouseDealTypeHire,//求租
