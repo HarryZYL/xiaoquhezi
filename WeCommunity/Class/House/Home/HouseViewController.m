@@ -28,8 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *user = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"管家2"] style:UIBarButtonItemStylePlain target:self action:@selector(userOption:)];
-    self.navigationItem.leftBarButtonItem = user;
+    UIView *barButtonItemView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 44)];
+    barButtonItemView.backgroundColor = [UIColor redColor];
+//    UIBarButtonItem *user = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"管家2"] style:UIBarButtonItemStylePlain target:self action:@selector(userOption:)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
     
     [self setupAppearance];
         // login user

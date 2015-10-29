@@ -1,6 +1,6 @@
 
 pod "MWPhotoBrowser"
-
+pod "libWeChatSDK"
 pod "UzysAssetsPickerController"
 
 pod 'SDWebImage', '~>3.7'

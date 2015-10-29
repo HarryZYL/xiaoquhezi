@@ -125,6 +125,8 @@
 }
 
 - (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins{
+    [WXApi registerApp:@"wx8728578ba70796d9"];
+    
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
     if (!ret) {
@@ -161,6 +163,14 @@
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithDouble:userLocation.location.coordinate.longitude] forKey:@"USER_LONG"];
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithDouble:userLocation.location.coordinate.latitude] forKey:@"USER_LAT"];
     [_serviceLocation stopUserLocationService];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
 @end

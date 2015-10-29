@@ -1,1 +1,1 @@
-../../../../Pgyer/PgySDK/sdk/PgySDk.framework/Headers/PgyManager.h
+../../../../Pgyer/PgySDK/sdk/PgySDK.framework/Headers/PgyManager.h
