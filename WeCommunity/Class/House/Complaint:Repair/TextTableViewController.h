@@ -18,8 +18,8 @@
 
 @interface TextTableViewController : UITableViewController
 
-@property (nonatomic,strong) NSString *function;
-@property (nonatomic,strong) LoadingView *loadingView;
-@property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic ,copy) NSString *function;
+@property (nonatomic ,strong) LoadingView *loadingView;
+@property (nonatomic ,strong) NSMutableArray *dataArray;
 @property (nonatomic) int page;
 @end

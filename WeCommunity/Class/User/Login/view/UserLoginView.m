@@ -7,6 +7,7 @@
 //
 
 #import "UserLoginView.h"
+#import "WXApi.h"
 
 @implementation UserLoginView
 
@@ -103,8 +104,43 @@
     
     self.mainBtn.frame = CGRectMake(30, self.captchaField.frame.size.height+self.captchaField.frame.origin.y+15, self.frame.size.width-60, 40);
     [self.mainBtn setTitle:@"注册" forState:UIControlStateNormal];
-
+    
+    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnWeiXin setBackgroundImage:[UIImage imageNamed:@"微信支付图标"] forState:UIControlStateNormal];
+    btnWeiXin.frame = CGRectMake(0, self.frame.size.height - 100, 64, 64);
+    [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btnWeiXin];
+    if (![WXApi isWXAppInstalled]) {
+        btnWeiXin.hidden = YES;
+    }
 }
 
+- (void)wxinRegister{
+    SendAuthReq *req = [[SendAuthReq alloc] init];
+    req.scope = @"snsapi_userinfo";
+    req.state = @"123";
+    [WXApi sendReq:req];
+}
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

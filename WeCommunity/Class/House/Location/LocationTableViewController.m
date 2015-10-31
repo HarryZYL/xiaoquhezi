@@ -88,8 +88,6 @@
 
     // Return the number of sections.
     return 1;
-    
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

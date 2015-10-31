@@ -211,7 +211,6 @@
     
     self.pickerTag = [NSString stringWithFormat:@"%ld",(long)button.tag];
     
-       
     [self.pickerView removeFromSuperview];
     self.pickerView = [[PickerView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-200, self.view.frame.size.width, 200)];
     self.pickerView.pickerView.delegate = self;
@@ -219,7 +218,6 @@
     [self.pickerView.confirmBtn addTarget:self action:@selector(confirmPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.pickerView.cancelBtn addTarget:self action:@selector(cancelPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pickerView];
-
 }
 
 

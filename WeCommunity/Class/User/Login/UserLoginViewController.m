@@ -7,6 +7,13 @@
 // 登录窗体
 
 #import "UserLoginViewController.h"
+#import "SummerInputPhoneNumber.h"
+#import "UIViewController+HUD.h"
+#import "NSString+HTML.h"
+
+@interface UserLoginViewController ()<UIAlertViewDelegate>
+
+@end
 
 static int timeToGetCaptcha = 60;
 
@@ -18,7 +25,7 @@ static int timeToGetCaptcha = 60;
     self.view.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
     
 //    初始化登陆视图
-    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, 300)];
+    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, self.view.frame.size.height - 94)];
     
     if ([self.function isEqualToString:@"login"]) {
         [self.loginView configureLoginView];
@@ -35,16 +42,16 @@ static int timeToGetCaptcha = 60;
         //loding view
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
         self.loadingView.titleLabel.text = @"正在重置";
-
         
     }else if ([self.function isEqualToString:@"register"]) {
         [self.loginView configureRegisterView];
         [self.loginView.captchaBtn addTarget:self action:@selector(getPhoneRegisterCaptchaFuntion:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginView.mainBtn addTarget:self action:@selector(registerPhone:) forControlEvents:UIControlEventTouchUpInside];
+        self.loadingView.backgroundColor = [UIColor redColor];
         //loding view
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
         self.loadingView.titleLabel.text = @"正在注册";
-
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserOrLoading:) name:@"kWXAppLoadingSeccess" object:nil];
     }
     [self.view addSubview:self.loginView];
     // cache data
@@ -196,8 +203,6 @@ static int timeToGetCaptcha = 60;
 }
 
 -(void)changeButtonNumber{
-    
-    
     if (self.timeIntervar>0) {
         [self.loginView.captchaBtn setTitle:[NSString stringWithFormat:@"%d秒后重试",self.timeIntervar] forState:UIControlStateNormal];
         self.timeIntervar --;
@@ -213,5 +218,41 @@ static int timeToGetCaptcha = 60;
     }
 }
 
+- (void)newUserOrLoading:(NSNotification *)notDic{
+    NSLog(@"--->%@",notDic);
+    if ([notDic.userInfo[@"isload"] boolValue]) {
+        //直接登录
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        //绑定手机
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"绑定手机号" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+//        [alertView show];
+        SummerInputPhoneNumber *inputView = [[SummerInputPhoneNumber alloc] initWithFrame:CGRectMake(10, 100, SCREENSIZE.width - 20, 400)];
+        [self.view.window addSubview:inputView];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+        {
+            [self showHint:@"需要绑定手机号"];
+        }
+            break;
+        case 1:
+        {//发送手机号
+            if ([NSString filterPhoneNumber:[alertView textFieldAtIndex:0].text]) {
+                
+            }else{
+                [self showHint:@"需要绑定手机号"];
+            }
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 @end

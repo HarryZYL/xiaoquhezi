@@ -58,6 +58,7 @@
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         id json = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
 //        NSString  *event = [NSString stringWithFormat:@"%@",json[@"state"]];
+        
         ablock(json);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);

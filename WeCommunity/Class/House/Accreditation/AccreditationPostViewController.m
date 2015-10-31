@@ -11,6 +11,13 @@
 #import "NSString+HTML.h"
 
 @interface AccreditationPostViewController ()<UITextFieldDelegate>
+{
+    NSArray *hourseLeve;
+    UIButton *btnUnit;
+}
+
+@property (nonatomic ,strong) NSMutableArray *arraryUnit;
+@property (nonatomic ,copy) NSString *strUnit;
 
 @end
 
@@ -19,15 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    [self setupData];
-    [self setupAppearance];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self initViewsLeves];//当前小区层级
+    
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
     
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -35,20 +40,31 @@
 }
 
 -(void)setupData{
-    NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-    NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择房号"];
-    self.titleArray = @[section1,section2];
-
+    if (hourseLeve.count == 2) {
+        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
+        NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择房号"];
+        self.titleArray = @[section1,section2];
+    }else if (hourseLeve.count == 3){
+        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
+        NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
+        self.titleArray = @[section1,section2];
+    }
+    [self setupAppearance];
 }
 
 -(void)setupAppearance{
     
-    NSArray *picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
+    NSArray *picArr;
+    if (hourseLeve.count == 2) {
+        picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
+    }else if (hourseLeve.count == 3){
+        picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"单元号",@"房号"];
+    }
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    self.scrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+50);
     [self.view addSubview:self.scrollView];
     
@@ -121,14 +137,29 @@
                             
                             break;
                         case 2:
+                            if (hourseLeve.count == 2) {
+                                self.houseIDBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                                self.houseIDBtn.frame = self.nameField.frame;
+                                [self.houseIDBtn leftStyle];
+                                [self.houseIDBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                                [background addSubview:self.houseIDBtn];
+                            }else if (hourseLeve.count == 3){
+                                btnUnit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                                btnUnit.frame = self.nameField.frame;
+                                [btnUnit leftStyle];
+                                [btnUnit setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                                
+                                [background addSubview:btnUnit];
+                            }
+                            
+                            break;
+                        case 3:
                             self.houseIDBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.houseIDBtn.frame = self.nameField.frame;
                             [self.houseIDBtn leftStyle];
                             [self.houseIDBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
                             [background addSubview:self.houseIDBtn];
-                            
                             break;
-                            
                         default:
                             break;
                     }
@@ -155,6 +186,9 @@
     self.owerTypeBtn.tag = 1;
     self.buildingIDBtn.tag = 2;
     self.houseIDBtn.tag = 3;
+    btnUnit.tag = 4;
+    
+    [btnUnit addTarget:self action:@selector(getUnitID:) forControlEvents:UIControlEventTouchUpInside];
     [self.owerTypeBtn addTarget:self action:@selector(selectPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.buildingIDBtn addTarget:self action:@selector(getBuildingID:) forControlEvents:UIControlEventTouchUpInside];
     [self.houseIDBtn addTarget:self action:@selector(getHouseIdForBuilding:) forControlEvents:UIControlEventTouchUpInside];
@@ -170,12 +204,20 @@
 
 #pragma mark networking
 
+- (void)initViewsLeves{
+    [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+        hourseLeve = responseObject;
+        [self setupData];
+    }];
+}
+
 -(void)getBuildingID:(id)sender{
-    [self.view addSubview:self.loadingView];
-    
-    [Networking retrieveData:getBuilding parameters:@{@"communityId":[Util getCommunityID]} success:^(id responseObject) {
+    [self.view addSubview:self.loadingView];//小区号－－－－>楼号
+    NSDictionary *parama = @{@"communityId":[Util getCommunityID]};
+    [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.buildingArr = responseObject;
         [self.loadingView removeFromSuperview];
+        //pickerView
         [self selectPicker:sender];
     } addition:^{
         [self.loadingView removeFromSuperview];
@@ -183,57 +225,31 @@
 
 }
 
+- (void)getUnitID:(id)sender{
+    NSDictionary *parama = @{@"communityId":[Util getCommunityID],@"id":self.buildingId};
+    [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
+        self.arraryUnit = responseObject;
+        [self selectPicker:sender];
+    }];
+}
+
+- (void)getHouseIDSender:(id)sender{
+    NSDictionary *parama = @{@"communityId":[Util getCommunityID],@"id":self.strUnit};
+    [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
+        self.houseArr = responseObject;
+        [self selectPicker:sender];
+    }];
+}
+
 -(void)getHouseIdForBuilding:(id)sender{
-    
-    
     if (self.buildingId == nil) {
         [Util alertNetworingError:@"请先选择楼号"];
     }else{
-
-            if (self.houseArr.count==0) {
-                [Util alertNetworingError:@"此栋楼暂未录入"];
-            }else{
-                [self selectPicker:sender];
-            }
-
-    }
-    
-    
-    
-    
-}
-
--(void)uploadAccreditation{
-    
-    if (self.nameField.text.length == 0) {
-        [Util alertNetworingError:@"请输入姓名"];
-    }else if(self.cardNumberField.text.length == 0){
-        [Util alertNetworingError:@"请输入身份证号"];
-    }else if (self.owerType == nil){
-        [Util alertNetworingError:@"请选择身份类型"];
-    }else if (self.buildingId == nil){
-        [Util alertNetworingError:@"请选择楼号"];
-    }else if (self.houseId == nil){
-        [Util alertNetworingError:@"请选择房号"];
-    }else{
-        
-        [self.view addSubview:self.loadingView];
-        NSDictionary *parameters = @{
-                                     @"token":[User getUserToken],
-                                     @"communityId":[Util getCommunityID],
-                                     @"realName":self.nameField.text,
-                                     @"cardType":@"IdCard",
-                                     @"cardNumber":self.cardNumberField.text,
-                                     @"buildingId":self.buildingId,
-                                     @"houseId":self.houseId,@"ownerType":self.owerType
-                                     };
-        [Networking retrieveData:applyAuthentication parameters:parameters success:^(id responseObject) {
-            [self.loadingView removeFromSuperview];
-            [self.delegate issueCertifySeccessful];
-            [self.navigationController popViewControllerAnimated:YES];
-        } addition:^{
-            [self.loadingView removeFromSuperview];
-        }];
+        if (self.houseArr.count==0) {
+            [Util alertNetworingError:@"此栋楼暂未录入"];
+        }else{
+            [self getHouseIDSender:sender];
+        }
     }
 }
 
@@ -268,7 +284,6 @@
     [self.pickerView.confirmBtn addTarget:self action:@selector(confirmPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.pickerView.cancelBtn addTarget:self action:@selector(cancelPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.pickerView];
-    
 }
 
 
@@ -279,14 +294,14 @@
 
 // pickerView 每列个数
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    
-    
     if ([self.pickerTag isEqualToString:@"1"]) {
         return self.owerTypeArr.count;
     }else if ([self.pickerTag isEqualToString:@"2"]){
         return self.buildingArr.count;
-    }else{
+    }else if ([self.pickerTag isEqualToString:@"3"]){
         return self.houseArr.count;
+    }else{
+        return self.arraryUnit.count;
     }
     
 }
@@ -306,11 +321,13 @@
     }else if ([self.pickerTag isEqualToString:@"2"]){
         self.pickerStr = self.buildingArr[row][@"name"];
         self.buildingId = self.buildingArr[row][@"id"];
-    }else{
+    }else if([self.pickerTag isEqualToString:@"3"]){
        self.pickerStr = self.houseArr[row][@"name"];
         self.houseId = self.houseArr[row][@"id"];
+    }else{
+        self.pickerStr = self.arraryUnit[row][@"name"];
+        self.strUnit = self.arraryUnit[row][@"id"];
     }
-
     
 }
 
@@ -325,14 +342,14 @@
         self.pickerStr = self.buildingArr[row][@"name"];
         self.buildingId = self.buildingArr[row][@"id"];
         return self.buildingArr[row][@"name"];
-    }else{
+    }else if([self.pickerTag isEqualToString:@"3"]){
         self.pickerStr = self.houseArr[row][@"name"];
         self.houseId = self.houseArr[row][@"id"];
         return self.houseArr[row][@"name"];
+    }else{
+        self.pickerStr = self.arraryUnit[row][@"name"];
+        return self.pickerStr;
     }
-
-    
-    
 }
 
 -(void)confirmPicker:(id)sender{
@@ -344,21 +361,26 @@
             [self.owerTypeBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else if ([self.pickerTag isEqualToString:@"2"]){
             [self.buildingIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
-            [Networking retrieveData:getHouseId parameters:@{@"buildingId":self.buildingId} success:^(id responseObject) {
-                [self.houseIDBtn setTitle:@"正在加载" forState:UIControlStateNormal];
-                self.houseIDBtn.enabled = NO;
-                self.houseArr = responseObject;
-                if (self.houseArr.count == 0) {
-                    [self.houseIDBtn setTitle:@"-此栋楼暂未录入-" forState:UIControlStateNormal];
-                }else{
-                    [self.houseIDBtn setTitle:@"-点击选择房号-" forState:UIControlStateNormal];
-                    self.houseIDBtn.enabled = YES;
-                }
-                
-            }];
+//            [Networking retrieveData:getBuilding parameters:@{@"buildingId":self.buildingId,@"id":self.buildingId} success:^(id responseObject) {
+//                [self.houseIDBtn setTitle:@"正在加载" forState:UIControlStateNormal];
+//                self.houseIDBtn.enabled = NO;
+//                self.houseArr = responseObject;
+//                if (self.houseArr.count == 0) {
+//                    [self.houseIDBtn setTitle:@"-此栋楼暂未录入-" forState:UIControlStateNormal];
+//                }else{
+//                    [self.houseIDBtn setTitle:@"-点击选择房号-" forState:UIControlStateNormal];
+//                    self.houseIDBtn.enabled = YES;
+//                }
+//                
+//            }];
             
-        }else{
+        }else if([self.pickerTag isEqualToString:@"3"]){
             [self.houseIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
+        }else{
+            [btnUnit setTitle:self.pickerStr forState:UIControlStateNormal];
+            if (!self.strUnit) {
+                self.strUnit = self.arraryUnit.firstObject[@"id"];
+            }
         }
     }
     
@@ -375,12 +397,64 @@
         }else if ([self.pickerTag isEqualToString:@"2"]){
             [self.buildingIDBtn setTitle:@"点击选择楼号" forState:UIControlStateNormal];
             self.buildingId = nil;
-        }else{
+        }else if([self.pickerTag isEqualToString:@"3"]){
             [self.houseIDBtn setTitle:@"点击选择房号" forState:UIControlStateNormal];
             self.houseId = nil;
+        }else{
+            [btnUnit setTitle:@"点击选择单元号" forState:UIControlStateNormal];
         }
     }
     self.pickerStr = nil;
 }
+
+#pragma mark - did Upload
+
+-(void)uploadAccreditation{
+    
+    if (self.nameField.text.length == 0) {
+        [Util alertNetworingError:@"请输入姓名"];
+    }else if(self.cardNumberField.text.length == 0){
+        [Util alertNetworingError:@"请输入身份证号"];
+    }else if (self.owerType == nil){
+        [Util alertNetworingError:@"请选择身份类型"];
+    }else if (self.buildingId == nil){
+        [Util alertNetworingError:@"请选择楼号"];
+    }else if (self.houseId == nil){
+        [Util alertNetworingError:@"请选择房号"];
+    }else{
+        
+        [self.view addSubview:self.loadingView];
+        NSDictionary *parameters;
+        if (hourseLeve.count == 2) {
+            parameters = @{
+                           @"token":[User getUserToken],
+                           @"communityId":[Util getCommunityID],
+                           @"realName":self.nameField.text,
+                           @"cardType":@"IdCard",
+                           @"cardNumber":self.cardNumberField.text,
+                           @"houseId":self.houseId,
+                           @"ownerType":self.owerType
+                           };
+        }else{
+            parameters = @{
+                           @"token":[User getUserToken],
+                           @"communityId":[Util getCommunityID],
+                           @"realName":self.nameField.text,
+                           @"cardType":@"IdCard",
+                           @"cardNumber":self.cardNumberField.text,
+                           @"houseId":self.houseId,
+                           @"ownerType":self.owerType
+                           };
+        }
+        [Networking retrieveData:applyAuthentication parameters:parameters success:^(id responseObject) {
+            [self.loadingView removeFromSuperview];
+            [self.delegate issueCertifySeccessful];
+            [self.navigationController popViewControllerAnimated:YES];
+        } addition:^{
+            [self.loadingView removeFromSuperview];
+        }];
+    }
+}
+
 
 @end

@@ -7,12 +7,16 @@
 //
 
 #import "HouseViewController.h"
+#import "UIButton+WebCache.h"
+#import "SummerUserHeaderView.h"
 #import "SummerMessageCenterTableViewController.h"
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
 
 @interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
-
+{
+    SummerUserHeaderView *barButtonItemView;
+}
 @end
 
 @implementation HouseViewController
@@ -28,9 +32,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIView *barButtonItemView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 44)];
-    barButtonItemView.backgroundColor = [UIColor redColor];
-//    UIBarButtonItem *user = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"管家2"] style:UIBarButtonItemStylePlain target:self action:@selector(userOption:)];
+    barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    User *userInfo = [[User alloc] initWithData];
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
+    UITapGestureRecognizer *titleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userOption:)];
+    [barButtonItemView.touchViews addGestureRecognizer:titleView];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
     
     [self setupAppearance];
@@ -38,8 +44,6 @@
     [User login];
     
 //    [[PgyUpdateManager sharedPgyManager] checkUpdate];
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -53,7 +57,6 @@
         UINavigationController *nav =[[UINavigationController alloc] initWithRootViewController:loginVC];
         [self.navigationController presentViewController:nav animated:YES completion:nil];
     }else{
-        
         if (![Util judgeChooseCommunity]) {
             LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
@@ -65,7 +68,8 @@
         }
         
     }
-
+    User *userInfo = [[User alloc] initWithData];
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
 
 }
 
@@ -98,7 +102,7 @@
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
     [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"访客" title5:@"访客" Sixth:@"其他Home" title6:@"更多"];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
-    [self.functionView.secondItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
+    [self.functionView.secondItem.functionButton addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(repair:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.fourthItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.fifthItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
@@ -110,8 +114,10 @@
     [self.scrollView addSubview:footLine];
     
     self.footerView = [[HouseFooterView alloc] initWithFrame:CGRectMake(0, footLine.frame.origin.y+20, self.view.frame.size.width, 150)];
+    
     [self.footerView.firstItem.footerBtn addTarget:self action:@selector(like:) forControlEvents:UIControlEventTouchUpInside];
     [self.footerView.secondItem.footerBtn addTarget:self action:@selector(advise:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.scrollView addSubview:self.footerView];
     
 }
@@ -125,6 +131,9 @@
     [Util alertNetworingError:@"功能暂未开放"];
 }
 
+/**
+ *  投诉
+ */
 -(void)advise:(id)sender{
     if ([Util judgeAuthentication]) {
         TextTableViewController *textPostVC = [[TextTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
@@ -134,6 +143,7 @@
         [self authentication];
     }
 }
+
 
 -(void)repair:(id)sender{
     if ([Util judgeAuthentication]) {
@@ -303,6 +313,7 @@
     textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
     textVC.title = @"详情";
     textVC.function = @"notice";
+    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
     [self.navigationController pushViewController:textVC animated:YES];
     
 }

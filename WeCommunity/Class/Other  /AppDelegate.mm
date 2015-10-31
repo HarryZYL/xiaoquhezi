@@ -6,10 +6,14 @@
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
 #import "AppDelegate.h"
+#import "SummerRegisterID.h"
+#import "ThirdUserModel.h"
 #import "BPush.h"
 
 @interface AppDelegate ()
-
+{
+    NSString *codeID;
+}
 @end
 
 @implementation AppDelegate
@@ -126,7 +130,6 @@
 
 - (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins{
     [WXApi registerApp:@"wx8728578ba70796d9"];
-    
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
     if (!ret) {
@@ -171,6 +174,24 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (void)onResp:(BaseResp *)resp{
+    /*
+     ErrCode ERR_OK = 0(用户同意)
+     ERR_AUTH_DENIED = -4（用户拒绝授权）
+     ERR_USER_CANCEL = -2（用户取消）
+     code    用户换取access_token的code，仅在ErrCode为0时有效
+     state   第三方程序发送时用来标识其请求的唯一性的标志，由第三方程序调用sendReq时传入，由微信终端回传，state字符串长度不能超过1K
+     lang    微信客户端当前语言
+     country 微信用户当前国家信息
+     */
+    SendAuthResp *aresp = (SendAuthResp *)resp;
+    if (aresp.errCode== 0) {
+        codeID = aresp.code;
+        //发送给后台
+        [ThirdUserModel returnThirdLoadingUserModelWithCode:codeID];
+    }
 }
 
 @end

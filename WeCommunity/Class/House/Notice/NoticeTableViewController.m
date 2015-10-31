@@ -55,7 +55,7 @@
     // Configure the cell...
     Notice *notice = [[Notice alloc] initWithData:self.dataArray[indexPath.section]];
     
-    [cell configureNoticeCellTitle:notice.title detail:notice.contentTxt date:notice.createTime top:notice.isTop detail:NO];
+    [cell configureNoticeCellTitle:notice.title detail:notice.contentTxt date:notice.createTime top:notice.isTop detail:NO withReplyCount:notice.replyCount];
     
     return cell;
 }
@@ -71,6 +71,7 @@
     textVC.notice = [[Notice alloc] initWithData:self.dataArray[indexPath.section]];
     textVC.title = @"详情";
     textVC.function = @"notice";
+    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
     [self.navigationController pushViewController:textVC animated:YES];
 }
 

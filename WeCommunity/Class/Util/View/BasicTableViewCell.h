@@ -38,7 +38,7 @@
 -(void)configureBillCellTitle:(NSString*)title price:(NSString*)price image:(UIImage*)image;
 -(void) configureTextCellImage:(NSURL*)image title:(NSString *)title date:(NSString*)date deal:(NSString*)deal pictures:(NSArray*)pictures detail:(BOOL)detailDisplay;
 +(CGFloat)getTextDetailHeight:(NSString*)title picture:(NSArray*)pictures;
--(void)configureNoticeCellTitle:(NSString *)title detail:(NSString *)detail date:(NSString *)date top:(NSString*)top detail:(BOOL)detailDisplay;
+-(void)configureNoticeCellTitle:(NSString *)title detail:(NSString *)detail date:(NSString *)date top:(NSString*)top detail:(BOOL)detailDisplay  withReplyCount:(NSString *)replyCount;
 +(CGFloat)getNoticeDetailHeight:(NSString*)detail;
 -(void) configureRentCellImage:(NSString *)image title:(NSString *)title detail:(NSString*)detail price:(NSString*)price priceUnit:(NSString*)priceUnit date:(NSString*)date;
 -(void)configureActivityCellImage:(NSURL *)image title:(NSString *)title detail:(NSString *)detail address:(NSString *)address date:(NSString *)date attends:(NSString*)attends;

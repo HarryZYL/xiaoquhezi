@@ -248,16 +248,17 @@
 //}
 // bill function
 -(void)configureBillCellTitle:(NSString *)title price:(NSString *)price image:(UIImage *)image{
-    
-    self.titleLabel.frame = CGRectMake(10, 10, self.frame.size.width-100, 30);
+    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.frame.size.width-100, 80) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]} context:nil];
+    self.titleLabel.frame = CGRectMake(10, 10, self.frame.size.width-100, titleRect.size.height);
+    self.titleLabel.numberOfLines = 0;
     self.titleLabel.text = title;
     self.titleLabel.textColor = [UIColor lightGrayColor];
-    self.titleLabel.font = [UIFont fontWithName:fontName size:20];
+    self.titleLabel.font = [UIFont fontWithName:fontName size:17];
     
-    self.priceLabel.frame = CGRectMake(10, 50, 50, 20);
+    self.priceLabel.frame = CGRectMake(10, 50, 100, 20);
     self.priceLabel.text = [NSString stringWithFormat:@"%@元",price];
     self.priceLabel.textColor = [UIColor redColor];
-    self.priceLabel.font = [UIFont fontWithName:fontName size:18];
+    self.priceLabel.font = [UIFont fontWithName:fontName size:15];
     
     self.funcitonBtn.frame = CGRectMake(self.frame.size.width - 80, 10, 60, 60);
     [self.funcitonBtn setImage:[UIImage imageNamed:@"advise"] forState:UIControlStateNormal];
@@ -419,7 +420,7 @@
 }
 
 //notice
--(void)configureNoticeCellTitle:(NSString *)title detail:(NSString *)detail date:(NSString *)date top:(NSString*)top detail:(BOOL)detailDisplay{
+-(void)configureNoticeCellTitle:(NSString *)title detail:(NSString *)detail date:(NSString *)date top:(NSString*)top detail:(BOOL)detailDisplay withReplyCount:(NSString *)replyCount{
     
     self.selectionStyle = NO;
     
@@ -462,7 +463,7 @@
     
     self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
     self.commentLabel.textColor = [UIColor lightGrayColor];
-    self.commentLabel.text = @"0";
+    self.commentLabel.text = [NSString stringWithFormat:@"%@", replyCount];
     
 }
 

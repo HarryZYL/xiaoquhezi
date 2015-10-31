@@ -104,17 +104,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
     textVC.textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
-    textVC.title = @"详情";
-    textVC.function = @"text";
+    textVC.title    = @"详情";
+    if ([self.function isEqualToString:@"complaint"]) {
+        textVC.noticeStyle = SettingTableViewControllerStyleComplain;
+    }else if([self.function isEqualToString:@"repair"]){
+        textVC.noticeStyle = SettingTableViewControllerStyleRepair;
+    }
     [self.navigationController pushViewController:textVC animated:YES];
     
 }
 
 # pragma mark retrieve data
-
 
 -(void)retrireveData{
 

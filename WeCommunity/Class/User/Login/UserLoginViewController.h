@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserLoginView.h"
-
+#import "WXApi.h"
 //这个是登陆界面的视图控制器
 
 @interface UserLoginViewController : UIViewController
@@ -17,5 +17,6 @@
 @property (nonatomic,strong) LoadingView *loadingView;
 @property (nonatomic,strong) NSString *function;
 @property (nonatomic,strong) NSTimer *timer;
-@property (nonatomic) int timeIntervar;
+@property (nonatomic,assign) int    timeIntervar;
+
 @end

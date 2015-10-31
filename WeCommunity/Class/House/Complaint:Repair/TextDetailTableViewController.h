@@ -11,9 +11,9 @@
 #import "Notice.h"
 
 typedef NS_ENUM(NSUInteger, TextDetailInformationNoticeStyle) {
-    SettingTableViewControllerStyleNotice,
-    SettingTableViewControllerStyleRepair,
-    SettingTableViewControllerStyleComplain,
+    SettingTableViewControllerStyleNotice,  /**<首页通知*/
+    SettingTableViewControllerStyleRepair,  /**<报修，有图片，有文本*/
+    SettingTableViewControllerStyleComplain,/**<投诉，有图片，有文本*/
 };
 
 @interface TextDetailTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
@@ -23,4 +23,7 @@ typedef NS_ENUM(NSUInteger, TextDetailInformationNoticeStyle) {
 @property (nonatomic,strong) Notice *notice;
 @property (nonatomic,strong) NSString *function;
 @property (nonatomic, strong) RDRStickyKeyboardView *contentWrapper;
+
+@property (assign) TextDetailInformationNoticeStyle noticeStyle; /**<视图状态*/
+
 @end

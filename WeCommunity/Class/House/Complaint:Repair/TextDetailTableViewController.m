@@ -8,8 +8,9 @@
 
 #import "TextDetailTableViewController.h"
 
-@interface TextDetailTableViewController ()
-
+@interface TextDetailTableViewController ()<UzysAssetsPickerControllerDelegate>
+@property (nonatomic ,strong) NSMutableArray *chosenImages;
+@property (nonatomic ,strong) NSMutableArray *textArrary;
 @end
 
 @implementation TextDetailTableViewController
@@ -20,42 +21,83 @@
     if (self) {
         self.textDeal = [[TextDeal alloc] init];
         self.notice = [[Notice alloc] init];
+        self.chosenImages = [[NSMutableArray alloc] init];
+        self.textArrary = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectZero
-                                                       style:UITableViewStylePlain];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
-    |UIViewAutoresizingFlexibleHeight;
-
-    [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
+    [self tableView];
     // Setup wrapper
-    self.contentWrapper = [[RDRStickyKeyboardView alloc] initWithScrollView:self.tableView];
-    self.contentWrapper.frame = self.view.bounds;
-    self.contentWrapper.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    self.contentWrapper.placeholder = @"发表评论";
-
-    [self.contentWrapper.inputView.rightButton addTarget:self action:@selector(didTapSend:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.contentWrapper];
 }
-
+//发送
 - (void)didTapSend:(id)sender{
     NSString *comment = [self.contentWrapper.inputView.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if ([comment length]!=0){
-       
         [self.contentWrapper hideKeyboard];
         self.contentWrapper.inputView.textView.text=nil;
+        
     }
     
+}
+//选择图片
+- (void)senderImageView:(UIButton *)sender{
+    UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+    picker.delegate = self;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
+    [self presentViewController:picker animated:YES completion:nil];
+    
+}
+
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    
+    if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
+    {
+        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            ALAsset *representation = obj;
+            
+            UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                               scale:representation.defaultRepresentation.scale
+                                         orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+            
+            [self.chosenImages addObject:img];
+            
+            if (idx==0 && self.chosenImages.count == 1) {
+                
+            }
+            
+        }];
+        
+    }
+    //上传图片
+    [self updatePhotoImages];
+}
+
+- (void)updatePhotoImages{
+    switch (_noticeStyle) {
+        case SettingTableViewControllerStyleNotice:
+        {
+            
+        }
+            break;
+        case SettingTableViewControllerStyleRepair:
+        {
+            
+        }
+            break;
+        case SettingTableViewControllerStyleComplain:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,10 +120,10 @@
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     switch (indexPath.section) {
         case 0:
-            if ([self.function isEqualToString:@"text"]) {
+            if (self.noticeStyle == SettingTableViewControllerStyleComplain) {
                 [cell configureTextCellImage:[NSURL URLWithString:self.textDeal.textType[@"logo"]] title:self.textDeal.content date:self.textDeal.createTime deal:self.textDeal.status pictures:self.textDeal.pictures detail:YES];
-            }else if ([self.function isEqualToString:@"notice"]){
-                [cell configureNoticeCellTitle:self.notice.title detail:self.notice.contentTxt date:self.notice.createTime top:self.notice.isTop detail:YES];
+            }else{
+                [cell configureNoticeCellTitle:self.notice.title detail:self.notice.contentTxt date:self.notice.createTime top:self.notice.isTop detail:YES withReplyCount:self.notice.replyCount];
             }
             
             break;
@@ -105,7 +147,6 @@
         return [BasicTableViewCell getTextDetailHeight:self.textDeal.content picture:self.textDeal.pictures];
 
     }else if ([self.function isEqualToString:@"notice"]){
-        
         return [BasicTableViewCell getNoticeDetailHeight:self.notice.contentTxt];
         
     }else {
@@ -123,7 +164,28 @@
     
 }
 
+#pragma mark - init View
 
+- (UITableView *)tableView{
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero
+                                                  style:UITableViewStylePlain];
+    _tableView.dataSource = self;
+    _tableView.delegate   = self;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth
+    |UIViewAutoresizingFlexibleHeight;
+    [_tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    return _tableView;
+}
 
+- (RDRStickyKeyboardView *)contentWrapper{
+    _contentWrapper = [[RDRStickyKeyboardView alloc] initWithScrollView:self.tableView];
+    _contentWrapper.frame = self.view.bounds;
+    _contentWrapper.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    _contentWrapper.inputView.textView.placeholder = @"发表评论";
+    [_contentWrapper.inputView.rightButton addTarget:self action:@selector(didTapSend:) forControlEvents:UIControlEventTouchUpInside];
+    [_contentWrapper.inputView.leftButton addTarget:self action:@selector(senderImageView:) forControlEvents:UIControlEventTouchUpInside];
+    return _contentWrapper;
+}
 
 @end
