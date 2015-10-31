@@ -16,7 +16,7 @@
 
 @interface SummerInputPhoneNumber : UIView
 
-@property (nonatomic ,strong) IBOutlet UITextField *inputPhoneNumber;
+@property (nonatomic ,strong) UITextField *inputPhoneNumber;
 @property (nonatomic ,weak) id delegate;
 
 @end

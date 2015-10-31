@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WechatPayManager.h"
 
 @interface SummerBillConfirmViewController : UIViewController
 
-@property (nonatomic ,strong)NSDictionary *billDic;
-@property (nonatomic ,strong)NSDictionary *commnityDic;
+@property (nonatomic ,strong)NSArray *billOrderIDArrary; /**<选择的物业费ID*/
+@property (nonatomic ,strong)NSArray *commnityArrary;    /**<选择的物业费信息*/
+@property (nonatomic ,strong)NSDictionary *commnityDic;  /**<选择的小区信息*/
 
 @end

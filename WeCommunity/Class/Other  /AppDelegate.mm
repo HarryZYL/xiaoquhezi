@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
 #import "AppDelegate.h"
+#import <AlipaySDK/AlipaySDK.h>
 #import "SummerRegisterID.h"
 #import "ThirdUserModel.h"
 #import "BPush.h"
@@ -173,10 +174,27 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
-    return [WXApi handleOpenURL:url delegate:self];
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+        NSLog(@"result = %@",resultDic);
+    }];
+    [WXApi handleOpenURL:url delegate:self];
+    return YES;
 }
 
 - (void)onResp:(BaseResp *)resp{
+    if ([resp isKindOfClass:[PayResp class]]) {
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WXPayWay" object:nil userInfo:@{@"WXSeccessOrFail": [NSNumber numberWithBool:YES],@"WXReturnModel":resp}];
+            }
+                break;
+                
+            default:
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WXPayWay" object:nil userInfo:@{@"WXSeccessOrFail":[NSNumber numberWithBool:NO],@"WXReturnModel":resp}];
+                break;
+        }
+    }
     /*
      ErrCode ERR_OK = 0(用户同意)
      ERR_AUTH_DENIED = -4（用户拒绝授权）
@@ -186,12 +204,15 @@
      lang    微信客户端当前语言
      country 微信用户当前国家信息
      */
-    SendAuthResp *aresp = (SendAuthResp *)resp;
-    if (aresp.errCode== 0) {
-        codeID = aresp.code;
-        //发送给后台
-        [ThirdUserModel returnThirdLoadingUserModelWithCode:codeID];
+    if ([resp isKindOfClass:[SendAuthReq class]]) {
+        SendAuthResp *aresp = (SendAuthResp *)resp;
+        if (aresp.errCode== 0) {
+            codeID = aresp.code;
+            //发送给后台
+            [ThirdUserModel returnThirdLoadingUserModelWithCode:codeID];
+        }
     }
+    
 }
 
 @end

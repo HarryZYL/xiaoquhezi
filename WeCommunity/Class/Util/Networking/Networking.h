@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-//#define HOST_URL @"http://www.wshequ.net"
-#define HOST_URL @"http://192.168.1.101:10000/wsq"
+#define HOST_URL @"http://www.wshequ.net"
+//#define HOST_URL @"http://192.168.1.101:10000/wsq"
 
 #define get_reply_notice (HOST_URL @"/notice/replyNotice") /**<回复公告*/
 
@@ -49,7 +49,7 @@
 
 #define bookingHouse (HOST_URL @"/houseDeal/bookingHouse")
 #define POST_CANCELL_BOOKING (HOST_URL @"/houseDeal/cancelBooking") /**<取消预约*/
-#define getBooking           (HOST_URL @"/houseDeal/getBooking") /**<查询预约看房纪录*/
+#define getBooking           (HOST_URL @"/houseDeal/getBooking")    /**<查询预约看房纪录*/
 #define GET_USER_BOOK        (HOST_URL @"/houseDeal/isUserBooking") /**<查询用户是否在当前租售上预约过*/
 #define GET_USER_BOOK_DETAIL (HOST_URL @"/houseDeal/getUserBookingOfHouseDeal") /**<查询用户在指定房屋上的预约看房记录*/
 
@@ -78,6 +78,8 @@
  */
 #define get_LOGIN_CODE (HOST_URL @"/third/login/weixin/get") //根据code 查询用户
 
+// 订单
+#define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 
 @interface Networking : NSObject
 

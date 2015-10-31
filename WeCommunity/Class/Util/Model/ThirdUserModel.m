@@ -12,9 +12,10 @@
 
 + (void)returnThirdLoadingUserModelWithCode:(NSString *)codeID{
     [Networking retrieveData:get_LOGIN_CODE parameters:@{@"code": codeID} success:^(id responseObject) {
-//            unionId = oRdIHs3ivrXTmpLjxHKeBLPHriMw;
+//            unionId = oRdIHs3ivrXTmpLjxHKeBLPHriMw;／／需要记录
 //            user = "<null>";
 //user－－－存在，说明已经绑定过手机号；为空，说明没有绑定过手机号－－－>qu绑定手机号
+        [[NSUserDefaults standardUserDefaults] setValue:responseObject[@"unionId"] forKey:@"WX_ID"];
         NSLog(@"---->%@",responseObject);
         BOOL isLoading;
         if ([responseObject[@"user"] isEqual:[NSNull null]]) {
@@ -27,6 +28,7 @@
 }
 
 - (void)dealloc{
+    
 }
 
 @end

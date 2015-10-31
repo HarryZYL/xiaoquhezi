@@ -11,8 +11,9 @@
 
 @interface BillTableViewController ()
 {
-    NSMutableArray *billArrary;
-    NSArray *commnunityArrary;
+    NSMutableArray *billArrary;/**<返回的物业费*/
+    NSArray *commnunityArrary; /**<返回的小区*/
+    NSDictionary *selectCommnunityDic;/**<选择的小区信息*/
 }
 @end
 
@@ -23,10 +24,11 @@
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
+    self.tableView.editing = YES;
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
     [self initWithRoomData];
-
+    [self setTableViewFooterView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,7 +36,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setTableViewFooterView{
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 60)];
+    footerView.backgroundColor = [UIColor whiteColor];
+    UIButton *btnSure = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    btnSure.frame = CGRectMake(10, 5, SCREENSIZE.width - 20, 50);
+    [btnSure setTitle:@"确定" forState:UIControlStateNormal];
+    [btnSure addTarget:self action:@selector(sureOrderList) forControlEvents:UIControlEventTouchUpInside];
+    self.tableView.tableFooterView.backgroundColor = [UIColor whiteColor];
+    
+    [footerView addSubview:btnSure];
+    self.tableView.tableFooterView = footerView;
+}
+
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 60;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -58,21 +77,23 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dicTemp = billArrary[indexPath.row];
-    SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
-    confirmVC.billDic = dicTemp;
-    if (commnunityArrary.count == 1) {
-        confirmVC.commnityDic = commnunityArrary.firstObject;
+    NSDictionary *dic = [billArrary objectAtIndex:indexPath.row];
+    if (![dic[@"tradeStatus"] isEqualToString:@"WaitingPay"]) {
+        return;
     }
-    [self.navigationController pushViewController:confirmVC animated:YES];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
 
 - (void)initWithRoomData{
     [Networking retrieveData:GET_AUTHC_HOUSE parameters:@{@"token": [User getUserToken],@"communityId":[Util getCommunityID]} success:^(id responseObject) {
         commnunityArrary = responseObject;
         NSLog(@"----->%@",responseObject);
-        if (commnunityArrary.count == 1) {
+        if (commnunityArrary.count == 1) {//本小区房屋一个
             NSDictionary *dic = commnunityArrary.firstObject;
+            selectCommnunityDic = dic;
             NSString *roomID = dic[@"id"];
             [self viewDataWithRoomId:roomID];
         }else{
@@ -88,6 +109,29 @@
         billArrary = responseObject[@"rows"];
         [weakVC.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
+}
+
+- (void)sureOrderList{
+    SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
+    if (billArrary.count == 1) {
+        NSDictionary *dicTemp = billArrary.firstObject;
+        confirmVC.commnityArrary = billArrary;
+        confirmVC.billOrderIDArrary = @[dicTemp[@"id"]];
+        confirmVC.commnityDic = commnunityArrary.firstObject;
+    }else{
+        NSArray *indexPathArrary = [self.tableView indexPathsForSelectedRows];
+        NSMutableArray *billSelectArrary = [[NSMutableArray alloc] init];
+        NSMutableArray *idsArrary = [[NSMutableArray alloc] init];
+        for (NSIndexPath *index in indexPathArrary) {
+            [billSelectArrary addObject:billArrary[index.row]];
+            NSDictionary *dic = billArrary[index.row];
+            [idsArrary addObject:dic[@"id"]];
+        }
+        confirmVC.commnityArrary    = billSelectArrary;
+        confirmVC.billOrderIDArrary = idsArrary;
+        confirmVC.commnityDic       = selectCommnunityDic;
+    }
+    [self.navigationController pushViewController:confirmVC animated:YES];
 }
 
 @end

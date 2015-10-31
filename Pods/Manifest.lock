@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
+  - JSONKit (1.5pre)
   - libWeChatSDK (1.6)
   - MBProgressHUD (0.9.1)
   - MJRefresh (2.4.12)
@@ -37,6 +38,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - JSONKit (~> 1.5pre)
   - libWeChatSDK
   - MJRefresh
   - MWPhotoBrowser
@@ -48,6 +50,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44

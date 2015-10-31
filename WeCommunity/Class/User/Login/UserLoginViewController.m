@@ -7,7 +7,7 @@
 // 登录窗体
 
 #import "UserLoginViewController.h"
-#import "SummerInputPhoneNumber.h"
+#import "SummerPhoneNumberViewController.h"
 #import "UIViewController+HUD.h"
 #import "NSString+HTML.h"
 
@@ -225,33 +225,8 @@ static int timeToGetCaptcha = 60;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         //绑定手机
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"绑定手机号" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//        alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-//        [alertView show];
-        SummerInputPhoneNumber *inputView = [[SummerInputPhoneNumber alloc] initWithFrame:CGRectMake(10, 100, SCREENSIZE.width - 20, 400)];
-        [self.view.window addSubview:inputView];
-    }
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    
-    switch (buttonIndex) {
-        case 0:
-        {
-            [self showHint:@"需要绑定手机号"];
-        }
-            break;
-        case 1:
-        {//发送手机号
-            if ([NSString filterPhoneNumber:[alertView textFieldAtIndex:0].text]) {
-                
-            }else{
-                [self showHint:@"需要绑定手机号"];
-            }
-        }
-            break;
-        default:
-            break;
+        SummerPhoneNumberViewController *phoneVC = [[SummerPhoneNumberViewController alloc] init];
+        [self.navigationController pushViewController:phoneVC animated:YES];
     }
 }
 
