@@ -16,6 +16,8 @@
 #define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")
 
+#define getMyAuthentictionDelete      (HOST_URL @"/authc/delete") //删除认证
+
 #define get_HOUSE_LEVEL (HOST_URL @"/community/house/level/get")
 
 #define getMyComplaints (HOST_URL @"/complaint/user/getMyComplaints")
@@ -35,7 +37,7 @@
 #define uploadImage (HOST_URL @"/upload/image/onem")
 #define market_add  (HOST_URL @"/market/add")
 #define getBuilding (HOST_URL @"/community/house/list") /**<查找房号，楼号，单元号*/
-
+#define get_HOURSE_PEOPLE_NUMBER (HOST_URL @"/user/authc/house/authc/get")//查看所有认证的房间的认证用户
 #define GET_AUTHC_HOUSE (HOST_URL @"/user/authc/house/get")//查询用户在当前小区认证房间
 #define GET_HOUSE_FEE   (HOST_URL @"/fee/property/getOfHouse") //指定的房间物业费
 
@@ -73,6 +75,8 @@
 #define get_COMMNITY_PRICE        (HOST_URL @"/repair/getPrice")
 #define get_COMMNITY_PHONE_NMBER  (HOST_URL @"/community/getPropertyPhone")
 
+
+#define get_ORDER_LIST_FEE        (HOST_URL @"/fee/property/order/payed/get") //缴费记录
 /**
  *  第三方登录接口
  */

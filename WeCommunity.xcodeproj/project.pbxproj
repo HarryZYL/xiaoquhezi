@@ -122,6 +122,8 @@
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
 		D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */; };
 		D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */; };
+		D44D9C791BE5DD16006340E2 /* SummerMemberAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D9C781BE5DD16006340E2 /* SummerMemberAlertView.m */; };
+		D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44D9C7A1BE5DD86006340E2 /* SummerMemberAlertView.xib */; };
 		D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */; };
 		D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */; };
 		D452F2381BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */; };
@@ -177,6 +179,7 @@
 		D4DA2D201BE53734003C61C7 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1C1BE53734003C61C7 /* payRequsestHandler.mm */; };
 		D4DA2D211BE53734003C61C7 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */; };
 		D4DA2D241BE5483E003C61C7 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */; };
+		D4E8F91E1BE5FBA000E2338C /* SummerPaymentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -411,6 +414,9 @@
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
 		D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserViewTableViewCell.m; sourceTree = "<group>"; };
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
+		D44D9C771BE5DD16006340E2 /* SummerMemberAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMemberAlertView.h; sourceTree = "<group>"; };
+		D44D9C781BE5DD16006340E2 /* SummerMemberAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerMemberAlertView.m; sourceTree = "<group>"; };
+		D44D9C7A1BE5DD86006340E2 /* SummerMemberAlertView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerMemberAlertView.xib; sourceTree = "<group>"; };
 		D44F0ABF1BE51515005BB948 /* SummerAuthV2Info.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerAuthV2Info.h; path = BillModel/SummerAuthV2Info.h; sourceTree = "<group>"; };
 		D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAuthV2Info.m; path = BillModel/SummerAuthV2Info.m; sourceTree = "<group>"; };
 		D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+Data.h"; sourceTree = "<group>"; };
@@ -575,6 +581,8 @@
 		D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		D4DA2D221BE5483E003C61C7 /* WechatPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatPayManager.h; sourceTree = "<group>"; };
 		D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatPayManager.m; sourceTree = "<group>"; };
+		D4E8F91C1BE5FBA000E2338C /* SummerPaymentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPaymentListModel.h; path = HomeModel/SummerPaymentListModel.h; sourceTree = "<group>"; };
+		D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPaymentListModel.m; path = HomeModel/SummerPaymentListModel.m; sourceTree = "<group>"; };
 		E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1048,6 +1056,7 @@
 		4ACCCFF51BBF49600001227A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				D4E8F91B1BE5F1BE00E2338C /* HomeModel */,
 				4ACCCFF61BBF49600001227A /* HouseViewController.h */,
 				4ACCCFF71BBF49600001227A /* HouseViewController.m */,
 				D452F2361BDDC3340031C5C8 /* SummerMessageCenterTableViewController.h */,
@@ -1072,6 +1081,9 @@
 				4ACCCFFA1BBF49600001227A /* FunctionView.m */,
 				4ACCCFFB1BBF49600001227A /* HouseFooterView.h */,
 				4ACCCFFC1BBF49600001227A /* HouseFooterView.m */,
+				D44D9C771BE5DD16006340E2 /* SummerMemberAlertView.h */,
+				D44D9C781BE5DD16006340E2 /* SummerMemberAlertView.m */,
+				D44D9C7A1BE5DD86006340E2 /* SummerMemberAlertView.xib */,
 				D4D4007D1BDF160F005F6095 /* SummerAlertView.h */,
 				D4D4007E1BDF160F005F6095 /* SummerAlertView.m */,
 				D4D400801BDF1625005F6095 /* SummerAlertView.xib */,
@@ -1531,6 +1543,15 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		D4E8F91B1BE5F1BE00E2338C /* HomeModel */ = {
+			isa = PBXGroup;
+			children = (
+				D4E8F91C1BE5FBA000E2338C /* SummerPaymentListModel.h */,
+				D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */,
+			);
+			name = HomeModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1627,6 +1648,7 @@
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D452F2481BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib in Resources */,
 				D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */,
+				D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */,
 				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,
@@ -1716,6 +1738,7 @@
 				4A118E921BA48FFC00BC2C4E /* PageView.m in Sources */,
 				D452F23B1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m in Sources */,
 				D454EAAB1BE4949E0089333D /* RSADataVerifier.m in Sources */,
+				D44D9C791BE5DD16006340E2 /* SummerMemberAlertView.m in Sources */,
 				4ACCD0511BBF49600001227A /* ImagePickerLayout.m in Sources */,
 				4ACCCEE21BBF456F0001227A /* SecondHandPostView.m in Sources */,
 				4ACCCE681BBF37A70001227A /* Activity.m in Sources */,
@@ -1779,6 +1802,7 @@
 				D454EAFE1BE4C9390089333D /* SummerSelectPayWayView.m in Sources */,
 				4ACCD04A1BBF49600001227A /* LikeTableViewController.m in Sources */,
 				D41275ED1BDDFE9D008BD610 /* SummerMessageDetailViewController.m in Sources */,
+				D4E8F91E1BE5FBA000E2338C /* SummerPaymentListModel.m in Sources */,
 				D4D4008D1BDF7EFB005F6095 /* SummerPriceHeaderView.m in Sources */,
 				4ACCD03E1BBF49600001227A /* FunctionView.m in Sources */,
 				4ACCD0431BBF49600001227A /* LocationTableViewController.m in Sources */,

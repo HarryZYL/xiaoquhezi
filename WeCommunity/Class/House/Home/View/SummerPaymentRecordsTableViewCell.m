@@ -20,8 +20,12 @@
     // Configure the view for the selected state
 }
 
-- (void)confirmCellWithData:(NSDictionary *)dicTemp{
-    
+- (void)confirmCellWithData:(SummerPaymentListModel *)dicTemp{
+    NSString *strTemp = [NSString stringWithFormat:@"%@物业费，共%@元" ,dicTemp.dates,dicTemp.fee];
+    self.cellLabPaymentProject.text = strTemp;
+    self.cellLabPropertyManagement.text = dicTemp.propertyName;
+    self.cellLabRoomAddress.text = [NSString stringWithFormat:@"%@%@", dicTemp.communityName,dicTemp.parentNames];
+    self.cellLabPaymentTime.text = [NSString stringWithFormat:@"%@ 缴费成功",dicTemp.payTime];
 }
 
 - (IBAction)deletePaymentRecords:(UIButton *)sender{

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SummerPaymentListModel.h"
 
 @protocol SummerPaymentRecordsTableViewCellDelegate <NSObject>
 
@@ -23,6 +24,6 @@
 @property(nonatomic, weak) IBOutlet UILabel *cellLabRoomAddress;
 @property(nonatomic, weak) IBOutlet UILabel *cellLabPaymentTime;
 
-- (void)confirmCellWithData:(NSDictionary *)dicTemp;
+- (void)confirmCellWithData:(SummerPaymentListModel *)dicTemp;
 
 @end

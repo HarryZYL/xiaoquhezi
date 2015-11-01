@@ -8,11 +8,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SummerAlertView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7r-Nj-0x2">
-                    <rect key="frame" x="53" y="168" width="215" height="192"/>
+                    <rect key="frame" x="193" y="168" width="215" height="192"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="删除记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQb-xA-vFE">
                             <rect key="frame" x="0.0" y="15" width="215" height="21"/>
@@ -83,7 +83,7 @@
                 <outlet property="detaillText" destination="mWY-Eh-0wK" id="XT0-cs-1h3"/>
                 <outlet property="titleName" destination="tQb-xA-vFE" id="zax-OK-HTg"/>
             </connections>
-            <point key="canvasLocation" x="110" y="-32"/>
+            <point key="canvasLocation" x="-100" y="-46"/>
         </view>
     </objects>
 </document>

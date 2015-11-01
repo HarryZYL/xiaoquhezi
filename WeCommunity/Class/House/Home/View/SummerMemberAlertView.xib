@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SummerMemberAlertView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iPF-CW-00O">
+                    <rect key="frame" x="53" y="139" width="214" height="240"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择移出理由" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJD-NZ-lkr">
+                            <rect key="frame" x="30" y="15" width="153" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KgI-ME-2iR">
+                            <rect key="frame" x="14" y="49" width="187" height="40"/>
+                            <color key="backgroundColor" red="0.23921568627450979" green="0.80000000000000004" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="LhE-b6-YZy"/>
+                            </constraints>
+                            <state key="normal" title="此用户信息不实">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="summerMemberAlertDidSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="soY-2P-xol"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6Y-OO-Bjz">
+                            <rect key="frame" x="14" y="100" width="187" height="40"/>
+                            <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="29o-lj-7Tr"/>
+                            </constraints>
+                            <state key="normal" title="此用户已搬离">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="summerMemberAlertDidSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="3tc-b8-TSR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yU-kd-GWB">
+                            <rect key="frame" x="14" y="187" width="84" height="40"/>
+                            <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Ifq-ix-Dos"/>
+                                <constraint firstAttribute="width" constant="84" id="Yiu-3G-L0f"/>
+                            </constraints>
+                            <state key="normal" title="取消">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="summerMemberAlertDidSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="9S7-Oe-yBZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8r-NM-Icv">
+                            <rect key="frame" x="117" y="187" width="84" height="40"/>
+                            <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Lvt-ox-s5W"/>
+                            </constraints>
+                            <state key="normal" title="确定">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="summerMemberAlertDidSelect:" destination="iN0-l3-epB" eventType="touchUpInside" id="7NY-9t-VVW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="KgI-ME-2iR" secondAttribute="trailing" constant="13" id="2md-dl-yR5"/>
+                        <constraint firstItem="zJD-NZ-lkr" firstAttribute="leading" secondItem="iPF-CW-00O" secondAttribute="leading" constant="30" id="C1m-FV-Sbb"/>
+                        <constraint firstAttribute="trailing" secondItem="k6Y-OO-Bjz" secondAttribute="trailing" constant="13" id="DdS-Ll-5s2"/>
+                        <constraint firstAttribute="height" constant="240" id="JmE-BO-dKu"/>
+                        <constraint firstItem="6yU-kd-GWB" firstAttribute="leading" secondItem="k6Y-OO-Bjz" secondAttribute="leading" id="K2i-QM-e8h"/>
+                        <constraint firstItem="KgI-ME-2iR" firstAttribute="leading" secondItem="iPF-CW-00O" secondAttribute="leading" constant="14" id="Lr8-sj-5Ub"/>
+                        <constraint firstAttribute="bottom" secondItem="6yU-kd-GWB" secondAttribute="bottom" constant="13" id="UHh-dI-aIZ"/>
+                        <constraint firstItem="zJD-NZ-lkr" firstAttribute="top" secondItem="iPF-CW-00O" secondAttribute="top" constant="15" id="Xa8-w9-7Rg"/>
+                        <constraint firstAttribute="trailing" secondItem="zJD-NZ-lkr" secondAttribute="trailing" constant="31" id="c3J-Xs-OtO"/>
+                        <constraint firstItem="x8r-NM-Icv" firstAttribute="width" secondItem="6yU-kd-GWB" secondAttribute="width" id="f6w-4E-ED0"/>
+                        <constraint firstItem="x8r-NM-Icv" firstAttribute="trailing" secondItem="k6Y-OO-Bjz" secondAttribute="trailing" id="fpY-ix-Vg9"/>
+                        <constraint firstItem="k6Y-OO-Bjz" firstAttribute="leading" secondItem="iPF-CW-00O" secondAttribute="leading" constant="14" id="fsM-AH-JRA"/>
+                        <constraint firstAttribute="width" constant="214" id="gug-65-gm2"/>
+                        <constraint firstItem="k6Y-OO-Bjz" firstAttribute="top" secondItem="KgI-ME-2iR" secondAttribute="bottom" constant="11" id="jsB-kV-iI2"/>
+                        <constraint firstAttribute="bottom" secondItem="x8r-NM-Icv" secondAttribute="bottom" constant="13" id="mtY-l4-BTZ"/>
+                        <constraint firstItem="KgI-ME-2iR" firstAttribute="top" secondItem="zJD-NZ-lkr" secondAttribute="bottom" constant="13" id="xlo-Ky-GEX"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+            <constraints>
+                <constraint firstItem="iPF-CW-00O" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="139" id="a3o-Jo-Apm"/>
+                <constraint firstItem="iPF-CW-00O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="dHW-Aw-cwx"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <connections>
+                <outlet property="bgView" destination="iPF-CW-00O" id="KjU-bZ-5O7"/>
+                <outlet property="btnCansole" destination="6yU-kd-GWB" id="uce-PX-XgX"/>
+                <outlet property="btnInfomation" destination="KgI-ME-2iR" id="vNK-Ep-Npd"/>
+                <outlet property="btnRemove" destination="k6Y-OO-Bjz" id="0Ag-ji-5Po"/>
+                <outlet property="btnSure" destination="x8r-NM-Icv" id="9YZ-cI-Nb1"/>
+            </connections>
+            <point key="canvasLocation" x="75" y="-99"/>
+        </view>
+    </objects>
+</document>

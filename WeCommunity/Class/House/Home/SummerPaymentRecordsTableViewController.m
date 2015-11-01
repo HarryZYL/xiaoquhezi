@@ -8,9 +8,13 @@
 
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerPaymentRecordsTableViewCell.h"
+#import "SummerPaymentListModel.h"
 #import "SummerAlertView.h"
 
 @interface SummerPaymentRecordsTableViewController ()<SummerPaymentRecordsTableViewCellDelegate ,SummerAlertViewDelegate>
+{
+    NSInteger pageNumber;
+}
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
 @property (nonatomic ,assign) NSInteger indexRow;
 
@@ -23,7 +27,8 @@
     self.title = @"缴费记录";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    pageNumber = 1;
+    _dataArrary = [[NSMutableArray alloc] init];
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
@@ -33,6 +38,18 @@
     self.tableView.rowHeight = 125;
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 8)];
     self.tableView.frame = CGRectMake(0, 9, self.view.frame.size.width, self.view.frame.size.height - 9);
+    
+    [self receveData];
+}
+
+- (void)receveData{
+    [Networking retrieveData:get_ORDER_LIST_FEE parameters:@{@"token": [User getUserToken],@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
+        NSLog(@"---->%@",responseObject);
+        for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+            [_dataArrary addObject:[[SummerPaymentListModel alloc] initWithJson:dicTemp]];
+        }
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,14 +60,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _dataArrary.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SummerPaymentRecordsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellpayment" forIndexPath:indexPath];
     cell.delegate = self;
-    
     [cell confirmCellWithData:_dataArrary[indexPath.row]];
     return cell;
 }

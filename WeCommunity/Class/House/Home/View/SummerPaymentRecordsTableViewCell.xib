@@ -75,7 +75,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcs-EK-hmw">
-                        <rect key="frame" x="0.0" y="111" width="320" height="9"/>
+                        <rect key="frame" x="0.0" y="112" width="320" height="9"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="9" id="Uko-7K-zcg"/>
@@ -85,26 +85,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015年4月份、5月份、6月份点物业费，共249.30元" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIV-ZG-bAE">
-                        <rect key="frame" x="76" y="3" width="236" height="39"/>
+                        <rect key="frame" x="76" y="3" width="236" height="29"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="39" id="A2r-iJ-HjB"/>
+                            <constraint firstAttribute="height" constant="29" id="A2r-iJ-HjB"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="247" text="金地物业管理有限公司" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fos-Wx-QTf">
-                        <rect key="frame" x="76" y="40" width="234" height="17"/>
+                        <rect key="frame" x="76" y="35" width="234" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="Smz-S7-UHb"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="上海市玉兰香苑一号楼201" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmZ-bU-YsB">
-                        <rect key="frame" x="76" y="61" width="234" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="76" y="59" width="234" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -116,11 +116,11 @@
                     <constraint firstItem="6j2-er-Qi3" firstAttribute="leading" secondItem="VAf-zA-ZHE" secondAttribute="trailing" constant="14" id="8oj-Nv-Og4"/>
                     <constraint firstItem="bcs-EK-hmw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8rA-o0-X0v"/>
                     <constraint firstAttribute="trailing" secondItem="fos-Wx-QTf" secondAttribute="trailing" constant="10" id="ASW-VH-JNn"/>
-                    <constraint firstAttribute="bottom" secondItem="bcs-EK-hmw" secondAttribute="bottom" constant="1" id="BwG-aU-Ksz"/>
+                    <constraint firstAttribute="bottom" secondItem="bcs-EK-hmw" secondAttribute="bottom" id="BwG-aU-Ksz"/>
                     <constraint firstAttribute="trailing" secondItem="fmZ-bU-YsB" secondAttribute="trailing" constant="10" id="Crc-RI-xW7"/>
                     <constraint firstItem="VAf-zA-ZHE" firstAttribute="top" secondItem="s6o-K8-Qig" secondAttribute="bottom" constant="5" id="LGA-oP-Fq7"/>
                     <constraint firstItem="fos-Wx-QTf" firstAttribute="leading" secondItem="0Zo-QW-Mvq" secondAttribute="trailing" constant="6" id="MQm-LP-pM7"/>
-                    <constraint firstItem="fmZ-bU-YsB" firstAttribute="top" secondItem="fos-Wx-QTf" secondAttribute="bottom" constant="4" id="Ndz-fP-Rid"/>
+                    <constraint firstItem="fmZ-bU-YsB" firstAttribute="top" secondItem="fos-Wx-QTf" secondAttribute="bottom" constant="7" id="Ndz-fP-Rid"/>
                     <constraint firstItem="s6o-K8-Qig" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="O4u-8k-JhS"/>
                     <constraint firstAttribute="trailing" secondItem="6j2-er-Qi3" secondAttribute="trailing" id="QH0-fD-dvq"/>
                     <constraint firstAttribute="trailing" secondItem="bcs-EK-hmw" secondAttribute="trailing" id="QvL-e5-rPe"/>
@@ -130,7 +130,7 @@
                     <constraint firstAttribute="bottom" secondItem="6j2-er-Qi3" secondAttribute="bottom" constant="5" id="cD7-hx-zW3"/>
                     <constraint firstItem="pk8-qG-l2l" firstAttribute="top" secondItem="0Zo-QW-Mvq" secondAttribute="bottom" constant="6" id="ccv-Wx-r6r"/>
                     <constraint firstItem="0Zo-QW-Mvq" firstAttribute="top" secondItem="75s-Xy-cqK" secondAttribute="bottom" constant="12" id="d9S-6e-BnK"/>
-                    <constraint firstItem="fos-Wx-QTf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="epx-sr-NUG"/>
+                    <constraint firstItem="fos-Wx-QTf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="35" id="epx-sr-NUG"/>
                     <constraint firstItem="VAf-zA-ZHE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gro-NI-uCi"/>
                     <constraint firstItem="0Zo-QW-Mvq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="k02-cx-enW"/>
                     <constraint firstItem="fmZ-bU-YsB" firstAttribute="leading" secondItem="pk8-qG-l2l" secondAttribute="trailing" constant="6" id="lSO-4Q-BGZ"/>
@@ -139,12 +139,12 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="cellLabPaymentProject" destination="75s-Xy-cqK" id="N0p-wa-sxA"/>
+                <outlet property="cellLabPaymentProject" destination="SIV-ZG-bAE" id="gjW-vP-sBU"/>
                 <outlet property="cellLabPaymentTime" destination="VAf-zA-ZHE" id="mvm-eH-2KY"/>
-                <outlet property="cellLabPropertyManagement" destination="0Zo-QW-Mvq" id="MJX-Mq-WiS"/>
-                <outlet property="cellLabRoomAddress" destination="pk8-qG-l2l" id="cYp-Mu-lQR"/>
+                <outlet property="cellLabPropertyManagement" destination="fos-Wx-QTf" id="2o0-dr-15S"/>
+                <outlet property="cellLabRoomAddress" destination="fmZ-bU-YsB" id="0zM-04-gHD"/>
             </connections>
-            <point key="canvasLocation" x="-478" y="8"/>
+            <point key="canvasLocation" x="-941" y="70"/>
         </tableViewCell>
     </objects>
     <resources>

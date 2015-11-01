@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SummerMemberManagerTableViewController : UIViewController
+#import "SummerMemberAlertView.h"
+@interface SummerMemberManagerTableViewController : UIViewController<SummerMemberAlertViewDelegate>
 
 @end

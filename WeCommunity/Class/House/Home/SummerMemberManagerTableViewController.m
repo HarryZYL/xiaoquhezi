@@ -12,7 +12,8 @@
 @interface SummerMemberManagerTableViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {
     BOOL cellSpread;
-    NSInteger *selectIndex;
+    NSInteger selectIndex;/**<判断点击Section*/
+    NSIndexPath *cellDidSelect;/**<要删除的cell*/
 }
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
@@ -25,6 +26,8 @@
     [super viewDidLoad];
     self.title = @"成员管理";
     selectIndex = 1000;
+    _dataArrary = [[NSMutableArray alloc] init];
+//    cellDidSelect = [[NSIndexPath alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -73,14 +76,18 @@
         [headerView addSubview:btnSpread];
     }
     UILabel *titleNumber = (UILabel *)[headerView viewWithTag:100];
-    titleNumber.text = [NSString stringWithFormat:@"玉兰香苑 一号楼 20%d",section];
+    NSDictionary *houseDic = _dataArrary[section][@"house"];
+    NSString *communityName = [NSString stringWithFormat:@"%@%@室",houseDic[@"communityName"],[houseDic[@"parentNames"] componentsJoinedByString:@""]];
+    titleNumber.text = communityName;
     return headerView;
 }
 
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
+    NSArray *arraryAuth = _dataArrary[indexPath.section][@"authcs"];
+    NSDictionary *dicTemp = arraryAuth[indexPath.row];
+    if ([dicTemp[@"ownerType"] isEqualToString:@"Owner"]) {
         return 52;
     }else{
     return 72;
@@ -89,12 +96,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return 10;
+    return _dataArrary.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (cellSpread && section == selectIndex) {
-        return 3;
+        NSArray *arraryAuth = _dataArrary[section][@"authcs"];
+        return [arraryAuth count];
     }else{
         return 0;
     }
@@ -102,19 +110,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SummerMemberManagerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    [cell confirmMemberManagerCellWithData:self.dataArrary[indexPath.row] withIndexPath:indexPath];
+    NSArray *arraryAuth = _dataArrary[indexPath.section][@"authcs"];
+    [cell confirmMemberManagerCellWithData:arraryAuth[indexPath.row] withIndexPath:indexPath];
     // Configure the cell...
     
     return cell;
 }
 
-
-
-
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
-    if (indexPath.row == 0) {
+    NSArray *arraryAuth = _dataArrary[indexPath.section][@"authcs"];
+    NSDictionary *dicTemp = arraryAuth[indexPath.row];
+    if ([dicTemp[@"ownerType"] isEqualToString:@"Owner"]){
         return NO;
     }
     return YES;
@@ -126,15 +134,31 @@
 // Override to support editing the table view.
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete && indexPath != 0) {
+    NSArray *arraryAuth = _dataArrary[indexPath.section][@"authcs"];
+    NSDictionary *dicTemp = arraryAuth[indexPath.row];
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete && ![dicTemp[@"ownerType"] isEqualToString:@"Owner"]) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        cellDidSelect = indexPath;
+        SummerMemberAlertView *alertView = [[NSBundle mainBundle] loadNibNamed:@"SummerMemberAlertView" owner:self options:nil].firstObject;
+        alertView.frame = [[UIScreen mainScreen] bounds];
+        alertView.delegate = self;
+        [self.view.window addSubview:alertView];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
 
+#pragma mark - SummerMemberAlertViewDelegate
 
+- (void)didSelectIndexWithInformation:(NSInteger)index{
+    NSLog(@"--%d-->%d",cellDidSelect.section,cellDidSelect.row);
+    NSArray *arraryAuth = _dataArrary[cellDidSelect.section][@"authcs"];
+    NSDictionary *dicTemp = arraryAuth[cellDidSelect.row];
+    [Networking retrieveData:getMyAuthentictionDelete parameters:@{@"token": [User getUserToken],@"id":dicTemp[@"id"]}];
+    [self receivePersonalsData];
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
@@ -160,7 +184,11 @@
 */
 
 - (void)receivePersonalsData{
-    
+    [_dataArrary removeAllObjects];
+    [Networking retrieveData:get_HOURSE_PEOPLE_NUMBER parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+        [_dataArrary addObjectsFromArray:responseObject];
+        [_tableView reloadData];
+    }];
 }
 
 - (void)cellSpreadOrContract:(UIButton *)sender{
