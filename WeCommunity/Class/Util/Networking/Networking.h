@@ -81,7 +81,8 @@
  *  第三方登录接口
  */
 #define get_LOGIN_CODE (HOST_URL @"/third/login/weixin/get") //根据code 查询用户
-
+#define get_THIRD_LOGIN_WXAPP (HOST_URL @"/third/login/captcha/get")//获取验证码
+#define get_THIRD_LOADING (HOST_URL @"/third/login/weixin/bind")
 // 订单
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 

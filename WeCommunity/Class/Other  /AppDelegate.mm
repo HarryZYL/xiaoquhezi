@@ -204,7 +204,7 @@
      lang    微信客户端当前语言
      country 微信用户当前国家信息
      */
-    if ([resp isKindOfClass:[SendAuthReq class]]) {
+    if ([resp isKindOfClass:[SendAuthResp class]]) {
         SendAuthResp *aresp = (SendAuthResp *)resp;
         if (aresp.errCode== 0) {
             codeID = aresp.code;

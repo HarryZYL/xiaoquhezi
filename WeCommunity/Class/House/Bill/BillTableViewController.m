@@ -9,11 +9,12 @@
 #import "BillTableViewController.h"
 #import "SummerBillConfirmViewController.h"
 
-@interface BillTableViewController ()
+@interface BillTableViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
 {
     NSMutableArray *billArrary;/**<返回的物业费*/
     NSArray *commnunityArrary; /**<返回的小区*/
     NSDictionary *selectCommnunityDic;/**<选择的小区信息*/
+    NSArray *areaDataArrary;//area数组
 }
 @end
 
@@ -98,8 +99,36 @@
             [self viewDataWithRoomId:roomID];
         }else{
             //需要选择房屋ID
+            areaDataArrary = responseObject;
+            UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - 150, SCREENSIZE.width, 150)];
+            pickerView.delegate = self;
+            pickerView.dataSource = self;
+            [self.view addSubview:pickerView];
+            [pickerView reloadAllComponents];
         }
     }];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return areaDataArrary.count;
+}
+
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSString *strTemp = [areaDataArrary[row][@"parentNames"] componentsJoinedByString:@""];
+    return strTemp;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    NSDictionary *dic = areaDataArrary[row];
+    selectCommnunityDic = dic;
+    NSString *roomID = dic[@"id"];
+    [self viewDataWithRoomId:roomID];
+    [pickerView removeFromSuperview];
 }
 
 - (void)viewDataWithRoomId:(NSString *)roomID{

@@ -15,6 +15,7 @@
     if (self.partner) {
         [discription appendFormat:@"partner=\"%@\"", self.partner];
     }
+    
     if (self.seller) {
         [discription appendFormat:@"&seller_id=\"%@\"", self.seller];
     }

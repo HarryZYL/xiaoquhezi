@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SummerAuthV2Info : NSObject
+
 @property(nonatomic,copy)NSString *apiName;
 @property(nonatomic,copy)NSString *appName;
 @property(nonatomic,copy)NSString *appID;

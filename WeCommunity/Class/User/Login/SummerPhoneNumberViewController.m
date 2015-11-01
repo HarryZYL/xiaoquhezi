@@ -20,31 +20,45 @@ static int timeToGetCaptcha = 60;
     // Do any additional setup after loading the view from its nib.
     self.title = @"绑定手机号";
     _phoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+    self.phoneNumber.text = _strPhoneNumber;
+    [self buttonDisable];
 }
 
-- (IBAction)suerPhonen:(id)sender{
-    if (_phoneNumber.editing) {
+- (IBAction)suerPhonen:(UIButton *)sender{
+    if (sender.tag == 1) {
         //发送手机号
+        NSDictionary *dicTemp = @{@"unionId": [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],
+                                  @"phoneNumber":_phoneNumber.text,
+                                  @"captcha":self.remainField.text};
+        [Networking retrieveData:get_THIRD_LOADING parameters:dicTemp success:^(id responseObject) {
+            NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+            NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+            
+            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+            [User SaveAuthentication];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
     }else{
-        //发送验证码
+        //请求验证码
     }
 }
 
 -(void)buttonDisable{
     //    NSLog(@"test");
     self.timeIntervar = timeToGetCaptcha;
-    self.suerBtn.enabled = NO;
-    self.suerBtn.alpha = 0.55;
+    self.btnRemain.enabled = NO;
+    self.btnRemain.alpha = 0.55;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeButtonNumber) userInfo:nil repeats:YES];
     [self.timer fire];
 }
 
 -(void)changeButtonNumber{
     if (self.timeIntervar>0) {
-        self.remainField.text = [NSString stringWithFormat:@"%d秒后重试",self.timeIntervar];
+        NSString *strTemp = [NSString stringWithFormat:@"%d秒后重试",self.timeIntervar];
+        [self.btnRemain setTitle:strTemp forState:UIControlStateNormal];
         self.timeIntervar --;
     }else{
-        self.suerBtn.enabled = YES;
+        self.btnRemain.enabled = YES;
         self.suerBtn.alpha = 1;
         [self.suerBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
         [self.timer invalidate];

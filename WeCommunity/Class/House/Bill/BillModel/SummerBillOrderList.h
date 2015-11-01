@@ -13,11 +13,11 @@
 @property (nonatomic, copy) NSString * partner;
 @property (nonatomic, copy) NSString * seller;
 
-@property (nonatomic ,copy) NSString * tradeNO;              /**<订单ID*/
-@property (nonatomic, copy) NSString * productName;         /**<商品名称/标题*/
-@property (nonatomic, copy) NSString * productDescription;  /**<商品说明/描述*/
-@property (nonatomic, copy) NSString * amount;              /**<商品价格*/
-@property (nonatomic, copy) NSString * notifyURL;           /**<回调URL*/
+@property(nonatomic, copy) NSString * tradeNO;
+@property(nonatomic, copy) NSString * productName;
+@property(nonatomic, copy) NSString * productDescription;
+@property(nonatomic, copy) NSString * amount;
+@property(nonatomic, copy) NSString * notifyURL;
 
 @property(nonatomic, copy) NSString * service;
 @property(nonatomic, copy) NSString * paymentType;

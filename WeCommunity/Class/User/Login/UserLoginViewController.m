@@ -9,6 +9,7 @@
 #import "UserLoginViewController.h"
 #import "SummerPhoneNumberViewController.h"
 #import "UIViewController+HUD.h"
+#import "SummerPhoneViewController.h"
 #import "NSString+HTML.h"
 
 @interface UserLoginViewController ()<UIAlertViewDelegate>
@@ -130,9 +131,7 @@ static int timeToGetCaptcha = 60;
         [self buttonDisable];
         NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text};
         [Networking retrieveData:getResetUserPasswordCaptcha parameters:parameters];
-
     }
-    
 }
 
 #pragma mark register
@@ -222,11 +221,12 @@ static int timeToGetCaptcha = 60;
     NSLog(@"--->%@",notDic);
     if ([notDic.userInfo[@"isload"] boolValue]) {
         //直接登录
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self login:nil];
     }else{
         //绑定手机
-        SummerPhoneNumberViewController *phoneVC = [[SummerPhoneNumberViewController alloc] init];
-        [self.navigationController pushViewController:phoneVC animated:YES];
+        SummerPhoneViewController *forgetView = [[SummerPhoneViewController alloc] init];
+        
+        [self pushVC:forgetView title:@"绑定手机号"];
     }
 }
 

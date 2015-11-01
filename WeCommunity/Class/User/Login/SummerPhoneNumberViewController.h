@@ -12,9 +12,9 @@
 
 @property (nonatomic ,weak)IBOutlet UITextField *phoneNumber;
 @property (nonatomic ,weak)IBOutlet UITextField *remainField;
-@property (nonatomic ,weak)IBOutlet UILabel *timerLab;
+@property (nonatomic ,weak)IBOutlet UIButton *btnRemain;
 @property (nonatomic ,weak)IBOutlet UIButton *suerBtn;
-
+@property (nonatomic ,copy)NSString *strPhoneNumber;
 @property (nonatomic,assign) int    timeIntervar;
 
 @end
