@@ -7,6 +7,7 @@
 //
 
 #import "WechatPayManager.h"
+#import "payRequsestHandler.h"
 
 @implementation WechatPayManager
 
@@ -165,7 +166,7 @@
     
     [packageParams setObject: self.appId  forKey:@"appid"];       //开放平台appid
     [packageParams setObject: self.mchId  forKey:@"mch_id"];      //商户号
-//    [packageParams setObject: orderDevice  forKey:@"device_info"]; //支付设备号或门店号
+    [packageParams setObject: orderDevice  forKey:@"device_info"]; //支付设备号或门店号
     [packageParams setObject: noncestr     forKey:@"nonce_str"];   //随机串
     [packageParams setObject: orderType    forKey:@"trade_type"];  //支付类型，固定为APP
     [packageParams setObject: orderName    forKey:@"body"];        //订单描述，展示给用户

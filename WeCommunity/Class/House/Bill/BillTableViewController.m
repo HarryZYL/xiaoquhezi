@@ -37,6 +37,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [self viewDataWithRoomId:_roomDic[@"id"]];
 //    self.tableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 100);
 }
 
@@ -96,6 +97,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dicTemp = billArrary[indexPath.row];
     NSString *strFee = [NSString stringWithFormat:@"%@年%@月物业费，总计：%@元",dicTemp[@"year"],dicTemp[@"month"],dicTemp[@"fee"]];
     [cell configureBillCellTitle:strFee price:dicTemp[@"fee"] image:nil];
@@ -125,8 +127,7 @@
     [Networking retrieveData:GET_HOUSE_FEE parameters:@{@"token": [User getUserToken],@"tradeStatus":@"WaitingPay",@"houseId":roomID } success:^(id responseObject) {
         NSLog(@"----->%@",responseObject);
         billArrary = responseObject[@"rows"];
-        
-        [weakVC.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [weakVC.tableView reloadData];
     }];
 }
 
@@ -137,24 +138,6 @@
         return;
     }
     SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
-//    if (billArrary.count == 1) {
-//        NSDictionary *dicTemp = billArrary.firstObject;
-//        confirmVC.commnityArrary = billArrary;
-//        confirmVC.billOrderIDArrary = @[dicTemp[@"id"]];
-//        confirmVC.commnityDic = commnunityArrary.firstObject;
-//    }else{
-//        NSArray *indexPathArrary = [self.tableView indexPathsForSelectedRows];
-//        NSMutableArray *billSelectArrary = [[NSMutableArray alloc] init];
-//        NSMutableArray *idsArrary = [[NSMutableArray alloc] init];
-//        for (NSIndexPath *index in indexPathArrary) {
-//            [billSelectArrary addObject:billArrary[index.row]];
-//            NSDictionary *dic = billArrary[index.row];
-//            [idsArrary addObject:dic[@"id"]];
-//        }
-//        confirmVC.commnityArrary    = billSelectArrary;
-//        confirmVC.billOrderIDArrary = idsArrary;
-//        confirmVC.commnityDic       = selectCommnunityDic;
-//    }
     NSArray *indexPathArrary = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *selectBillArrary = [[NSMutableArray alloc] init];
     

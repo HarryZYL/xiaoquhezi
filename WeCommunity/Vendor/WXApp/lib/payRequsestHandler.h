@@ -48,9 +48,9 @@
 //商户API密钥，填写相应参数
 #define PARTNER_ID      @"2a19b58eae8e15675a5086207dafd5b2"
 //支付结果回调页面
-#define NOTIFY_URL      @"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php"
+#define NOTIFY_URL      @"http://www.xiaoquhezi.com/pay/weixin/notify/pay"
 //获取服务器端支付数据地址（商户自定义）
-#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
+#define SP_URL          @"http://www.xiaoquhezi.com/pay/weixin/notify/pay"
 
 
 @interface payRequsestHandler : NSObject{

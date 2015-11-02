@@ -12,12 +12,12 @@
 
 #endif /* SummerRegisterID_h */
 
-#define kSummerWxAppID     @"wx8728578ba70796d9"               /**<微信AppID*/
-#define kSummerWxAppSecret @"d8b5a8bd463de63472970f5452d902b8" /**<微信AppID*/
-#define MCH_ID   @"1276283701";                       /**<商户号*/
-#define API_KEY  @"2a19b58eae8e15675a5086207dafd5b2"; /**<密钥*/
-
-#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
+//#define kSummerWxAppID     @"wx8728578ba70796d9"               /**<微信AppID*/
+//#define kSummerWxAppSecret @"d8b5a8bd463de63472970f5452d902b8" /**<微信AppID*/
+//#define MCH_ID   @"1276283701";                       /**<商户号*/
+//#define API_KEY  @"2a19b58eae8e15675a5086207dafd5b2"; /**<密钥*/
+//
+//#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
 
 //支付宝
 
@@ -29,7 +29,7 @@
 
 #define kAlipay_Public_Key @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"
 
-#define kAlipay_ReUrl @"/pay/zfb/notify/pay" //回调地址
+#define kAlipay_ReUrl @"http://www.xiaoquhezi.com/pay/zfb/notify/pay" //回调地址
 
 
 

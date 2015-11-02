@@ -46,13 +46,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         UIButton *payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [payBtn setBackgroundColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1]];
         payBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         payBtn.layer.cornerRadius = 3;
         payBtn.layer.masksToBounds = YES;
         payBtn.tag = 1;
-        [payBtn addTarget:self action:@selector(paySure:) forControlEvents:UIControlEventTouchUpInside];
         payBtn.frame = CGRectMake(SCREENSIZE.width - 80, 25, 60, 30);
         [cell addSubview:payBtn];
     }
@@ -70,12 +70,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)paySure:(UIButton *)sender{
-    NSIndexPath *indexPath = [mTalbeView indexPathForCell:sender.superview];
-//    NSLog(@"------ >%d",indexPath.row);
     NSDictionary *dicTemp = arraryData[indexPath.row];
     BillTableViewController *tableVC = [[BillTableViewController alloc] init];
     tableVC.roomDic = dicTemp;
