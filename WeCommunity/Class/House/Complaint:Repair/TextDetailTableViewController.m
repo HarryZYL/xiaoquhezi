@@ -19,10 +19,10 @@
 {
     self = [super init];
     if (self) {
+        self.notice   = [[Notice alloc] init];
         self.textDeal = [[TextDeal alloc] init];
-        self.notice = [[Notice alloc] init];
-        self.chosenImages = [[NSMutableArray alloc] init];
         self.textArrary = [[NSMutableArray alloc] init];
+        self.chosenImages = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -35,12 +35,40 @@
 }
 //发送
 - (void)didTapSend:(id)sender{
-    NSString *comment = [self.contentWrapper.inputView.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if ([comment length]!=0){
-        [self.contentWrapper hideKeyboard];
-        self.contentWrapper.inputView.textView.text=nil;
-        
+    NSString *urlStr;
+    switch (_noticeStyle) {
+        case SettingTableViewControllerStyleNotice:
+        {//回复公告
+            urlStr = get_reply_notice;
+            NSLog(@"--->%@",self.contentWrapper.inputView.textView.text);
+            NSString *comment = [self.contentWrapper.inputView.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if ([comment length]!= 0){
+                [self.contentWrapper hideKeyboard];
+                [Networking retrieveData:urlStr parameters:@{@"token": [User getUserToken],
+                                                             @"id":_notice.Objectid} success:^(id responseObject) {
+                                                                 NSLog(@"123456");
+                                                             }];
+                self.contentWrapper.inputView.textView.text=nil;
+                
+            }
+        }
+            break;
+        case SettingTableViewControllerStyleRepair:
+        {//回复报修
+            
+        }
+            break;
+        case SettingTableViewControllerStyleComplain:
+        {//投诉
+            
+        }
+            break;
+            
+        default:
+            break;
     }
+
+    
     
 }
 //选择图片
@@ -54,7 +82,6 @@
 
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
-    
     if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
     {
         [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -81,7 +108,11 @@
     switch (_noticeStyle) {
         case SettingTableViewControllerStyleNotice:
         {
-            
+            [Networking retrieveData:get_reply_notice parameters:@{@"token": [User getUserToken],
+                                                                 @"id":_notice.Objectid,
+                                                                   @"pictures":@[]} success:^(id responseObject) {
+                                                             NSLog(@"123456");
+                                                         }];
         }
             break;
         case SettingTableViewControllerStyleRepair:

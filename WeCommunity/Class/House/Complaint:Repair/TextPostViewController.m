@@ -13,7 +13,7 @@
 @interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate>
 {
     NSMutableArray *photos;
-    NSString *strPhoneNumber;
+    NSDictionary *dicPhoneNumber;
 }
 @end
 
@@ -128,7 +128,7 @@
 
 - (void)getCommunityPhone{
     [Networking retrieveData:get_COMMNITY_PHONE_NMBER parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
-        strPhoneNumber = responseObject[@"name"];
+        dicPhoneNumber = responseObject;
         NSLog(@"-->%@",responseObject);
     }];
 }
@@ -206,14 +206,16 @@
 }
 //电话报修
 - (void)phonePost:(UIButton *)sender{
-    NSString *phoneNumber = strPhoneNumber;
-    NSURL *phoneUrl = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"telprompt:%@",phoneNumber]];
-    if ([[UIApplication sharedApplication] canOpenURL:phoneUrl]) {
-        [[UIApplication sharedApplication] openURL:phoneUrl];
+    if (dicPhoneNumber[@"phone"]&&![dicPhoneNumber[@"phone"] isEqualToString:@" "]) {
+        NSURL *urlPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",dicPhoneNumber[@"phone"]]];
+        if ([[UIApplication sharedApplication] canOpenURL:urlPhone]) {
+            [[UIApplication sharedApplication] openURL:urlPhone];
+        }else{
+            [self showHint:@"当前设备不支持打电话哦"];
+        }
     }else{
-        [self showHint:@"当前设备不支持打电话哦"];
+        [self showHint:@"暂无当前小区的电话"];
     }
-    
 }
 
 -(void)uploadInfo:(NSArray*)pictures{
@@ -257,7 +259,7 @@
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView{
-    self.scrollView.contentInset = UIEdgeInsetsMake(-180, 0, 0, 0);
+    self.scrollView.contentInset = UIEdgeInsetsMake(-130, 0, 0, 0);
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView{

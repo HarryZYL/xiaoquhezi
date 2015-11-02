@@ -187,52 +187,37 @@
     
     Accreditation *accreditation = [[Accreditation alloc] initWithData:data];
     
-    NSString *strTemp = [[NSString alloc] init];
-    strTemp = [NSString stringWithFormat:@"%@-%@",data[@"community"][@"name"],data[@"ownerTypeName"]];
-    if ([accreditation.auditStatus isEqualToString:@"Pending"]) {
-        self.dealImage.image = [UIImage imageNamed:@"deal"];
-    }else if([accreditation.auditStatus isEqualToString:@"Handling"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealing"];
-    }else if ([accreditation.auditStatus isEqualToString:@"Success"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
-        //认证成功的
-        strTemp = [NSString filterUserAthuration:data[@"auditStatus"] withOwnerType:@"ownerType"];
-        
-    }else {
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
-    }
-    self.userLabel.text = strTemp;
-    
     UIFont *font = [UIFont fontWithName:fontName size:18.0f];
-    CGSize stringsize = [data[@"realName"] sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    CGSize stringsize = [accreditation.realName sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
     
     self.titleLabel.frame = CGRectMake(30, 10, stringsize.width, 30);
-    self.titleLabel.text = data[@"realName"];
+    self.titleLabel.text = accreditation.realName;
     
     self.userLabel.frame = CGRectMake(self.titleLabel.frame.size.width+self.titleLabel.frame.origin.x+3, self.titleLabel.frame.origin.y, 300, 30);
     self.userLabel.textColor = [UIColor grayColor];
     self.userLabel.font = [UIFont fontWithName:fontName size:13];
-    
+    self.userLabel.text = [NSString stringWithFormat:@"%@-",data[@"community"][@"name"]];
     
     CGFloat textHeight = 25;
     
     // cardTypeName
     self.detailLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y+self.titleLabel.frame.size.height, 300, textHeight);
     [self.detailLabel grayColorStyle:15];
-    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@",data[@"cardNumber"]];
+    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@",accreditation.cardNumber];
+    //    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@ (%@)",accreditation.cardNumber,accreditation.cardTypeName]; 2015.10.20
     
     // building
     self.priceLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.detailLabel.frame.origin.y+self.detailLabel.frame.size.height, 300, textHeight);
     [self.priceLabel grayColorStyle:15];
-    self.priceLabel.text = [NSString stringWithFormat:@"楼号 %@",accreditation.buildingName];
+    self.priceLabel.text = [NSString stringWithFormat:@"%@室",[data[@"parentNames"] componentsJoinedByString:@""]];
     
     //house
-    self.priceUnitLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.priceLabel.frame.origin.y+self.priceLabel.frame.size.height, 300, textHeight);
-    [self.priceUnitLabel grayColorStyle:15];
-    self.priceUnitLabel.text = [NSString stringWithFormat:@"房间号 %@",accreditation.houseName];
+//    self.priceUnitLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.priceLabel.frame.origin.y+self.priceLabel.frame.size.height, 300, textHeight);
+//    [self.priceUnitLabel grayColorStyle:15];
+//    self.priceUnitLabel.text = [NSString stringWithFormat:@"房间号 %@",accreditation.houseName];
     
     // gray line
-    self.grayLine.frame = CGRectMake(20, self.priceUnitLabel.frame.size.height+self.priceUnitLabel.frame.origin.y+5, self.frame.size.width-40, 1);
+    self.grayLine.frame = CGRectMake(20, self.priceLabel.frame.size.height+self.priceLabel.frame.origin.y+5, self.frame.size.width-40, 1);
     
     //date label
     self.dateLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.grayLine.frame.origin.y+5, 300, textHeight);
@@ -243,6 +228,40 @@
     
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
     
+    
+    NSString *owerType = @"";
+//    if([responseObject[@"auditStatus"] isEqualToString:@"Success"]){
+//        if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
+//            owerType = @"认证户主";
+//        }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
+//            owerType = @"认证业主";
+//        }
+//    }else if([responseObject[@"auditStatus"] isEqualToString:@"Pending"]){
+//        owerType = @"未受理";
+//    }else if ([responseObject[@"auditStatus"] isEqualToString:@"Handing"]){
+//        owerType = @"认证中";
+//    }else{
+//        owerType = @"认证失败";
+//    }
+    
+    if ([data[@"auditStatus"] isEqualToString:@"Pending"]) {
+        owerType = @"未受理";
+        self.dealImage.image = [UIImage imageNamed:@"deal"];
+    }else if([data[@"auditStatus"] isEqualToString:@"Handling"]){
+        owerType = @"认证中";
+        self.dealImage.image = [UIImage imageNamed:@"dealing"];
+    }else if ([data[@"auditStatus"] isEqualToString:@"Success"]){
+        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+        if ([data[@"ownerType"] isEqualToString:@"Owner"]) {
+            owerType = @"认证户主";
+        }else{
+            owerType = @"认证业主";
+        }
+    }else {
+        owerType = @"认证失败";
+        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+    }
+    self.userLabel.text = [NSString stringWithFormat:@"%@%@",self.userLabel.text,owerType];
     [self setCellStyle];
     self.selectionStyle = NO;
 }
@@ -254,20 +273,22 @@
 //}
 // bill function
 -(void)configureBillCellTitle:(NSString *)title price:(NSString *)price image:(UIImage *)image{
-    CGRect titleRect = [title boundingRectWithSize:CGSizeMake(self.frame.size.width-100, 80) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]} context:nil];
+    NSString *strTemp = [NSString stringWithFormat:@"%@:%.2f元",[[title componentsSeparatedByString:@"："] firstObject],[price floatValue]] ;
+    
+    CGRect titleRect = [strTemp boundingRectWithSize:CGSizeMake(self.frame.size.width-100, 80) options:NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:17]} context:nil];
     self.titleLabel.frame = CGRectMake(10, 10, self.frame.size.width-100, titleRect.size.height);
     self.titleLabel.numberOfLines = 0;
-    self.titleLabel.text = title;
+    self.titleLabel.text = strTemp;
     self.titleLabel.textColor = [UIColor lightGrayColor];
     self.titleLabel.font = [UIFont fontWithName:fontName size:17];
     
     self.priceLabel.frame = CGRectMake(10, 50, 100, 20);
-    self.priceLabel.text = [NSString stringWithFormat:@"%@元",price];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.2f元",[price floatValue]];
     self.priceLabel.textColor = [UIColor redColor];
     self.priceLabel.font = [UIFont fontWithName:fontName size:15];
     
-    self.funcitonBtn.frame = CGRectMake(self.frame.size.width - 80, 10, 60, 60);
-    [self.funcitonBtn setImage:[UIImage imageNamed:@"advise"] forState:UIControlStateNormal];
+//    self.funcitonBtn.frame = CGRectMake(self.frame.size.width - 80, 10, 60, 60);
+//    [self.funcitonBtn setImage:[UIImage imageNamed:@"advise"] forState:UIControlStateNormal];
     
 }
 

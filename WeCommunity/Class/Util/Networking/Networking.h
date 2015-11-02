@@ -40,6 +40,7 @@
 #define get_HOURSE_PEOPLE_NUMBER (HOST_URL @"/user/authc/house/authc/get")//查看所有认证的房间的认证用户
 #define GET_AUTHC_HOUSE (HOST_URL @"/user/authc/house/get")//查询用户在当前小区认证房间
 #define GET_HOUSE_FEE   (HOST_URL @"/fee/property/getOfHouse") //指定的房间物业费
+#define GET_PROPERTY_HOUSE_FEE    (HOST_URL @"/fee/property/house/get")//查找当前用户在指定小区已经认证过的房间,包含物业费是否缴纳信息
 
 #define getHouseId  (HOST_URL @"/community/getHouses")
 #define applyAuthentication (HOST_URL @"/user/applyAuthentication")

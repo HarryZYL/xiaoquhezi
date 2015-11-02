@@ -161,6 +161,8 @@
 		D4B6ACB81BD7BA88005CC778 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB71BD7BA88005CC778 /* Security.framework */; };
 		D4B6ACBA1BD7BA99005CC778 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */; };
 		D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */; };
+		D4CDD5571BE7537A00B782DB /* SummerBillBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5561BE7537A00B782DB /* SummerBillBootomView.m */; };
+		D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5591BE7659D00B782DB /* SummerBillRoomViewController.m */; };
 		D4D4007B1BDF059B005F6095 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D4007A1BDF059B005F6095 /* libBPush.a */; };
 		D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4007E1BDF160F005F6095 /* SummerAlertView.m */; };
 		D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D400801BDF1625005F6095 /* SummerAlertView.xib */; };
@@ -181,6 +183,7 @@
 		D4DA2D201BE53734003C61C7 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1C1BE53734003C61C7 /* payRequsestHandler.mm */; };
 		D4DA2D211BE53734003C61C7 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */; };
 		D4DA2D241BE5483E003C61C7 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */; };
+		D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */; };
 		D4E8F91E1BE5FBA000E2338C /* SummerPaymentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */; };
 		D4E8F9201BE623F100E2338C /* SummerInputPhoneNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */; };
 /* End PBXBuildFile section */
@@ -557,6 +560,10 @@
 		D4B6ACB71BD7BA88005CC778 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
+		D4CDD5551BE7537A00B782DB /* SummerBillBootomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillBootomView.h; sourceTree = "<group>"; };
+		D4CDD5561BE7537A00B782DB /* SummerBillBootomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillBootomView.m; sourceTree = "<group>"; };
+		D4CDD5581BE7659D00B782DB /* SummerBillRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillRoomViewController.h; sourceTree = "<group>"; };
+		D4CDD5591BE7659D00B782DB /* SummerBillRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillRoomViewController.m; sourceTree = "<group>"; };
 		D4D400791BDF059B005F6095 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		D4D4007A1BDF059B005F6095 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
 		D4D4007D1BDF160F005F6095 /* SummerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerAlertView.h; sourceTree = "<group>"; };
@@ -587,6 +594,8 @@
 		D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		D4DA2D221BE5483E003C61C7 /* WechatPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatPayManager.h; sourceTree = "<group>"; };
 		D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatPayManager.m; sourceTree = "<group>"; };
+		D4E6E7221BE73E3600C3E6C4 /* SummerInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerInputView.h; path = ComplaintCell/SummerInputView.h; sourceTree = "<group>"; };
+		D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerInputView.m; path = ComplaintCell/SummerInputView.m; sourceTree = "<group>"; };
 		D4E8F91C1BE5FBA000E2338C /* SummerPaymentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPaymentListModel.h; path = HomeModel/SummerPaymentListModel.h; sourceTree = "<group>"; };
 		D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPaymentListModel.m; path = HomeModel/SummerPaymentListModel.m; sourceTree = "<group>"; };
 		D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerInputPhoneNumber.xib; sourceTree = "<group>"; };
@@ -1040,8 +1049,8 @@
 				D454EAFB1BE49DBA0089333D /* Model */,
 				4ACCCFEC1BBF49600001227A /* BillTableViewController.h */,
 				4ACCCFED1BBF49600001227A /* BillTableViewController.m */,
-				4ACCCFEE1BBF49600001227A /* BillViewController.h */,
-				4ACCCFEF1BBF49600001227A /* BillViewController.m */,
+				D4CDD5581BE7659D00B782DB /* SummerBillRoomViewController.h */,
+				D4CDD5591BE7659D00B782DB /* SummerBillRoomViewController.m */,
 				D474AB6F1BE3B7890046F5F1 /* SummerBillConfirmViewController.h */,
 				D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */,
 			);
@@ -1454,6 +1463,8 @@
 		D454EAFB1BE49DBA0089333D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4ACCCFEE1BBF49600001227A /* BillViewController.h */,
+				4ACCCFEF1BBF49600001227A /* BillViewController.m */,
 				D454EAF81BE49DB20089333D /* SummerBillOrderList.h */,
 				D454EAF91BE49DB20089333D /* SummerBillOrderList.m */,
 				D44F0ABF1BE51515005BB948 /* SummerAuthV2Info.h */,
@@ -1467,6 +1478,8 @@
 			children = (
 				D454EAFC1BE4C9390089333D /* SummerSelectPayWayView.h */,
 				D454EAFD1BE4C9390089333D /* SummerSelectPayWayView.m */,
+				D4CDD5551BE7537A00B782DB /* SummerBillBootomView.h */,
+				D4CDD5561BE7537A00B782DB /* SummerBillBootomView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -1506,6 +1519,8 @@
 		D4D400851BDF7298005F6095 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				D4E6E7221BE73E3600C3E6C4 /* SummerInputView.h */,
+				D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */,
 				D4D400861BDF72EC005F6095 /* SummerPriceListTableViewCell.h */,
 				D4D400871BDF72EC005F6095 /* SummerPriceListTableViewCell.m */,
 				D4D400881BDF72EC005F6095 /* SummerPriceListTableViewCell.xib */,
@@ -1739,6 +1754,7 @@
 				4ACCCEDD1BBF456F0001227A /* ActivityDetailView.m in Sources */,
 				4ACCCE691BBF37A70001227A /* SecondHand.m in Sources */,
 				4ACCCE9E1BBF40120001227A /* UserLoginViewController.m in Sources */,
+				D4CDD5571BE7537A00B782DB /* SummerBillBootomView.m in Sources */,
 				4ACCD0441BBF49600001227A /* NoticeTableViewController.m in Sources */,
 				4ACCD0401BBF49600001227A /* FooterItem.m in Sources */,
 				4ACCD04F1BBF49600001227A /* RentViewController.m in Sources */,
@@ -1812,6 +1828,7 @@
 				4AA9F8341BA81592006284FF /* DOPDropDownMenu.m in Sources */,
 				4A118E8F1BA48FFC00BC2C4E /* GrayLine.m in Sources */,
 				D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */,
+				D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */,
 				4ACCCEA01BBF40120001227A /* SettingTableViewController.m in Sources */,
 				D454EAFE1BE4C9390089333D /* SummerSelectPayWayView.m in Sources */,
 				4ACCD04A1BBF49600001227A /* LikeTableViewController.m in Sources */,
@@ -1827,6 +1844,7 @@
 				D454EAFA1BE49DB20089333D /* SummerBillOrderList.m in Sources */,
 				4A118E911BA48FFC00BC2C4E /* LoadingView.m in Sources */,
 				4ACCD0421BBF49600001227A /* HouseKeeperViewController.m in Sources */,
+				D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */,
 				4ACCCE5A1BBF36410001227A /* TextDeal.m in Sources */,
 				D433741E1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m in Sources */,
 				D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */,

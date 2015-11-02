@@ -10,5 +10,6 @@
 @interface BillTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSDictionary *roomDic;
 
 @end

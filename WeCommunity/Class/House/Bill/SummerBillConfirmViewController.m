@@ -53,7 +53,7 @@
     billOrderView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
     [self.view addSubview:billOrderView];
     
-    CGFloat feeLabHeight = _billOrderIDArrary.count * 15.0;
+    CGFloat feeLabHeight = _billOrderIDArrary.count * 19.0;
     
     UIView *topBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 6, SCREENSIZE.width, 88 + 22 + feeLabHeight)];
     topBgView.backgroundColor = [UIColor whiteColor];
@@ -71,18 +71,18 @@
     
     for (NSInteger iRow = 0; iRow <_billOrderIDArrary.count; iRow ++) {
         UILabel *feeLab = [[UILabel alloc] init];
-        feeLab.frame = CGRectMake(10, 55 * (iRow + 1), SCREENSIZE.width - 20, 10);
+        feeLab.frame = CGRectMake(10, 55 + 19 * iRow, SCREENSIZE.width - 20, 10);
         
         NSDictionary *temDic = _commnityArrary[iRow];
         feeLab.text = [NSString stringWithFormat:@"%@年%@月物业费",temDic[@"year"],temDic[@"month"]];
         feeLab.font = [UIFont systemFontOfSize:13];
-        feeLab.textColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+        feeLab.textColor = [UIColor blackColor];
         [topBgView addSubview:feeLab];
         moneyTotal += [temDic[@"fee"] floatValue];
     }
-    UILabel *feeMoneyLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 44 + 22 + _billOrderIDArrary.count * 10, SCREENSIZE.width - 20, 44)];
-    NSMutableAttributedString *tempStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"支付金额：%.2f",moneyTotal]];
-    [tempStr addAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:20]} range:NSMakeRange(4, tempStr.length - 4)];
+    UILabel *feeMoneyLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 44 + 12 + _billOrderIDArrary.count * 19, SCREENSIZE.width - 20, 44)];
+    NSMutableAttributedString *tempStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"支付金额总计：%.2f元",moneyTotal]];
+    [tempStr addAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1],NSFontAttributeName:[UIFont systemFontOfSize:20]} range:NSMakeRange(7, tempStr.length - 7)];
     feeMoneyLab.attributedText = tempStr;
     [topBgView addSubview:feeMoneyLab];
     

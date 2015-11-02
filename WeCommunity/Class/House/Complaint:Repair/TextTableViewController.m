@@ -7,8 +7,10 @@
 //
 
 #import "TextTableViewController.h"
+#import "UIViewController+HUD.h"
+#import "AccreditationTableViewController.h"
 
-@interface TextTableViewController ()<TextPostViewControllerDelegate>
+@interface TextTableViewController ()<TextPostViewControllerDelegate ,UIAlertViewDelegate>
 
 @end
 
@@ -176,7 +178,12 @@
 
 # pragma mark - function
 -(void)post:(id)sender{
-    if ([Util judgeAuthentication]) {
+    NSString *userAuthType = [User getAuthenticationOwnerType];
+    if ([userAuthType isEqualToString:@"未认证"]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1000;
+        [alertView show];
+    }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
         TextPostViewController *textPostVC = [[TextPostViewController alloc] init];
         textPostVC.function = self.function;
         textPostVC.delegate = self;
@@ -184,10 +191,50 @@
         NSString *title = [NSString stringWithFormat:@"发布%@",firstTitle];
         textPostVC.navigationItem.title = title;
         [self.navigationController pushViewController:textPostVC animated:YES];
+    }else if ([userAuthType isEqualToString:@"认证失败"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1002;
+        [alertView show];
     }else{
-        [Util alertNetworingError:@"只有认证用户才能发布"];
+        [self showHint:@"还在认证中"];
     }
-    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    switch (alertView.tag) {
+        case 1000:
+        {//认证
+            if (buttonIndex == 1) {
+                AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
+                [self pushVC:accreditation title:@"认证信息"];
+            }
+        }
+            break;
+        case 1001:
+            break;
+        case 1002:
+        {
+            if (buttonIndex == 1) {
+                AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
+                [self pushVC:accreditation title:@"认证信息"];
+            }
+        }
+            break;
+            
+        default:
+        {
+            if (buttonIndex == 1) {
+                AccreditationPostViewController *postView = [[AccreditationPostViewController alloc] init];
+                [self pushVC:postView title:@"发布认证"];
+            }
+        }
+            break;
+    }
+}
+
+- (void)pushVC:(UIViewController *)postVC title:(NSString *)strTemp{
+    postVC.title = strTemp;
+    [self.navigationController pushViewController:postVC animated:YES];
 }
 
 - (void)issueInformationSeccess{

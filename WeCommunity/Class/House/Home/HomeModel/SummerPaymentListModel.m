@@ -22,7 +22,11 @@
 - (instancetype)initWithJson:(NSDictionary *)json{
     if (self = [super init]) {
         self.communityName = json[@"communityName"];
-        self.dates = [Util formattedDate:json[@"dates"] type:2];
+        NSMutableString *strTemp = [[NSMutableString alloc] init];
+        for (NSString *str in json[@"dates"]) {
+            [strTemp appendString:[NSString stringWithFormat:@"%@",[Util formattedDate:str type:4]]];
+        }
+        self.dates = strTemp;
         
         self.fee = [NSString stringWithFormat:@"%@",json[@"fee"]];
         self.orderNO = json[@"orderNo"];

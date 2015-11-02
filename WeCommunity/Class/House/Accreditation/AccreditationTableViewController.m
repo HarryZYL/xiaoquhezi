@@ -78,7 +78,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 160;
+    return 140;
 }
 
 
@@ -132,9 +132,24 @@
 #pragma mark action
 
 -(void)post:(id)sender{
-    AccreditationPostViewController *acVC = [[AccreditationPostViewController alloc] init];
-    acVC.delegate = self;
-    [self.navigationController pushViewController:acVC animated:YES];
+    NSString *userAuthType = [User getAuthenticationOwnerType];
+    if ([userAuthType isEqualToString:@"未认证"]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1000;
+        [alertView show];
+    }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+        AccreditationPostViewController *acVC = [[AccreditationPostViewController alloc] init];
+        acVC.delegate = self;
+        [self.navigationController pushViewController:acVC animated:YES];
+    }else if ([userAuthType isEqualToString:@"认证失败"]){
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1002;
+        [alertView show];
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还在认证中" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 1001;
+        [alertView show];
+    }
 }
 
 @end

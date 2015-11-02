@@ -45,10 +45,13 @@
 - (void)receveData{
     [Networking retrieveData:get_ORDER_LIST_FEE parameters:@{@"token": [User getUserToken],@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
         NSLog(@"---->%@",responseObject);
-        for (NSDictionary *dicTemp in responseObject[@"rows"]) {
-            [_dataArrary addObject:[[SummerPaymentListModel alloc] initWithJson:dicTemp]];
+        if (responseObject[@"rows"]&&![responseObject[@"rows"] isEqual:[NSNull null]]) {
+            for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+                [_dataArrary addObject:[[SummerPaymentListModel alloc] initWithJson:dicTemp]];
+            }
+            [self.tableView reloadData];
         }
-        [self.tableView reloadData];
+        
     }];
 }
 

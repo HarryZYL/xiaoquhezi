@@ -184,6 +184,10 @@
                 break;
             case 3:
                 [formatter setDateFormat:@"MM-dd"];
+                break;
+            case 4:
+                [formatter setDateFormat:@"yyyy年MM月"];
+                break;
             default:
                 break;
         }
