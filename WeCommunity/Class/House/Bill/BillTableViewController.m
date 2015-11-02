@@ -7,6 +7,7 @@
 //
 
 #import "BillTableViewController.h"
+#import "UIViewController+HUD.h"
 #import "SummerBillConfirmViewController.h"
 
 @interface BillTableViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>
@@ -15,21 +16,43 @@
     NSArray *commnunityArrary; /**<返回的小区*/
     NSDictionary *selectCommnunityDic;/**<选择的小区信息*/
     NSArray *areaDataArrary;//area数组
+    BOOL isEdite;
 }
+
+@property(nonatomic,strong)LoadingView *loadingView;
 @end
 
 @implementation BillTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
+    self.loadingView.titleLabel.text = @"正在加载中";
+    
+    UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:@"多选" style:UIBarButtonItemStylePlain target:self action:@selector(borderListEdite)];
+    self.navigationItem.rightBarButtonItem = rightBtn;
+    [self.view addSubview:_loadingView];
+    [self initWithRoomData];
+}
+
+- (void)setTableView{
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, SCREENSIZE.height - 64) style:UITableViewStyleGrouped];
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
-    self.tableView.editing = YES;
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
-    [self initWithRoomData];
+    
     [self setTableViewFooterView];
+}
+
+- (void)borderListEdite{
+    if (isEdite) {
+        self.tableView.editing = NO;
+    }else{
+        self.tableView.editing = YES;
+    }
+    isEdite = !isEdite;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -90,6 +113,7 @@
 
 - (void)initWithRoomData{
     [Networking retrieveData:GET_AUTHC_HOUSE parameters:@{@"token": [User getUserToken],@"communityId":[Util getCommunityID]} success:^(id responseObject) {
+        [self.loadingView removeFromSuperview];
         commnunityArrary = responseObject;
         NSLog(@"----->%@",responseObject);
         if (commnunityArrary.count == 1) {//本小区房屋一个
@@ -97,7 +121,7 @@
             selectCommnunityDic = dic;
             NSString *roomID = dic[@"id"];
             [self viewDataWithRoomId:roomID];
-        }else{
+        }else if(commnunityArrary.count > 1){
             //需要选择房屋ID
             areaDataArrary = responseObject;
             UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - 150, SCREENSIZE.width, 150)];
@@ -105,6 +129,8 @@
             pickerView.dataSource = self;
             [self.view addSubview:pickerView];
             [pickerView reloadAllComponents];
+        }else{
+            [self showHint:@"没有未交的物业费"];
         }
     }];
 }
@@ -129,6 +155,7 @@
     NSString *roomID = dic[@"id"];
     [self viewDataWithRoomId:roomID];
     [pickerView removeFromSuperview];
+    [self setTableView];
 }
 
 - (void)viewDataWithRoomId:(NSString *)roomID{

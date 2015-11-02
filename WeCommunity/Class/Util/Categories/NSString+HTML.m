@@ -76,4 +76,22 @@
     return [identityCardPredicate evaluateWithObject:identityCard];
 }
 
++ (NSString *)filterUserAthuration:(NSString *)auditStatus withOwnerType:(NSString *)ownerType{
+    NSString *owerType = @"";
+    if([auditStatus isEqualToString:@"Success"]){
+        if ([ownerType isEqualToString:@"Owner"]) {
+            owerType = @"认证户主";
+        }else if ([ownerType isEqualToString:@"NoOwner"]){
+            owerType = @"认证业主";
+        }
+    }else if([auditStatus isEqualToString:@"Pending"]){
+        owerType = @"未受理";
+    }else if ([auditStatus isEqualToString:@"Handing"]){
+        owerType = @"认证中";
+    }else{
+        owerType = @"认证失败";
+    }
+    return owerType;
+}
+
 @end

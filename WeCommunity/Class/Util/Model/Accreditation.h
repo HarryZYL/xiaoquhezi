@@ -31,5 +31,7 @@
 @property (nonatomic,strong) NSString *ownerType;
 @property (nonatomic,strong) NSString *ownerTypeName;
 @property (nonatomic,strong) NSString *reciveTime;
+
 -(id)initWithData:(NSDictionary *)data;
+
 @end

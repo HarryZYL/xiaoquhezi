@@ -17,7 +17,6 @@
     if ( self ){
         
         if ([User judgeLogin]) {
-            
             NSDictionary *dataAll = [FileManager getData:@"MyAppCache"];
             NSDictionary *data = dataAll[@"user"];
             self.Userid = data[@"id"];

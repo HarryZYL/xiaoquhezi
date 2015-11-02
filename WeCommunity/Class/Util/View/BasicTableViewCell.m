@@ -7,6 +7,7 @@
 //
 
 #import "BasicTableViewCell.h"
+#import "NSString+HTML.h"
 
 @implementation BasicTableViewCell
 
@@ -186,24 +187,39 @@
     
     Accreditation *accreditation = [[Accreditation alloc] initWithData:data];
     
+    NSString *strTemp = [[NSString alloc] init];
+    strTemp = [NSString stringWithFormat:@"%@-%@",data[@"community"][@"name"],data[@"ownerTypeName"]];
+    if ([accreditation.auditStatus isEqualToString:@"Pending"]) {
+        self.dealImage.image = [UIImage imageNamed:@"deal"];
+    }else if([accreditation.auditStatus isEqualToString:@"Handling"]){
+        self.dealImage.image = [UIImage imageNamed:@"dealing"];
+    }else if ([accreditation.auditStatus isEqualToString:@"Success"]){
+        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+        //认证成功的
+        strTemp = [NSString filterUserAthuration:data[@"auditStatus"] withOwnerType:@"ownerType"];
+        
+    }else {
+        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+    }
+    self.userLabel.text = strTemp;
+    
     UIFont *font = [UIFont fontWithName:fontName size:18.0f];
-    CGSize stringsize = [accreditation.realName sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
+    CGSize stringsize = [data[@"realName"] sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
     
     self.titleLabel.frame = CGRectMake(30, 10, stringsize.width, 30);
-    self.titleLabel.text = accreditation.realName;
+    self.titleLabel.text = data[@"realName"];
     
     self.userLabel.frame = CGRectMake(self.titleLabel.frame.size.width+self.titleLabel.frame.origin.x+3, self.titleLabel.frame.origin.y, 300, 30);
     self.userLabel.textColor = [UIColor grayColor];
     self.userLabel.font = [UIFont fontWithName:fontName size:13];
-    self.userLabel.text = [NSString stringWithFormat:@"%@-%@",accreditation.community[@"name"],accreditation.ownerTypeName];
+    
     
     CGFloat textHeight = 25;
     
     // cardTypeName
     self.detailLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y+self.titleLabel.frame.size.height, 300, textHeight);
     [self.detailLabel grayColorStyle:15];
-    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@",accreditation.cardNumber];
-//    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@ (%@)",accreditation.cardNumber,accreditation.cardTypeName]; 2015.10.20
+    self.detailLabel.text = [NSString stringWithFormat:@"证件号 %@",data[@"cardNumber"]];
     
     // building
     self.priceLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.detailLabel.frame.origin.y+self.detailLabel.frame.size.height, 300, textHeight);
@@ -226,16 +242,6 @@
     // deal image
     
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
-    
-    if ([accreditation.auditStatus isEqualToString:@"Pending"]) {
-        self.dealImage.image = [UIImage imageNamed:@"deal"];
-    }else if([accreditation.auditStatus isEqualToString:@"Handling"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealing"];
-    }else if ([accreditation.auditStatus isEqualToString:@"Success"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
-    }else {
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
-    }
     
     [self setCellStyle];
     self.selectionStyle = NO;
