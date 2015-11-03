@@ -13,7 +13,6 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         _totalMoney = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width/2, frame.size.height)];
-        _totalMoney.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
         _totalMoney.textAlignment = NSTextAlignmentCenter;
         _totalMoney.text = @"总计：元";
         [self addSubview:_totalMoney];

@@ -138,15 +138,14 @@
         user = [[User alloc] initWithData];
         authenType = [User getAuthenticationOwnerType];
         if ([authenType isEqualToString:@"认证户主"]) {
-            _functionArray = @[@"租售管理",@"缴费记录",@"消息中心",@"设置",@"成员管理"];
-            _functionImage = @[@"我的活动",@"缴费记录",@"消息中心",@"设置",@"我的房屋"];
+            _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"设置"];
+            _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"设置"];
         }else{
-            _functionArray = @[@"租售管理",@"缴费记录",@"消息中心",@"设置"];
-            _functionImage = @[@"我的活动",@"缴费记录",@"消息中心",@"设置"];
+            _functionArray = @[@"租售管理",@"缴费记录",@"设置"];
+            _functionImage = @[@"我的活动",@"缴费记录",@"设置"];
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.backgroundColor = [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1];
-        _mTableView.rowHeight = 50;
         
         [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
         _mTableView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:204.0/255.0 blue:180.0/255.0 alpha:0.9];
@@ -226,20 +225,64 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ((_functionArray.count == 5 && indexPath.row == 3) || (_functionArray.count == 4 && indexPath.row == 2)) {
+//        return 0;
+//    }
+    return 50;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _functionArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerUserViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"summercell" forIndexPath:indexPath];
+    
     cell.imageView.image = [UIImage imageNamed:_functionImage[indexPath.row]];
     cell.nameLab.text = _functionArray[indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    viewType = indexPath.row;
-    [self.delegate userViewDidSelectType:viewType];
+    if (_functionArray.count == 4) {
+        switch (indexPath.row) {
+            case 0:
+                viewType = UserViewTableViewCellTypeMemberManager;
+                break;
+            case 1:
+                viewType = UserViewTableViewCellTypeSalesManagement;
+                break;
+            case 2:
+                viewType = UserViewTableViewCellTypePaymentRecords;
+                break;
+            case 3:
+                viewType = UserViewTableViewCellTypeSeeting;
+                break;
+            case 4:
+                viewType = UserViewTableViewCellTypeSeeting;
+                break;
+            default:
+
+                break;
+        }
+        [self.delegate userViewDidSelectType:viewType];
+    }else{
+        switch (indexPath.row) {
+            case 0:
+                viewType = UserViewTableViewCellTypeSalesManagement;
+                break;
+            case 1:
+                viewType = UserViewTableViewCellTypePaymentRecords;
+                break;
+            case 2:
+                viewType = UserViewTableViewCellTypeSeeting;
+                break;
+            default:
+                break;
+        }
+        [self.delegate userViewDidSelectType:viewType];
+    }
 }
 
 - (void)userRoomAuthen{

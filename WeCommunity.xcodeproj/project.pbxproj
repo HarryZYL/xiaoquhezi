@@ -126,7 +126,6 @@
 		D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44D9C7A1BE5DD86006340E2 /* SummerMemberAlertView.xib */; };
 		D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */; };
 		D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */; };
-		D44F80431BE649D9002A55CE /* SummerPhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44F80411BE649D9002A55CE /* SummerPhoneViewController.xib */; };
 		D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */; };
 		D452F2381BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */; };
 		D452F23B1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F23A1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m */; };
@@ -149,11 +148,10 @@
 		D454EAAB1BE4949E0089333D /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAA31BE4949E0089333D /* RSADataVerifier.m */; };
 		D454EAFA1BE49DB20089333D /* SummerBillOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAF91BE49DB20089333D /* SummerBillOrderList.m */; };
 		D454EAFE1BE4C9390089333D /* SummerSelectPayWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAFD1BE4C9390089333D /* SummerSelectPayWayView.m */; };
-		D45FF1CA1BE4E52900DC1E52 /* SummerPhoneNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45FF1C81BE4E52900DC1E52 /* SummerPhoneNumberViewController.m */; };
-		D45FF1CB1BE4E52900DC1E52 /* SummerPhoneNumberViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45FF1C91BE4E52900DC1E52 /* SummerPhoneNumberViewController.xib */; };
 		D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB671BE387B20046F5F1 /* ThirdUserModel.m */; };
 		D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */; };
 		D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */; };
+		D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */; };
 		D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */; };
 		D4B6ACB21BD7BA5A005CC778 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB11BD7BA59005CC778 /* QuartzCore.framework */; };
 		D4B6ACB41BD7BA65005CC778 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACB31BD7BA65005CC778 /* OpenGLES.framework */; };
@@ -429,7 +427,6 @@
 		D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAuthV2Info.m; path = BillModel/SummerAuthV2Info.m; sourceTree = "<group>"; };
 		D44F803F1BE649D9002A55CE /* SummerPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPhoneViewController.h; sourceTree = "<group>"; };
 		D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerPhoneViewController.m; sourceTree = "<group>"; };
-		D44F80411BE649D9002A55CE /* SummerPhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerPhoneViewController.xib; sourceTree = "<group>"; };
 		D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+Data.h"; sourceTree = "<group>"; };
 		D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+Data.m"; sourceTree = "<group>"; };
 		D452F2361BDDC3340031C5C8 /* SummerMessageCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMessageCenterTableViewController.h; sourceTree = "<group>"; };
@@ -544,9 +541,6 @@
 		D454EAF91BE49DB20089333D /* SummerBillOrderList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBillOrderList.m; path = BillModel/SummerBillOrderList.m; sourceTree = "<group>"; };
 		D454EAFC1BE4C9390089333D /* SummerSelectPayWayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerSelectPayWayView.h; path = BillViews/SummerSelectPayWayView.h; sourceTree = "<group>"; };
 		D454EAFD1BE4C9390089333D /* SummerSelectPayWayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerSelectPayWayView.m; path = BillViews/SummerSelectPayWayView.m; sourceTree = "<group>"; };
-		D45FF1C71BE4E52900DC1E52 /* SummerPhoneNumberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPhoneNumberViewController.h; sourceTree = "<group>"; };
-		D45FF1C81BE4E52900DC1E52 /* SummerPhoneNumberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerPhoneNumberViewController.m; sourceTree = "<group>"; };
-		D45FF1C91BE4E52900DC1E52 /* SummerPhoneNumberViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerPhoneNumberViewController.xib; sourceTree = "<group>"; };
 		D474AB381BE313A00046F5F1 /* SummerRegisterID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRegisterID.h; sourceTree = "<group>"; };
 		D474AB661BE387B20046F5F1 /* ThirdUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThirdUserModel.h; path = WeCommunity/Class/Util/Model/ThirdUserModel.h; sourceTree = SOURCE_ROOT; };
 		D474AB671BE387B20046F5F1 /* ThirdUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThirdUserModel.m; path = WeCommunity/Class/Util/Model/ThirdUserModel.m; sourceTree = SOURCE_ROOT; };
@@ -554,6 +548,8 @@
 		D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerInputPhoneNumber.m; sourceTree = "<group>"; };
 		D474AB6F1BE3B7890046F5F1 /* SummerBillConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillConfirmViewController.h; sourceTree = "<group>"; };
 		D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillConfirmViewController.m; sourceTree = "<group>"; };
+		D48C41151BE8970B00A5DF45 /* SummerNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeDetailViewController.h; sourceTree = "<group>"; };
+		D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeDetailViewController.m; sourceTree = "<group>"; };
 		D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
 		D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		D4B6ACB11BD7BA59005CC778 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -893,10 +889,6 @@
 				4ACCCE8F1BBF40120001227A /* UserLoginViewController.m */,
 				D44F803F1BE649D9002A55CE /* SummerPhoneViewController.h */,
 				D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */,
-				D44F80411BE649D9002A55CE /* SummerPhoneViewController.xib */,
-				D45FF1C71BE4E52900DC1E52 /* SummerPhoneNumberViewController.h */,
-				D45FF1C81BE4E52900DC1E52 /* SummerPhoneNumberViewController.m */,
-				D45FF1C91BE4E52900DC1E52 /* SummerPhoneNumberViewController.xib */,
 				4ACCCE901BBF40120001227A /* view */,
 			);
 			path = Login;
@@ -1092,6 +1084,8 @@
 				D452F23A1BDDC3AD0031C5C8 /* SummerPaymentRecordsTableViewController.m */,
 				D452F2411BDDCA160031C5C8 /* SummerMemberManagerTableViewController.h */,
 				D452F2421BDDCA160031C5C8 /* SummerMemberManagerTableViewController.m */,
+				D48C41151BE8970B00A5DF45 /* SummerNoticeDetailViewController.h */,
+				D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */,
 				4ACCCFF81BBF49600001227A /* View */,
 			);
 			path = Home;
@@ -1674,7 +1668,6 @@
 				4A118EBD1BA4900400BC2C4E /* Overlay.png in Resources */,
 				D452F2401BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib in Resources */,
 				4A118EBA1BA4900400BC2C4E /* ELCAlbumPickerController.xib in Resources */,
-				D44F80431BE649D9002A55CE /* SummerPhoneViewController.xib in Resources */,
 				D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */,
 				4A118EBE1BA4900400BC2C4E /* Overlay@2x.png in Resources */,
 				D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */,
@@ -1689,7 +1682,6 @@
 				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,
-				D45FF1CB1BE4E52900DC1E52 /* SummerPhoneNumberViewController.xib in Resources */,
 				4AD3DFAA1B731E4B007F51E0 /* Setting.plist in Resources */,
 				4ADDB9901B5D235F002A188E /* Images.xcassets in Resources */,
 			);
@@ -1802,7 +1794,6 @@
 				D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */,
 				D4CDD5631BE7A0A000B782DB /* SummerBillTableViewCell.m in Sources */,
 				D454EAA91BE4949E0089333D /* openssl_wrapper.m in Sources */,
-				D45FF1CA1BE4E52900DC1E52 /* SummerPhoneNumberViewController.m in Sources */,
 				D454EAA81BE4949E0089333D /* NSDataEx.m in Sources */,
 				4ACCD04B1BBF49600001227A /* ImagePickerCollectionVC.m in Sources */,
 				D454EAAA1BE4949E0089333D /* RSADataSigner.m in Sources */,
@@ -1816,6 +1807,7 @@
 				D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */,
 				4ACCCEE11BBF456F0001227A /* SecondHandPostViewController.m in Sources */,
 				D454EAA51BE4949E0089333D /* DataSigner.m in Sources */,
+				D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */,
 				4A118EB81BA4900400BC2C4E /* ELCImagePickerController.m in Sources */,
 				4ADDB9851B5D235F002A188E /* main.m in Sources */,
 				4ACCD0471BBF49600001227A /* OverViewViewController.m in Sources */,

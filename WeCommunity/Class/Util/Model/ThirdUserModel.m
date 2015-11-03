@@ -21,6 +21,10 @@
         if ([responseObject[@"user"] isEqual:[NSNull null]]) {
             isLoading = NO;
         }else{
+            NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+            NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+            [User SaveAuthentication];
             isLoading = YES;
         }
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kWXAppLoadingSeccess" object:nil userInfo:@{@"isload": [NSNumber numberWithBool:isLoading]}];

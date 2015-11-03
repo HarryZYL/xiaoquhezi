@@ -85,8 +85,6 @@
     }
 }
 
-
-
 +(void)SaveAuthentication{
     
     NSString *communityID = @"1";

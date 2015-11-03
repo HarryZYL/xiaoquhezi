@@ -33,6 +33,7 @@
     [self.view addSubview:_loadingView];
     [self viewDataWithRoomId:_roomDic[@"id"]];
     [self setTableView];
+    [self setBootomView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -54,8 +55,6 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
-    
-    [self setBootomView];
 }
 
 - (void)setBootomView{

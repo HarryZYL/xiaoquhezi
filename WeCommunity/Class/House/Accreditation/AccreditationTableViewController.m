@@ -120,7 +120,7 @@
         [self.tableView reloadData];
         [self.tableView.footer endRefreshing];
         if (self.dataArray.count < self.page*row) {
-            [self.tableView.footer noticeNoMoreData];
+            [self.tableView.footer endRefreshingWithNoMoreData];
         }
     }];
 }

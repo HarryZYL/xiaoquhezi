@@ -9,11 +9,13 @@
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerPaymentRecordsTableViewCell.h"
 #import "SummerPaymentListModel.h"
+#import "UIViewController+HUD.h"
 #import "SummerAlertView.h"
 
 @interface SummerPaymentRecordsTableViewController ()<SummerPaymentRecordsTableViewCellDelegate ,SummerAlertViewDelegate>
 {
     NSInteger pageNumber;
+    LoadingView *loadingView;
 }
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
 @property (nonatomic ,assign) NSInteger indexRow;
@@ -38,6 +40,9 @@
     self.tableView.rowHeight = 125;
     self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 8)];
     self.tableView.frame = CGRectMake(0, 9, self.view.frame.size.width, self.view.frame.size.height - 9);
+    loadingView = [[LoadingView alloc] initWithFrame:self.view.bounds];
+    loadingView.titleLabel.text = @"正在加载";
+    [self.view addSubview:loadingView];
     
     [self receveData];
 }
@@ -45,11 +50,18 @@
 - (void)receveData{
     [Networking retrieveData:get_ORDER_LIST_FEE parameters:@{@"token": [User getUserToken],@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
         NSLog(@"---->%@",responseObject);
+        [loadingView removeFromSuperview];
         if (responseObject[@"rows"]&&![responseObject[@"rows"] isEqual:[NSNull null]]) {
+            if ([responseObject[@"rows"] count] == 0) {
+                [self showHint:@"没有缴费记录"];
+                return;
+            }
             for (NSDictionary *dicTemp in responseObject[@"rows"]) {
                 [_dataArrary addObject:[[SummerPaymentListModel alloc] initWithJson:dicTemp]];
             }
             [self.tableView reloadData];
+        }else{
+            [self showHint:@"没有缴费记录"];
         }
         
     }];

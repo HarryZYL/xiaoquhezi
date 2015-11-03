@@ -89,6 +89,13 @@
     return _grayLine2;
 }
 
+- (UIButton *)btnReAuth{
+    if (_btnReAuth) {
+        _btnReAuth = [[UIButton alloc] init];
+        [self.contentView addSubview:_btnReAuth];
+    }
+    return _btnReAuth;
+}
 
 -(UIImageView*)dealImage{
     if (!_dealImage) {
@@ -196,7 +203,7 @@
     self.userLabel.frame = CGRectMake(self.titleLabel.frame.size.width+self.titleLabel.frame.origin.x+3, self.titleLabel.frame.origin.y, 300, 30);
     self.userLabel.textColor = [UIColor grayColor];
     self.userLabel.font = [UIFont fontWithName:fontName size:13];
-    self.userLabel.text = [NSString stringWithFormat:@"%@-",data[@"community"][@"name"]];
+    self.userLabel.text = [NSString stringWithFormat:@"%@-%@",data[@"community"][@"name"],data[@"ownerTypeName"]];
     
     CGFloat textHeight = 25;
     
@@ -225,43 +232,20 @@
     self.dateLabel.text = accreditation.applyTime;
     
     // deal image
-    
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
     
-    
-    NSString *owerType = @"";
-//    if([responseObject[@"auditStatus"] isEqualToString:@"Success"]){
-//        if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
-//            owerType = @"认证户主";
-//        }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
-//            owerType = @"认证业主";
-//        }
-//    }else if([responseObject[@"auditStatus"] isEqualToString:@"Pending"]){
-//        owerType = @"未受理";
-//    }else if ([responseObject[@"auditStatus"] isEqualToString:@"Handing"]){
-//        owerType = @"认证中";
-//    }else{
-//        owerType = @"认证失败";
-//    }
-    
     if ([data[@"auditStatus"] isEqualToString:@"Pending"]) {
-        owerType = @"未受理";
         self.dealImage.image = [UIImage imageNamed:@"deal"];
     }else if([data[@"auditStatus"] isEqualToString:@"Handling"]){
-        owerType = @"认证中";
+
         self.dealImage.image = [UIImage imageNamed:@"dealing"];
     }else if ([data[@"auditStatus"] isEqualToString:@"Success"]){
         self.dealImage.image = [UIImage imageNamed:@"dealed"];
-        if ([data[@"ownerType"] isEqualToString:@"Owner"]) {
-            owerType = @"认证户主";
-        }else{
-            owerType = @"认证业主";
-        }
+        
     }else {
-        owerType = @"认证失败";
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+        self.dealImage.image = [UIImage imageNamed:@"认证-失败-0"];
     }
-    self.userLabel.text = [NSString stringWithFormat:@"%@%@",self.userLabel.text,owerType];
+
     [self setCellStyle];
     self.selectionStyle = NO;
 }
@@ -383,11 +367,11 @@
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
     
     if ([deal isEqualToString:@"Pending"]) {
-        self.dealImage.image = [UIImage imageNamed:@"deal"];
+        self.dealImage.image = [UIImage imageNamed:@"deal1"];
     }else if([deal isEqualToString:@"Handling"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealing"];
+        self.dealImage.image = [UIImage imageNamed:@"dealing1"];
     }else if ([deal isEqualToString:@"Success"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
+        self.dealImage.image = [UIImage imageNamed:@"dealed1"];
     }
     
     

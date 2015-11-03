@@ -33,7 +33,6 @@
     // Setup wrapper
     [self.view addSubview:self.contentWrapper];
     [self tableView];
-    [self.contentWrapper becomeFirstResponder];
 }
 //发送
 - (void)didTapSend:(id)sender{
@@ -113,6 +112,7 @@
             [Networking retrieveData:get_reply_notice parameters:@{@"token": [User getUserToken],
                                                                  @"id":_notice.Objectid,
                                                                    @"pictures":@[]} success:^(id responseObject) {
+                                                                       
                                                              NSLog(@"123456");
                                                          }];
         }
@@ -153,10 +153,11 @@
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     switch (indexPath.section) {
         case 0:
-            if (self.noticeStyle == SettingTableViewControllerStyleComplain) {
-                [cell configureTextCellImage:[NSURL URLWithString:self.textDeal.textType[@"logo"]] title:self.textDeal.content date:self.textDeal.createTime deal:self.textDeal.status pictures:self.textDeal.pictures detail:YES];
-            }else{
+            if (self.noticeStyle == SettingTableViewControllerStyleNotice) {
                 [cell configureNoticeCellTitle:self.notice.title detail:self.notice.contentTxt date:self.notice.createTime top:self.notice.isTop detail:YES withReplyCount:self.notice.replyCount];
+                
+            }else{
+                [cell configureTextCellImage:[NSURL URLWithString:self.textDeal.textType[@"logo"]] title:self.textDeal.content date:self.textDeal.createTime deal:self.textDeal.status pictures:self.textDeal.pictures detail:YES];
             }
             
             break;
@@ -222,3 +223,18 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

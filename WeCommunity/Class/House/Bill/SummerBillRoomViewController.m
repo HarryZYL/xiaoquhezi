@@ -8,6 +8,7 @@
 
 #import "SummerBillRoomViewController.h"
 #import "BillTableViewController.h"
+#import "UIViewController+HUD.h"
 
 @interface SummerBillRoomViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {
@@ -47,30 +48,34 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        UIButton *payBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        UILabel *payBtn = [[UILabel alloc] init];
         [payBtn setBackgroundColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1]];
-        payBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        payBtn.font = [UIFont systemFontOfSize:14];
+        payBtn.textAlignment = NSTextAlignmentCenter;
+        payBtn.textColor = [UIColor whiteColor];
         payBtn.layer.cornerRadius = 3;
         payBtn.layer.masksToBounds = YES;
         payBtn.tag = 1;
         payBtn.frame = CGRectMake(SCREENSIZE.width - 80, 25, 60, 30);
         [cell addSubview:payBtn];
     }
-    UIButton *payButton = (UIButton *)[cell viewWithTag:1];
+    UILabel *payButton = (UILabel *)[cell viewWithTag:1];
     NSDictionary *dicTemp = arraryData[indexPath.row];
     cell.textLabel.text = [dicTemp[@"parentNames"] componentsJoinedByString:@""];
     if ([dicTemp[@"payed"] boolValue]) {
-        payButton.selected = NO;
-        [payButton setTitle:@"已交清" forState:UIControlStateNormal];
+        [payButton setText:@"已交清"];
     }else{
-        [payButton setTitle:@"去缴费" forState:UIControlStateNormal];
-        payButton.selected = YES;
+        [payButton setText:@"去缴费"];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dicTemp = arraryData[indexPath.row];
+    if ([dicTemp[@"payed"] boolValue]) {
+        [self showHint:@"已经交过了"];
+        return;
+    }
     BillTableViewController *tableVC = [[BillTableViewController alloc] init];
     tableVC.roomDic = dicTemp;
     [self.navigationController pushViewController:tableVC animated:YES];

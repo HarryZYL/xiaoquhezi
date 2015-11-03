@@ -30,6 +30,8 @@
 @property (nonatomic,strong) UIImageView *picture2;
 @property (nonatomic,strong) UIImageView *picture3;
 
+@property (nonatomic,strong) UIButton *btnReAuth;
+
 -(void)setCellStyle;
 -(void)clearCellStyle;
 -(void)configureLikeCellImage:(NSString*)image title:(NSString *)title userName:(NSString *)username date:(NSString*)date pictures:(NSArray*)pictures;

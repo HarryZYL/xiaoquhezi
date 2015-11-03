@@ -15,6 +15,8 @@
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
 
+#import "SummerNoticeDetailViewController.h"
+
 @interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
 {
     SummerUserHeaderView *barButtonItemView;
@@ -380,7 +382,10 @@
 }
 
 -(void)noticeDetail{
-    
+//    Notice *detailNotic = self.noticeData[self.headView.pageView.adPageControl.currentPage];
+//    SummerNoticeDetailViewController *noticeVC = [[SummerNoticeDetailViewController alloc] init];
+//    noticeVC.strNoticeID = detailNotic.Objectid;
+//    [self.navigationController pushViewController:noticeVC animated:YES];
     TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
     textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
     textVC.title = @"详情";

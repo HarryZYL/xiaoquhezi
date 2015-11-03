@@ -207,7 +207,8 @@
 //电话报修
 - (void)phonePost:(UIButton *)sender{
     if (dicPhoneNumber[@"phone"]&&![dicPhoneNumber[@"phone"] isEqualToString:@" "]) {
-        NSURL *urlPhone = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",dicPhoneNumber[@"phone"]]];
+        NSString *phoneNumberStr = [NSString stringWithFormat:@"telprompt://%@",[dicPhoneNumber[@"phone"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+        NSURL *urlPhone = [NSURL URLWithString:phoneNumberStr];
         if ([[UIApplication sharedApplication] canOpenURL:urlPhone]) {
             [[UIApplication sharedApplication] openURL:urlPhone];
         }else{

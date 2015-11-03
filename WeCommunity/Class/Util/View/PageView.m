@@ -56,7 +56,7 @@
         }
         _adPageControl.currentPage = page;
         
-        CGFloat xPoint = page * MAIN_SCREEN.width;
+        CGFloat xPoint = page * self.frame.size.width;
 //        CGSize viewSize = _adScrollView.frame.size;
 //        CGRect rect = CGRectMake(_adPageControl.currentPage * viewSize.width, 0, viewSize.width, viewSize.height);
 //        [_adScrollView scrollRectToVisible:rect animated:YES];
@@ -70,11 +70,12 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     [self.moveTime setFireDate:[NSDate dateWithTimeIntervalSinceNow:10.0]];
-    _adPageControl.currentPage = self.adScrollView.contentOffset.x/MAIN_SCREEN.width;
+    _adPageControl.currentPage = self.adScrollView.contentOffset.x/self.frame.size.width;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+    [self.moveTime setFireDate:[NSDate dateWithTimeIntervalSinceNow:10.0]];
+    _adPageControl.currentPage = self.adScrollView.contentOffset.x/self.frame.size.width;
 }
 
 #pragma mark different view 

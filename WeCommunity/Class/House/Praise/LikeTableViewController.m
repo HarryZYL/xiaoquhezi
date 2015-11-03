@@ -67,10 +67,6 @@
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
         [cell configureLikeCellImage:like.praiseType[@"logo"] title:like.content userName:like.creatorInfo[@"nickName"] date:like.createTime pictures:like.pictures];
     }
-    
-    
-
-    
     return cell;
 }
 
@@ -162,7 +158,7 @@
         [self.tableView reloadData];
         [self.tableView.footer endRefreshing];
         if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer noticeNoMoreData];
+            [self.tableView.footer endRefreshingWithNoMoreData];
         }
     }];
 }

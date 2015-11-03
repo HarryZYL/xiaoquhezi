@@ -82,6 +82,15 @@
     
     self.mainBtn.frame = CGRectMake(30, self.passwordField1.frame.size.height+self.passwordField1.frame.origin.y+60, self.frame.size.width-60, 40);
     [self.mainBtn setTitle:@"登陆" forState:UIControlStateNormal];
+    
+    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnWeiXin setBackgroundImage:[UIImage imageNamed:@"微信登录图标"] forState:UIControlStateNormal];
+    btnWeiXin.frame = CGRectMake(0, self.frame.size.height - 100, 64, 64);
+    [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btnWeiXin];
+    if (![WXApi isWXAppInstalled]) {
+        btnWeiXin.hidden = YES;
+    }
 
 }
 
@@ -105,14 +114,6 @@
     self.mainBtn.frame = CGRectMake(30, self.captchaField.frame.size.height+self.captchaField.frame.origin.y+15, self.frame.size.width-60, 40);
     [self.mainBtn setTitle:@"注册" forState:UIControlStateNormal];
     
-    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnWeiXin setBackgroundImage:[UIImage imageNamed:@"微信支付图标"] forState:UIControlStateNormal];
-    btnWeiXin.frame = CGRectMake(0, self.frame.size.height - 100, 64, 64);
-    [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btnWeiXin];
-    if (![WXApi isWXAppInstalled]) {
-        btnWeiXin.hidden = YES;
-    }
 }
 
 - (void)wxinRegister{

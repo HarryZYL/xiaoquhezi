@@ -13,7 +13,7 @@
 
 #define get_reply_notice (HOST_URL @"/notice/replyNotice") /**<回复公告*/
 
-#define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")
+#define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")//公告详情
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")
 
 #define getMyAuthentictionDelete      (HOST_URL @"/authc/delete") //删除认证
@@ -84,6 +84,7 @@
 #define get_LOGIN_CODE (HOST_URL @"/third/login/weixin/get") //根据code 查询用户
 #define get_THIRD_LOGIN_WXAPP (HOST_URL @"/third/login/captcha/get")//获取验证码
 #define get_THIRD_LOADING (HOST_URL @"/third/login/weixin/bind")
+#define get_WXAPP_LOADING (HOST_URL @"/third/login")
 // 订单
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 

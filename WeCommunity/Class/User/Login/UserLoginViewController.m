@@ -7,7 +7,6 @@
 // 登录窗体
 
 #import "UserLoginViewController.h"
-#import "SummerPhoneNumberViewController.h"
 #import "UIViewController+HUD.h"
 #import "SummerPhoneViewController.h"
 #import "NSString+HTML.h"
@@ -33,6 +32,7 @@ static int timeToGetCaptcha = 60;
         [self.loginView.leftBtn addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginView.rightBtn addTarget:self action:@selector(signin:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginView.mainBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserOrLoading:) name:@"kWXAppLoadingSeccess" object:nil];
         //loding view
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
         self.loadingView.titleLabel.text = @"正在登录";
@@ -52,7 +52,7 @@ static int timeToGetCaptcha = 60;
         //loding view
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
         self.loadingView.titleLabel.text = @"正在注册";
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserOrLoading:) name:@"kWXAppLoadingSeccess" object:nil];
+        
     }
     [self.view addSubview:self.loginView];
     // cache data
@@ -137,7 +137,6 @@ static int timeToGetCaptcha = 60;
 #pragma mark register
 //获取手机注册验证码
 -(void)getPhoneRegisterCaptchaFuntion:(id)sender{
-    
     if (self.loginView.tellField.text.length == 0) {
         [Util alertNetworingError:@"手机号不能为空"];
     }else{
@@ -221,7 +220,15 @@ static int timeToGetCaptcha = 60;
     NSLog(@"--->%@",notDic);
     if ([notDic.userInfo[@"isload"] boolValue]) {
         //直接登录
-        [self login:nil];
+        User *user = [[User alloc] initWithData];
+        [Networking retrieveData:get_WXAPP_LOADING parameters:@{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid} success:^(id responseObject) {
+            NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+            NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+            
+            [User SaveAuthentication];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }];
     }else{
         //绑定手机
         SummerPhoneViewController *forgetView = [[SummerPhoneViewController alloc] init];

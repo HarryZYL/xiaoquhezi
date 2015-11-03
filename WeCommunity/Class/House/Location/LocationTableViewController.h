@@ -11,7 +11,7 @@
 
 @interface LocationTableViewController : UITableViewController<MKMapViewDelegate,CLLocationManagerDelegate>{
     
-    CLLocationManager *_locationManager;
+     CLLocationManager *_locationManager;
      CLGeocoder *_geocoder;
 }
 
