@@ -22,7 +22,7 @@
         [self addSubview:_adScrollView];
         
         
-        _adPageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_adScrollView.frame) - 30, frame.size.width, 30)];
+        _adPageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, frame.size.height - 30, frame.size.width, 30)];
         [_adPageControl addTarget:self action:@selector(pageTurn:) forControlEvents:UIControlEventAllEditingEvents];
         _adPageControl.numberOfPages = pathArr.count;
         _adPageControl.currentPage = 0;

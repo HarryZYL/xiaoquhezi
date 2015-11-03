@@ -117,6 +117,8 @@
 		D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41275F01BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib */; };
 		D41370561BD9CA88003BE559 /* SummerGetUserLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D41370551BD9CA88003BE559 /* SummerGetUserLocation.m */; };
 		D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */ = {isa = PBXBuildFile; fileRef = D413705B1BD9FDE3003BE559 /* SummerNearbyCity.m */; };
+		D414F3811BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3801BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.m */; };
+		D414F3841BE8E5E2004F9C5B /* SummerRentMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */; };
 		D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */; };
 		D433741E1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */; };
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
@@ -411,6 +413,10 @@
 		D41370551BD9CA88003BE559 /* SummerGetUserLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerGetUserLocation.m; sourceTree = "<group>"; };
 		D413705A1BD9FDE3003BE559 /* SummerNearbyCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNearbyCity.h; sourceTree = "<group>"; };
 		D413705B1BD9FDE3003BE559 /* SummerNearbyCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNearbyCity.m; sourceTree = "<group>"; };
+		D414F37F1BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeCenterDetailViewController.h; sourceTree = "<group>"; };
+		D414F3801BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeCenterDetailViewController.m; sourceTree = "<group>"; };
+		D414F3821BE8E5E1004F9C5B /* SummerRentMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentMyViewController.h; sourceTree = "<group>"; };
+		D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentMyViewController.m; sourceTree = "<group>"; };
 		D43374191BE1E55800BD438F /* SummerUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserHeaderView.h; sourceTree = "<group>"; };
 		D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserHeaderView.m; sourceTree = "<group>"; };
 		D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityOfHouseViewController.h; sourceTree = "<group>"; };
@@ -1086,6 +1092,8 @@
 				D452F2421BDDCA160031C5C8 /* SummerMemberManagerTableViewController.m */,
 				D48C41151BE8970B00A5DF45 /* SummerNoticeDetailViewController.h */,
 				D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */,
+				D414F37F1BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.h */,
+				D414F3801BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.m */,
 				4ACCCFF81BBF49600001227A /* View */,
 			);
 			path = Home;
@@ -1205,6 +1213,8 @@
 				4ACCD0231BBF49600001227A /* RentPostViewController.m */,
 				4ACCD0241BBF49600001227A /* RentViewController.h */,
 				4ACCD0251BBF49600001227A /* RentViewController.m */,
+				D414F3821BE8E5E1004F9C5B /* SummerRentMyViewController.h */,
+				D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */,
 				D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */,
 				D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */,
 				4ACCD0261BBF49600001227A /* View */,
@@ -1759,6 +1769,7 @@
 				4ACCD0441BBF49600001227A /* NoticeTableViewController.m in Sources */,
 				4ACCD0401BBF49600001227A /* FooterItem.m in Sources */,
 				4ACCD04F1BBF49600001227A /* RentViewController.m in Sources */,
+				D414F3811BE8D9FA004F9C5B /* SummerNoticeCenterDetailViewController.m in Sources */,
 				4ACCD04E1BBF49600001227A /* RentPostViewController.m in Sources */,
 				4AB6B2571BAF0F41000E5FBA /* CameraImageView.m in Sources */,
 				D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */,
@@ -1792,6 +1803,7 @@
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,
 				4A118EB61BA4900400BC2C4E /* ELCAssetTablePicker.m in Sources */,
 				D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */,
+				D414F3841BE8E5E2004F9C5B /* SummerRentMyViewController.m in Sources */,
 				D4CDD5631BE7A0A000B782DB /* SummerBillTableViewCell.m in Sources */,
 				D454EAA91BE4949E0089333D /* openssl_wrapper.m in Sources */,
 				D454EAA81BE4949E0089333D /* NSDataEx.m in Sources */,

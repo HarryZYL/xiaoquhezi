@@ -9,7 +9,7 @@
 #import "Notice.h"
 
 @implementation Notice
-
+@synthesize Objectid = _Objectid;
 -(id)initWithData:(NSDictionary *)data{
     self = [super init];
     if (self) {

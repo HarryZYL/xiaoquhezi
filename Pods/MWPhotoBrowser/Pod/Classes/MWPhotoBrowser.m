@@ -369,7 +369,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if (_currentPageIndex != _pageIndexBeforeRotation) {
         [self jumpToPageAtIndex:_pageIndexBeforeRotation animated:NO];
     }
-
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -1597,7 +1597,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         }
         
         // Keep controls hidden
-        [self setControlsHidden:NO animated:YES permanent:YES];
+        [self setControlsHidden:YES animated:YES permanent:YES];
 
     }
     

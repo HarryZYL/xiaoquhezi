@@ -41,7 +41,6 @@
     self.scollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     self.scollView.contentSize = CGSizeMake(self.view.frame.size.width, 800);
     [self.view addSubview:self.scollView];
-
 }
 
 -(void)setupModel{
@@ -53,7 +52,7 @@
 
 - (void)setupLoadRoomData{
     NSDictionary *parama = @{@"token": [User getUserToken],
-                             @"houseDealId":self.houseDeal.objectId};
+                             @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
     [Networking retrieveData:GET_USER_BOOK parameters:parama roomSuccess:^(id responseObject) {
         _isBooking = [responseObject[@"state"] boolValue];
         [self confirmBootomButtonTitle];
@@ -113,6 +112,7 @@
     }
 }
 
+//查询预约看房记录
 -(void)getBookingList{
     NSDictionary *parameters = @{
                                  @"token":[User getUserToken],
@@ -122,8 +122,6 @@
                                  };
     [Networking retrieveData:getBooking parameters:parameters success:^(id responseObject) {
        
-        
-        
     }];
 }
 
@@ -151,14 +149,9 @@
 
 - (void)cansoleBooking{
     NSDictionary *parama = @{@"token":[User getUserToken],
-                             @"houseDealId":self.houseDeal.objectId};
-    [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama roomSuccess:^(id responseObject) {
-        if ([responseObject[@"state"] boolValue]) {
-            [self showHint:@"取消预约成功"];
-        }else{
-            [self showHint:responseObject[@"msg"]];
-        }
-    }];
+                             @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
+    [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama];
+    
 }
 
 #pragma mark preview photos

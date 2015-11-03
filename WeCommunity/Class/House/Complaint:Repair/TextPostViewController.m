@@ -313,7 +313,7 @@
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser = [Util fullImageSetting:browser];
-    browser.enableSwipeToDismiss = NO;
+    browser.enableSwipeToDismiss = YES;
     [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
 }

@@ -8,6 +8,7 @@
 
 #import "HouseViewController.h"
 #import "UIButton+WebCache.h"
+#import "SummerRentMyViewController.h"
 #import "SummerUserHeaderView.h"
 #import "UIViewController+HUD.h"
 #import "SummerBillRoomViewController.h"
@@ -15,7 +16,7 @@
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
 
-#import "SummerNoticeDetailViewController.h"
+#import "SummerNoticeCenterDetailViewController.h"
 
 @interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
 {
@@ -382,10 +383,11 @@
 }
 
 -(void)noticeDetail{
-//    Notice *detailNotic = self.noticeData[self.headView.pageView.adPageControl.currentPage];
-//    SummerNoticeDetailViewController *noticeVC = [[SummerNoticeDetailViewController alloc] init];
-//    noticeVC.strNoticeID = detailNotic.Objectid;
+//    NSDictionary *dicTemp = self.noticeData[self.headView.pageView.adPageControl.currentPage];
+//    SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
+//    noticeVC.strNoticeID = dicTemp[@"id"];
 //    [self.navigationController pushViewController:noticeVC animated:YES];
+    
     TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
     textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
     textVC.title = @"详情";
@@ -419,7 +421,7 @@
 }
 //租售管理
 -(void)userRent{
-    RentViewController *rentVC = [[RentViewController alloc] init];
+    SummerRentMyViewController *rentVC = [[SummerRentMyViewController alloc] init];
     rentVC.function = @"rent";
     rentVC.playAdvertise = NO;
     [self pushVC:rentVC title:@"我的租售"];

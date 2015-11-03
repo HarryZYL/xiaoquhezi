@@ -169,7 +169,7 @@ static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为
 #pragma mark - 计时器到时,系统滚动图片
 - (void)animalMoveImage
 {
-    
+    NSLog(@"121111111111111111");
     [self setContentOffset:CGPointMake(UISCREENWIDTH * 2, 0) animated:YES];
     _isTimeUp = YES;
     [NSTimer scheduledTimerWithTimeInterval:0.4f target:self selector:@selector(scrollViewDidEndDecelerating:) userInfo:nil repeats:NO];

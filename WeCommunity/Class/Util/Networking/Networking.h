@@ -50,7 +50,7 @@
 #define repair_add (HOST_URL @"/repair/add")
 #define praise_add (HOST_URL @"/praise/add")
 
-#define bookingHouse (HOST_URL @"/houseDeal/bookingHouse")
+#define bookingHouse         (HOST_URL @"/houseDeal/bookingHouse")
 #define POST_CANCELL_BOOKING (HOST_URL @"/houseDeal/cancelBooking") /**<取消预约*/
 #define getBooking           (HOST_URL @"/houseDeal/getBooking")    /**<查询预约看房纪录*/
 #define GET_USER_BOOK        (HOST_URL @"/houseDeal/isUserBooking") /**<查询用户是否在当前租售上预约过*/

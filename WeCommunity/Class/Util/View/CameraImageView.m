@@ -17,17 +17,24 @@ static CGFloat height = 70;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-        self.addImageBtn.frame = CGRectMake(0, 0, height, height);
-        [self addSubview:self.addImageBtn];
-        
+        if (!self.addImageBtn) {
+            self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+            self.addImageBtn.frame = CGRectMake(0, 0, height, height);
+            [self addSubview:self.addImageBtn];
+        }
     }
     return self;
 }
 
 -(void)configureImage:(NSMutableArray*)imageArr{
+    
+    if (!self.addImageBtn) {
+        self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        self.addImageBtn.frame = CGRectMake(0, 0, height, height);
+        [self addSubview:self.addImageBtn];
+    }
     
     CGFloat margin = (self.frame.size.width - 4*height)/3;
     

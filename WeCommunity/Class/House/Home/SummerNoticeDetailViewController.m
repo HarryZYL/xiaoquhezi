@@ -5,21 +5,17 @@
 //  Created by madarax on 15/11/3.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
-#import "SummerInputView.h"
+
 #import "SummerNoticeDetailViewController.h"
 #define IMPUT_VIEW_HEIGHT 40
 static NSString * const CellIdentifier = @"cell";
-@interface SummerNoticeDetailViewController ()<UITableViewDataSource ,UITableViewDelegate>
-{
-    SummerInputView *inputView;
-}
-@property (nonatomic ,strong) UITableView *tableView;
+@interface SummerNoticeDetailViewController ()
 @property (nonatomic ,strong) RDRStickyKeyboardView *contentWrapper;
 
 @end
 
 @implementation SummerNoticeDetailViewController
-
+@synthesize strNoticeID;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SummerNoticeDetailViewController : UIViewController
-
+#import "SummerInputView.h"
+@interface SummerNoticeDetailViewController : UIViewController<UITableViewDataSource ,UITableViewDelegate>
+{
+    SummerInputView *inputView;
+}
+@property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,copy) NSString *strNoticeID;
 
 @end
