@@ -84,10 +84,13 @@
     [self.mainBtn setTitle:@"登陆" forState:UIControlStateNormal];
     
     UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnWeiXin setBackgroundImage:[UIImage imageNamed:@"微信登录图标"] forState:UIControlStateNormal];
-    btnWeiXin.frame = CGRectMake(0, self.frame.size.height - 100, 64, 64);
+    
+    [btnWeiXin setTitle:@"微信登录" forState:UIControlStateNormal];
+    [btnWeiXin setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
+    btnWeiXin.frame = CGRectMake(30, self.mainBtn.frame.origin.y + 70, self.frame.size.width - 60, 40);
     [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btnWeiXin];
+    
     if (![WXApi isWXAppInstalled]) {
         btnWeiXin.hidden = YES;
     }

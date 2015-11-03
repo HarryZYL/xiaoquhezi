@@ -13,7 +13,8 @@
 
 #define get_reply_notice (HOST_URL @"/notice/replyNotice") /**<回复公告*/
 
-#define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")//公告详情
+#define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")//小区公告
+#define getNoticeDetail       (HOST_URL @"/notice/getNotice")//公告详情
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")
 
 #define getMyAuthentictionDelete      (HOST_URL @"/authc/delete") //删除认证

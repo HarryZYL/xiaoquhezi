@@ -17,19 +17,16 @@ static CGFloat height = 70;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        if (!self.addImageBtn) {
-            self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-            self.addImageBtn.frame = CGRectMake(0, 0, height, height);
-            [self addSubview:self.addImageBtn];
-        }
+        self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        self.addImageBtn.frame = CGRectMake(0, 0, height, height);
+        [self addSubview:self.addImageBtn];
     }
     return self;
 }
 
 -(void)configureImage:(NSMutableArray*)imageArr{
-    
-    if (!self.addImageBtn) {
+    if (self.addImageBtn) {
         self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         self.addImageBtn.frame = CGRectMake(0, 0, height, height);
@@ -55,7 +52,7 @@ static CGFloat height = 70;
         [self addSubview:imageView];
     }
     
-    if (imageArr.count<4) {
+    if (imageArr.count < 4) {
         self.addImageBtn.frame = CGRectMake((height+margin) * imageArr.count, 0, height, height);
     }else{
         self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin, height, height);
@@ -67,8 +64,8 @@ static CGFloat height = 70;
 }
 
 - (void)chuckSubViews{
-    for (UIView *imgView in self.subviews) {
-        [imgView removeFromSuperview];
+    for (UIView *views in self.subviews) {
+        [views removeFromSuperview];
     }
 }
 

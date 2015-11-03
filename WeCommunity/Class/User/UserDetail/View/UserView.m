@@ -146,7 +146,7 @@
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.backgroundColor = [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1];
-        
+        _mTableView.scrollEnabled   = NO;
         [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
         _mTableView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:204.0/255.0 blue:180.0/255.0 alpha:0.9];
         _mTableView.delegate = self;

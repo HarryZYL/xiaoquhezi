@@ -7,9 +7,11 @@
 //
 
 #import "RentViewController.h"
-
+#import "SummerSelectSellerOrOrderView.h"
 @interface RentViewController ()
-
+{
+    SummerSelectSellerOrOrderView *orderSelectView;
+}
 @end
 
 @implementation RentViewController
@@ -21,7 +23,7 @@
     
     UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
     self.navigationItem.rightBarButtonItem = postBtn;
-
+    
     if (self.playAdvertise) {
         [self setupAdvertisement];
     }
@@ -36,7 +38,12 @@
     self.communityAll = NO;
     self.houseTypeArr = @[@"Sale",@"Rent"];
     [self retrireveData];
-
+    
+    orderSelectView = [[SummerSelectSellerOrOrderView alloc] initWithFrame:CGRectMake(SCREENSIZE.width - 100, 64, 100, 80)];
+    orderSelectView.alpha = 0;
+    [orderSelectView.btnRent addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
+    [orderSelectView.btnSell addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:orderSelectView];
     
     // Do any additional setup after loading the view.
 }
@@ -260,8 +267,22 @@
 
 #pragma mark action
 
--(void)post:(id)sender{
+- (void)postButtonRent:(UIButton *)sender{
+    orderSelectView.alpha = 0;
+    RentPostViewController *postVC  = [[RentPostViewController alloc] init];
+    if (sender.tag == 1) {
+        //出租
+        postVC.houseDealType = SummerHouseDealTypeRent;
+    }else{
+        //出售
+        postVC.houseDealType = SummerHouseDealTypeSale;
+    }
+    postVC.step = 0;
+    [self pushVC:postVC title:@"发布"];
     
+}
+
+-(void)post:(id)sender{
     NSString *userAuthType = [User getAuthenticationOwnerType];
     if ([userAuthType isEqualToString:@"未认证"]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -269,9 +290,7 @@
         [alertView show];
     }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
         if ([self.function isEqualToString:@"rent"]) {//房屋租售／卖房
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你要出售还是出租" delegate:self cancelButtonTitle:@"出售" otherButtonTitles:@"出租", nil];
-            alertView.tag = 11;
-            [alertView show];
+            orderSelectView.alpha = 1;
         }else if([self.function isEqualToString:@"activity"]){
             ActivityPostViewController *postVC  = [[ActivityPostViewController alloc] init];
             [self pushVC:postVC title:@"发布"];
@@ -287,6 +306,12 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还在认证中" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1001;
         [alertView show];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (orderSelectView.frame.size.height > 0) {
+        orderSelectView.alpha = 0;
     }
 }
 
@@ -401,7 +426,7 @@
         [self.tableView reloadData];
         [self.tableView.footer endRefreshing];
         if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer noticeNoMoreData];
+            [self.tableView.footer endRefreshingWithNoMoreData];
         }
     }];
 }
@@ -432,3 +457,19 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

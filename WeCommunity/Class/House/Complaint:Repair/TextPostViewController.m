@@ -78,9 +78,9 @@
     
     self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 100)];
     if ([self.function isEqualToString:@"praise"]) {
-        self.describleView.placeholder = @"物业服务很好，赞一个";
+        self.describleView.text = @"物业服务很好，赞一个";
     }else{
-        self.describleView.placeholder=@"说点什么";
+        self.describleView.text=@"说点什么";
     }
     
     self.describleView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
@@ -297,6 +297,7 @@
             }
             
         }];
+        [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
         
     }
@@ -313,7 +314,7 @@
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser = [Util fullImageSetting:browser];
-    browser.enableSwipeToDismiss = YES;
+    browser.enableSwipeToDismiss = NO;
     [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
 }
@@ -339,9 +340,10 @@
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenImagesSmall removeObjectAtIndex:index];
+    [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
-    [photoBrowser reloadData];
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

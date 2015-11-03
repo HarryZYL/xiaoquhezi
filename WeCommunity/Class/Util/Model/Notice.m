@@ -20,7 +20,7 @@
         self.pictures = [Util modifyArray:data[@"pictures"]];
         self.createTime = [Util formattedDate:data[@"createTime"] type:1];
         self.creator = data[@"creator"];
-        self.creatorInfo = data[@"creatorInfo"];
+        self.creatorInfo = [[creatorInfo alloc] initWithData:data[@"creatorInfo"]];
         self.communityId = data[@"communityId"];
         self.replyCount = data[@"replyCount"];
         self.isTop = [NSString stringWithFormat:@"%@",data[@"isTop"] ];

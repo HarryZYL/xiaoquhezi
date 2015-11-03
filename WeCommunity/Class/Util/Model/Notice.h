@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "creatorInfo.h"
+
 @interface Notice : NSObject
 @property (nonatomic,strong) NSString *content;
 @property (nonatomic,strong) NSString *Objectid;
@@ -19,7 +21,7 @@
 @property (nonatomic,strong) NSString *validEndTime;
 @property (nonatomic,strong) NSString *createTime;
 @property (nonatomic,strong) NSString *creator;
-@property (nonatomic,strong) NSDictionary *creatorInfo;
+@property (nonatomic,strong) creatorInfo *creatorInfo;
 @property (nonatomic,strong) NSString *replyCount;
 @property (nonatomic,strong) NSString *communityId;
 -(id)initWithData:(NSDictionary *)data;

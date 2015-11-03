@@ -8,8 +8,8 @@
 
 #import "SummerNoticeDetailViewController.h"
 
-@interface SummerNoticeCenterDetailViewController : SummerNoticeDetailViewController
+@interface SummerNoticeCenterDetailViewController : SummerNoticeDetailViewController<UITableViewDataSource ,UITableViewDelegate>
 
-@property (nonatomic ,copy) NSString *strNoticeID;
+//@property (nonatomic ,copy) NSString *strNoticeID;
 
 @end

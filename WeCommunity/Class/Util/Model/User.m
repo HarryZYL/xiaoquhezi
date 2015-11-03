@@ -117,10 +117,8 @@
                 }
             }else if([responseObject[@"auditStatus"] isEqualToString:@"Pending"]){
                  owerType = @"未受理";
-            }else if ([responseObject[@"auditStatus"] isEqualToString:@"Handing"]){
-                owerType = @"认证中";
             }else{
-                owerType = @"认证失败";
+                owerType = @"认证中";
             }
             NSDictionary *authentication = @{
                                              @"communityName":responseObject[@"community"][@"name"],

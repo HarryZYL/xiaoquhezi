@@ -12,7 +12,7 @@
 {
     SummerInputView *inputView;
 }
-@property (nonatomic ,strong) UITableView *tableView;
+@property (nonatomic ,strong) UITableView *mTableView;
 @property (nonatomic ,copy) NSString *strNoticeID;
 
 @end

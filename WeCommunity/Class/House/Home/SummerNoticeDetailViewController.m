@@ -27,8 +27,7 @@ static NSString * const CellIdentifier = @"cell";
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"公告详情";
-    
-    [self.view addSubview:_tableView];
+    [self.view addSubview:self.mTableView];
     
     inputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:inputView];
@@ -43,23 +42,18 @@ static NSString * const CellIdentifier = @"cell";
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
-                                                            forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor redColor];
-    cell.contentView.backgroundColor = [UIColor redColor];
-    
-    cell.textLabel.text = @"Lorem ipsum";
-    
-    return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 50;
-}
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
+//                                                            forIndexPath:indexPath];
+//    
+//    return cell;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return 50;
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -77,7 +71,7 @@ static NSString * const CellIdentifier = @"cell";
     NSTimeInterval animationDuration = [[[aNotificaiton userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
         inputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
-        self.tableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height);
     }];
 }
 
@@ -88,7 +82,7 @@ static NSString * const CellIdentifier = @"cell";
         [inputView.btnAddImg setTitle:@"9" forState:UIControlStateNormal];
         [inputView.btnAddImg setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         
-        self.tableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
     }];
 }
 
@@ -100,14 +94,14 @@ static NSString * const CellIdentifier = @"cell";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (UITableView *)tableView{
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT)
+- (UITableView *)mTableView{
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT)
                                                   style:UITableViewStylePlain];
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    [_tableView registerClass:[UITableViewCell class]
+    _mTableView.dataSource = self;
+    _mTableView.delegate = self;
+    [_mTableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:CellIdentifier];
-    return _tableView;
+    return _mTableView;
 }
 
 /*
