@@ -25,7 +25,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"成员管理";
-    selectIndex = 1000;
+    selectIndex = 0;
+    cellSpread = YES;
+    
     _dataArrary = [[NSMutableArray alloc] init];
 //    cellDidSelect = [[NSIndexPath alloc] init];
     // Uncomment the following line to preserve selection between presentations.
