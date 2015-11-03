@@ -29,9 +29,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self tableView];
+    
     // Setup wrapper
     [self.view addSubview:self.contentWrapper];
+    [self tableView];
+    [self.contentWrapper becomeFirstResponder];
 }
 //发送
 - (void)didTapSend:(id)sender{

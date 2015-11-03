@@ -10,6 +10,11 @@
 
 @interface SummerInputView : UIView
 
+@property (nonatomic ,strong)UITextView *summerInputView;
+@property (nonatomic ,strong)UIButton *btnAddImg;
+@property (nonatomic ,strong)UIButton *btnSenderMessage;
+@property (nonatomic ,strong)UIView *viewWithImg;
 
+- (void)confirmsSelectImage:(NSArray *)imgArrary;
 
 @end

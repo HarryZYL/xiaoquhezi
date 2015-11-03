@@ -87,8 +87,10 @@
 }
 
 - (void)summerAlertViewClickIndex:(NSInteger)index{
-    NSLog(@"----->%d",index);
-    NSLog(@"你要删除第%d行---->%d",self.indexRow);
+    SummerPaymentListModel *listModel = _dataArrary[self.indexRow];
+    [Networking retrieveData:get_ORDER_LIST_DELETE parameters:@{@"token": [User getUserToken],@"orderNo":listModel.orderNO}];
+    [_dataArrary removeObjectAtIndex:index];
+    [self.tableView reloadData];
 }
 /*
 // Override to support conditional editing of the table view.

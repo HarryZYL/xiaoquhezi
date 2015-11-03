@@ -38,6 +38,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     [self viewDataWithRoomId:_roomDic[@"id"]];
+    totalBillMoney = 0.0;
+    botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
 //    self.tableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 100);
 }
 

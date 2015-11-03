@@ -76,7 +76,7 @@
 #define get_COMMNITY_PRICE        (HOST_URL @"/repair/getPrice")
 #define get_COMMNITY_PHONE_NMBER  (HOST_URL @"/community/getPropertyPhone")
 
-
+#define get_ORDER_LIST_DELETE     (HOST_URL @"/fee/property/order/delete")     //删除缴费记录
 #define get_ORDER_LIST_FEE        (HOST_URL @"/fee/property/order/payed/get") //缴费记录
 /**
  *  第三方登录接口
