@@ -78,9 +78,9 @@
     
     self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 100)];
     if ([self.function isEqualToString:@"praise"]) {
-        self.describleView.text = @"物业服务很好，赞一个";
+        self.describleView.placeholder = @"物业服务很好，赞一个";
     }else{
-        self.describleView.text=@"说点什么";
+        self.describleView.placeholder = @"说点什么";
     }
     
     self.describleView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
@@ -230,11 +230,23 @@
         
     }else if([self.function isEqualToString:@"repair"]){
         url = repair_add;
-        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":self.describleView.text,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        NSString *tempStr;
+        if (self.describleView.text.length < 1) {
+            tempStr = @"说点什么";
+        }else{
+            tempStr = self.describleView.text;
+        }
+        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         
     }else if ([self.function isEqualToString:@"praise"]){
+        NSString *tempStr;
+        if (self.describleView.text.length < 1) {
+            tempStr = @"物业服务很好，赞一个";
+        }else{
+            tempStr = self.describleView.text;
+        }
         url = praise_add;
-        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"praiseTypeId":self.postID,@"content":self.describleView.text,@"pictures":pictures};
+        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"praiseTypeId":self.postID,@"content":tempStr,@"pictures":pictures};
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
