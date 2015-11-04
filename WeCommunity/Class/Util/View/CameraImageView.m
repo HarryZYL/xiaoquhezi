@@ -55,7 +55,7 @@ static CGFloat height = 70;
     if (imageArr.count < 4) {
         self.addImageBtn.frame = CGRectMake((height+margin) * imageArr.count, 0, height, height);
     }else{
-        self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin, height, height);
+        self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin-5, height, height);
     }
 }
 
