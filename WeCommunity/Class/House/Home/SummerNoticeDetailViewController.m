@@ -8,7 +8,7 @@
 
 #import "SummerNoticeDetailViewController.h"
 #define IMPUT_VIEW_HEIGHT 40
-static NSString * const CellIdentifier = @"cell";
+
 @interface SummerNoticeDetailViewController ()
 @property (nonatomic ,strong) RDRStickyKeyboardView *contentWrapper;
 
@@ -42,18 +42,18 @@ static NSString * const CellIdentifier = @"cell";
 
 #pragma mark - UITableViewDelegate/UITableViewDataSource
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier
-//                                                            forIndexPath:indexPath];
-//    
-//    return cell;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return 50;
-//}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"
+                                                            forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 50;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -99,8 +99,8 @@ static NSString * const CellIdentifier = @"cell";
                                                   style:UITableViewStylePlain];
     _mTableView.dataSource = self;
     _mTableView.delegate = self;
-    [_mTableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:CellIdentifier];
+//    [_mTableView registerClass:[UITableViewCell class]
+//           forCellReuseIdentifier:@"cell"];
     return _mTableView;
 }
 

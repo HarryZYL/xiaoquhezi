@@ -22,7 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self getReceveData];
-    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellindex"];
 }
 
 - (void)getReceveData{
@@ -46,7 +46,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        SummerNoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        SummerNoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellindex" forIndexPath:indexPath];
         [cell.cellTitleImg sd_setImageWithURL:detailNotice.creatorInfo.headPhoto];
         cell.cellLabTitle.text = detailNotice.title;
         cell.cellLabTime.text = detailNotice.createTime;

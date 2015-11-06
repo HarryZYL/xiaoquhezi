@@ -8,6 +8,7 @@
 #import "SummerBillBootomView.h"
 #import "BillTableViewController.h"
 #import "UIViewController+HUD.h"
+#import "SummerBillTableViewCell.h"
 #import "SummerBillConfirmViewController.h"
 
 @interface BillTableViewController ()
@@ -31,17 +32,17 @@
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载中";
     [self.view addSubview:_loadingView];
-    [self viewDataWithRoomId:_roomDic[@"id"]];
+//    [self viewDataWithRoomId:_roomDic[@"id"]];
     [self setTableView];
     [self setBootomView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [self viewDataWithRoomId:_roomDic[@"id"]];
     totalBillMoney = 0.0;
-    botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
-//    self.tableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 100);
+    [self viewDataWithRoomId:_roomDic[@"id"]];
+//
+//    botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
 }
 
 - (void)setTableView{
@@ -49,11 +50,11 @@
     self.tableView.autoresizesSubviews = YES;
     self.tableView.dataSource = self;
     self.tableView.delegate   = self;
-    self.tableView.editing = YES;
-    self.tableView.rowHeight = 80;
+    self.tableView.rowHeight = 64;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.allowsMultipleSelection = YES;
     self.tableView.tableFooterView = [[UIView alloc] init];
-    [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SummerBillTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.tableView];
 }
 
@@ -76,8 +77,11 @@
     if (!headerView) {
         headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 60)];
         headerView.backgroundColor = [UIColor whiteColor];
+        UILabel *grayLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 8)];
+        grayLab.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+        [headerView addSubview:grayLab];
         
-        UILabel *labName = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, SCREENSIZE.width - 20, 60)];
+        UILabel *labName = [[UILabel alloc] initWithFrame:CGRectMake(10, 8, SCREENSIZE.width - 20, 53)];
         labName.tag = 1;
         [headerView addSubview:labName];
     }
@@ -87,7 +91,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 60;
+    return 61;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -97,30 +101,39 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    SummerBillTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSDictionary *dicTemp = billArrary[indexPath.row];
-    NSString *strFee = [NSString stringWithFormat:@"%@年%@月物业费，总计：%@元",dicTemp[@"year"],dicTemp[@"month"],dicTemp[@"fee"]];
-    [cell configureBillCellTitle:strFee price:dicTemp[@"fee"] image:nil];
+    NSArray *arraryIndex = [tableView indexPathsForSelectedRows];
+    if ([arraryIndex containsObject:indexPath]) {
+        [cell configureBillCellConten:dicTemp withSelectOrNot:YES];
+    }else{
+        [cell configureBillCellConten:dicTemp withSelectOrNot:NO];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dic = [billArrary objectAtIndex:indexPath.row];
-    [arrarySelect removeObject:dic];
-    totalBillMoney += [dic[@"fee"] floatValue];
+    [arrarySelect addObject:dic];
+    totalBillMoney -= [dic[@"fee"] floatValue];
     botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    SummerBillTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.cellImgSelect.image = [UIImage imageNamed:@"未勾选－设计"];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dic = [billArrary objectAtIndex:indexPath.row];
-    [arrarySelect addObject:dic];
-    totalBillMoney -= [dic[@"fee"] floatValue];
+    [arrarySelect removeObject:dic];
+    totalBillMoney += [dic[@"fee"] floatValue];
     botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
+    SummerBillTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.cellImgSelect.image = [UIImage imageNamed:@"选中－设计"];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
 }
 
 - (void)viewDataWithRoomId:(NSString *)roomID{
@@ -128,25 +141,31 @@
     [Networking retrieveData:GET_HOUSE_FEE parameters:@{@"token": [User getUserToken],@"tradeStatus":@"WaitingPay",@"houseId":roomID } success:^(id responseObject) {
         NSLog(@"----->%@",responseObject);
         billArrary = responseObject[@"rows"];
+        for (NSDictionary *dicTemp in billArrary) {
+            totalBillMoney += [dicTemp[@"fee"] floatValue];
+        }
+        botomView.totalMoney.text = [NSString stringWithFormat:@"总计：%.2f元",totalBillMoney];
         [weakVC.tableView reloadData];
     }];
 }
 
 //确认订单
 - (void)sureOrderList{
-    if ([self.tableView indexPathsForSelectedRows].count < 1) {
+    if ([self.tableView indexPathsForSelectedRows].count >= billArrary.count) {
         [self showHint:@"记得选择，才能缴费"];
         return;
     }
     SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
     NSArray *indexPathArrary = [self.tableView indexPathsForSelectedRows];
-    NSMutableArray *selectBillArrary = [[NSMutableArray alloc] init];
+    NSMutableArray *selectBillArrary = [[NSMutableArray alloc] initWithArray:billArrary];
     
     NSMutableArray *arraryIDs = [[NSMutableArray alloc] init];
+    
     for (NSIndexPath *indexPath in indexPathArrary) {
-        NSDictionary *dicTem = billArrary[indexPath.row];
-        [arraryIDs addObject:dicTem[@"id"]];
-        [selectBillArrary addObject:dicTem];
+        [selectBillArrary removeObject:billArrary[indexPath.row]];
+    }
+    for (NSDictionary *dicTemp in selectBillArrary) {
+        [arraryIDs addObject:dicTemp[@"id"]];
     }
     confirmVC.commnityArrary = selectBillArrary;
     confirmVC.billOrderIDArrary = arraryIDs;

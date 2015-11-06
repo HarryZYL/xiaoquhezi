@@ -11,6 +11,7 @@
 #import "SummerRentMyViewController.h"
 #import "SummerUserHeaderView.h"
 #import "UIViewController+HUD.h"
+#import "SummerCommunityBrowserViewController.h"
 #import "SummerBillRoomViewController.h"
 #import "SummerMessageCenterTableViewController.h"
 #import "SummerPaymentRecordsTableViewController.h"
@@ -21,6 +22,7 @@
 @interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
 {
     SummerUserHeaderView *barButtonItemView;
+    UIButton *titleViewItem;
 }
 @end
 
@@ -44,6 +46,13 @@
     [barButtonItemView.touchViews addGestureRecognizer:titleView];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
     
+    titleViewItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    titleViewItem.frame = self.navigationItem.titleView.frame;
+    
+    [titleViewItem addTarget:self action:@selector(titleNavigationTap) forControlEvents:UIControlEventTouchUpInside];
+    [titleViewItem setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
+    [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
+    self.navigationItem.titleView = titleViewItem;
     [self setupAppearance];
         // login user
     [User login];
@@ -68,7 +77,7 @@
             [self.navigationController presentViewController:nav animated:YES completion:nil];
             
         }else{
-            self.navigationItem.title = [Util getCommunityName];
+            [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
             [self retrireveData];
         }
         
@@ -383,17 +392,17 @@
 }
 
 -(void)noticeDetail{
-//    NSDictionary *dicTemp = self.noticeData[self.headView.pageView.adPageControl.currentPage];
-//    SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
-//    noticeVC.strNoticeID = dicTemp[@"id"];
-//    [self.navigationController pushViewController:noticeVC animated:YES];
+    NSDictionary *dicTemp = self.noticeData[self.headView.pageView.adPageControl.currentPage];
+    SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
+    noticeVC.strNoticeID = dicTemp[@"id"];
+    [self.navigationController pushViewController:noticeVC animated:YES];
     
-    TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
-    textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
-    textVC.title = @"详情";
-    textVC.function = @"notice";
-    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
-    [self.navigationController pushViewController:textVC animated:YES];
+//    TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
+//    textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
+//    textVC.title = @"详情";
+//    textVC.function = @"notice";
+//    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
+//    [self.navigationController pushViewController:textVC animated:YES];
     
 }
 
@@ -443,6 +452,11 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在认证？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
     [alertView show];
 
+}
+
+- (void)titleNavigationTap{
+    SummerCommunityBrowserViewController *communitVC = [[SummerCommunityBrowserViewController alloc] init];
+    [self pushVC:communitVC title:@"小区一览"];
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{

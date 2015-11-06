@@ -14,7 +14,6 @@
 {
     self = [super init];
     if (self) {
-        
         self.Userid = data[@"id"];
         self.userName = data[@"userName"];
         self.nickName = data[@"nickName"];
