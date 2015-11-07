@@ -14,6 +14,11 @@
     if (self = [super initWithFrame:frame]) {
         if (countIndex == 1) {
             self.btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
+            self.btnLeft.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+            [self.btnLeft setTitle:@"预约看房" forState:UIControlStateNormal];
+            [self addSubview:self.btnLeft];
+        }else{
+            self.btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
             self.btnLeft.frame = CGRectMake(0, 0, frame.size.width/2, frame.size.height);
             [self.btnLeft setTitle:@"查看预约" forState:UIControlStateNormal];
             [self addSubview:self.btnLeft];
@@ -22,11 +27,6 @@
             self.btnRight.frame = CGRectMake(frame.size.width/2, 0, frame.size.width/2, frame.size.height);
             [self.btnRight setTitle:@"修改" forState:UIControlStateNormal];
             [self addSubview:self.btnRight];
-        }else{
-            self.btnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-            self.btnLeft.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-            [self.btnLeft setTitle:@"预约看房" forState:UIControlStateNormal];
-            [self addSubview:self.btnLeft];
         }
         
     }

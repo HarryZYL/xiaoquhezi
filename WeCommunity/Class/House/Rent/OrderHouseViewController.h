@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol OrderHouseViewControllerDelegate <NSObject>
+
+- (void)orderHouseRentSeccess;
+
+@end
 
 @interface OrderHouseViewController : UIViewController
 
@@ -18,4 +23,6 @@
 @property (nonatomic,strong) NSString *houseID;
 @property (nonatomic,strong) LoadingView *loadingView;
 @property (nonatomic,strong) UIDatePicker *oneDatePicker;
+@property (nonatomic,weak) id delegate;
+
 @end

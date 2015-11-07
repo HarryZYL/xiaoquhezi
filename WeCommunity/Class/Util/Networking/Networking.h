@@ -24,7 +24,7 @@
 #define getMyComplaints (HOST_URL @"/complaint/user/getMyComplaints")
 #define getMyRepairs (HOST_URL @"/repair/user/getMyRepairs")
 #define getPraisesOfCommunity (HOST_URL @"/praise/getPraisesOfCommunity")
-#define getHouseDealsOfCommunity (HOST_URL @"/houseDeal/getHouseDealsOfCommunity")
+#define getHouseDealsOfCommunity (HOST_URL @"/houseDeal/getHouseDealsOfCommunity")//小区房屋交易
 #define getMyHouseDealsOfCommunity (HOST_URL @"/houseDeal/user/getMyHouseDeals")
 #define getAllHouseDeals (HOST_URL @"/houseDeal/getAllHouseDeals")
 #define getActivityOfCommunity (HOST_URL @"/activity/getActivityOfCommunity")
@@ -52,6 +52,7 @@
 #define praise_add (HOST_URL @"/praise/add")
 
 #define bookingHouse         (HOST_URL @"/houseDeal/bookingHouse")
+#define get_HOUSE_DETAIL     (HOST_URL @"/houseDeal/getHouseDeal") //房屋交易信息（若是自己的，是否有人预约）
 #define POST_CANCELL_BOOKING (HOST_URL @"/houseDeal/cancelBooking") /**<取消预约*/
 #define getBooking           (HOST_URL @"/houseDeal/getBooking")    /**<查询预约看房纪录*/
 #define GET_USER_BOOK        (HOST_URL @"/houseDeal/isUserBooking") /**<查询用户是否在当前租售上预约过*/

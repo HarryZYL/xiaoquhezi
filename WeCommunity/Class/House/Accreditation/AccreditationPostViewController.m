@@ -16,10 +16,7 @@
     UIButton *btnUnit;
 }
 
-@property (nonatomic ,strong) NSMutableArray *arraryUnit;
-@property (nonatomic ,copy) NSString *strUnit;
-@property (nonatomic ,copy) NSString *strCommunityName;
-@property (nonatomic ,copy) NSString *strCommunityID;
+
 
 @end
 

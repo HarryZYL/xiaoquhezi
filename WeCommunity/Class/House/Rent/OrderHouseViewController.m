@@ -81,6 +81,7 @@
                                      };
         [Networking retrieveData:bookingHouse parameters:parameters success:^(id responseObject) {
             [self showHint:@"预约成功"];
+            [self.delegate orderHouseRentSeccess];
             [self.navigationController popViewControllerAnimated:YES];
             
         } addition:^{
@@ -97,7 +98,7 @@
     [self.view endEditing:YES];
     [self.oneDatePicker removeFromSuperview];
     self.oneDatePicker = [[UIDatePicker alloc] init];
-    self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, self.view.frame.size.height-self.orderBtn.frame.origin.y + 40); // 设置显示的位置和大小
+    self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, 110); // 设置显示的位置和大小
     NSDate *minDate = [NSDate dateWithTimeIntervalSinceNow:15*60];
     self.oneDatePicker.minimumDate = minDate;
     

@@ -7,11 +7,13 @@
 //
 
 #import "RentDetailViewController.h"
+#import "RentPostViewController.h"
 #import "UIViewController+HUD.h"
 
-@interface RentDetailViewController ()
+@interface RentDetailViewController ()<OrderHouseViewControllerDelegate>
 @property (nonatomic ,strong)NSMutableDictionary *dicRoomData;
-@property (assign) BOOL isBooking;
+@property (nonatomic ,copy)NSString *strUserBookingCount;/**<自己发布的房屋，预约人数*/
+@property (assign) BOOL isBooking;/**<不是自己发布的，是否预约过*/
 @end
 
 @implementation RentDetailViewController
@@ -47,12 +49,25 @@
     self.houseDeal = [[HouseDeal alloc] initWithData:self.detailData];
     self.activity = [[Activity alloc] initWithData:self.detailData];
     self.secondHand = [[SecondHand alloc] initWithData:self.detailData];
-    [self setupLoadRoomData];
+    User *user = [[User alloc] initWithData];
+    if ([self.function isEqualToString:@"rent"]) {
+        if (user.Userid.intValue != self.houseDeal.creatorInfo.Userid.intValue) {
+            [self setupLoadRoomData];//不是自己发布的,是否预约
+        }else{
+            //自己发布的,预约人数
+            NSDictionary *pararma = @{@"id":self.houseDeal.objectId};
+            [Networking retrieveData:get_HOUSE_DETAIL parameters:pararma success:^(id responseObject) {
+                _strUserBookingCount = responseObject[@"bookingCount"];
+                [self setupBottomButton];
+            }];
+        }
+        
+    }
 }
 
 - (void)setupLoadRoomData{
     NSDictionary *parama = @{@"token": [User getUserToken],
-                             @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
+                             @"houseDealId":self.houseDeal.objectId};
     [Networking retrieveData:GET_USER_BOOK parameters:parama roomSuccess:^(id responseObject) {
         _isBooking = [responseObject[@"msg"] boolValue];//是否当前用户租售过
         [self confirmBootomButtonTitle];
@@ -68,7 +83,6 @@
         [self.rentView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.rentView];
     }else if ([self.function isEqualToString:@"activity"]){
-        
         self.activityView = [[ActivityDetailView alloc] initWithFrame:viewFrame data:self.detailData];
         [self.activityView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.activityView];
@@ -82,10 +96,15 @@
 }
 
 -(void)setupBottomButton{
-    self.functionBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.functionBtn.frame = CGRectMake(0, self.view.frame.size.height-40, self.view.frame.size.width, 40);
+    User *user = [[User alloc] initWithData];
+    if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
+        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, self.view.frame.size.width, 40) withItem:2];
+        [self.functionBtn.btnRight addTarget:self action:@selector(rentDetailRePaier) forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, SCREENSIZE.width, 40) withItem:1];
+    }
     [self confirmBootomButtonTitle];
-    [self.functionBtn addTarget:self action:@selector(order:) forControlEvents:UIControlEventTouchUpInside];
+    [self.functionBtn.btnLeft addTarget:self action:@selector(order:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.functionBtn];
 
 }
@@ -93,17 +112,27 @@
 - (void)confirmBootomButtonTitle{
     User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
+        
         if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
-            [self.functionBtn configureButtonTitle:@"查看预约记录" backgroundColor:THEMECOLOR];
+            if (_strUserBookingCount.intValue > 0) {
+                //有无预约人数
+                [self.functionBtn.btnLeft configureButtonTitle:@"查看预约记录" backgroundColor:THEMECOLOR];
+                [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
+            }else{
+                [self.functionBtn.btnLeft configureButtonTitle:@"暂未预约" backgroundColor:THEMECOLOR];
+                [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
+            }
+            
         }else if (_isBooking){
-            [self.functionBtn configureButtonTitle:@"取消预约" backgroundColor:THEMECOLOR];
+            [self.functionBtn.btnLeft configureButtonTitle:@"取消预约" backgroundColor:THEMECOLOR];
         }else{
-            [self.functionBtn configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+            [self.functionBtn.btnLeft configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
         }
+        
     }else if([self.function isEqualToString:@"activity"]) {
-        [self.functionBtn configureButtonTitle:@"参加活动" backgroundColor:THEMECOLOR];
+        [self.functionBtn.btnLeft configureButtonTitle:@"参加活动" backgroundColor:THEMECOLOR];
     }else if([self.function isEqualToString:@"secondHand"]) {
-        [self.functionBtn configureButtonTitle:@"购买" backgroundColor:THEMECOLOR];
+        [self.functionBtn.btnLeft configureButtonTitle:@"购买" backgroundColor:THEMECOLOR];
     }
 }
 
@@ -129,13 +158,16 @@
 
 #pragma mark action
 -(void)order:(id)sender{
-    if ([self.functionBtn.currentTitle isEqualToString:@"预约看房"]) {
+    if ([self.functionBtn.btnLeft.currentTitle isEqualToString:@"预约看房"]) {
         OrderHouseViewController *orderVC = [[OrderHouseViewController alloc] init];
         orderVC.houseID = self.houseDeal.objectId;
+        orderVC.delegate = self;
         [self pushVC:orderVC title:@"预约看房"];
-    }else if ([self.functionBtn.currentTitle isEqualToString:@"查看预约记录"]){
+    }else if ([self.functionBtn.btnLeft.currentTitle isEqualToString:@"查看预约记录"]){
         [self getBookingList];
-    }else{
+    }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"暂未预约"]){
+        
+    }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"取消预约"]){
         //取消预约
         [self cansoleBooking];
     }
@@ -154,7 +186,7 @@
     [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama roomSuccess:^(id responseObject) {
         if ([responseObject[@"state"] intValue] == 0) {
             [self showHint:@"取消预约成功"];
-            [self.functionBtn configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+            [self.functionBtn.btnLeft configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
         }
     }];
     
@@ -172,11 +204,18 @@
     }
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.displayActionButton = NO;
+    browser.displayActionButton = YES;
     browser = [Util fullImageSetting:browser];
-    [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
+//    [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
     [self.navigationController pushViewController:browser animated:YES];
     
+}
+
+- (void)rentDetailRePaier{
+    //修改,房屋信息
+    RentPostViewController *postVC = [[RentPostViewController alloc] init];
+    postVC.houseDeal = self.houseDeal;
+    [self.navigationController pushViewController:postVC animated:YES];
 }
 
 #pragma mark - MWPhotoBrowserDelegate
@@ -195,6 +234,10 @@
     // If we subscribe to this method we must dismiss the view controller ourselves
     NSLog(@"Did finish modal presentation");
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)orderHouseRentSeccess{
+    [self.functionBtn.btnLeft configureButtonTitle:@"取消预约" backgroundColor:THEMECOLOR];
 }
 
 @end

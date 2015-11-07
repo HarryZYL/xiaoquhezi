@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RentDetailView.h"
+#import "SummerRentDetailBootomView.h"
 #import "OrderHouseViewController.h"
 #import "HouseDeal.h"
 #import "ActivityDetailView.h"
@@ -17,7 +18,7 @@
 @interface RentDetailViewController : UIViewController<MWPhotoBrowserDelegate>
 
 @property (nonatomic,strong) UIScrollView *scollView;
-@property (nonatomic,strong) UIButton *functionBtn;
+@property (nonatomic,strong) SummerRentDetailBootomView *functionBtn;
 @property (nonatomic,strong) NSDictionary *detailData;
 @property (nonatomic, strong) NSMutableArray *photos;
 //view

@@ -33,6 +33,11 @@
 @property (nonatomic,strong) UIButton *submitBtn;
 @property (nonatomic,strong) LoadingView *loadingView;
 
+@property (nonatomic ,strong) NSMutableArray *arraryUnit;
+@property (nonatomic ,copy) NSString *strUnit;
+@property (nonatomic ,copy) NSString *strCommunityName;
+@property (nonatomic ,copy) NSString *strCommunityID;
+
 //picker
 @property (nonatomic,strong) PickerView *pickerView;
 @property (nonatomic,strong) NSString *pickerTag;

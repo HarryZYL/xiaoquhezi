@@ -194,6 +194,7 @@
 		D4E5F0681BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */; };
 		D4E5F0691BEC39FE009D2F15 /* SummerCommunityBrowserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E5F0671BEC39FE009D2F15 /* SummerCommunityBrowserViewController.xib */; };
 		D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */; };
+		D4E8D62B1BEE647E00B41223 /* SummerPostRentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */; };
 		D4E8F91E1BE5FBA000E2338C /* SummerPaymentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */; };
 		D4E8F9201BE623F100E2338C /* SummerInputPhoneNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */; };
 /* End PBXBuildFile section */
@@ -625,6 +626,8 @@
 		D4E5F0671BEC39FE009D2F15 /* SummerCommunityBrowserViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerCommunityBrowserViewController.xib; sourceTree = "<group>"; };
 		D4E6E7221BE73E3600C3E6C4 /* SummerInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerInputView.h; path = ComplaintCell/SummerInputView.h; sourceTree = "<group>"; };
 		D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerInputView.m; path = ComplaintCell/SummerInputView.m; sourceTree = "<group>"; };
+		D4E8D6291BEE647E00B41223 /* SummerPostRentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPostRentViewController.h; sourceTree = "<group>"; };
+		D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerPostRentViewController.m; sourceTree = "<group>"; };
 		D4E8F91C1BE5FBA000E2338C /* SummerPaymentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPaymentListModel.h; path = HomeModel/SummerPaymentListModel.h; sourceTree = "<group>"; };
 		D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPaymentListModel.m; path = HomeModel/SummerPaymentListModel.m; sourceTree = "<group>"; };
 		D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerInputPhoneNumber.xib; sourceTree = "<group>"; };
@@ -1238,6 +1241,8 @@
 				4ACCD01F1BBF49600001227A /* OrderHouseViewController.m */,
 				4ACCD0201BBF49600001227A /* RentDetailViewController.h */,
 				4ACCD0211BBF49600001227A /* RentDetailViewController.m */,
+				D4E8D6291BEE647E00B41223 /* SummerPostRentViewController.h */,
+				D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */,
 				4ACCD0221BBF49600001227A /* RentPostViewController.h */,
 				4ACCD0231BBF49600001227A /* RentPostViewController.m */,
 				4ACCD0241BBF49600001227A /* RentViewController.h */,
@@ -1856,6 +1861,7 @@
 				4AFFD6931BCE042E00D33F5C /* AboutViewController.m in Sources */,
 				D41370561BD9CA88003BE559 /* SummerGetUserLocation.m in Sources */,
 				4ACCD0481BBF49600001227A /* CallView.m in Sources */,
+				D4E8D62B1BEE647E00B41223 /* SummerPostRentViewController.m in Sources */,
 				D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */,
 				4ACCCEE11BBF456F0001227A /* SecondHandPostViewController.m in Sources */,
 				D454EAA51BE4949E0089333D /* DataSigner.m in Sources */,
