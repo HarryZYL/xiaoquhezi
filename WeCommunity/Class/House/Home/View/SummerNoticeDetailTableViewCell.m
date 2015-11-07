@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.cellTitleImg.layer.cornerRadius = self.cellTitleImg.frame.size.width/2;
+    self.cellTitleImg.layer.masksToBounds = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

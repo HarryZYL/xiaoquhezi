@@ -18,6 +18,15 @@
         [self.btnAddImg setImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
         [self addSubview:self.btnAddImg];
         
+        self.summerInputLabNumbers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        self.summerInputLabNumbers.textAlignment = NSTextAlignmentCenter;
+        self.summerInputLabNumbers.backgroundColor = [UIColor redColor];
+        self.summerInputLabNumbers.layer.cornerRadius = self.summerInputLabNumbers.frame.size.width/2;
+        self.summerInputLabNumbers.layer.masksToBounds = YES;
+        self.summerInputLabNumbers.hidden = YES;
+        self.summerInputLabNumbers.textColor = [UIColor whiteColor];
+        [self addSubview:self.summerInputLabNumbers];
+        
         self.summerInputView = [[UITextView alloc] initWithFrame:CGRectMake(44, 5, SCREENSIZE.width - 88, 30)];
         self.summerInputView.layer.cornerRadius = 3;
         self.summerInputView.layer.masksToBounds = YES;

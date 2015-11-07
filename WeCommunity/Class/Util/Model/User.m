@@ -34,7 +34,7 @@
             self.lastSignTime = [Util formattedDate:data[@"lastSignTime"] type:1];
             self.createTime = [Util formattedDate:data[@"createTime"] type:1];
             self.communityId = data[@"communityId"];
-            self.headPhoto = [NSURL URLWithString:data[@"headPhoto"]] ;
+            self.headPhoto = [NSURL URLWithString:[NSString stringWithFormat:@"http://www.xiaoquhe.com%@",data[@"headPhoto"]]];
             self.continuousSignDay = data[@"continuousSignDay"];
             self.hobby = data[@"hobby"];
             

@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SummerInputView.h"
 @interface SummerNoticeDetailViewController : UIViewController<UITableViewDataSource ,UITableViewDelegate>
-{
-    SummerInputView *inputView;
-}
+
+@property (nonatomic ,strong) SummerInputView *summerInputView;
 @property (nonatomic ,strong) UITableView *mTableView;
 @property (nonatomic ,copy) NSString *strNoticeID;
 

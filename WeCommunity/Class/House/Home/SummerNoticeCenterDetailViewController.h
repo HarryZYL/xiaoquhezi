@@ -10,6 +10,6 @@
 
 @interface SummerNoticeCenterDetailViewController : SummerNoticeDetailViewController<UITableViewDataSource ,UITableViewDelegate>
 
-//@property (nonatomic ,copy) NSString *strNoticeID;
+@property (nonatomic ,strong) Notice *detailNotice;;
 
 @end

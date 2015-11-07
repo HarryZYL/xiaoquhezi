@@ -54,19 +54,16 @@
     NSDictionary *parama = @{@"token": [User getUserToken],
                              @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
     [Networking retrieveData:GET_USER_BOOK parameters:parama roomSuccess:^(id responseObject) {
-        _isBooking = [responseObject[@"state"] boolValue];
+        _isBooking = [responseObject[@"msg"] boolValue];//是否当前用户租售过
         [self confirmBootomButtonTitle];
     }];
 }
 
 -(void)setupFuncitonView{
-    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(previewFullImage:)];
     tapGesture.numberOfTouchesRequired = 1;
     CGRect viewFrame = CGRectMake(0, 64, self.scollView.frame.size.width, 800);
-    
-    if ([self.function isEqualToString:@"rent"]) {
-        
+    if ([self.function isEqualToString:@"rent"]) {//租售
         self.rentView = [[RentDetailView alloc] initWithFrame:viewFrame andDataArray:self.detailData ];
         [self.rentView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.rentView];
@@ -76,7 +73,6 @@
         [self.activityView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.activityView];
     }else if ([self.function isEqualToString:@"secondHand"]){
-        
         self.secondHandView = [[SecondHandView alloc] initWithFrame:viewFrame withData:self.detailData];
         [self.secondHandView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.secondHandView];
@@ -86,7 +82,6 @@
 }
 
 -(void)setupBottomButton{
-    
     self.functionBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     self.functionBtn.frame = CGRectMake(0, self.view.frame.size.height-40, self.view.frame.size.width, 40);
     [self confirmBootomButtonTitle];
@@ -121,7 +116,12 @@
                                  @"row":@10
                                  };
     [Networking retrieveData:getBooking parameters:parameters success:^(id responseObject) {
-       
+//        {
+//            rows =     (
+//            );
+//            total = 0;
+//        }
+        [self showHint:@"暂无预约"];
     }];
 }
 
@@ -133,7 +133,7 @@
         orderVC.houseID = self.houseDeal.objectId;
         [self pushVC:orderVC title:@"预约看房"];
     }else if ([self.functionBtn.currentTitle isEqualToString:@"查看预约记录"]){
-        
+        [self getBookingList];
     }else{
         //取消预约
         [self cansoleBooking];
@@ -150,7 +150,12 @@
 - (void)cansoleBooking{
     NSDictionary *parama = @{@"token":[User getUserToken],
                              @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
-    [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama];
+    [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama roomSuccess:^(id responseObject) {
+        if ([responseObject[@"state"] intValue] == 0) {
+            [self showHint:@"取消预约成功"];
+            [self.functionBtn configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+        }
+    }];
     
 }
 

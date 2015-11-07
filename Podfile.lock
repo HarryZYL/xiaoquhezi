@@ -24,7 +24,7 @@ PODS:
   - JSONKit (1.5pre)
   - libWeChatSDK (1.6)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (2.4.12)
+  - MJRefresh (2.5.0)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -41,7 +41,7 @@ DEPENDENCIES:
   - JSONKit (~> 1.5pre)
   - libWeChatSDK
   - MJRefresh
-  - MWPhotoBrowser
+  - MWPhotoBrowser (~> 2.1.1)
   - Pgyer
   - PgyUpdate
   - SDWebImage (~> 3.7)
@@ -53,7 +53,7 @@ SPEC CHECKSUMS:
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: ca8e9589895977df32d379d46e6b8a5450b3ff44
+  MJRefresh: 4bce3b592ae052ff89473b2907278bf8a80abdd3
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   Pgyer: 2529aedaded9689311151458867be858a06442e2
   PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4

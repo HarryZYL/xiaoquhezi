@@ -11,8 +11,8 @@
 #define HOST_URL @"http://www.wshequ.net"
 //#define HOST_URL @"http://192.168.1.101:10000/wsq"
 
-#define get_reply_notice (HOST_URL @"/notice/replyNotice") /**<回复公告*/
-
+#define get_reply_notice      (HOST_URL @"/notice/replyNotice") /**<回复公告*/
+#define GET_NOTICE_REPLIS     (HOST_URL @"/notice/getReplies") //查询公告回复
 #define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")//小区公告
 #define getNoticeDetail       (HOST_URL @"/notice/getNotice")//公告详情
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")

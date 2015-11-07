@@ -395,6 +395,7 @@
     NSDictionary *dicTemp = self.noticeData[self.headView.pageView.adPageControl.currentPage];
     SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
     noticeVC.strNoticeID = dicTemp[@"id"];
+    noticeVC.detailNotice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
     [self.navigationController pushViewController:noticeVC animated:YES];
     
 //    TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];

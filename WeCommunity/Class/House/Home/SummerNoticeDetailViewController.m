@@ -29,9 +29,9 @@
     self.title = @"公告详情";
     [self.view addSubview:self.mTableView];
     
-    inputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
-    [self.view addSubview:inputView];
-    [inputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
+    _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
+    [self.view addSubview:_summerInputView];
+    
 }
 
 - (void)didTapSend:(id)sender
@@ -60,17 +60,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)btnSenderMessageWithAddImage:(UIButton *)sender{
-    
-}
-
 - (void)summerKeybordViewWillShow:(NSNotification *)aNotificaiton{
     NSDictionary* info = [aNotificaiton userInfo];
     NSValue  *keybordRect = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect rectKeybord = keybordRect.CGRectValue;
     NSTimeInterval animationDuration = [[[aNotificaiton userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
-        inputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        _summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
         self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - rectKeybord.size.height);
     }];
 }
@@ -78,15 +74,13 @@
 - (void)summerKeybordViewWillHide:(NSNotification *)aNotification{
     NSTimeInterval animationDuration = [[[aNotification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration animations:^{
-        inputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
-        [inputView.btnAddImg setTitle:@"9" forState:UIControlStateNormal];
-        [inputView.btnAddImg setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        _summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
         
         self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
     }];
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
     [self.view endEditing:YES];
 }
 
@@ -101,6 +95,7 @@
     _mTableView.delegate = self;
 //    [_mTableView registerClass:[UITableViewCell class]
 //           forCellReuseIdentifier:@"cell"];
+    _mTableView.tableFooterView = [[UIView alloc] init];
     return _mTableView;
 }
 
