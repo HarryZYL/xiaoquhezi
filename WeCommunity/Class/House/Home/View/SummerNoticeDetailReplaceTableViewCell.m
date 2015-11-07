@@ -12,14 +12,16 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [self addSubview:self.cellTitleImg];
-    [self addSubview:self.cellNameLab];
-    [self addSubview:self.cellContenLab];
-    [self addSubview:self.cellReplayBtn];
+    [self.contentView addSubview:self.cellTitleImg];
+    [self.contentView addSubview:self.cellNameLab];
+    [self.contentView addSubview:self.cellContenLab];
+    [self.contentView addSubview:self.cellReplayBtn];
 }
 
-- (void)confirmCellInformationWithData:(NSDictionary *)dicTemp{
-    
+- (void)confirmCellInformationWithData:(SummerHomeDetailNoticeModel *)dicTemp{
+    [self.cellTitleImg sd_setImageWithURL:dicTemp.creatorInFo.headPhoto placeholderImage:[UIImage imageNamed:@"宠物"]];
+    self.cellNameLab.text = dicTemp.content;
+    self.cellTimeLab.text = dicTemp.createTime;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

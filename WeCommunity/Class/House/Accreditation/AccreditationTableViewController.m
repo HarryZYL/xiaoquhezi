@@ -20,8 +20,8 @@
     
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
@@ -105,8 +105,8 @@
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.header endRefreshing];
-        [self.tableView.footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         self.page = 1;
     }];
 }
@@ -118,9 +118,9 @@
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (self.dataArray.count < self.page*row) {
-            [self.tableView.footer endRefreshingWithNoMoreData];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

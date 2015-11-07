@@ -188,7 +188,6 @@
 }
 
 -(void)post:(id)sender{
-    
     if (self.postID == nil) {
         [Util alertNetworingError:@"请选择分类"];
     }else{
@@ -302,7 +301,7 @@
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             
             [self.chosenImages addObject:img];
-            [self.chosenImagesSmall addObject:[Util scaleToSize:img size:CGSizeMake(200, 200)]];
+            [self.chosenImagesSmall addObject:[Util scaleToSize:img size:CGSizeMake(100, 100)]];
             
             if (idx==0 && self.chosenImages.count == 1) {
                 
@@ -326,7 +325,7 @@
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser = [Util fullImageSetting:browser];
-    browser.enableSwipeToDismiss = NO;
+    browser.displayNavArrows = YES;
     [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
 }

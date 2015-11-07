@@ -113,15 +113,23 @@
 //                                @"communityName":tempDic[@"name"],
 //                                @"communityID":tempDic[@"id"]
 //                                };
-    NSDictionary *community = @{
-                                @"communityName":self.locationArr[indexPath.row],
-                                @"communityID":self.locationID[indexPath.row]
-                                };
-    [FileManager saveDataToFile:community filePath:@"Community"];
-    [User SaveAuthentication];
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-
+    if (_locationStyle == LocationTableViewControllerStyleDefult) {
+        NSDictionary *community = @{
+                                    @"communityName":self.locationArr[indexPath.row],
+                                    @"communityID":self.locationID[indexPath.row]
+                                    };
+        [FileManager saveDataToFile:community filePath:@"Community"];
+        [User SaveAuthentication];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    }else if(_locationStyle == LocationStyleSelectCommunityNameAndID){
+        NSDictionary *community = @{
+                                    @"communityName":self.locationArr[indexPath.row],
+                                    @"communityID":self.locationID[indexPath.row]
+                                    };
+        [self.delegate selectedFinishedCommunityNameAndID:community];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

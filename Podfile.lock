@@ -1,30 +1,30 @@
 PODS:
-  - AFNetworking (2.6.1):
-    - AFNetworking/NSURLConnection (= 2.6.1)
-    - AFNetworking/NSURLSession (= 2.6.1)
-    - AFNetworking/Reachability (= 2.6.1)
-    - AFNetworking/Security (= 2.6.1)
-    - AFNetworking/Serialization (= 2.6.1)
-    - AFNetworking/UIKit (= 2.6.1)
-  - AFNetworking/NSURLConnection (2.6.1):
+  - AFNetworking (2.6.2):
+    - AFNetworking/NSURLConnection (= 2.6.2)
+    - AFNetworking/NSURLSession (= 2.6.2)
+    - AFNetworking/Reachability (= 2.6.2)
+    - AFNetworking/Security (= 2.6.2)
+    - AFNetworking/Serialization (= 2.6.2)
+    - AFNetworking/UIKit (= 2.6.2)
+  - AFNetworking/NSURLConnection (2.6.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.1):
+  - AFNetworking/NSURLSession (2.6.2):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.1)
-  - AFNetworking/Security (2.6.1)
-  - AFNetworking/Serialization (2.6.1)
-  - AFNetworking/UIKit (2.6.1):
+  - AFNetworking/Reachability (2.6.2)
+  - AFNetworking/Security (2.6.2)
+  - AFNetworking/Serialization (2.6.2)
+  - AFNetworking/UIKit (2.6.2):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
   - JSONKit (1.5pre)
   - libWeChatSDK (1.6)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (2.5.0)
+  - MJRefresh (3.0.0)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -48,12 +48,12 @@ DEPENDENCIES:
   - UzysAssetsPickerController
 
 SPEC CHECKSUMS:
-  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  AFNetworking: 7f317038a9710cabfa43ec56396b307b45df72ab
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: 4bce3b592ae052ff89473b2907278bf8a80abdd3
+  MJRefresh: 72e41ae6c0e9331da3e19cf7e9286a2b1b62ff5f
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   Pgyer: 2529aedaded9689311151458867be858a06442e2
   PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4

@@ -15,6 +15,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"选择小区";
+    
     SummerSelectCityView *cityView = [[SummerSelectCityView alloc] initWithFrame:self.view.frame];
     cityView.delegate = self;
     [self.view addSubview:cityView];

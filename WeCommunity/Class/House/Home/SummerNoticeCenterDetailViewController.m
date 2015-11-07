@@ -7,6 +7,7 @@
 //
 #import "NSString+HTML.h"
 #import "UIViewController+HUD.h"
+#import "SummerHomeDetailNoticeModel.h"
 #import "SummerNoticeCenterDetailViewController.h"
 #import "SummerNoticeDetailReplaceTableViewCell.h"
 #import "SummerNoticeDetailTableViewCell.h"
@@ -31,24 +32,27 @@
     self.chosenImages = [[NSMutableArray alloc] init];
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.summerInputView.btnAddImg addTarget:self action:@selector(btnSelectedImageViews:) forControlEvents:UIControlEventTouchUpInside];
-    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellnoticecenterdetail"];
-    [self.mTableView reloadData];
+    [self.mTableView registerClass:[SummerNoticeDetailReplaceTableViewCell class] forCellReuseIdentifier:@"cellItem"];
+//    [self.mTableView reloadData];
     [self getReceveData];
 }
 
 - (void)getReceveData{
-    [_arraryData removeAllObjects];
+//    [_arraryData removeAllObjects];
     __weak typeof(self) weakSelf = self;
     [Networking retrieveData:GET_NOTICE_REPLIS parameters:@{@"id": self.strNoticeID,
                                                             @"page":[NSNumber numberWithInteger:numberPage],
                                                             @"row":@"30"}success:^(id responseObject) {
-        _arraryData = responseObject[@"rows"];
+                                                                for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+                                                                    [_arraryData addObject:[[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp]];
+                                                                }
         [weakSelf.mTableView reloadData];
     }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _arraryData.count + 1;
+    NSInteger integerRow = _arraryData.count + 1;
+    return integerRow;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,15 +60,15 @@
         CGRect rectHeight = [_detailNotice.contentTxt boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading |NSStringDrawingTruncatesLastVisibleLine attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13]} context:nil];
         return ceilf(rectHeight.size.height) + 61;
     }else{
-        NSDictionary *dicTemp = _arraryData[indexPath.row - 1];
-        CGFloat heightCell = [dicTemp[@"content"] boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
-        if ([dicTemp[@"pictures"] isEqual:[NSNull null]]) {
+        SummerHomeDetailNoticeModel *noticModel = _arraryData[indexPath.row - 1];
+        CGFloat heightCell = [noticModel.content boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
+        if ([noticModel.pictures isEqual:[NSNull null]]) {
             return 64 + heightCell;
         }
-        if ([dicTemp[@"pictures"] count] == 0) {
+        if ([noticModel.pictures count] == 0) {
             return 64 + heightCell;
         }else{
-            return heightCell + ([dicTemp[@"pictures"] count]/4 + 1) * 40.0;
+            return 64 + heightCell + ([noticModel.pictures count]/4 + 1) * 40.0;
         }
         
     }
@@ -72,10 +76,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         SummerNoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellnoticecenterdetail"];
         if (!cell) {
             cell = [[NSBundle mainBundle] loadNibNamed:@"SummerNoticeDetailTableViewCell" owner:self options:nil].firstObject;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         [cell.cellTitleImg sd_setImageWithURL:self.detailNotice.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
         cell.cellLabTitle.text = self.detailNotice.title;
@@ -96,11 +101,11 @@
         cell.cellLabContent.attributedText = attrStr;
         return cell;
     }else{
-        SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem"];
-        if (!cell) {
-            cell = [[SummerNoticeDetailReplaceTableViewCell alloc] init];
-        }
-        [cell confirmCellInformationWithData:_arraryData[indexPath.row - 1]];
+        SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+//        if (!cell) {
+//            cell = [[SummerNoticeDetailReplaceTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellItem"];
+//        }
+        [cell confirmCellInformationWithData:_arraryData[indexPath.row]];
         return cell;
     }
     

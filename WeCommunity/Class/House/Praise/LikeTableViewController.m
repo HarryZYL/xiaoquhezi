@@ -8,8 +8,8 @@
 
 #import "LikeTableViewController.h"
 #import "AccreditationTableViewController.h"
-@interface LikeTableViewController ()<TextPostViewControllerDelegate>
-
+@interface LikeTableViewController ()<TextPostViewControllerDelegate ,MWPhotoBrowserDelegate>
+@property(nonatomic ,strong)NSMutableArray *photos;
 @end
 
 @implementation LikeTableViewController
@@ -22,8 +22,8 @@
     
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
 
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
@@ -93,9 +93,43 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         [self post:nil];
+    }else{
+        NSDictionary *dicTemp = self.dataArray[indexPath.row];
+        if (![dicTemp[@"pictures"] isEqual:[NSNull null]]) {
+            if ([dicTemp[@"pictures"] count] > 0) {
+                //显示图片
+                if (self.photos) {
+                    [self.photos removeAllObjects];
+                }else{
+                    self.photos = [[NSMutableArray alloc] initWithCapacity:0];
+                }
+                for (int i = 0; i< [dicTemp[@"pictures"] count]; i++) {
+                    MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:dicTemp[@"pictures"][i]]];
+                    [self.photos addObject:photo];
+                }
+                // Create browser
+                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+                browser = [Util fullImageSetting:browser];
+                
+                browser.displayActionButton = NO;
+                //    [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
+                [self.navigationController pushViewController:browser animated:YES];
+            }
+        }
     }
 }
 
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
+}
 
 # pragma mark - function
 -(void)post:(id)sender{
@@ -142,8 +176,8 @@
         self.dataArray = responseObject[@"rows"];
         self.totalLike = responseObject[@"total"];
         [self.tableView reloadData];
-        [self.tableView.header endRefreshing];
-        [self.tableView.footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         self.page = 1;
     }];
 }
@@ -155,9 +189,9 @@
         self.dataArray = responseObject[@"rows"];
         self.totalLike = responseObject[@"total"];
         [self.tableView reloadData];
-        [self.tableView.footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer endRefreshingWithNoMoreData];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

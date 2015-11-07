@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "SummerSelectCityView.h"
 
+@protocol SummerSelectCityOfHouseViewControllerDelegate <NSObject>
+
+- (void)selectedFinishedNearlyCommunity:(NSDictionary *)dicTemp;
+
+@end
+
 @interface SummerSelectCityOfHouseViewController : UIViewController<SummerSelectCityViewDelegate>
+
+@property (nonatomic,weak) id delegate;
 
 @end

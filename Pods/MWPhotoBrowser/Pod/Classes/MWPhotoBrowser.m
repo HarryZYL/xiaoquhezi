@@ -175,7 +175,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         _previousButton = [[UIBarButtonItem alloc] initWithImage:previousButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(gotoPreviousPage)];
         _nextButton = [[UIBarButtonItem alloc] initWithImage:nextButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(gotoNextPage)];
     }
-    if (self.displayActionButton) {//分享
+    if (self.displayActionButton) {
 //        _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
         _actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"垃圾筐"] style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     }
@@ -369,7 +369,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     if (_currentPageIndex != _pageIndexBeforeRotation) {
         [self jumpToPageAtIndex:_pageIndexBeforeRotation animated:NO];
     }
-    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -1563,6 +1563,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
             
             // Let delegate handle things
             [self.delegate photoBrowser:self actionButtonPressedForPhotoAtIndex:_currentPageIndex];
+            
         } else {
             
             // Show activity view controller
@@ -1597,7 +1598,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
         }
         
         // Keep controls hidden
-        [self setControlsHidden:YES animated:YES permanent:YES];
+        [self setControlsHidden:NO animated:YES permanent:YES];
 
     }
     

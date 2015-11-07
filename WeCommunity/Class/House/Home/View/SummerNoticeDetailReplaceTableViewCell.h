@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SummerHomeDetailNoticeModel.h"
 
 @interface SummerNoticeDetailReplaceTableViewCell : UITableViewCell
 
@@ -16,6 +17,6 @@
 @property (nonatomic ,strong)UILabel *cellContenLab;
 @property (nonatomic ,strong)UIButton *cellReplayBtn;
 
-- (void)confirmCellInformationWithData:(NSDictionary *)dicTemp;
+- (void)confirmCellInformationWithData:(SummerHomeDetailNoticeModel *)dicTemp;
 
 @end

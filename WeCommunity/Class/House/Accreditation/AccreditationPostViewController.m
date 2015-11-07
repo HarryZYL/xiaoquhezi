@@ -5,12 +5,12 @@
 //  Created by Harry on 8/31/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
 #import "AccreditationPostViewController.h"
+#import "LocationTableViewController.h"
 #import "UIViewController+HUD.h"
 #import "NSString+HTML.h"
 
-@interface AccreditationPostViewController ()<UITextFieldDelegate>
+@interface AccreditationPostViewController ()<UITextFieldDelegate ,LocationTableViewControllerDelegate>
 {
     NSArray *hourseLeve;
     UIButton *btnUnit;
@@ -18,6 +18,8 @@
 
 @property (nonatomic ,strong) NSMutableArray *arraryUnit;
 @property (nonatomic ,copy) NSString *strUnit;
+@property (nonatomic ,copy) NSString *strCommunityName;
+@property (nonatomic ,copy) NSString *strCommunityID;
 
 @end
 
@@ -27,6 +29,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    self.strCommunityName = [Util getCommunityName];
+    self.strCommunityID = [Util getCommunityID];
     [self initViewsLeves];//当前小区层级
     
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
@@ -42,11 +46,11 @@
 -(void)setupData{
     if (hourseLeve.count == 2) {
         NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-        NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择房号"];
+        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择房号"];
         self.titleArray = @[section1,section2];
     }else if (hourseLeve.count == 3){
         NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-        NSArray *section2 = @[[Util getCommunityName],@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
+        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
         self.titleArray = @[section1,section2];
     }
     [self setupAppearance];
@@ -58,7 +62,7 @@
     if (hourseLeve.count == 2) {
         picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
     }else if (hourseLeve.count == 3){
-        picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"单元号",@"房号"];
+        picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号",@"房号"];
     }
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -192,6 +196,7 @@
     [self.owerTypeBtn addTarget:self action:@selector(selectPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.buildingIDBtn addTarget:self action:@selector(getBuildingID:) forControlEvents:UIControlEventTouchUpInside];
     [self.houseIDBtn addTarget:self action:@selector(getHouseIdForBuilding:) forControlEvents:UIControlEventTouchUpInside];
+    [self.communityName addTarget:self action:@selector(getOtherCommunityName) forControlEvents:UIControlEventTouchUpInside];
     self.owerTypeArr = @[@"户主",@"业主"];
     self.owerTypeArrEn = @[@"Owner",@"NoOwner"];
     self.buildingArr = @[@"1",@"2",@"3"];
@@ -199,12 +204,14 @@
     self.pickerStr = nil;
     
     [self.scrollView addSubview:self.submitBtn];
-
+    [self.loadingView removeFromSuperview];
 }
 
 #pragma mark networking
 
 - (void)initViewsLeves{
+    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
+    self.loadingView.titleLabel.text = @"正在加载";
     [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
         hourseLeve = responseObject;
         [self setupData];
@@ -213,7 +220,7 @@
 
 -(void)getBuildingID:(id)sender{
     [self.view addSubview:self.loadingView];//小区号－－－－>楼号
-    NSDictionary *parama = @{@"communityId":[Util getCommunityID]};
+    NSDictionary *parama = @{@"communityId":self.strCommunityID};
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.buildingArr = responseObject;
         [self.loadingView removeFromSuperview];
@@ -226,7 +233,7 @@
 }
 
 - (void)getUnitID:(id)sender{
-    NSDictionary *parama = @{@"communityId":[Util getCommunityID],@"id":self.buildingId};
+    NSDictionary *parama = @{@"communityId":self.strCommunityID,@"id":self.buildingId};
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.arraryUnit = responseObject;
         [self selectPicker:sender];
@@ -234,7 +241,7 @@
 }
 
 - (void)getHouseIDSender:(id)sender{
-    NSDictionary *parama = @{@"communityId":[Util getCommunityID],@"id":self.strUnit};
+    NSDictionary *parama = @{@"communityId":self.strCommunityID,@"id":self.strUnit};
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.houseArr = responseObject;
         [self selectPicker:sender];
@@ -456,5 +463,23 @@
     }
 }
 
+#pragma mark - SummerSelectCityOfHouseViewControllerDelegate
+- (void)selectedFinishedCommunityNameAndID:(NSDictionary *)dicTemp{
+    _strCommunityID = dicTemp[@"communityID"];
+    _strCommunityName = dicTemp[@"communityName"];
+    for (UIView *viewSub in self.scrollView.subviews) {
+        [viewSub removeFromSuperview];
+    }
+    [self initViewsLeves];//当前小区层级
+//    [self.communityName setTitle:_strCommunityName forState:UIControlStateNormal];
+}
+
+- (void)getOtherCommunityName{
+    LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
+//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
+    locationVC.delegate = self;
+    locationVC.locationStyle = LocationStyleSelectCommunityNameAndID;
+    [self.navigationController pushViewController:locationVC animated:YES];
+}
 
 @end
