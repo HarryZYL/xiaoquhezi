@@ -13,8 +13,6 @@
 
 #pragma mark lazy loading
 
-
-
 -(UIView*)backgroundImg{
     if (!_backgroundImg) {
         _backgroundImg = [[UIView alloc] init];

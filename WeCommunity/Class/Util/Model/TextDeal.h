@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "creatorInfo.h"
 
 @interface TextDeal : NSObject
 
@@ -19,7 +20,7 @@
 @property (nonatomic,strong) NSString *phone;
 @property (nonatomic,strong) NSString *createTime;
 @property (nonatomic,strong) NSString *creator;
-@property (nonatomic,strong) NSDictionary *creatorInfo;
+@property (nonatomic,strong) creatorInfo *creatorInfo;
 @property (nonatomic,strong) NSString *replyCount;
 @property (nonatomic,strong) NSString *senderNewReplyCount;
 @property (nonatomic,strong) NSString *reciverNewReplyCount;

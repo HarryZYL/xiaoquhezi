@@ -11,11 +11,11 @@
 
 @interface SummerNoticeDetailReplaceTableViewCell : UITableViewCell
 
-@property (nonatomic ,strong)UIImageView *cellTitleImg;
-@property (nonatomic ,strong)UILabel *cellNameLab;
-@property (nonatomic ,strong)UILabel *cellTimeLab;
-@property (nonatomic ,strong)UILabel *cellContenLab;
-@property (nonatomic ,strong)UIButton *cellReplayBtn;
+@property (nonatomic ,weak)IBOutlet UIImageView *cellTitleImg;
+@property (nonatomic ,weak)IBOutlet UILabel *cellNameLab;
+@property (nonatomic ,weak)IBOutlet UILabel *cellTimeLab;
+@property (nonatomic ,weak)IBOutlet UILabel *cellContenLab;
+@property (nonatomic ,weak)IBOutlet UIButton *cellTimeBtn;
 
 - (void)confirmCellInformationWithData:(SummerHomeDetailNoticeModel *)dicTemp;
 

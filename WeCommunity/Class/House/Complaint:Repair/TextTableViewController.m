@@ -8,6 +8,7 @@
 
 #import "TextTableViewController.h"
 #import "UIViewController+HUD.h"
+#import "SummerComplainViewController.h"
 #import "AccreditationTableViewController.h"
 
 @interface TextTableViewController ()<TextPostViewControllerDelegate ,UIAlertViewDelegate>
@@ -29,8 +30,8 @@
     
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:10];
     
@@ -108,14 +109,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
     textVC.textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
-    textVC.title    = @"详情";
-    if ([self.function isEqualToString:@"complaint"]) {
-        textVC.noticeStyle = SettingTableViewControllerStyleComplain;
-    }else if([self.function isEqualToString:@"repair"]){
-        textVC.noticeStyle = SettingTableViewControllerStyleRepair;
-    }
-    [self.navigationController pushViewController:textVC animated:YES];
     
+    if ([self.function isEqualToString:@"complaint"]) {
+        SummerComplainViewController *complaintVC = [[SummerComplainViewController alloc] init];
+        complaintVC.strDetailID = textVC.textDeal.Objectid;
+        [self.navigationController pushViewController:complaintVC animated:YES];
+    }else if([self.function isEqualToString:@"repair"]){
+        textVC.title    = @"详情";
+        textVC.noticeStyle = SettingTableViewControllerStyleRepair;
+        [self.navigationController pushViewController:textVC animated:YES];
+    }
 }
 
 # pragma mark retrieve data

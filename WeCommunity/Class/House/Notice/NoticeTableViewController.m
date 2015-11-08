@@ -66,12 +66,10 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
-    textVC.notice = [[Notice alloc] initWithData:self.dataArray[indexPath.section]];
-    textVC.title = @"详情";
-    textVC.function = @"notice";
-    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
+    Notice *detailID = [[Notice alloc] initWithData:self.dataArray[indexPath.section]];
+    SummerNoticeCenterDetailViewController *textVC = [[SummerNoticeCenterDetailViewController alloc] init];
+    textVC.detailNotice = [[Notice alloc] initWithData:self.dataArray[indexPath.section]];
+    textVC.strNoticeID = detailID.Objectid;
     [self.navigationController pushViewController:textVC animated:YES];
 }
 

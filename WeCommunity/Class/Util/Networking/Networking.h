@@ -17,6 +17,9 @@
 #define getNoticeDetail       (HOST_URL @"/notice/getNotice")//公告详情
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")
 
+#define get_COMPLAINTS_DETAIL (HOST_URL @"/complaint/getComplaint")//投诉详情
+#define get_REPLIES_DETAIL    (HOST_URL @"/complaint/getReplies")//查询投诉回复
+
 #define getMyAuthentictionDelete      (HOST_URL @"/authc/delete") //删除认证
 
 #define get_HOUSE_LEVEL (HOST_URL @"/community/house/level/get")

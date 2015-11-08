@@ -90,7 +90,7 @@
 
 - (UITableView *)mTableView{
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT)
-                                                  style:UITableViewStylePlain];
+                                                  style:UITableViewStyleGrouped];
     _mTableView.dataSource = self;
     _mTableView.delegate = self;
 //    [_mTableView registerClass:[UITableViewCell class]

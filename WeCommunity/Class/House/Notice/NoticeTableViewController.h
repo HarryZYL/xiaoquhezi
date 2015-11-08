@@ -11,6 +11,7 @@
 #import "LoadingView.h"
 #import "Notice.h"
 #import "TextDetailTableViewController.h"
+#import "SummerNoticeCenterDetailViewController.h"
 @interface NoticeTableViewController : UITableViewController
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
