@@ -52,6 +52,8 @@
 #define praise_add (HOST_URL @"/praise/add")
 
 #define bookingHouse         (HOST_URL @"/houseDeal/bookingHouse")
+#define get_HOUSE_DETAIL_EDITE      (HOST_URL @"/houseDeal/edit")         //房屋租售再次编辑
+
 #define get_HOUSE_DETAIL     (HOST_URL @"/houseDeal/getHouseDeal") //房屋交易信息（若是自己的，是否有人预约）
 #define POST_CANCELL_BOOKING (HOST_URL @"/houseDeal/cancelBooking") /**<取消预约*/
 #define getBooking           (HOST_URL @"/houseDeal/getBooking")    /**<查询预约看房纪录*/

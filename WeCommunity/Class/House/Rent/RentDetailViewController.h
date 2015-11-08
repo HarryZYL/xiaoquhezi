@@ -10,6 +10,7 @@
 #import "RentDetailView.h"
 #import "SummerRentDetailBootomView.h"
 #import "OrderHouseViewController.h"
+#import "SummerPostRentViewController.h"
 #import "HouseDeal.h"
 #import "ActivityDetailView.h"
 #import "Activity.h"

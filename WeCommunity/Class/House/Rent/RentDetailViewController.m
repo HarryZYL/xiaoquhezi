@@ -213,8 +213,14 @@
 
 - (void)rentDetailRePaier{
     //修改,房屋信息
-    RentPostViewController *postVC = [[RentPostViewController alloc] init];
+    SummerPostRentViewController *postVC = [[SummerPostRentViewController alloc] init];
     postVC.houseDeal = self.houseDeal;
+    if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
+        postVC.houseDealType = SummerPostRentTypeRent;
+    }else{
+        postVC.houseDealType = SummerPostRentTypeSale;
+    }
+    postVC.strHouseDeailID = self.houseDeal.objectId;
     [self.navigationController pushViewController:postVC animated:YES];
 }
 
