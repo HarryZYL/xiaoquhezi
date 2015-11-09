@@ -76,6 +76,8 @@
 #define GET_REPAIR_REPLY (HOST_URL @"/repair/reply")       /**<查询回复报修*/
 
 #pragma mark - NearbyCommunityOfCity
+
+#define get_Nearby_Phones_list    (HOST_URL @"/community/getPhones")
 #define getNearbyCommnity         (HOST_URL @"/community/getNearby")          /**<附近小区*/
 #define getCommnityOfCity         (HOST_URL @"/community/getCommunityOfCity") /**<城市小区*/
 #define get_ONLY_CITY             (HOST_URL @"/dd/getOnlyCity")               /**<获取城市*/

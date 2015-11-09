@@ -7,12 +7,12 @@
 //
 
 #import "SummerCommunityBrowserViewController.h"
+#import "SummerCommunityBrowserTableViewCell.h"
 
-@interface SummerCommunityBrowserViewController ()
+@interface SummerCommunityBrowserViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {
-    IBOutlet UIImageView *communitImg;
-    IBOutlet UILabel *communitLab;
-    IBOutlet UIButton *communitBtn;
+    NSMutableArray *arraryData;
+    UITableView *mTableView;
 }
 @end
 
@@ -21,12 +21,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    communitLab.layer.borderColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1].CGColor;
-    communitLab.layer.borderWidth = 2;
+    self.title = @"小区一览";
+    arraryData = [[NSMutableArray alloc] init];
+    mTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    mTableView.delegate = self;
+    mTableView.dataSource = self;
+    mTableView.rowHeight = 70;
+    mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    mTableView.tableFooterView = [[UIView alloc]init];
+    [self.view addSubview:mTableView];
+    [self getReceveData];
 }
 
-- (IBAction)btnCallCommunitPhone:(id)sender{
-    
+- (void)getReceveData{
+    [Networking retrieveData:get_Nearby_Phones_list parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+        arraryData = responseObject;
+        NSLog(@"123");
+        [mTableView reloadData];
+    }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return arraryData.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerCommunityBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (!cell) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerCommunityBrowserTableViewCell" owner:self options:nil].firstObject;
+        [cell.btnPhoneNumber addTarget:self action:@selector(communityPhone:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    NSDictionary *dicTemp = arraryData[indexPath.row];
+    cell.titleLab.text = [NSString stringWithFormat:@"%@：%@",dicTemp[@"name"],dicTemp[@"phone"]];
+    return cell;
+}
+
+- (void)communityPhone:(UIButton *)sender{
+    NSIndexPath *index = [mTableView indexPathForCell:(UITableViewCell *)sender.superview.superview.superview];
+    NSDictionary *dic = arraryData[index.row];
+    NSString *strTemp = [NSString stringWithFormat:@"telprompt:%@",[dic[@"phone"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strTemp]];
 }
 
 - (void)didReceiveMemoryWarning {
