@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SummerHomeDetailNoticeModel.h"
+#import "SummerNoticeCenterDetailModel.h"
+
+@protocol SummerNoticeDetailReplaceTableViewCellDelegate <NSObject>
+
+- (void)summerNoticeDetailMoreClickWithData:(id)viewModel;
+
+@end
 
 @interface SummerNoticeDetailReplaceTableViewCell : UITableViewCell
 
@@ -15,8 +21,11 @@
 @property (nonatomic ,weak)IBOutlet UILabel *cellNameLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellTimeLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellContenLab;
-@property (nonatomic ,weak)IBOutlet UIButton *cellTimeBtn;
 
-- (void)confirmCellInformationWithData:(SummerHomeDetailNoticeModel *)dicTemp;
+@property (nonatomic ,weak)IBOutlet UIButton *cellFloorBtn;
+
+@property (nonatomic ,weak) id delegate;
+
+- (void)confirmCellInformationWithData:(SummerNoticeCenterDetailModel *)dicTemp;
 
 @end

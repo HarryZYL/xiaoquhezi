@@ -189,6 +189,9 @@
             case 4:
                 [formatter setDateFormat:@"yyyy年MM月"];
                 break;
+            case 5:
+                [formatter setDateFormat:@"HH:MM"];
+                break;
             default:
                 break;
         }

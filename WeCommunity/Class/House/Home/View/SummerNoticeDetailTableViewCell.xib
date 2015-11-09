@@ -56,7 +56,7 @@
                         </variation>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Wh-ujt">
-                        <rect key="frame" x="252" y="94" width="50" height="16"/>
+                        <rect key="frame" x="262" y="94" width="50" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="DWE-ej-snw"/>
                         </constraints>
@@ -65,7 +65,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="YMQ-iN-9us">
-                        <rect key="frame" x="220" y="95" width="22" height="14"/>
+                        <rect key="frame" x="230" y="95" width="22" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="csz-TX-cfX"/>
                         </constraints>
@@ -125,7 +125,7 @@
                     <constraint firstAttribute="trailing" secondItem="WfT-DI-SQ8" secondAttribute="trailing" constant="15" id="uiz-Ue-MQ8"/>
                     <constraint firstItem="3XJ-Wh-ujt" firstAttribute="leading" secondItem="VSd-vM-ppP" secondAttribute="trailing" constant="26" id="wa8-q1-8Dm"/>
                     <constraint firstAttribute="trailing" secondItem="WfT-DI-SQ8" secondAttribute="trailing" constant="15" id="yN7-Fw-zs6"/>
-                    <constraint firstItem="3XJ-Wh-ujt" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="ykF-hh-JzN"/>
+                    <constraint firstItem="3XJ-Wh-ujt" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ykF-hh-JzN"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
@@ -159,7 +159,7 @@
                 <outlet property="cellLabTop" destination="WfT-DI-SQ8" id="sj8-5d-Moq"/>
                 <outlet property="cellTitleImg" destination="0ug-kM-V5j" id="nYT-vQ-4vg"/>
             </connections>
-            <point key="canvasLocation" x="-1251" y="64.5"/>
+            <point key="canvasLocation" x="-1577" y="30.5"/>
         </tableViewCell>
     </objects>
     <resources>

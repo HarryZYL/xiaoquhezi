@@ -12,13 +12,14 @@
 #import "TextDeal.h"
 
 #define IMPUT_VIEW_HEIGHT 40
-@interface SummerComplainViewController ()<UzysAssetsPickerControllerDelegate>
+@interface SummerComplainViewController ()<UzysAssetsPickerControllerDelegate ,SummerComplainDetailHeaderTableViewCellDelegate ,MWPhotoBrowserDelegate>
 {
     NSInteger numberPage;
 }
 @property (nonatomic ,strong) NSMutableArray *chosenImages;
 @property (nonatomic ,strong) NSMutableArray *arraryData;
 @property (nonatomic ,strong) TextDeal *complainModel;
+@property (nonatomic ,strong) NSMutableArray *photos;
 @end
 
 @implementation SummerComplainViewController
@@ -26,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"";
+    self.photos = [[NSMutableArray alloc] init];
     self.arraryData = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
     numberPage = 1;
@@ -121,9 +124,41 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    cell.delegate = self;
     [cell confirmCellCompliteDetailWithData:_arraryData[indexPath.row]];
     
     return cell;
+}
+
+- (void)selectDetailHeaderCellImageView:(id)sender{
+    [self.photos removeAllObjects];
+    UIImageView *imgView = (UIImageView *)sender;
+    NSIndexPath *index = [_mTableView indexPathForCell:(SummerComplainDetailHeaderTableViewCell *)[[[sender superview] superview] superview]];
+    TextDeal *detailModel = _arraryData[index.row];
+
+    for (int i = 0; i< [detailModel.pictures count]; i++) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:detailModel.pictures[i]]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    
+    browser.displayActionButton = NO;
+    [browser setCurrentPhotoIndex:imgView.tag - 1];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 #pragma mark - 输入框，选择图片资源

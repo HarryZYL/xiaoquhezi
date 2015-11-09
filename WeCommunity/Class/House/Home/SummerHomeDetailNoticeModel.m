@@ -15,12 +15,12 @@
         self.articleId = dicTemp[@"articleId"];
         self.childrenCount = dicTemp[@"childrenCount"];
         self.content = dicTemp[@"content"];
-        self.createTime = [Util formattedDate:dicTemp[@"createTime"] type:3];
+        self.createTime = dicTemp[@"createTime"];
         self.creator = dicTemp[@"creator"];
         self.creatorInFo = [[creatorInfo alloc] initWithData:dicTemp[@"creatorInfo"]];
-        self.objectID = dicTemp[@"id"];
+        self.objectID = [NSString stringWithFormat:@"%@",dicTemp[@"id"]];
         self.ip = dicTemp[@"ip"];
-        self.parentId = dicTemp[@"parentId"];
+        self.parentId = [NSString stringWithFormat:@"%@",dicTemp[@"parentId"]];
         self.pictures = dicTemp[@"pictures"];
         self.replyIndex = dicTemp[@"replyIndex"];
         self.replyToReply = dicTemp[@"replyToReply"];

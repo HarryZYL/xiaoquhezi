@@ -7,6 +7,7 @@
 //
 
 #import "SummerNoticeDetailViewController.h"
+#import "SummerNoticeCenterDetailModel.h"
 #import "MBProgressHUD.h"
 #import "SummerInputView.h"
 
@@ -15,6 +16,8 @@
 @property (nonatomic ,strong) SummerInputView *summerInputView;
 @property (nonatomic ,strong) UITableView *mTableView;
 @property (nonatomic ,copy  ) NSString *strNoticeID;
-@property (nonatomic ,strong) Notice *detailNotice;;
+@property (nonatomic ,strong) Notice *detailNotice;
+
+@property (nonatomic ,strong) SummerHomeDetailNoticeModel *identifyNotice;
 
 @end

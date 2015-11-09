@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "TextDeal.h"
 
+@protocol SummerComplainDetailHeaderTableViewCellDelegate <NSObject>
+
+- (void)selectDetailHeaderCellImageView:(id)sender;
+
+@end
+
 @interface SummerComplainDetailHeaderTableViewCell : UITableViewCell
 
 @property(nonatomic ,weak)IBOutlet UIImageView *cellHeaderUserImg;
@@ -16,6 +22,9 @@
 @property(nonatomic ,weak)IBOutlet UILabel *cellHeaderContent;
 @property(nonatomic ,weak)IBOutlet UILabel *cellHeaderTime;
 @property(nonatomic ,weak)IBOutlet UIButton *cellHeaderReplayBtn;
+
+@property (nonatomic ,weak) id delegate;
+
 - (void)confirmCellInformationWithData:(TextDeal *)dicTemp;
 - (void)confirmCellCompliteDetailWithData:(TextDeal *)dicTemp;/**<cell model*/
 @end

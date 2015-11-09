@@ -6,7 +6,7 @@
 //  Copyright © 2015年 Harry. All rights reserved.
 //
 #import "NSString+HTML.h"
-
+#import "SummerMoreReplayViewController.h"
 #import "UIViewController+HUD.h"
 #import "SummerHomeDetailNoticeModel.h"
 #import "SummerNoticeCenterDetailViewController.h"
@@ -14,10 +14,11 @@
 #import "SummerNoticeDetailTableViewCell.h"
 
 #define IMPUT_VIEW_HEIGHT 40
-@interface SummerNoticeCenterDetailViewController ()<UzysAssetsPickerControllerDelegate>
+@interface SummerNoticeCenterDetailViewController ()<UzysAssetsPickerControllerDelegate,SummerNoticeDetailReplaceTableViewCellDelegate>
 {
     NSInteger numberPage;
     NSMutableDictionary *dicNotice;
+    
 }
 @property (nonatomic ,strong) NSMutableArray *chosenImages;
 @property (nonatomic ,strong) NSMutableArray *arraryData;
@@ -31,6 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"公告详情";
     numberPage = 1;
+    
     dicNotice = [[NSMutableDictionary alloc] init];
     self.arraryData = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
@@ -49,9 +51,18 @@
     
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.summerInputView.btnAddImg addTarget:self action:@selector(btnSelectedImageViews:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [self getTableViewHeaderData];
     
     [self getReceveData];
+}
+
+- (void)getTableViewHeaderData{
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:getNoticeDetail parameters:@{@"id": self.strNoticeID} success:^(id responseObject) {
+        NSLog(@"----->%@",responseObject);
+        dicNotice = responseObject;
+        [weakSelf.mTableView reloadData];
+    }];
 }
 
 - (void)getReceveData{
@@ -60,16 +71,45 @@
     }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"加载中";
-//    hud.dimBackground = YES;
     [hud hide:YES afterDelay:5];
     __weak typeof(self) weakSelf = self;
     [Networking retrieveData:GET_NOTICE_REPLIS parameters:@{@"id": self.strNoticeID,
                                                             @"page":[NSNumber numberWithInteger:numberPage],
                                                             @"row":@"30"}success:^(id responseObject) {
-                                                                [hud removeFromSuperview];
-                                                                for (NSDictionary *dicTemp in responseObject[@"rows"]) {
-                                                                    [_arraryData addObject:[[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp]];
-                                                                }
+        [hud removeFromSuperview];
+        NSMutableArray *arraryTemp = [[NSMutableArray alloc] init];
+        for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+            if ([dicTemp[@"parentId"] isEqual:[NSNull null]]) {
+                SummerNoticeCenterDetailModel *detail = [[SummerNoticeCenterDetailModel alloc] init];
+                detail.detailNoticeModel = [[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp];
+                [weakSelf.arraryData addObject:detail];
+            }else{
+                SummerHomeDetailNoticeModel *detail = [[SummerHomeDetailNoticeModel alloc] init];
+                detail = [[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp];
+                [arraryTemp addObject:detail];
+            }
+        }
+                    
+        for (int index = 0; index < [arraryTemp count]; index ++) {
+            SummerHomeDetailNoticeModel *dicTemp = arraryTemp[index];
+            
+            if (![dicTemp.objectID isEqual:[NSNull null]]) {
+                
+                for (SummerNoticeCenterDetailModel *detailModel in _arraryData) {
+                    if ([detailModel.detailNoticeModel.objectID isEqualToString:dicTemp.parentId]) {
+                        [detailModel.detailReplyArrary addObject:dicTemp];
+                    }
+                }
+                
+            }
+            
+        }
+        
+        [self.summerInputView.summerInputView resignFirstResponder];
+        self.summerInputView.summerInputView.text = @"";
+        self.summerInputView.btnAddImg.hidden = NO;
+        self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
+        _identifyNotice = nil;
         [weakSelf.mTableView reloadData];
     }];
 }
@@ -77,8 +117,8 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat rectHeight = [Util getHeightForString:_detailNotice.contentTxt width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
-    return rectHeight + 61;
+    CGFloat rectHeight = [Util getHeightForString:dicNotice[@"content"] width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
+    return rectHeight + 91;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -89,9 +129,9 @@
     }
     [cell.cellTitleImg sd_setImageWithURL:self.detailNotice.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     cell.cellLabTitle.text = self.detailNotice.title;
-    cell.cellLabTime.text = self.detailNotice.createTime;
+    cell.cellLabTime.text  = self.detailNotice.createTime;
     
-    if (self.detailNotice.isTop.boolValue) {
+    if ([self.detailNotice.isTop boolValue]) {
         cell.cellLabTop.text = @"置顶公告";
     }else{
         cell.cellLabTop.text = nil;
@@ -101,35 +141,66 @@
     }else{
         cell.cellLabReplay.text  = [NSString stringWithFormat:@"%@",self.detailNotice.replyCount];
     }
-    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[self.detailNotice.contentTxt dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-    
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[dicNotice[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.cellLabContent.attributedText = attrStr;
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger integerRow = _arraryData.count;
-    return integerRow;
+    return _arraryData.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SummerHomeDetailNoticeModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [noticModel.content boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
-    if ([noticModel.pictures isEqual:[NSNull null]]) {
-        return 64 + heightCell;
+    SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
+    CGFloat heightCell = [noticModel.detailNoticeModel.content boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
+    
+    if (noticModel.detailNoticeModel.childrenCount.intValue > 0 && noticModel.detailNoticeModel.childrenCount.intValue < 3) {
+        heightCell += 15 * (noticModel.detailNoticeModel.childrenCount.intValue + 1);
+    }else if(noticModel.detailNoticeModel.childrenCount.intValue > 3){
+        heightCell += 50;
     }
-    if ([noticModel.pictures count] == 0) {
-        return 64 + heightCell;
+    
+    if ([noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
+        return 90 + heightCell;
+    }
+    if ([noticModel.detailNoticeModel.pictures count] == 0) {
+        return 90 + heightCell;
     }else{
-        return 64 + heightCell + ([noticModel.pictures count]/4 + 1) * 45.0;
+        return 90 + heightCell + ([noticModel.detailNoticeModel.pictures count]/4 + 1) * 45.0;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    cell.delegate = self;
     [cell confirmCellInformationWithData:_arraryData[indexPath.row]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerNoticeCenterDetailModel *detailNotice = _arraryData[indexPath.row];
+    _identifyNotice = detailNotice.detailNoticeModel;
+    self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_identifyNotice.creatorInFo.nickName];
+    self.summerInputView.btnAddImg.hidden = YES;
+    self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
+    [self.summerInputView.summerInputView becomeFirstResponder];
+}
+
+- (void)summerNoticeDetailMoreClickWithData:(id)viewModel{
+    UIView *viewDetailModel = (UIView *)viewModel;
+    if (viewDetailModel.tag == 12) {
+        //更多回复
+        
+       NSIndexPath *index = [_mTableView indexPathForCell:(SummerNoticeDetailReplaceTableViewCell *)[[viewDetailModel superview] superview]];
+        SummerNoticeCenterDetailModel *detailModel = _arraryData[index.row];
+        SummerMoreReplayViewController *replyMoreVC = [[SummerMoreReplayViewController alloc] init];
+        replyMoreVC.strID = detailModel.detailNoticeModel.objectID;
+        [self.navigationController pushViewController:replyMoreVC animated:YES];
+    }else{
+        //子回复
+        
+    }
 }
 
 #pragma mark - 输入框，选择图片资源
@@ -178,17 +249,26 @@
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
-//    self.summerInputView.btnSenderMessage.user
+
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"上传中";
     hud.dimBackground = YES;
     [hud hide:YES afterDelay:5];
-    
+    if (!_identifyNotice) {
+        [self senderPostNoticeReplayWith:hud];
+    }else{
+        [self senderPostReplyToReplyWith:hud];
+    }
+}
+
+#pragma mark -
+
+- (void)senderPostNoticeReplayWith:(MBProgressHUD *)hud{
     if (self.chosenImages.count < 1) {
         [Networking retrieveData:get_reply_notice parameters:@{@"token": [User getUserToken],
                                                                @"id":_detailNotice.Objectid,
                                                                @"content":self.summerInputView.summerInputView.text} success:^(id responseObject) {
-//                                                                   返回NoticeReply
+                                                                   //                                                                   返回NoticeReply
                                                                    [hud removeFromSuperview];
                                                                    [self showHint:@"评论成功"];
                                                                    self.summerInputView.summerInputLabNumbers.text = 0;
@@ -216,7 +296,17 @@
                                                                    }];
         }];
     }
-    
+
+}
+
+- (void)senderPostReplyToReplyWith:(MBProgressHUD *)hud{
+    [Networking retrieveData:GET_REPLY_TO_REPLY parameters:@{@"token": [User getUserToken],
+                                                             @"noticeId":_strNoticeID,
+                                                             @"content":self.summerInputView.summerInputView.text,
+                                                             @"parentId":_identifyNotice.objectID,
+                                                             } success:^(id responseObject) {
+                                                                 [self getReceveData];
+                                                             }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -256,15 +346,6 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-//- (UITableView *)mTableView{
-//    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 64) style:UITableViewStylePlain];
-//    _mTableView.dataSource = self;
-//    _mTableView.delegate   = self;
-//   [self.mTableView registerClass:[SummerNoticeDetailReplaceTableViewCell class] forCellReuseIdentifier:@"cellItem"];
-//    _mTableView.tableFooterView = [[UIView alloc] init];
-//    return _mTableView;
-//}
 
 /*
 #pragma mark - Navigation
