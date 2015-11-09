@@ -59,6 +59,7 @@
             [Networking retrieveData:get_HOUSE_DETAIL parameters:pararma success:^(id responseObject) {
                 _strUserBookingCount = responseObject[@"bookingCount"];
                 [self setupBottomButton];
+//                self.functionBtn.btnLeft
             }];
         }
         
@@ -116,7 +117,7 @@
         if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
             if (_strUserBookingCount.intValue > 0) {
                 //有无预约人数
-                [self.functionBtn.btnLeft configureButtonTitle:@"查看预约记录" backgroundColor:THEMECOLOR];
+                [self.functionBtn.btnLeft configureButtonTitle:[NSString stringWithFormat:@"已有%@人预约",_strUserBookingCount] backgroundColor:THEMECOLOR];
                 [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             }else{
                 [self.functionBtn.btnLeft configureButtonTitle:@"暂未预约" backgroundColor:THEMECOLOR];
@@ -136,26 +137,6 @@
     }
 }
 
-//查询预约看房记录
--(void)getBookingList{
-    NSDictionary *parameters = @{
-                                 @"token":[User getUserToken],
-                                 @"id":self.houseDeal.objectId,
-                                 @"page":@1,
-                                 @"row":@10
-                                 };
-    [Networking retrieveData:getBooking parameters:parameters success:^(id responseObject) {
-//        {
-//            rows =     (
-//            );
-//            total = 0;
-//        }
-        [self showHint:@"暂无预约"];
-        
-    }];
-}
-
-
 #pragma mark action
 -(void)order:(id)sender{
     if ([self.functionBtn.btnLeft.currentTitle isEqualToString:@"预约看房"]) {
@@ -163,13 +144,15 @@
         orderVC.houseID = self.houseDeal.objectId;
         orderVC.delegate = self;
         [self pushVC:orderVC title:@"预约看房"];
-    }else if ([self.functionBtn.btnLeft.currentTitle isEqualToString:@"查看预约记录"]){
-        [self getBookingList];
     }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"暂未预约"]){
         
     }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"取消预约"]){
         //取消预约
         [self cansoleBooking];
+    }else{
+        SummerRentTakeNoteViewController *takeNoteVC = [[SummerRentTakeNoteViewController alloc] init];
+        takeNoteVC.strRentID = self.houseDeal.objectId;
+        [self.navigationController pushViewController:takeNoteVC animated:YES];
     }
     
 }

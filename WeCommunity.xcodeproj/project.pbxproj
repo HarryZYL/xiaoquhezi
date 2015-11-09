@@ -160,6 +160,8 @@
 		D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB671BE387B20046F5F1 /* ThirdUserModel.m */; };
 		D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */; };
 		D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */; };
+		D47996821BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */; };
+		D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */; };
 		D48662AF1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48662AE1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m */; };
 		D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */; };
 		D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */; };
@@ -171,6 +173,7 @@
 		D4B6ACBC1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */; };
 		D4BCD2451BEF7874006CFE46 /* SummerComplainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BCD2441BEF7874006CFE46 /* SummerComplainViewController.m */; };
 		D4BE6EF91BECC26800800306 /* SummerNoticeDetailReplaceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4BE6EF81BECC26800800306 /* SummerNoticeDetailReplaceTableViewCell.m */; };
+		D4C1453B1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C1453A1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m */; };
 		D4CDD5571BE7537A00B782DB /* SummerBillBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5561BE7537A00B782DB /* SummerBillBootomView.m */; };
 		D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5591BE7659D00B782DB /* SummerBillRoomViewController.m */; };
 		D4CDD5631BE7A0A000B782DB /* SummerBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5611BE7A09F00B782DB /* SummerBillTableViewCell.m */; };
@@ -578,6 +581,9 @@
 		D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerInputPhoneNumber.m; sourceTree = "<group>"; };
 		D474AB6F1BE3B7890046F5F1 /* SummerBillConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillConfirmViewController.h; sourceTree = "<group>"; };
 		D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillConfirmViewController.m; sourceTree = "<group>"; };
+		D479967F1BF02DD500994024 /* SummerRentTakeNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentTakeNoteTableViewCell.h; sourceTree = "<group>"; };
+		D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentTakeNoteTableViewCell.m; sourceTree = "<group>"; };
+		D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerRentTakeNoteTableViewCell.xib; sourceTree = "<group>"; };
 		D48662AD1BE94951006D1E4A /* SummerSelectSellerOrOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectSellerOrOrderView.h; sourceTree = "<group>"; };
 		D48662AE1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectSellerOrOrderView.m; sourceTree = "<group>"; };
 		D48C41151BE8970B00A5DF45 /* SummerNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeDetailViewController.h; sourceTree = "<group>"; };
@@ -594,6 +600,8 @@
 		D4BCD2441BEF7874006CFE46 /* SummerComplainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerComplainViewController.m; sourceTree = "<group>"; };
 		D4BE6EF71BECC26800800306 /* SummerNoticeDetailReplaceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeDetailReplaceTableViewCell.h; sourceTree = "<group>"; };
 		D4BE6EF81BECC26800800306 /* SummerNoticeDetailReplaceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeDetailReplaceTableViewCell.m; sourceTree = "<group>"; };
+		D4C145391BF02B7F007C25A2 /* SummerRentTakeNoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentTakeNoteViewController.h; sourceTree = "<group>"; };
+		D4C1453A1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentTakeNoteViewController.m; sourceTree = "<group>"; };
 		D4CDD5551BE7537A00B782DB /* SummerBillBootomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillBootomView.h; sourceTree = "<group>"; };
 		D4CDD5561BE7537A00B782DB /* SummerBillBootomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillBootomView.m; sourceTree = "<group>"; };
 		D4CDD5581BE7659D00B782DB /* SummerBillRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillRoomViewController.h; sourceTree = "<group>"; };
@@ -1257,6 +1265,8 @@
 				4ACCD01F1BBF49600001227A /* OrderHouseViewController.m */,
 				4ACCD0201BBF49600001227A /* RentDetailViewController.h */,
 				4ACCD0211BBF49600001227A /* RentDetailViewController.m */,
+				D4C145391BF02B7F007C25A2 /* SummerRentTakeNoteViewController.h */,
+				D4C1453A1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m */,
 				D4E8D6291BEE647E00B41223 /* SummerPostRentViewController.h */,
 				D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */,
 				4ACCD0221BBF49600001227A /* RentPostViewController.h */,
@@ -1275,6 +1285,9 @@
 		4ACCD0261BBF49600001227A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D479967F1BF02DD500994024 /* SummerRentTakeNoteTableViewCell.h */,
+				D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */,
+				D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */,
 				D44D60521BED01EF00E877F9 /* SummerRentDetailBootomView.h */,
 				D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */,
 				D433741F1BE1F58400BD438F /* SummerSelectCityView.h */,
@@ -1745,6 +1758,7 @@
 				4ADDB98E1B5D235F002A188E /* Main.storyboard in Resources */,
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D452F2481BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib in Resources */,
+				D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */,
 				D4E8F9201BE623F100E2338C /* SummerInputPhoneNumber.xib in Resources */,
 				D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */,
 				D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */,
@@ -1842,6 +1856,7 @@
 				D454EAAB1BE4949E0089333D /* RSADataVerifier.m in Sources */,
 				D44D9C791BE5DD16006340E2 /* SummerMemberAlertView.m in Sources */,
 				4ACCD0511BBF49600001227A /* ImagePickerLayout.m in Sources */,
+				D47996821BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m in Sources */,
 				4ACCCEE21BBF456F0001227A /* SecondHandPostView.m in Sources */,
 				4ACCCE681BBF37A70001227A /* Activity.m in Sources */,
 				4A6037201BBC99F000D3A067 /* BottomButton.m in Sources */,
@@ -1965,6 +1980,7 @@
 				D4D400891BDF72EC005F6095 /* SummerPriceListTableViewCell.m in Sources */,
 				4ACCD03B1BBF49600001227A /* TextPostViewController.m in Sources */,
 				4ACCD0521BBF49600001227A /* RentDetailView.m in Sources */,
+				D4C1453B1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m in Sources */,
 				4ACCCE621BBF36EA0001227A /* HouseDeal.m in Sources */,
 				4A118EB71BA4900400BC2C4E /* ELCConsole.m in Sources */,
 			);

@@ -11,11 +11,13 @@
 #import "SummerRentDetailBootomView.h"
 #import "OrderHouseViewController.h"
 #import "SummerPostRentViewController.h"
+#import "SummerRentTakeNoteViewController.h"
 #import "HouseDeal.h"
 #import "ActivityDetailView.h"
 #import "Activity.h"
 #import "SecondHand.h"
 #import "SecondHandView.h"
+
 @interface RentDetailViewController : UIViewController<MWPhotoBrowserDelegate>
 
 @property (nonatomic,strong) UIScrollView *scollView;

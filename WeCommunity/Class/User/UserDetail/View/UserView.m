@@ -177,7 +177,7 @@
     //        设置用户名
     UILabel *title = [[UILabel alloc] init];
     title.frame = CGRectMake(userHeadImg.frame.origin.x+userHeadImg.frame.size.width+10, userHeadImg.frame.origin.y+userHeadImg.frame.size.height/2 - 15, 100, 30);
-    title.text = user.userName;
+    title.text = user.nickName;
     title.textColor = [UIColor whiteColor];
     [self addSubview:title];
     
