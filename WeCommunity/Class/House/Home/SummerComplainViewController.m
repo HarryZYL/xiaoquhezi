@@ -85,32 +85,47 @@
 
 #pragma mark - UITableViewDelegate
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
-    if ([_complainModel.pictures isEqual:[NSNull null]]) {
-        return 61 + rectHeight;
-    }
-    headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
-    return headerViewHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
+//    if ([_complainModel.pictures isEqual:[NSNull null]]) {
+//        return 61 + rectHeight;
+//    }
+//    headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
+//    return headerViewHeight;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
+//    if (!cell) {
+//        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
+//        cell.delegate = self;
+//    }
+//    [cell confirmCellInformationWithData:self.complainModel withHeightHeaderView:headerViewHeight];
+//
+//    return cell;
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
-    if (!cell) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
-        cell.delegate = self;
-    }
-    [cell confirmCellInformationWithData:self.complainModel withHeightHeaderView:headerViewHeight];
-
-    return cell;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 1;
+    }
     NSInteger integerRow = _arraryData.count;
     return integerRow;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
+        if ([_complainModel.pictures isEqual:[NSNull null]]) {
+            return 61 + rectHeight;
+        }
+        headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
+        return headerViewHeight;
+    }
     TextDeal *noticModel = _arraryData[indexPath.row];
     CGFloat heightCell = [Util getHeightForString:noticModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:13]];
     
@@ -126,6 +141,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
+        if (!cell) {
+            cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
+            cell.delegate = self;
+        }
+        [cell confirmCellInformationWithData:self.complainModel withHeightHeaderView:headerViewHeight];
+        
+        return cell;
+    }
     SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     cell.delegate = self;
     [cell confirmCellCompliteDetailWithData:_arraryData[indexPath.row]];
@@ -136,7 +161,7 @@
 - (void)selectDetailHeaderCellImageView:(id)sender{
     [self.photos removeAllObjects];
     UIImageView *imgView = (UIImageView *)sender;
-    NSIndexPath *index = [_mTableView indexPathForCell:(SummerComplainDetailHeaderTableViewCell *)[[sender superview] superview]];
+    NSIndexPath *index = [_mTableView indexPathForCell:(UITableViewCell *)[[sender superview] superview]];
     TextDeal *detailModel;
     if (index.section == 0) {
         detailModel = _complainModel;
