@@ -1143,8 +1143,6 @@
 				D4E8F91B1BE5F1BE00E2338C /* HomeModel */,
 				4ACCCFF61BBF49600001227A /* HouseViewController.h */,
 				4ACCCFF71BBF49600001227A /* HouseViewController.m */,
-				D4E5F0651BEC39FE009D2F15 /* SummerCommunityBrowserViewController.h */,
-				D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */,
 				D452F2361BDDC3340031C5C8 /* SummerMessageCenterTableViewController.h */,
 				D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */,
 				D41275EB1BDDFE9D008BD610 /* SummerMessageDetailViewController.h */,
@@ -1161,6 +1159,8 @@
 				D47996881BF08F2E00994024 /* SummerMoreReplayViewController.m */,
 				D4BCD2431BEF7874006CFE46 /* SummerComplainViewController.h */,
 				D4BCD2441BEF7874006CFE46 /* SummerComplainViewController.m */,
+				D4E5F0651BEC39FE009D2F15 /* SummerCommunityBrowserViewController.h */,
+				D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */,
 				4ACCCFF81BBF49600001227A /* View */,
 			);
 			path = Home;

@@ -41,7 +41,7 @@
     if ([User judgeLogin]) {
         [self retrireveData];
     }else{
-        [Util alertNetworingError:@"请先登录"];
+        [self showHint:@"请先登录"];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
@@ -74,7 +74,7 @@
     TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
     
     [cell configureTextCellImage:[NSURL URLWithString:textDeal.textType[@"logo"]] title:textDeal.content date:textDeal.createTime deal:textDeal.status pictures:textDeal.pictures detail:NO];
-
+    
     
     return cell;
 }
@@ -113,6 +113,7 @@
     if ([self.function isEqualToString:@"complaint"]) {
         SummerComplainViewController *complaintVC = [[SummerComplainViewController alloc] init];
         complaintVC.strDetailID = textVC.textDeal.Objectid;
+        complaintVC.title = @"投诉详情";
         [self.navigationController pushViewController:complaintVC animated:YES];
     }else if([self.function isEqualToString:@"repair"]){
         textVC.title    = @"详情";
@@ -152,8 +153,8 @@
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.header endRefreshing];
-        [self.tableView.footer resetNoMoreData];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         self.page = 1;
     }];
 }
@@ -170,14 +171,12 @@
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer noticeNoMoreData];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }
-
-
 
 # pragma mark - function
 -(void)post:(id)sender{

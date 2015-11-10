@@ -12,6 +12,7 @@
 @protocol SummerComplainDetailHeaderTableViewCellDelegate <NSObject>
 
 - (void)selectDetailHeaderCellImageView:(id)sender;
+- (void)selectDetailHeaderViewImageView:(id)sender;
 
 @end
 

@@ -149,6 +149,7 @@
     [Networking retrieveData:GET_REPLY_TO_REPLY parameters:paramaga success:^(id responseObject) {
         _defaultNoticeModel = nil;
         self.summerInputView.summerInputView.text = nil;
+        [self getReceveData];
         NSLog(@"--->%@",responseObject);
     }];
 }
