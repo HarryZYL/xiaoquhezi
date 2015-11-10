@@ -73,7 +73,7 @@
     
     TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
     
-    [cell configureTextCellImage:[NSURL URLWithString:textDeal.textType[@"logo"]] title:textDeal.content date:textDeal.createTime deal:textDeal.status pictures:textDeal.pictures detail:NO];
+    [cell configureTextCellImage:[NSURL URLWithString:textDeal.textType[@"logo"]] title:textDeal.content date:textDeal.createTime deal:textDeal.status pictures:textDeal.pictures detail:NO withCount:textDeal.replyCount];
     
     
     return cell;
@@ -116,9 +116,9 @@
         complaintVC.title = @"投诉详情";
         [self.navigationController pushViewController:complaintVC animated:YES];
     }else if([self.function isEqualToString:@"repair"]){
-        textVC.title    = @"详情";
-        textVC.noticeStyle = SettingTableViewControllerStyleRepair;
-        [self.navigationController pushViewController:textVC animated:YES];
+        SummerRepairListsViewController *listsVC = [[SummerRepairListsViewController alloc]init];
+        listsVC.detailTextModel = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
+        [self.navigationController pushViewController:listsVC animated:YES];
     }
 }
 

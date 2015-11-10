@@ -15,6 +15,7 @@
 #import "LoadingView.h"
 #import "TextDeal.h"
 #import "TextDetailTableViewController.h"
+#import "SummerRepairListsViewController.h"
 
 @interface TextTableViewController : UITableViewController
 

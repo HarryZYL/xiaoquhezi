@@ -28,7 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"";
+    self.title = @"投诉详情";
     self.photos = [[NSMutableArray alloc] init];
     self.arraryData = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];

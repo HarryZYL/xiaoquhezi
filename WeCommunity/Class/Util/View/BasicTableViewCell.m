@@ -326,7 +326,7 @@
 
 
 //compaint and repair function
--(void)configureTextCellImage:(NSURL *)image title:(NSString *)title date:(NSString *)date deal:(NSString*)deal pictures:(NSArray*)pictures detail:(BOOL)detailDisplay{
+-(void) configureTextCellImage:(NSURL*)image title:(NSString *)title date:(NSString*)date deal:(NSString*)deal pictures:(NSArray*)pictures detail:(BOOL)detailDisplay withCount:(NSString *)strCount{
     
     self.selectionStyle = NO;
     
@@ -359,7 +359,7 @@
     
     self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
     self.commentLabel.textColor = [UIColor lightGrayColor];
-    self.commentLabel.text = @"0";
+    self.commentLabel.text = [NSString stringWithFormat:@"%@",strCount];
     
     
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);

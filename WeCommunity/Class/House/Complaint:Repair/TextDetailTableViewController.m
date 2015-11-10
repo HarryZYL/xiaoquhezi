@@ -157,7 +157,7 @@
                 [cell configureNoticeCellTitle:self.notice.title detail:self.notice.contentTxt date:self.notice.createTime top:self.notice.isTop detail:YES withReplyCount:self.notice.replyCount];
                 
             }else{
-                [cell configureTextCellImage:[NSURL URLWithString:self.textDeal.textType[@"logo"]] title:self.textDeal.content date:self.textDeal.createTime deal:self.textDeal.status pictures:self.textDeal.pictures detail:YES];
+                [cell configureTextCellImage:[NSURL URLWithString:self.textDeal.textType[@"logo"]] title:self.textDeal.content date:self.textDeal.createTime deal:self.textDeal.status pictures:self.textDeal.pictures detail:YES withCount:self.textDeal.replyCount];
             }
             
             break;
