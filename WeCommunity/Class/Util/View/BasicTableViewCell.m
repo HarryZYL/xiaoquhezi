@@ -333,7 +333,7 @@
     self.iconImage.frame = CGRectMake(20, 15, 50, 50);
     [self.iconImage sd_setImageWithURL:image placeholderImage:[UIImage imageNamed:@"advise"]];
     
-    UIFont *font = [UIFont fontWithName:fontName size:17];
+    UIFont *font = [UIFont fontWithName:fontName size:14];
     CGFloat height = [Util getHeightForString:title width:self.contentView.frame.size.width-200 font:font];
     
     if (detailDisplay) {

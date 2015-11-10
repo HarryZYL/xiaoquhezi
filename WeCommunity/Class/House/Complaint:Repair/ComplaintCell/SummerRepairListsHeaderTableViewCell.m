@@ -59,7 +59,7 @@
     self.cellRepairTakeNote.frame = CGRectMake(10, self.cellRepairManView.frame.origin.y + self.cellRepairManView.frame.size.height + 10, SCREENSIZE.width - 20, 80);
     self.cellTakeNoteLab.text = [NSString stringWithFormat:@"维修记录"];
     
-    self.cellLineLab.frame = CGRectMake(0, self.cellRepairManView.frame.size.height/2, self.cellRepairManView.frame.size.width, 1);
+    self.cellLineLab.frame = CGRectMake(0, self.cellRepairManView.frame.size.height/2 + 3, self.cellRepairManView.frame.size.width, 1);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
