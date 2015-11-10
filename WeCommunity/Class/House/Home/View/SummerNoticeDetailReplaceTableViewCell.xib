@@ -39,15 +39,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oa4-KG-n0P">
-                        <rect key="frame" x="266" y="0.0" width="54" height="61"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <inset key="contentEdgeInsets" minX="0.0" minY="-25" maxX="0.0" maxY="0.0"/>
-                        <state key="normal" title="Button">
-                            <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                    </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OkH-nH-ktp">
                         <rect key="frame" x="69" y="83" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -105,6 +96,16 @@
                             <action selector="summerMoreReply:" destination="wjZ-ol-cmf" eventType="touchUpInside" id="gEu-Kh-d3V"/>
                         </connections>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oa4-KG-n0P">
+                        <rect key="frame" x="248" y="2" width="70" height="60"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="-25" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="30" minY="50" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Button" image="回复按钮noticeDetail32x32">
+                            <color key="titleColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
             </tableViewCellContentView>
             <connections>
@@ -117,4 +118,7 @@
             <point key="canvasLocation" x="-1137" y="-217.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="回复按钮noticeDetail32x32" width="16" height="16"/>
+    </resources>
 </document>

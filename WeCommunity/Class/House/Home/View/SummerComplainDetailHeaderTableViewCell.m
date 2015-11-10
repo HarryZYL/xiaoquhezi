@@ -57,13 +57,13 @@
 }
 
 //配置section
-- (void)confirmCellInformationWithData:(TextDeal *)dicTemp{
+- (void)confirmCellInformationWithData:(TextDeal *)dicTemp withHeightHeaderView:(CGFloat)headerView{
     [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     self.cellHeaderName.text = dicTemp.creatorInfo.nickName;
     self.cellHeaderContent.text = dicTemp.content;
     
-    self.cellHeaderTime.frame = CGRectMake(60, self.contentView.frame.size.height - 20, SCREENSIZE.width - 100, 15);
-    self.cellHeaderReplayBtn.frame = CGRectMake(SCREENSIZE.width - 64, self.contentView.frame.size.height - 26, 64, 26);
+    self.cellHeaderTime.frame = CGRectMake(60, headerView - 20, SCREENSIZE.width - 100, 15);
+    self.cellHeaderReplayBtn.frame = CGRectMake(SCREENSIZE.width - 64, headerView - 26, 64, 26);
     self.cellHeaderTime.text = dicTemp.createTime;
     [self.cellHeaderReplayBtn setTitle:[NSString stringWithFormat:@"%@",dicTemp.replyCount] forState:UIControlStateNormal];
     

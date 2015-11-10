@@ -31,7 +31,7 @@
     
     self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, 40)];
     [self.nameField setBorderStyle:UITextBorderStyleRoundedRect];
-    self.nameField.text = user.userName;
+    self.nameField.text = user.nickName;
     [self.view addSubview:self.nameField];
     
     self.tellField = [[UITextField alloc] initWithFrame:CGRectMake(self.nameField.frame.origin.x, self.nameField.frame.origin.y+self.nameField.frame.size.height+5, self.nameField.frame.size.width, self.nameField.frame.size.height)];

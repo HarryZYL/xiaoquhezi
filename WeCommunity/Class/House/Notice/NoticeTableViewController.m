@@ -22,8 +22,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClass:[ BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
     [self retrireveData];
@@ -92,8 +92,8 @@
     [Networking retrieveData:getNoticesOfCommunity parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.header endRefreshing];
-        [self.tableView.footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         self.page = 1;
     }];
 }

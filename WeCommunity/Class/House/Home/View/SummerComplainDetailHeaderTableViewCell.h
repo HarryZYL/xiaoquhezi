@@ -26,6 +26,6 @@
 
 @property (nonatomic ,weak) id delegate;
 
-- (void)confirmCellInformationWithData:(TextDeal *)dicTemp;
+- (void)confirmCellInformationWithData:(TextDeal *)dicTemp withHeightHeaderView:(CGFloat)headerView;
 - (void)confirmCellCompliteDetailWithData:(TextDeal *)dicTemp;/**<cell model*/
 @end

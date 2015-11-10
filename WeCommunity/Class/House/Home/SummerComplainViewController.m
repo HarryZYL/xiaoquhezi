@@ -15,6 +15,7 @@
 @interface SummerComplainViewController ()<UzysAssetsPickerControllerDelegate ,SummerComplainDetailHeaderTableViewCellDelegate ,MWPhotoBrowserDelegate>
 {
     NSInteger numberPage;
+    CGFloat headerViewHeight;
 }
 @property (nonatomic ,strong) NSMutableArray *chosenImages;
 @property (nonatomic ,strong) NSMutableArray *arraryData;
@@ -84,81 +85,52 @@
 
 #pragma mark - UITableViewDelegate
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
-//    if ([_complainModel.pictures isEqual:[NSNull null]]) {
-//        return 61 + rectHeight;
-//    }
-//    return 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
+    if ([_complainModel.pictures isEqual:[NSNull null]]) {
+        return 61 + rectHeight;
+    }
+    headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
+    return headerViewHeight;
+}
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
-//    if (!cell) {
-//        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
-//        cell.delegate = self;
-//    }
-//    [cell confirmCellInformationWithData:self.complainModel];
-//
-//    return cell;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
+    if (!cell) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
+        cell.delegate = self;
+    }
+    [cell confirmCellInformationWithData:self.complainModel withHeightHeaderView:headerViewHeight];
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0) {
-        return 1;
-    }else{
-        NSInteger integerRow = _arraryData.count;
-        return integerRow;
-    }
-    return 0;
+    NSInteger integerRow = _arraryData.count;
+    return integerRow;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
-        if ([_complainModel.pictures isEqual:[NSNull null]]) {
-            return 61 + rectHeight;
-        }
-        return 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
+    TextDeal *noticModel = _arraryData[indexPath.row];
+    CGFloat heightCell = [Util getHeightForString:noticModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:13]];
+    
+    if ([noticModel.pictures isEqual:[NSNull null]]) {
+        return 54 + heightCell;
+    }
+    if ([noticModel.pictures count] == 0) {
+        return 54 + heightCell;
     }else{
-        TextDeal *noticModel = _arraryData[indexPath.row];
-        CGFloat heightCell = [Util getHeightForString:noticModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:13]];
-        
-        if ([noticModel.pictures isEqual:[NSNull null]]) {
-            return 64 + heightCell;
-        }
-        if ([noticModel.pictures count] == 0) {
-            return 64 + heightCell;
-        }else{
-            return 64 + heightCell + ([noticModel.pictures count]/4 + 1) * 45.0;
-        }
-
+        return 54 + heightCell + ([noticModel.pictures count]/4 + 1) * 45.0;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 0) {
-        SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
-        if (!cell) {
-            cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
-            cell.delegate = self;
-        }
-        [cell confirmCellInformationWithData:self.complainModel];
-        
-        return cell;
-    }else{
-        SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-        cell.delegate = self;
-        [cell confirmCellCompliteDetailWithData:_arraryData[indexPath.row]];
-        
-        return cell;
-    }    
-    return nil;
+    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    cell.delegate = self;
+    [cell confirmCellCompliteDetailWithData:_arraryData[indexPath.row]];
+    
+    return cell;
 }
 
 - (void)selectDetailHeaderCellImageView:(id)sender{
