@@ -8,6 +8,7 @@
 #import "SummerBillBootomView.h"
 #import "BillTableViewController.h"
 #import "UIViewController+HUD.h"
+#import "MBProgressHUD.h"
 #import "SummerBillTableViewCell.h"
 #import "SummerBillConfirmViewController.h"
 
@@ -138,7 +139,7 @@
 
 - (void)viewDataWithRoomId:(NSString *)roomID{
     __weak typeof(self)weakVC = self;
-    [Networking retrieveData:GET_HOUSE_FEE parameters:@{@"token": [User getUserToken],@"tradeStatus":@"WaitingPay",@"houseId":roomID } success:^(id responseObject) {
+    [Networking retrieveData:GET_HOUSE_FEE parameters:@{@"token": [User getUserToken],@"tradeStatus":@"WaitingPay",@"houseId":roomID} success:^(id responseObject) {
         NSLog(@"----->%@",responseObject);
         billArrary = responseObject[@"rows"];
         for (NSDictionary *dicTemp in billArrary) {
@@ -155,7 +156,10 @@
         [self showHint:@"记得选择，才能缴费"];
         return;
     }
-    SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"生成订单中";
+    [hud hide:YES afterDelay:30];
+    
     NSArray *indexPathArrary = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *selectBillArrary = [[NSMutableArray alloc] initWithArray:billArrary];
     
@@ -167,10 +171,26 @@
     for (NSDictionary *dicTemp in selectBillArrary) {
         [arraryIDs addObject:dicTemp[@"id"]];
     }
-    confirmVC.commnityArrary = selectBillArrary;
-    confirmVC.billOrderIDArrary = arraryIDs;
-    confirmVC.commnityDic = self.roomDic;
-    [self.navigationController pushViewController:confirmVC animated:YES];
+    
+    NSDictionary *parama = @{@"token": [User getUserToken],@"ids":arraryIDs};
+    [Networking retrieveData:get_Order_LIST parameters:parama success:^(id responseObject) {
+        NSLog(@"-->%@",responseObject);
+        [hud removeFromSuperview];
+        NSString *orderListIDNumber = responseObject[@"orderNo"];
+        if ([orderListIDNumber isEqual:[NSNull null]]) {
+            [self showHint:@"订单生成失败"];
+            return;
+        }else{
+            SummerBillConfirmViewController *confirmVC = [[SummerBillConfirmViewController alloc] init];
+            confirmVC.commnityArrary = selectBillArrary;
+            confirmVC.billOrderIDArrary = arraryIDs;
+            confirmVC.commnityDic = self.roomDic;
+            confirmVC.orderListID = orderListIDNumber;
+            [self.navigationController pushViewController:confirmVC animated:YES];
+        }
+
+    }];
+    
 }
 
 @end

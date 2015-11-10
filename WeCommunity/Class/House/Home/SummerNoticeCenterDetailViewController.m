@@ -181,10 +181,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeCenterDetailModel *detailNotice = _arraryData[indexPath.row];
     _identifyNotice = detailNotice.detailNoticeModel;
-    self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_identifyNotice.creatorInFo.nickName];
-    self.summerInputView.btnAddImg.hidden = YES;
-    self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
-    [self.summerInputView.summerInputView becomeFirstResponder];
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+        self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_identifyNotice.creatorInFo.nickName];
+        self.summerInputView.btnAddImg.hidden = YES;
+        self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
+        [self.summerInputView.summerInputView becomeFirstResponder];
+    }else{
+        [self showHint:@"认证后，才能评论"];
+    }
+    
+    
 }
 
 - (void)summerNoticeDetailMoreClickWithData:(id)viewModel{
@@ -193,9 +199,12 @@
         //更多回复
         
        NSIndexPath *index = [_mTableView indexPathForCell:(SummerNoticeDetailReplaceTableViewCell *)[[viewDetailModel superview] superview]];
+//        NSLog(@"------>%d",index.row);
         SummerNoticeCenterDetailModel *detailModel = _arraryData[index.row];
         SummerMoreReplayViewController *replyMoreVC = [[SummerMoreReplayViewController alloc] init];
+        replyMoreVC.strNoticeID = self.strNoticeID;
         replyMoreVC.strID = detailModel.detailNoticeModel.objectID;
+        replyMoreVC.detailNoticeModel = detailModel.detailNoticeModel;
         [self.navigationController pushViewController:replyMoreVC animated:YES];
     }else{
         //子回复
@@ -249,15 +258,21 @@
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
-
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"上传中";
-    hud.dimBackground = YES;
-    [hud hide:YES afterDelay:5];
-    if (!_identifyNotice) {
-        [self senderPostNoticeReplayWith:hud];
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.labelText = @"上传中";
+        hud.dimBackground = YES;
+        [hud hide:YES afterDelay:5];
+        if (!_identifyNotice) {
+            [self senderPostNoticeReplayWith:hud];
+        }else{
+            [self senderPostReplyToReplyWith:hud];
+        }
     }else{
-        [self senderPostReplyToReplyWith:hud];
+        self.summerInputView.summerInputLabNumbers.text = nil;
+        self.summerInputView.summerInputView.text = nil;
+        [self.summerInputView.summerInputView resignFirstResponder];
+        [self showHint:@"认证后，才能评论"];
     }
 }
 

@@ -5,11 +5,17 @@
 //  Created by madarax on 15/11/9.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
+#import "UIViewController+HUD.h"
 #import "SummerNoticeDetailTableViewCell.h"
 #import "SummerMoreReplayViewController.h"
+#import "SummerNoticeMoreReplysTableViewCell.h"
+#import "SummerNoticeMoreReplysRowTableViewCell.h"
 
 @interface SummerMoreReplayViewController ()
-
+{
+    NSInteger pageNumber;
+}
+@property (nonatomic ,strong)NSMutableArray *arraryData;
 @end
 
 @implementation SummerMoreReplayViewController
@@ -19,89 +25,132 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"更多回复";
+    pageNumber = 1;
+    _arraryData = [[NSMutableArray alloc] init];
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
     
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
-    
-    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailReplaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
+    self.summerInputView.summerInputView.delegate = self;
+    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeMoreReplysRowTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
     
     [self.view addSubview:_mTableView];
     _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:_summerInputView];
-    
+    self.summerInputView.btnAddImg.hidden = YES;
+    self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.summerInputView.btnAddImg addTarget:self action:@selector(btnSelectedImageViews:) forControlEvents:UIControlEventTouchUpInside];
+    [self getReceveData];
+}
+
+- (void)getReceveData{
+    if (_arraryData.count) {
+        [_arraryData removeAllObjects];
+    }
+    
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:get_Reply_Replies parameters:@{@"replyId": _strID,@"page":[NSNumber numberWithInteger:pageNumber],@"row":@(30)} success:^(id responseObject) {
+        
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [weakSelf.arraryData addObject:[[SummerHomeDetailNoticeModel alloc] initWithData:dic]];
+        }
+        [weakSelf.mTableView reloadData];
+    }];
 }
 
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    CGFloat rectHeight = [Util getHeightForString:dicNotice[@"content"] width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
-    return 61;
+    CGFloat rectHeight = [Util getHeightForString:_detailNoticeModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
+    return 91 + rectHeight;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    SummerNoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellnoticecenterdetail"];
+    SummerNoticeMoreReplysTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellHeaderView"];
     if (!cell) {
-        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerNoticeDetailTableViewCell" owner:self options:nil].firstObject;
+        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerNoticeMoreReplysTableViewCell" owner:self options:nil].firstObject;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-//    [cell.cellTitleImg sd_setImageWithURL:self.detailNotice.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-//    cell.cellLabTitle.text = self.detailNotice.title;
-//    cell.cellLabTime.text  = self.detailNotice.createTime;
-//    
-//    if ([self.detailNotice.isTop boolValue]) {
-//        cell.cellLabTop.text = @"置顶公告";
-//    }else{
-//        cell.cellLabTop.text = nil;
-//    }
-//    if (self.detailNotice.replyCount.intValue == 0) {
-//        cell.cellLabReplay.text = @"暂无评论";
-//    }else{
-//        cell.cellLabReplay.text  = [NSString stringWithFormat:@"%@",self.detailNotice.replyCount];
-//    }
-//    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[dicNotice[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
-//    cell.cellLabContent.attributedText = attrStr;
+    [cell.cellUserImage sd_setImageWithURL:_detailNoticeModel.creatorInFo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+    cell.cellTitleName.text = _detailNoticeModel.creatorInFo.nickName;
+    cell.cellTimeLabe.text = [Util formattedDate:_detailNoticeModel.createTime type:1];
+    cell.cellContenLab.text = _detailNoticeModel.content;
+    [cell.cellCountNumber setTitle:[NSString stringWithFormat:@"%@",_detailNoticeModel.childrenCount] forState:UIControlStateNormal];
+    
     return cell;
 }
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return _arraryData.count;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-//    CGFloat heightCell = [noticModel.detailNoticeModel.content boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
-//    
-//    if (noticModel.detailNoticeModel.childrenCount.intValue > 0 && noticModel.detailNoticeModel.childrenCount.intValue < 3) {
-//        heightCell += 15 * (noticModel.detailNoticeModel.childrenCount.intValue + 1);
-//    }else if(noticModel.detailNoticeModel.childrenCount.intValue > 3){
-//        heightCell += 50;
-//    }
-//    
-//    if ([noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
-//        return 90 + heightCell;
-//    }
-//    if ([noticModel.detailNoticeModel.pictures count] == 0) {
-//        return 90 + heightCell;
-//    }else{
-//        return 90 + heightCell + ([noticModel.detailNoticeModel.pictures count]/4 + 1) * 45.0;
-//    }
-//    return 0;
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _arraryData.count;
+}
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-//    cell.delegate = self;
-//    [cell confirmCellInformationWithData:_arraryData[indexPath.row]];
-//    return cell;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerHomeDetailNoticeModel *dicTemp = _arraryData[indexPath.row];
+    CGFloat heightCell = [Util getHeightForString:dicTemp.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:15]];
+    
+    return 70 + heightCell;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerNoticeMoreReplysRowTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    
+    [cell confirmCellItemWithData:_arraryData[indexPath.row]];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    _defaultNoticeModel = _arraryData[indexPath.row];
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    
+        self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_defaultNoticeModel.creatorInFo.nickName];
+        
+        [self.summerInputView.summerInputView becomeFirstResponder];
+    }else{
+        [self showHint:@"认证后，才能评论"];
+    }
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    if (textView == self.summerInputView.summerInputView) {
+        if (![[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] && ![[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]){
+            [self showHint:@"认证后，才能评论"];
+            [textView resignFirstResponder];
+        }
+    }
+}
 
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
-    
+    [self.summerInputView.summerInputView resignFirstResponder];
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+        if (_summerInputView.summerInputView.text.length < 1) {
+            [self showHint:@"内容不能为空"];
+            return;
+        }else{
+            [self senderRepalyNotices];
+        }
+    }else{
+        self.summerInputView.summerInputLabNumbers.text = nil;
+        self.summerInputView.summerInputView.text = nil;
+        [self showHint:@"认证后，才能评论"];
+    }
+}
+
+- (void)senderRepalyNotices{
+    NSMutableDictionary *paramaga = [[NSMutableDictionary alloc] init];
+    if (_defaultNoticeModel) {
+        //发给section
+        paramaga = (NSMutableDictionary *)@{@"token": [User getUserToken],@"noticeId":_strNoticeID,@"content":self.summerInputView.summerInputView.text,@"parentId":_defaultNoticeModel.objectID};
+    }else{
+        //发给cell
+        paramaga = (NSMutableDictionary *)@{@"token": [User getUserToken],@"noticeId":_strNoticeID,@"content":self.summerInputView.summerInputView.text,@"parentId":_defaultNoticeModel.objectID};
+    }
+    [Networking retrieveData:GET_REPLY_TO_REPLY parameters:paramaga success:^(id responseObject) {
+        _defaultNoticeModel = nil;
+        self.summerInputView.summerInputView.text = nil;
+        NSLog(@"--->%@",responseObject);
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -5,7 +5,8 @@
 //  Created by madarax on 15/11/6.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
-
+#import "MBProgressHUD.h"
+#import "UIViewController+HUD.h"
 #import "SummerCommunityBrowserViewController.h"
 #import "SummerCommunityBrowserTableViewCell.h"
 
@@ -34,8 +35,14 @@
 }
 
 - (void)getReceveData{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"加载中";
     [Networking retrieveData:get_Nearby_Phones_list parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+        [hud removeFromSuperview];
         arraryData = responseObject;
+        if (arraryData.count < 1) {
+            [self showHint:@"暂无信息"];
+        }
         NSLog(@"123");
         [mTableView reloadData];
     }];

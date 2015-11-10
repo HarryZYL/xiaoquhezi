@@ -71,6 +71,7 @@
             }else{
                 labReplay.frame = CGRectMake(69, self.frame.size.height - 30, SCREENSIZE.width - 70, 15);
             }
+            NSLog(@"---%@---->%@",noticeDetail.createTime,[Util formattedDate:noticeDetail.createTime type:5]);
             NSString *strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
             NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
             [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];

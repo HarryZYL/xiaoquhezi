@@ -121,6 +121,10 @@
 		D414F3841BE8E5E2004F9C5B /* SummerRentMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */; };
 		D414F3881BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3861BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.m */; };
 		D414F3891BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D414F3871BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.xib */; };
+		D42BB1281BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BB1261BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m */; };
+		D42BB1291BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42BB1271BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib */; };
+		D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BB12B1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m */; };
+		D42BB12E1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42BB12C1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib */; };
 		D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */; };
 		D433741E1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */; };
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
@@ -439,6 +443,12 @@
 		D414F3851BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeDetailTableViewCell.h; sourceTree = "<group>"; };
 		D414F3861BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeDetailTableViewCell.m; sourceTree = "<group>"; };
 		D414F3871BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D42BB1251BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeMoreReplysTableViewCell.h; sourceTree = "<group>"; };
+		D42BB1261BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeMoreReplysTableViewCell.m; sourceTree = "<group>"; };
+		D42BB1271BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeMoreReplysTableViewCell.xib; sourceTree = "<group>"; };
+		D42BB12A1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeMoreReplysRowTableViewCell.h; sourceTree = "<group>"; };
+		D42BB12B1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeMoreReplysRowTableViewCell.m; sourceTree = "<group>"; };
+		D42BB12C1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeMoreReplysRowTableViewCell.xib; sourceTree = "<group>"; };
 		D43374191BE1E55800BD438F /* SummerUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserHeaderView.h; sourceTree = "<group>"; };
 		D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserHeaderView.m; sourceTree = "<group>"; };
 		D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityOfHouseViewController.h; sourceTree = "<group>"; };
@@ -1159,6 +1169,7 @@
 		4ACCCFF81BBF49600001227A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D4D4007C1BDF15C3005F6095 /* cell */,
 				D452068D1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.h */,
 				D452068E1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m */,
 				D452068F1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib */,
@@ -1183,7 +1194,6 @@
 				D414F3851BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.h */,
 				D414F3861BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.m */,
 				D414F3871BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.xib */,
-				D4D4007C1BDF15C3005F6095 /* cell */,
 				4ACCCFFD1BBF49600001227A /* Item */,
 			);
 			path = View;
@@ -1596,6 +1606,12 @@
 		D4D4007C1BDF15C3005F6095 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				D42BB12A1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.h */,
+				D42BB12B1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m */,
+				D42BB12C1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib */,
+				D42BB1251BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.h */,
+				D42BB1261BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m */,
+				D42BB1271BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib */,
 				D452F23C1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.h */,
 				D452F23D1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m */,
 				D452F23E1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib */,
@@ -1763,6 +1779,7 @@
 				D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */,
 				4A118EBD1BA4900400BC2C4E /* Overlay.png in Resources */,
 				D452F2401BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib in Resources */,
+				D42BB1291BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib in Resources */,
 				4A118EBA1BA4900400BC2C4E /* ELCAlbumPickerController.xib in Resources */,
 				D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */,
 				4A118EBE1BA4900400BC2C4E /* Overlay@2x.png in Resources */,
@@ -1771,6 +1788,7 @@
 				D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */,
 				D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */,
 				4ADDB98E1B5D235F002A188E /* Main.storyboard in Resources */,
+				D42BB12E1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib in Resources */,
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D452F2481BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib in Resources */,
 				D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */,
@@ -1886,6 +1904,7 @@
 				4ACCCEDE1BBF456F0001227A /* ActivityPostView.m in Sources */,
 				4A118EB91BA4900400BC2C4E /* ELCOverlayImageView.m in Sources */,
 				4ACCCEE31BBF456F0001227A /* SecondHandView.m in Sources */,
+				D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */,
 				D45206901BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m in Sources */,
 				4ACCCEA31BBF40120001227A /* UserView.m in Sources */,
 				D454EAA41BE4949E0089333D /* base64.m in Sources */,
@@ -1933,6 +1952,7 @@
 				4A118E881BA48FFC00BC2C4E /* FileManager.m in Sources */,
 				4AD126201BAB05ED0017B220 /* Util.m in Sources */,
 				D4D400841BDF6A9B005F6095 /* SummerPriceListViewController.m in Sources */,
+				D42BB1281BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m in Sources */,
 				4ACCD0491BBF49600001227A /* OverView.m in Sources */,
 				D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */,
 				D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */,

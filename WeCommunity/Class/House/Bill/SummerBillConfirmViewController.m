@@ -25,7 +25,7 @@
     CGFloat moneyTotal;
     LoadingView *successView;
 }
-@property (nonatomic ,copy)NSString *orderListID;/**<返回的订单ID*/
+
 
 @end
 
@@ -36,17 +36,8 @@
     self.title = @"确认订单";
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self initWithOrderListData];
     [self initSelfOrderListView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(wxPayReturnInfo:) name:@"WXPayWay" object:nil];
-}
-
-- (void)initWithOrderListData{
-    NSDictionary *parama = @{@"token": [User getUserToken],@"ids":_billOrderIDArrary};
-    [Networking retrieveData:get_Order_LIST parameters:parama success:^(id responseObject) {
-        NSLog(@"-->%@",responseObject);
-        _orderListID = responseObject;
-    }];
 }
 
 - (void)initSelfOrderListView{
@@ -71,7 +62,7 @@
     lineLab.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
     [topBgView addSubview:lineLab];
     
-    for (NSInteger iRow = 0; iRow <_billOrderIDArrary.count; iRow ++) {
+    for (NSInteger iRow = 0; iRow <_commnityArrary.count; iRow ++) {
         UILabel *feeLab = [[UILabel alloc] init];
         feeLab.frame = CGRectMake(10, 55 + 19 * iRow, SCREENSIZE.width - 20, 10);
         
@@ -110,6 +101,9 @@
 
 - (void)orderListSureUpload{
     SummerSelectPayWayView *payView = (SummerSelectPayWayView *)[self.view viewWithTag:100];
+    if (!_orderListID || _orderListID.length < 1) {
+        [self showHint:@"订单生成失败"];
+    }
     if (payView.currentSelect == 0) {
         [self showHint:@"请选择支付方式"];
         return;
