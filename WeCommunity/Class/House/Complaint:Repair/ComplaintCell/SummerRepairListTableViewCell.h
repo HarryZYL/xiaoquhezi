@@ -23,6 +23,8 @@
 @property (nonatomic ,weak)IBOutlet UIButton *cellBtnCount;
 @property (nonatomic ,weak)IBOutlet UIImageView *cellStyle;
 
+@property (nonatomic ,weak)IBOutlet NSLayoutConstraint *cellContentLayout;
+
 @property (nonatomic ,weak) id delegate;
 
 - (void)confirmRepairListCellWithData:(TextDeal *)textModel;

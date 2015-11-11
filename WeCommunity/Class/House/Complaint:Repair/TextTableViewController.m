@@ -120,18 +120,14 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    
     TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
-    CGFloat heightContent = [Util getHeightForString:textDeal.content width:SCREENSIZE.width - 130 font:[UIFont systemFontOfSize:14]];
     if (![textDeal.pictures isEqual:[NSNull null]]) {
         if ([textDeal.pictures[0] length] < 1) {
-            return 120;
+            return 100;
         }else{
-            return 140;
+            return 158;
         }
     }else{
-        if (heightContent > 50) {
-            return heightContent + 50;
-        }
-        return 50 + 30;
+        return 100;
     }
 }
 

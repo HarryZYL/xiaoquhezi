@@ -27,7 +27,6 @@
     
     self.cellTitleLab.text = [textModel.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    
     self.cellLabTime.text = textModel.createTime;
     
     [self.cellBtnCount setTitle:[NSString stringWithFormat:@"%@",textModel.replyCount] forState:UIControlStateNormal];
