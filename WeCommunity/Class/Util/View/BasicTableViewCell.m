@@ -495,7 +495,7 @@
     
     [self.iconImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     
-    self.titleLabel.frame = CGRectMake(self.iconImage.frame.origin.x + self.iconImage.frame.size.width + 10 , 10, self.frame.size.width-100, 25);
+    self.titleLabel.frame = CGRectMake(self.iconImage.frame.origin.x + self.iconImage.frame.size.width + 10 , 10, self.frame.size.width-130, 25);
     self.titleLabel.font = [UIFont fontWithName:fontName size:18];
     self.titleLabel.text = title;
     self.titleLabel.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];

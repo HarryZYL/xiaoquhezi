@@ -14,6 +14,6 @@
 @property (nonatomic ,weak) IBOutlet UILabel *cellTimeLab;
 @property (nonatomic ,weak) IBOutlet UILabel *cellNameLab;
 @property (nonatomic ,weak) IBOutlet UILabel *cellPhoneNumber;
-
+@property (nonatomic ,weak) IBOutlet UIButton *cellBtnPhone;
 
 @end

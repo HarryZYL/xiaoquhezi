@@ -11,7 +11,9 @@
 #import "NSString+HTML.h"
 
 @interface OrderHouseViewController ()
-
+{
+    NSDate *newDate;
+}
 @end
 
 @implementation OrderHouseViewController
@@ -67,9 +69,6 @@
     }
     if ([self.dateBtn.titleLabel.text isEqualToString:@"请选择预约时间"]) {
         [self showHint:@"请选择预约时间"];
-    }else if (![NSString filterPhoneNumber:self.tellField.text]){
-        [self showHint:@"手机号码不正确"];
-        return;
     }else{
         [self.view addSubview:self.loadingView];
         NSDictionary *parameters = @{
@@ -101,7 +100,7 @@
     self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, 110); // 设置显示的位置和大小
     NSDate *minDate = [NSDate dateWithTimeIntervalSinceNow:15*60];
     self.oneDatePicker.minimumDate = minDate;
-    
+    newDate = minDate;
     self.oneDatePicker.date = [NSDate date]; // 设置初始时间
     // [oneDatePicker setDate:[NSDate dateWithTimeIntervalSinceNow:48 * 20 * 18] animated:YES]; // 设置时间，有动画效果
     self.oneDatePicker.timeZone = [NSTimeZone timeZoneWithName:@"GTM+8"]; // 设置时区，中国在东八区
@@ -113,6 +112,11 @@
     [self.oneDatePicker addTarget:self action:@selector(oneDatePickerValueChanged:) forControlEvents:UIControlEventValueChanged]; // 添加监听器
     
     [self.view addSubview:self.oneDatePicker]; // 添加到View上
+    
+    NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
+    selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
+    NSString *dateAndTime = [selectDateFormatter stringFromDate:newDate]; // 把date类型转为设置好格式的string类型
+    [self.dateBtn setTitle:dateAndTime forState:UIControlStateNormal];
 }
 
 #pragma mark - 实现oneDatePicker的监听方法

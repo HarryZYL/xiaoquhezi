@@ -4,14 +4,15 @@
 //
 //  Created by Harry on 7/21/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
-//
+//  报修列表
 
 #import "TextTableViewController.h"
 #import "UIViewController+HUD.h"
+#import "SummerRepairListTableViewCell.h"
 #import "SummerComplainViewController.h"
 #import "AccreditationTableViewController.h"
 
-@interface TextTableViewController ()<TextPostViewControllerDelegate ,UIAlertViewDelegate>
+@interface TextTableViewController ()<TextPostViewControllerDelegate ,UIAlertViewDelegate ,SummerRepairListTableViewCellDelegate>
 
 @end
 
@@ -24,11 +25,12 @@
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
     }else if([self.function isEqualToString:@"repair"]){
+        [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"报修" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
     }
     
-    [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
@@ -69,28 +71,36 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    SummerRepairListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem"];
+    if (!cell) {
+        cell = [[NSBundle mainBundle]loadNibNamed:@"SummerRepairListTableViewCell" owner:self options:nil].firstObject;
+        cell.delegate = self;
+    }
     
-    TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
-    
-    [cell configureTextCellImage:[NSURL URLWithString:textDeal.textType[@"logo"]] title:textDeal.content date:textDeal.createTime deal:textDeal.status pictures:textDeal.pictures detail:NO withCount:textDeal.replyCount];
-    
-    
+    [cell confirmRepairListCellWithData:[[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function]];
     return cell;
 }
 
+- (void)summerRepairListCellWithData:(UIImageView *)sender{
+    NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell *)sender.superview.superview.superview];
+    NSLog(@"-------->%d",index);
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
    
     TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
+    CGFloat heightContent = [Util getHeightForString:textDeal.content width:SCREENSIZE.width - 130 font:[UIFont systemFontOfSize:14]];
     if (![textDeal.pictures isEqual:[NSNull null]]) {
         if ([textDeal.pictures[0] isEqualToString:@""] ) {
             return 120;
         }else{
-            return 180;
+            return 140;
         }
     }else{
-         return 120;
+        if (heightContent > 50) {
+            return heightContent + 50;
+        }
+        return 50 + 40;
     }
 }
 
@@ -153,7 +163,7 @@
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer resetNoMoreData];
         self.page = 1;
     }];

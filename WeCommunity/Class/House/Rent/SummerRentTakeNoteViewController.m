@@ -30,7 +30,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SummerRentTakeNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    SummerRentTakeNoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem"];
+    if (!cell) {
+        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerRentTakeNoteTableViewCell" owner:self options:nil].firstObject;
+        [cell.cellBtnPhone addTarget:self action:@selector(cellBtnPhoneNow:) forControlEvents:UIControlEventTouchUpInside];
+    }
     NSDictionary *dicTemp = _arraryData[indexPath.row];
     cell.cellTimeLab.text = [NSString stringWithFormat:@"预约时间：%@",dicTemp[@"time"]];
     cell.cellNameLab.text = [NSString stringWithFormat:@"姓       名：%@",dicTemp[@"name"]];
@@ -40,6 +44,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"--->%@",_arraryData[indexPath.row]);
+}
+
+- (void)cellBtnPhoneNow:(UIButton *)sender{
+    NSIndexPath *index = [_mTableView indexPathForCell:(UITableViewCell *)[sender superview].superview];
+    NSLog(@"------>%d",index.row);
+    NSDictionary *dicTemp = _arraryData[index.row];
+    NSString *strPhone = [NSString stringWithFormat:@"telprompt://%@",[dicTemp[@"phone"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strPhone]];
 }
 
 //查询预约看房记录
@@ -73,7 +85,7 @@
 
 - (UITableView *)mTableView{
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, SCREENSIZE.height - 64) style:UITableViewStylePlain];
-    [_mTableView registerNib:[UINib nibWithNibName:@"SummerRentTakeNoteTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
+//    [_mTableView registerNib:[UINib nibWithNibName:@"SummerRentTakeNoteTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight = 130;

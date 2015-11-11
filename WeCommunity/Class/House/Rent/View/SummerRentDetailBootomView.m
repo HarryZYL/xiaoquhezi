@@ -27,6 +27,10 @@
             self.btnRight.frame = CGRectMake(frame.size.width/2, 0, frame.size.width/2, frame.size.height);
             [self.btnRight setTitle:@"修改" forState:UIControlStateNormal];
             [self addSubview:self.btnRight];
+            
+            UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(SCREENSIZE.width/2, 0, 1, frame.size.height)];
+            lineLab.backgroundColor = [UIColor whiteColor];
+            [self addSubview:lineLab];
         }
         
     }
