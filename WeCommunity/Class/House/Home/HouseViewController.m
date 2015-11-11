@@ -239,15 +239,17 @@
 
 - (void)configurationSlider{
     self.userBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+60)];
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-        self.userBgView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:0.5];
-    }else{
-        UIBlurEffect *effectBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effectBlur];
-        effectView.frame = self.userBgView.frame;
-        effectView.alpha = .8;
-        [self.userBgView addSubview:effectView];
-    }
+    self.userBgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
+//        self.userBgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
+//    }
+//    else{
+//        UIBlurEffect *effectBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+//        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effectBlur];
+//        effectView.frame = self.userBgView.frame;
+//        effectView.alpha = .8;
+//        [self.userBgView addSubview:effectView];
+//    }
     [self.view.window addSubview:self.userBgView];
     
     self.userView = [[UserView alloc] initWithFrame:CGRectMake(-self.view.frame.size.width*0.7, 0, self.view.frame.size.width*0.7, self.view.frame.size.height+60)];

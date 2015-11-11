@@ -44,10 +44,12 @@
         UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
         img.hidden = YES;
     }
-    for (NSInteger index = 0; index < textModel.pictures.count; index ++) {
-        UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
-        img.hidden = NO;
-        [img sd_setImageWithURL:[NSURL URLWithString:textModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+    if (textModel.pictures.count > 0 && [textModel.pictures.firstObject length] > 1) {
+        for (NSInteger index = 0; index < textModel.pictures.count; index ++) {
+            UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
+            img.hidden = NO;
+            [img sd_setImageWithURL:[NSURL URLWithString:textModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+        }
     }
 }
 

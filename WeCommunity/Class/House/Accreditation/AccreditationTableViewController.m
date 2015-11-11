@@ -24,6 +24,7 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
+    
     UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
     self.navigationItem.rightBarButtonItem = postBtn;
 

@@ -21,7 +21,7 @@
     CGFloat contentHeight = [Util getHeightForString:[dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 20 font:[UIFont systemFontOfSize:15]];
     
     self.cellContentLab.frame = CGRectMake(10, 5, self.cellImagesView.frame.size.width, contentHeight);
-    self.cellContentLab.text = dicTemp.content;
+    self.cellContentLab.text = [dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     for (NSInteger index = 0; index < 8; index ++) {
         UIImageView *img = (UIImageView *)[self.cellImagesView viewWithTag:index + 1];

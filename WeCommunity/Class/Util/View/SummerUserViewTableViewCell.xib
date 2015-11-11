@@ -33,7 +33,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="whQ-rL-h8Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="0eu-Z7-KcJ"/>
                     <constraint firstItem="MWi-0v-FwT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CAx-g1-OEC"/>
@@ -47,7 +47,7 @@
                     <constraint firstAttribute="bottom" secondItem="whQ-rL-h8Y" secondAttribute="bottom" constant="1" id="y1n-kS-Med"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.23921568627450979" green="0.80000000000000004" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.23921568627450979" green="0.80000000000000004" blue="0.70588235294117641" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="nameLab" destination="whQ-rL-h8Y" id="vhq-8c-4E1"/>
                 <outlet property="titleView" destination="mc7-Zq-whm" id="8Hw-uu-eUl"/>

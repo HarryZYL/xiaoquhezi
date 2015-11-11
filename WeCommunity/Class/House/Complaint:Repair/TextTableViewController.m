@@ -12,14 +12,15 @@
 #import "SummerComplainViewController.h"
 #import "AccreditationTableViewController.h"
 
-@interface TextTableViewController ()<TextPostViewControllerDelegate ,UIAlertViewDelegate ,SummerRepairListTableViewCellDelegate>
-
+@interface TextTableViewController ()<MWPhotoBrowserDelegate ,TextPostViewControllerDelegate ,UIAlertViewDelegate ,SummerRepairListTableViewCellDelegate>
+@property (nonatomic ,strong) NSMutableArray *photos;
 @end
 
 @implementation TextTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.photos = [[NSMutableArray alloc] init];
     self.page = 1;
     if ([self.function isEqualToString:@"complaint"]) {
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
@@ -82,8 +83,38 @@
 }
 
 - (void)summerRepairListCellWithData:(UIImageView *)sender{
+    if (self.photos.count) {
+        [self.photos removeAllObjects];
+    }
     NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell *)sender.superview.superview.superview];
-    NSLog(@"-------->%d",index);
+    NSLog(@"-------->%d",index.section);
+    TextDeal *textDetalMode = [[TextDeal alloc] initWithData:self.dataArray[index.section] textType:self.function];
+    if (![textDetalMode.pictures isEqual:[NSNull null]] && [textDetalMode.pictures.firstObject length] > 1) {
+        for (int i = 0; i< [textDetalMode.pictures count]; i++) {
+            MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:textDetalMode.pictures[i]]];
+            [self.photos addObject:photo];
+        }
+        // Create browser
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser = [Util fullImageSetting:browser];
+        
+        browser.displayActionButton = NO;
+        [browser setCurrentPhotoIndex:sender.tag - 1];
+//        [self.view addSubview:browser.view];
+        [self.navigationController pushViewController:browser animated:YES];
+    }
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,7 +122,7 @@
     TextDeal *textDeal = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
     CGFloat heightContent = [Util getHeightForString:textDeal.content width:SCREENSIZE.width - 130 font:[UIFont systemFontOfSize:14]];
     if (![textDeal.pictures isEqual:[NSNull null]]) {
-        if ([textDeal.pictures[0] isEqualToString:@""] ) {
+        if ([textDeal.pictures[0] length] < 1) {
             return 120;
         }else{
             return 140;
@@ -100,7 +131,7 @@
         if (heightContent > 50) {
             return heightContent + 50;
         }
-        return 50 + 40;
+        return 50 + 30;
     }
 }
 

@@ -145,7 +145,6 @@
             _functionImage = @[@"我的活动",@"缴费记录",@"设置"];
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
-        _mTableView.backgroundColor = [UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1];
         _mTableView.scrollEnabled   = NO;
         [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
         _mTableView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:204.0/255.0 blue:180.0/255.0 alpha:0.9];
@@ -153,16 +152,16 @@
         _mTableView.dataSource = self;
         [self addSubview:_mTableView];
         [self setTableViewHeaderView];
+        _mTableView.separatorColor = [UIColor whiteColor];
         [_mTableView setTableFooterView:[[UIView alloc] init]];
     }
     return self;
 }
 
 - (void)setTableViewHeaderView{
-    self.backgroundColor = [UIColor colorWithRed:29.0/255.0 green:165.0/255.0 blue:146.0/255.0 alpha:0.9];
     //        上半部分颜色初始化
     UIView *topView = [[UIView alloc] init];
-    topView.backgroundColor = [UIColor colorWithRed:21.0/255.0 green:186.0/255.0 blue:154.0/255.0 alpha:1];
+    topView.backgroundColor = [UIColor colorWithRed:21.0/255.0 green:186.0/255.0 blue:154.0/255.0 alpha:.9];
     [self addSubview:topView];
     
     //        设置头像
@@ -201,7 +200,7 @@
     [self addSubview:address];
     
     UILabel *owerType = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-95, address.frame.origin.y + 2, 60, 25)];
-    owerType.backgroundColor = [UIColor redColor];
+    owerType.backgroundColor = [UIColor colorWithRed:0.953 green:0.408 blue:0.380 alpha:1.000];
     owerType.font = [UIFont fontWithName:fontName size:12];
     owerType.textColor = [UIColor whiteColor];
     owerType.textAlignment = NSTextAlignmentCenter;
