@@ -338,7 +338,7 @@
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < self.chosenImages.count)
-        return [photos objectAtIndex:index];
+        return [self.chosenImages objectAtIndex:index];
     return nil;
 }
 
@@ -349,6 +349,7 @@
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [photos removeObjectAtIndex:index];
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenImagesSmall removeObjectAtIndex:index];
     if (self.chosenImages.count < 1) {

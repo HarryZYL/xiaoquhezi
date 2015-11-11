@@ -61,17 +61,17 @@
                             </mask>
                         </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Wh-ujt">
-                        <rect key="frame" x="262" y="94" width="50" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XJ-Wh-ujt">
+                        <rect key="frame" x="282" y="94" width="30" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="DWE-ej-snw"/>
+                            <constraint firstAttribute="width" constant="30" id="DWE-ej-snw"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="YMQ-iN-9us">
-                        <rect key="frame" x="230" y="95" width="22" height="14"/>
+                        <rect key="frame" x="260" y="95" width="22" height="14"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="csz-TX-cfX"/>
                         </constraints>
@@ -121,7 +121,7 @@
                     <constraint firstItem="WfT-DI-SQ8" firstAttribute="leading" secondItem="0ug-kM-V5j" secondAttribute="trailing" constant="8" id="Wmf-O3-U2N"/>
                     <constraint firstAttribute="bottomMargin" secondItem="YMQ-iN-9us" secondAttribute="bottom" constant="-1" id="Wwp-HV-i9B"/>
                     <constraint firstItem="7Zl-rR-U89" firstAttribute="top" secondItem="WfT-DI-SQ8" secondAttribute="bottom" constant="5" id="XGM-DG-7ix"/>
-                    <constraint firstItem="3XJ-Wh-ujt" firstAttribute="leading" secondItem="YMQ-iN-9us" secondAttribute="trailing" constant="10" id="Xf5-Cb-X5h"/>
+                    <constraint firstItem="3XJ-Wh-ujt" firstAttribute="leading" secondItem="YMQ-iN-9us" secondAttribute="trailing" id="Xf5-Cb-X5h"/>
                     <constraint firstItem="wfK-0B-wly" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="ZmZ-VO-l0l"/>
                     <constraint firstAttribute="trailingMargin" secondItem="wfK-0B-wly" secondAttribute="trailing" constant="22" id="b9C-nS-24R"/>
                     <constraint firstAttribute="trailing" secondItem="wfK-0B-wly" secondAttribute="trailing" constant="30" id="bfr-xB-Ayb"/>
