@@ -94,6 +94,12 @@
     self.postView.bathRoomField.text = [NSString stringWithFormat:@"%@",self.houseDeal.bathRoom];
     self.postView.floorField.text = [NSString stringWithFormat:@"%@",self.houseDeal.floor];
     self.postView.totalFloorField.text = [NSString stringWithFormat:@"%@",self.houseDeal.totalFloor];
+    
+    self.postView.areaField.text = [NSString stringWithFormat:@"%@",self.houseDeal.area];
+    self.postView.priceField.text = [NSString stringWithFormat:@"%@",self.houseDeal.price];
+    
+    self.postView.titleField.text = self.houseDeal.title;
+    self.postView.contentField.text = self.houseDeal.content;
 }
 
 #pragma mark picker
@@ -223,9 +229,6 @@
     }
     
 }
-//- (void)deleteImageView{
-//    
-//}
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
     for (int i = 0; i<self.chosenImages.count; i++) {
@@ -338,12 +341,14 @@
                 postVC.houseDeal.houseType = self.houseType;
                 postVC.strHouseDeailID     = self.strHouseDeailID;
                 postVC.houseDeal.room      = self.postView.roomField.text;
-                
+                postVC.houseDeal.title     = self.houseDeal.title;
+                postVC.houseDeal.content   = self.houseDeal.content;
                 postVC.houseDeal.sittingRoom = self.postView.sittingRoomField.text;
                 postVC.houseDeal.bathRoom    = self.postView.bathRoomField.text;
                 postVC.houseDeal.floor       = self.postView.floorField.text;
                 postVC.houseDeal.totalFloor  = self.postView.totalFloorField.text;
-                
+                postVC.houseDeal.area        = self.houseDeal.area;
+                postVC.houseDeal.price       = self.houseDeal.price;
                 postVC.houseDeal.houseOrientation = self.houseOrientation;
                 break;
             }
@@ -358,8 +363,11 @@
             }else{
                 post = YES;
                 
+                
                 postVC.houseDeal = self.houseDeal;
                 postVC.strHouseDeailID = self.strHouseDeailID;
+                postVC.houseDeal.title = self.houseDeal.title;
+                postVC.houseDeal.content = self.houseDeal.content;
                 postVC.houseDeal.area = self.postView.areaField.text;
                 postVC.houseDeal.price = self.postView.priceField.text;
             }

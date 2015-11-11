@@ -257,7 +257,6 @@
                 self.priceField.textAlignment = NSTextAlignmentRight;
                 self.priceField.delegate = self;
                 [self addSubview:self.priceField];
-
                 break;
                 
             default:

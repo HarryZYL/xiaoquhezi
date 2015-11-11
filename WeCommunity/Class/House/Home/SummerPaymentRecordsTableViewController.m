@@ -16,6 +16,7 @@
 {
     NSInteger pageNumber;
     LoadingView *loadingView;
+    UILabel *labNoRecords;
 }
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
 @property (nonatomic ,assign) NSInteger indexRow;
@@ -53,7 +54,7 @@
         [loadingView removeFromSuperview];
         if (responseObject[@"rows"]&&![responseObject[@"rows"] isEqual:[NSNull null]]) {
             if ([responseObject[@"rows"] count] == 0) {
-                [self showHint:@"没有缴费记录"];
+                [self takeNoRecords];
                 return;
             }
             for (NSDictionary *dicTemp in responseObject[@"rows"]) {
@@ -61,10 +62,19 @@
             }
             [self.tableView reloadData];
         }else{
-            [self showHint:@"没有缴费记录"];
+            [self takeNoRecords];
         }
         
     }];
+}
+
+- (void)takeNoRecords{
+    labNoRecords = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 30)];
+    labNoRecords.textAlignment = NSTextAlignmentCenter;
+    labNoRecords.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+    labNoRecords.textColor = [UIColor colorWithRed:0.634 green:0.633 blue:0.647 alpha:1.000];
+    labNoRecords.text = @"暂无记录";
+    [self.view addSubview:labNoRecords];
 }
 
 - (void)didReceiveMemoryWarning {
