@@ -177,7 +177,7 @@ static void * MWVideoPlayerObservation = &MWVideoPlayerObservation;
     }
     if (self.displayActionButton) {
 //        _actionButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(actionButtonPressed:)];
-        _actionButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"垃圾筐"] style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
+        _actionButton =[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"垃圾筐"] style:UIBarButtonItemStylePlain target:self action:@selector(actionButtonPressed:)];
     }
     
     // Update

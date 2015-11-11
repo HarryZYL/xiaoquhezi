@@ -71,11 +71,25 @@
             }else{
                 labReplay.frame = CGRectMake(69, self.frame.size.height - 30, SCREENSIZE.width - 70, 15);
             }
+            
+            
+            NSString *strTemp;
+            
             NSLog(@"---%@---->%@",noticeDetail.createTime,[Util formattedDate:noticeDetail.createTime type:5]);
-            NSString *strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
-            NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
-            [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
-            labReplay.attributedText = attriStr;
+            if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+                NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
+                
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                labReplay.attributedText = attriStr;
+            }else{
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+                NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
+                
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                labReplay.attributedText = attriStr;
+            }
+            
         }
     }
     if (dicTemp.detailNoticeModel.childrenCount.intValue > 2) {

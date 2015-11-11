@@ -89,11 +89,11 @@
     NSDictionary *dicTemp = _arraryData[indexPath.row];
     CGFloat heightCell = 40 + [Util getHeightForString:dicTemp[@"content"] width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]];
     if ([dicTemp[@"pictures"] isEqual:[NSNull null]]) {
-        return heightCell + 10;
+        return heightCell + 30;
     }else{
         NSArray *arr = dicTemp[@"pictures"];
         if (arr.count) {
-            return heightCell + 60;
+            return 135;
         }
     }
     

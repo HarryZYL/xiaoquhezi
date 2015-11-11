@@ -9,7 +9,7 @@
 #import "CameraImageView.h"
 #import "UITapGestureRecognizer+Data.h"
 
-static CGFloat height = 70;
+static CGFloat height = 60;
 
 @implementation CameraImageView
 
@@ -33,7 +33,7 @@ static CGFloat height = 70;
         [self addSubview:self.addImageBtn];
     }
     
-    CGFloat margin = (self.frame.size.width - 4*height)/3;
+    CGFloat margin = (self.frame.size.width - 4*height)/4;
     
     for (int i = 0; i<imageArr.count; i++) {
         UIImage *image = imageArr[i];

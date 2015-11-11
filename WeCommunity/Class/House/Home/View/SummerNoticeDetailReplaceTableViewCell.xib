@@ -39,35 +39,35 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OkH-nH-ktp">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="OkH-nH-ktp">
                         <rect key="frame" x="69" y="83" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QKg-0P-Eql">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="QKg-0P-Eql">
                         <rect key="frame" x="124" y="83" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rJ9-IM-GRi">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="rJ9-IM-GRi">
                         <rect key="frame" x="177" y="83" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yf9-qO-5Az">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yf9-qO-5Az">
                         <rect key="frame" x="230" y="83" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LWE-1p-gqQ">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LWE-1p-gqQ">
                         <rect key="frame" x="69" y="133" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="BcX-t6-lip">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="6" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="BcX-t6-lip">
                         <rect key="frame" x="124" y="134" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Qhh-QQ-GFu">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="7" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Qhh-QQ-GFu">
                         <rect key="frame" x="177" y="134" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="8" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7sW-Oa-B0W">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="8" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7sW-Oa-B0W">
                         <rect key="frame" x="230" y="134" width="40" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>

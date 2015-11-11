@@ -18,7 +18,12 @@
 
 - (void)confirmCellItemWithData:(SummerHomeDetailNoticeModel *)dictemp{
     [self.cellUserImageView sd_setImageWithURL:dictemp.creatorInFo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    self.cellTitleName.text = dictemp.creatorInFo.nickName;
+    if (![dictemp.creatorInFo.nickName isEqual:[NSNull null]]) {
+        self.cellTitleName.text = dictemp.creatorInFo.nickName;
+    }else{
+        self.cellTitleName.text = dictemp.creatorInFo.userName;
+    }
+    
     self.cellTimeLab.text = [Util formattedDate:dictemp.createTime type:1];
     self.cellContentLab.text = dictemp.content;
     self.cellReplyCount.text = [NSString stringWithFormat:@"%@楼",dictemp.replyIndex];

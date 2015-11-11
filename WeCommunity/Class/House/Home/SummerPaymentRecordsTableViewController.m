@@ -99,10 +99,13 @@
 }
 
 - (void)summerAlertViewClickIndex:(NSInteger)index{
-    SummerPaymentListModel *listModel = _dataArrary[self.indexRow];
-    [Networking retrieveData:get_ORDER_LIST_DELETE parameters:@{@"token": [User getUserToken],@"orderNo":listModel.orderNO}];
-    [_dataArrary removeObjectAtIndex:index];
-    [self.tableView reloadData];
+    if (index == 1) {
+        SummerPaymentListModel *listModel = _dataArrary[self.indexRow];
+        [Networking retrieveData:get_ORDER_LIST_DELETE parameters:@{@"token": [User getUserToken],@"orderNo":listModel.orderNO}];
+        [_dataArrary removeObjectAtIndex:index];
+        [self.tableView reloadData];
+    }
+    
 }
 /*
 // Override to support conditional editing of the table view.

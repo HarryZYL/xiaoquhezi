@@ -10,7 +10,12 @@
 #import "UIViewController+HUD.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface RentPostViewController ()<MWPhotoBrowserDelegate>
+@interface RentPostViewController ()<MWPhotoBrowserDelegate ,CameraImageViewDelegate>
+@property (nonatomic ,strong)UIView *detailView;
+@property (nonatomic ,strong)NSMutableArray *photos;
+@property (nonatomic ,strong)UITextField *titelField;
+@property (nonatomic ,strong)UITextField *contentField;
+@property (nonatomic ,strong)CameraImageView *cameraView;
 
 @end
 
@@ -54,10 +59,11 @@
             [self.postView setupSecondPart];
             break;
         case 2:
-            self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
-            self.postView.delegate = self;
-            self.postView.cameraView.delegate = self;
-            [self.postView setupThirdPart];
+            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
+            self.detailView.backgroundColor = [UIColor whiteColor];
+            [self.scollView addSubview:self.detailView];
+            _photos = [[NSMutableArray alloc] init];
+            [self initWithDetailView];
             break;
             
         default:
@@ -91,7 +97,100 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initWithDetailView{
+    CGFloat textHeight = 45;
+    GrayLine *fourthLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, 1)];
+    [_detailView addSubview:fourthLine];
+    
+    NSArray *fourthArray = @[@"标题",@"描述"];
+    
+    
+    for (int i = 0; i<2; i++) {
+        UILabel *title = [[UILabel alloc] init];
+        title.frame = CGRectMake(10,fourthLine.frame.origin.y +fourthLine.frame.size.height + textHeight*i, 50, textHeight);
+        title.textAlignment = NSTextAlignmentCenter;
+        title.text = fourthArray[i];
+        [self.detailView addSubview:title];
+        GrayLine *bottomLine = [[GrayLine alloc] initWithFrame:CGRectMake(8,title.frame.origin.y +textHeight, _detailView.frame.size.width-16, 1)];
+        [self.detailView addSubview:bottomLine];
+        
+        GrayLine *rightLine = [[GrayLine alloc] initWithFrame:CGRectMake(title.frame.size.width+title.frame.origin.x, title.frame.origin.y+4, 1, textHeight-8)];
+        [self.detailView addSubview:rightLine];
+        
+        // the width on the right
+        CGFloat labelWidth = bottomLine.frame.size.width - title.frame.size.width;
+        switch (i) {
+            case 0:
+                self.titelField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
+                self.titelField.placeholder = @"1-20个字";
+                [_detailView addSubview:self.titelField];
+                
+                break;
+            case 1:
+                self.contentField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
+                self.contentField.placeholder = @"交通配置等";
+                [_detailView addSubview:self.contentField];
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, _detailView.frame.size.width-10, 150)];
+    self.cameraView.delegate = self;
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    [_detailView addSubview:self.cameraView];
+}
 
+#pragma mark - cameraViewDelegate
+
+- (void)returnTapImageViewTagIndex:(NSInteger)index{
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count)
+        return [self.photos objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    // If we subscribe to this method we must dismiss the view controller ourselves
+    NSLog(@"Did finish modal presentation");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.photos removeObjectAtIndex:index];
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenImagesSmall removeObjectAtIndex:index];
+    if (self.chosenImages.count < 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [photoBrowser reloadData];
+    [self.cameraView chuckSubViews];
+    [self.cameraView configureImage:self.photos];
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+}
 
 -(void)setupStepView:(int)step{
     CGFloat width = self.view.frame.size.width/3;
@@ -118,12 +217,12 @@
 
 -(void)setupSubmitBtn:(int)step{
     self.submitBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.submitBtn.frame = CGRectMake(20, self.postView.frame.origin.y+self.postView.frame.size.height+30, self.view.frame.size.width-40, 45);
-    
     if (self.step<2) {
+        self.submitBtn.frame = CGRectMake(20, self.postView.frame.origin.y+self.postView.frame.size.height+30, self.view.frame.size.width-40, 45);
         [self.submitBtn configureButtonTitle:@"下一步" backgroundColor:THEMECOLOR];
     }else{
         [self.submitBtn configureButtonTitle:@"发布" backgroundColor:THEMECOLOR];
+        self.submitBtn.frame = CGRectMake(20, self.detailView.frame.origin.y + self.detailView.frame.size.height + 30, SCREENSIZE.width - 40, 45);
     }
     [self.submitBtn addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     [self.submitBtn roundRect];
@@ -324,15 +423,17 @@
             }
             
         }];
-        [self.postView.cameraView configureImage:self.chosenImagesSmall];
+        
+        [self.cameraView configureImage:self.chosenImagesSmall];
     }
     
 }
 
 - (void)rentPostViewSelecteImageViewIndex:(NSInteger)index{
+    
     for (int i = 0; i<self.chosenImages.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImagesSmall[i]];
-        [self.chosenImages addObject:photo];
+        [self.photos addObject:photo];
     }
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
@@ -342,40 +443,7 @@
     [self.navigationController pushViewController:browser animated:YES];
 }
 
-#pragma mark - MWPhotoBrowserDelegate
-
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.chosenImages.count;
-}
-
-- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < self.chosenImages.count)
-        return [self.chosenImages objectAtIndex:index];
-    return nil;
-}
-
-- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
-    // If we subscribe to this method we must dismiss the view controller ourselves
-    NSLog(@"Did finish modal presentation");
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
-    [self.chosenImages removeObjectAtIndex:index];
-    [self.chosenImagesSmall removeObjectAtIndex:index];
-    if (self.chosenImages.count < 1) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-    
-    [photoBrowser reloadData];
-    [self.postView.cameraView chuckSubViews];
-    [self.postView.cameraView configureImage:self.chosenImagesSmall];
-    [self.postView.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
-}
-
 #pragma mark networking
-
-
 
 -(void)uploadRentInfo{
     

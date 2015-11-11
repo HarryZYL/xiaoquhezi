@@ -189,8 +189,12 @@
 
 -(void)post:(id)sender{
     if (self.postID == nil) {
-        [Util alertNetworingError:@"请选择分类"];
+        [self showHint:@"请选择分类"];
     }else{
+        if ([self.function isEqualToString:@"repair"]&&self.describleView.text.length < 1) {
+            [self showHint:@"内容不能为空"];
+            return;
+        }
         [self.view addSubview:self.loadingView];
         if (self.chosenImages.count==0) {
             [self uploadInfo:@[]];
@@ -226,7 +230,6 @@
     if ([self.function isEqualToString:@"complaint"]) {
         url =complaint_add;
         parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":self.describleView.text,@"pictures":pictures,@"complaintTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
-        
     }else if([self.function isEqualToString:@"repair"]){
         url = repair_add;
         NSString *tempStr;
@@ -236,7 +239,6 @@
             tempStr = self.describleView.text;
         }
         parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
-        
     }else if ([self.function isEqualToString:@"praise"]){
         NSString *tempStr;
         if (self.describleView.text.length < 1) {
@@ -333,12 +335,12 @@
 #pragma mark - MWPhotoBrowserDelegate
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.chosenImages.count;
+    return photos.count;
 }
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < self.chosenImages.count)
-        return [self.chosenImages objectAtIndex:index];
+    if (index < photos.count)
+        return [photos objectAtIndex:index];
     return nil;
 }
 
