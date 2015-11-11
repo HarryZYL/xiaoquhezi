@@ -314,7 +314,6 @@
     
     self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, self.frame.size.width-10, 150)];
     [self addSubview:self.cameraView];
-
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{

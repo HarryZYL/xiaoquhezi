@@ -15,6 +15,8 @@
 @protocol RentPostViewDelegate <NSObject>
 
 - (void)textFieldReturnWarning:(NSString *)strError;
+@optional
+- (void)rentPostViewSelecteImageViewIndex:(NSInteger)index;
 
 @end
 

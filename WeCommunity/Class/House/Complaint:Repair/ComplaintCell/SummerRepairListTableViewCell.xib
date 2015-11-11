@@ -64,7 +64,7 @@
                                     <color key="titleColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <imageView tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqD-jx-Dw9">
+                            <imageView tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqD-jx-Dw9">
                                 <rect key="frame" x="61" y="57" width="49" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="49" id="DYb-Lk-9Fy"/>
@@ -79,7 +79,7 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzU-RO-TjM">
+                            <imageView tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lzU-RO-TjM">
                                 <rect key="frame" x="115" y="57" width="49" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WyD-W3-H2z"/>
@@ -99,7 +99,7 @@
                                     <constraint firstAttribute="width" constant="57" id="eQe-q7-yiZ"/>
                                 </constraints>
                             </imageView>
-                            <imageView tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cwf-y4-bgx">
+                            <imageView tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwf-y4-bgx">
                                 <rect key="frame" x="169" y="57" width="49" height="49"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="c5X-hb-A7c"/>
@@ -178,10 +178,11 @@
                 <outlet property="cellStyle" destination="lVA-PZ-Xec" id="h6I-wI-FT6"/>
                 <outlet property="cellTitleLab" destination="gBO-jc-bOZ" id="r5z-Yn-h0I"/>
             </connections>
-            <point key="canvasLocation" x="-163" y="30"/>
+            <point key="canvasLocation" x="-278" y="40"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="bill" width="55" height="55"/>
         <image name="comment" width="14" height="14"/>
         <image name="deal1" width="65" height="36"/>
     </resources>

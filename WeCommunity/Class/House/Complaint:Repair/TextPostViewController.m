@@ -351,6 +351,10 @@
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenImagesSmall removeObjectAtIndex:index];
+    if (self.chosenImages.count < 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];

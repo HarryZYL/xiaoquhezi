@@ -7,6 +7,7 @@
 // 表扬
 
 #import "LikeTableViewController.h"
+#import "SummerLikeTableViewCell.h"
 #import "AccreditationTableViewController.h"
 @interface LikeTableViewController ()<TextPostViewControllerDelegate ,MWPhotoBrowserDelegate>
 @property(nonatomic ,strong)NSMutableArray *photos;
@@ -21,6 +22,7 @@
     self.navigationItem.rightBarButtonItem = postBtn;
     
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    
     self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
@@ -57,16 +59,22 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     if (indexPath.section == 0) {
+        BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         [cell configureLikeCell:[NSString stringWithFormat:@"收到%@个赞",self.totalLike]];
+        return cell;
     }else{
+        SummerLikeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem"];
+        if (!cell) {
+            cell = [[NSBundle mainBundle]loadNibNamed:@"SummerLikeTableViewCell" owner:self options:nil].firstObject;
+        }
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
-        [cell configureLikeCellImage:like.praiseType[@"logo"] title:like.content userName:like.creatorInfo[@"nickName"] date:like.createTime pictures:like.pictures];
+        [cell confirmsSummerLikeTableViewData:like];
+//        [cell configureLikeCellImage:like.praiseType[@"logo"] title:like.content userName:like.creatorInfo[@"nickName"] date:like.createTime pictures:like.pictures];
+        
+        return cell;
     }
-    return cell;
+    return nil;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -76,9 +84,9 @@
     }else{
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
         if (![like.pictures isEqual:[NSNull null]]) {
-            return 180;
+            return 152;
         }else{
-            return 120;
+            return 92;
         }
     }
     

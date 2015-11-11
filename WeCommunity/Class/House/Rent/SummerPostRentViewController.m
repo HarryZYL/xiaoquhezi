@@ -9,7 +9,7 @@
 #import "SummerPostRentViewController.h"
 #import "UIViewController+HUD.h"
 
-@interface SummerPostRentViewController ()
+@interface SummerPostRentViewController ()<CameraImageViewDelegate ,MWPhotoBrowserDelegate>
 
 @end
 
@@ -70,6 +70,7 @@
     [self.postView.houseOrientationBtn addTarget:self action:@selector(selectPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.postView.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.scollView addSubview:self.postView];
+    
     
     [self setupSubmitBtn:self.step];
     
@@ -221,6 +222,53 @@
         
     }
     
+}
+//- (void)deleteImageView{
+//    
+//}
+
+- (void)returnTapImageViewTagIndex:(NSInteger)index{
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [self.chosenImages addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.chosenImages.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.chosenImages.count)
+        return [self.chosenImages objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    // If we subscribe to this method we must dismiss the view controller ourselves
+    NSLog(@"Did finish modal presentation");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenImagesSmall removeObjectAtIndex:index];
+    if (self.chosenImages.count < 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [photoBrowser reloadData];
+    [self.postView.cameraView chuckSubViews];
+    [self.postView.cameraView configureImage:self.chosenImagesSmall];
+    [self.postView.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -87,7 +87,7 @@
         [self.photos removeAllObjects];
     }
     NSIndexPath *index = [self.tableView indexPathForCell:(UITableViewCell *)sender.superview.superview.superview];
-    NSLog(@"-------->%d",index.section);
+    
     TextDeal *textDetalMode = [[TextDeal alloc] initWithData:self.dataArray[index.section] textType:self.function];
     if (![textDetalMode.pictures isEqual:[NSNull null]] && [textDetalMode.pictures.firstObject length] > 1) {
         for (int i = 0; i< [textDetalMode.pictures count]; i++) {

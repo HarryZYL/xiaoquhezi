@@ -10,7 +10,7 @@
 #import "UIViewController+HUD.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 
-@interface RentPostViewController ()
+@interface RentPostViewController ()<MWPhotoBrowserDelegate>
 
 @end
 
@@ -56,6 +56,7 @@
         case 2:
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
             self.postView.delegate = self;
+            self.postView.cameraView.delegate = self;
             [self.postView setupThirdPart];
             break;
             
@@ -324,9 +325,52 @@
             
         }];
         [self.postView.cameraView configureImage:self.chosenImagesSmall];
-        
     }
     
+}
+
+- (void)rentPostViewSelecteImageViewIndex:(NSInteger)index{
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImagesSmall[i]];
+        [self.chosenImages addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.chosenImages.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.chosenImages.count)
+        return [self.chosenImages objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    // If we subscribe to this method we must dismiss the view controller ourselves
+    NSLog(@"Did finish modal presentation");
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenImagesSmall removeObjectAtIndex:index];
+    if (self.chosenImages.count < 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [photoBrowser reloadData];
+    [self.postView.cameraView chuckSubViews];
+    [self.postView.cameraView configureImage:self.chosenImagesSmall];
+    [self.postView.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark networking
