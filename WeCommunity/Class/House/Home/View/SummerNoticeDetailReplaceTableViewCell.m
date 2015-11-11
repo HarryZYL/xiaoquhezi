@@ -52,7 +52,7 @@
             for (int indexPath = 0; indexPath < dicTemp.detailNoticeModel.pictures.count; indexPath ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]]];
-                CGFloat xRow = 69 + (20 + 40) * (indexPath%4);
+                CGFloat xRow = 69 + (10 + 40) * (indexPath%4);
                 CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 5 + (40 + 5) * (indexPath/4);
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
             }
@@ -67,9 +67,9 @@
             SummerHomeDetailNoticeModel *noticeDetail = dicTemp.detailReplyArrary[index];
             UILabel *labReplay = (UILabel *)[self viewWithTag:index + 10];
             if (index == 0) {
-                labReplay.frame = CGRectMake(69, self.frame.size.height - 45, SCREENSIZE.width - 70, 15);
+                labReplay.frame = CGRectMake(69, self.frame.size.height - 60, SCREENSIZE.width - 70, 15);
             }else{
-                labReplay.frame = CGRectMake(69, self.frame.size.height - 30, SCREENSIZE.width - 70, 15);
+                labReplay.frame = CGRectMake(69, self.frame.size.height - 40, SCREENSIZE.width - 70, 15);
             }
             
             

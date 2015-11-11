@@ -164,9 +164,9 @@
         return 90 + heightCell;
     }
     if ([noticModel.detailNoticeModel.pictures count] == 0) {
-        return 90 + heightCell;
+        return 100 + heightCell;
     }else{
-        return 90 + heightCell + ([noticModel.detailNoticeModel.pictures count]/4 + 1) * 45.0;
+        return 100 + heightCell + ([noticModel.detailNoticeModel.pictures count]/4 + 1) * 45.0;
     }
     return 0;
 }
@@ -229,7 +229,7 @@
         [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             ALAsset *representation = obj;
             if (self.chosenImages.count >= 8) {
-                [self showHint:@"只能选择八张图片"];
+                [self showHint:@"只能选择四张图片"];
             }
             UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
                                                scale:representation.defaultRepresentation.scale

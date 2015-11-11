@@ -112,7 +112,7 @@
     if (index == 1) {
         SummerPaymentListModel *listModel = _dataArrary[self.indexRow];
         [Networking retrieveData:get_ORDER_LIST_DELETE parameters:@{@"token": [User getUserToken],@"orderNo":listModel.orderNO}];
-        [_dataArrary removeObjectAtIndex:index];
+        [_dataArrary removeObjectAtIndex:index - 1];
         [self.tableView reloadData];
     }
     
