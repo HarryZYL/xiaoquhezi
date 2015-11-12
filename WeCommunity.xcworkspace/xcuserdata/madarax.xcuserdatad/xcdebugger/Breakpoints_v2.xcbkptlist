@@ -13,5 +13,53 @@
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
+            timestampString = "468969972.735607"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
+            landmarkName = "-uploadInfo:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TextPostViewController uploadInfo:]"
+                  moduleName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/madarax/Documents/iosapp/xiaoquhezi/WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
+                  timestampString = "468969367.074836"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "3771">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[TextPostViewController uploadInfo:]_block_invoke"
+                  moduleName = "&#x5c0f;&#x533a;&#x76d2;&#x5b50;"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/madarax/Documents/iosapp/xiaoquhezi/WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
+                  timestampString = "468969367.07533"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "285"
+                  endingLineNumber = "285"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

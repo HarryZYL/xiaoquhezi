@@ -29,7 +29,7 @@
     cellSpread = YES;
     
     _dataArrary = [[NSMutableArray alloc] init];
-//    cellDidSelect = [[NSIndexPath alloc] init];
+    // cellDidSelect = [[NSIndexPath alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -156,10 +156,13 @@
 
 - (void)didSelectIndexWithInformation:(NSInteger)index{
     NSLog(@"--%d-->%d",cellDidSelect.section,cellDidSelect.row);
-    NSArray *arraryAuth = _dataArrary[cellDidSelect.section][@"authcs"];
-    NSDictionary *dicTemp = arraryAuth[cellDidSelect.row];
-    [Networking retrieveData:getMyAuthentictionDelete parameters:@{@"token": [User getUserToken],@"id":dicTemp[@"id"]}];
-    [self receivePersonalsData];
+    if (index == 4) {
+        NSArray *arraryAuth = _dataArrary[cellDidSelect.section][@"authcs"];
+        NSDictionary *dicTemp = arraryAuth[cellDidSelect.row];
+        [Networking retrieveData:getMyAuthentictionDelete parameters:@{@"token": [User getUserToken],@"id":dicTemp[@"id"]}];
+        [self receivePersonalsData];
+    }
+    
 }
 /*
 // Override to support rearranging the table view.

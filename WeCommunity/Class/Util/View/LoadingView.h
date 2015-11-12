@@ -14,4 +14,5 @@
 @property (nonatomic,strong) UILabel *titleLabel;
 @property (nonatomic,strong) UIActivityIndicatorView *actView;
 
+
 @end

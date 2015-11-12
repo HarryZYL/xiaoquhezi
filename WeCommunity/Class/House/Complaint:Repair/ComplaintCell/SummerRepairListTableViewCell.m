@@ -32,11 +32,11 @@
     [self.cellBtnCount setTitle:[NSString stringWithFormat:@"%@",textModel.replyCount] forState:UIControlStateNormal];
     
     if ([textModel.status isEqualToString:@"Pending"]) {
-        self.cellStyle.image = [UIImage imageNamed:@"deal1"];
+        self.cellStyle.image = [UIImage imageNamed:@"home_accepted"];
     }else if([textModel.status isEqualToString:@"Handling"]){
-        self.cellStyle.image = [UIImage imageNamed:@"dealing1"];
+        self.cellStyle.image = [UIImage imageNamed:@"home_repairing"];
     }else if ([textModel.status isEqualToString:@"Success"]){
-        self.cellStyle.image = [UIImage imageNamed:@"dealed1"];
+        self.cellStyle.image = [UIImage imageNamed:@"home_repaired"];
     }
 
     for (NSInteger index = 0; index < 3; index ++) {

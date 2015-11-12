@@ -66,6 +66,7 @@
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.scrollView.delegate = self;
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+50);
     [self.view addSubview:self.scrollView];
     
@@ -261,14 +262,11 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == self.nameField && (self.nameField.text.length < 1 || [self.nameField.text isEqualToString:@" "])) {
-        [self.nameField becomeFirstResponder];
-        [self.cardNumberField resignFirstResponder];
-        [self showHint:@"请填写姓名" yOffset:-170.0];
+        [self showHint:@"请填写姓名" yOffset:-180.0];
         return;
     }
     if (textField == self.cardNumberField && ![NSString filterIDCard:textField.text]) {
-        [self showHint:@"请填写有效的证件号码" yOffset:-170.0];
-        [self.cardNumberField becomeFirstResponder];
+        [self showHint:@"请填写有效的证件号码" yOffset:-180.0];
         return;
     }
 }
@@ -477,6 +475,10 @@
     locationVC.delegate = self;
     locationVC.locationStyle = LocationStyleSelectCommunityNameAndID;
     [self.navigationController pushViewController:locationVC animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    [self.view endEditing:YES];
 }
 
 @end

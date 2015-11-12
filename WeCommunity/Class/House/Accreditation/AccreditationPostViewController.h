@@ -14,7 +14,7 @@
 
 @end
 
-@interface AccreditationPostViewController : UIViewController<UIPickerViewDelegate,UIPickerViewDataSource>
+@interface AccreditationPostViewController : UIViewController<UIScrollViewDelegate ,UIPickerViewDelegate,UIPickerViewDataSource>
 
 @property (nonatomic,weak) id delegate;
 

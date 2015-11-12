@@ -10,10 +10,14 @@
 
 #import "SummerPriceListViewController.h"
 
-@interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate>
+@interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate ,UIPickerViewDataSource ,UIPickerViewDelegate>
 {
     NSMutableArray *photos;
     NSDictionary *dicPhoneNumber;
+    NSMutableArray *arrRoomAddress;
+    UIButton *btnAddress;
+    UIPickerView *pickerView;
+    NSDictionary *dicSelectAddress;
 }
 @end
 
@@ -23,6 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    
     photos = [[NSMutableArray alloc] init];
     if ([self.function isEqualToString:@"complaint"] || [self.function isEqualToString:@"praise"] ) {
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
@@ -31,6 +36,8 @@
     }else if([self.function isEqualToString:@"repair"]) {
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"价格单" style:UIBarButtonItemStylePlain target:self action:@selector(priceList)];
         self.navigationItem.rightBarButtonItem = postBtn;
+        arrRoomAddress = [[NSMutableArray alloc] init];
+        [self getCommunityHoom];
     }
     
     self.user = [[User alloc] initWithData];
@@ -112,6 +119,15 @@
     }
     
     if([self.function isEqualToString:@"repair"]){
+        btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width, self.phoneField.frame.size.height);
+//        [btnAddress setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [btnAddress leftStyle];
+        [btnAddress addTarget:self action:@selector(btnSelectRoom) forControlEvents:UIControlEventTouchUpInside];
+        [btnAddress roundRect];
+        [btnAddress setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btnAddress configureButtonTitle:@"维修地址" backgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5]];
+        [self.scrollView addSubview:btnAddress];
         
         BottomButton *bottomBtn = [[BottomButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
         [bottomBtn.secondBtn addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
@@ -133,6 +149,12 @@
     }];
 }
 
+- (void)getCommunityHoom{
+    [Networking retrieveData:GET_AUTHC_HOUSE parameters:@{@"token": [User getUserToken],@"communityId":[Util getCommunityID],@"page":@"1",@"row":@"30"} success:^(id responseObject) {
+        NSLog(@"---->%@",responseObject);
+        arrRoomAddress = responseObject;
+    }];
+}
 
 -(void)chosen:(id)sender{
     [self.functionView clearColor];
@@ -191,9 +213,15 @@
     if (self.postID == nil) {
         [self showHint:@"请选择分类"];
     }else{
-        if ([self.function isEqualToString:@"repair"]&&self.describleView.text.length < 1) {
-            [self showHint:@"内容不能为空"];
-            return;
+        if ([self.function isEqualToString:@"repair"]) {
+            if (self.describleView.text.length < 1) {
+                [self showHint:@"内容不能为空"];
+                return;
+            }
+            if (dicSelectAddress == nil) {
+                [self showHint:@"请选择房屋号"];
+                return;
+            }
         }
         [self.view addSubview:self.loadingView];
         if (self.chosenImages.count==0) {
@@ -238,7 +266,12 @@
         }else{
             tempStr = self.describleView.text;
         }
-        parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        if (pictures.count>0) {
+            parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"houseId":dicSelectAddress[@"id"],@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        }else{
+            parameters = @{@"token":[User getUserToken],@"houseId":dicSelectAddress[@"id"],@"communityId":[Util getCommunityID],@"content":tempStr,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+        }
+        
     }else if ([self.function isEqualToString:@"praise"]){
         NSString *tempStr;
         if (self.describleView.text.length < 1) {
@@ -362,6 +395,38 @@
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)btnSelectRoom{
+    dicSelectAddress = arrRoomAddress[0];
+    NSString *str = [NSString stringWithFormat:@"维修地址：%@",[dicSelectAddress[@"parentNames"] componentsJoinedByString:@""]];
+    [btnAddress setTitle:str forState:UIControlStateNormal];
+    
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - 200, SCREENSIZE.width, 200)];
+    pickerView.delegate = self;
+    pickerView.dataSource = self;
+    [self.view addSubview:pickerView];
+}
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// returns the # of rows in each component..
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return arrRoomAddress.count;
+}
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    NSDictionary *dicTemp = arrRoomAddress[row];
+    return [dicTemp[@"parentNames"] componentsJoinedByString:@""];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    dicSelectAddress = arrRoomAddress[row];
+    NSString *str = [NSString stringWithFormat:@"维修地址：%@",[dicSelectAddress[@"parentNames"] componentsJoinedByString:@""]];
+    [btnAddress setTitle:str forState:UIControlStateNormal];
+    [self->pickerView removeFromSuperview];
 }
 
 @end

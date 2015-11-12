@@ -17,6 +17,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e7M-O8-91l">
                         <rect key="frame" x="8" y="0.0" width="304" height="148"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deal1" translatesAutoresizingMaskIntoConstraints="NO" id="lVA-PZ-Xec">
+                                <rect key="frame" x="253" y="16" width="57" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="57" id="hW6-nI-ayF"/>
+                                    <constraint firstAttribute="height" constant="27" id="lEJ-Va-0hG"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fkldajkdfjlkasjfkajdfljsaldjfadsjflajfljsfksajfajf;a" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBO-jc-bOZ">
                                 <rect key="frame" x="61" y="15" width="183" height="30"/>
                                 <constraints>
@@ -92,13 +99,6 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deal1" translatesAutoresizingMaskIntoConstraints="NO" id="lVA-PZ-Xec">
-                                <rect key="frame" x="247" y="17" width="57" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="27" id="T0R-bm-Ggm"/>
-                                    <constraint firstAttribute="width" constant="57" id="eQe-q7-yiZ"/>
-                                </constraints>
-                            </imageView>
                             <imageView clipsSubviews="YES" tag="3" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bill" translatesAutoresizingMaskIntoConstraints="NO" id="Cwf-y4-bgx">
                                 <rect key="frame" x="169" y="57" width="49" height="49"/>
                                 <constraints>
@@ -117,20 +117,20 @@
                         <constraints>
                             <constraint firstItem="Cwf-y4-bgx" firstAttribute="leading" secondItem="lzU-RO-TjM" secondAttribute="trailing" constant="5" id="0fa-5b-bMR"/>
                             <constraint firstItem="Cwf-y4-bgx" firstAttribute="leading" secondItem="lzU-RO-TjM" secondAttribute="trailing" constant="27" id="1ID-kl-zdc"/>
+                            <constraint firstItem="lVA-PZ-Xec" firstAttribute="top" secondItem="e7M-O8-91l" secondAttribute="top" constant="16" id="1Zs-K4-XEn"/>
                             <constraint firstItem="lzU-RO-TjM" firstAttribute="width" secondItem="hqD-jx-Dw9" secondAttribute="width" id="423-af-B7f"/>
                             <constraint firstItem="lzU-RO-TjM" firstAttribute="leading" secondItem="hqD-jx-Dw9" secondAttribute="trailing" constant="5" id="4xo-Rw-v8B"/>
                             <constraint firstItem="Gzl-ED-wfp" firstAttribute="top" secondItem="z1q-3G-yfh" secondAttribute="bottom" constant="5" id="6kj-6O-OeL"/>
                             <constraint firstAttribute="bottom" secondItem="Gzl-ED-wfp" secondAttribute="bottom" constant="7" id="7VN-Rj-87z"/>
+                            <constraint firstAttribute="trailing" secondItem="lVA-PZ-Xec" secondAttribute="trailing" constant="-6" id="BM0-Iz-Kfa"/>
                             <constraint firstItem="z1q-3G-yfh" firstAttribute="leading" secondItem="e7M-O8-91l" secondAttribute="leading" constant="8" id="CbY-pw-dIv"/>
                             <constraint firstAttribute="trailing" secondItem="gBO-jc-bOZ" secondAttribute="trailing" constant="60" id="Ctf-cV-ZfJ"/>
-                            <constraint firstItem="lVA-PZ-Xec" firstAttribute="top" secondItem="e7M-O8-91l" secondAttribute="top" constant="17" id="KAo-ih-WAb"/>
                             <constraint firstItem="z1q-3G-yfh" firstAttribute="top" secondItem="hqD-jx-Dw9" secondAttribute="bottom" constant="5" id="KIv-w3-QR6"/>
                             <constraint firstItem="hqD-jx-Dw9" firstAttribute="leading" secondItem="gBO-jc-bOZ" secondAttribute="leading" id="KU8-ZF-TYo"/>
                             <constraint firstItem="lzU-RO-TjM" firstAttribute="height" secondItem="hqD-jx-Dw9" secondAttribute="height" id="ONJ-cR-pV9"/>
                             <constraint firstItem="Cwf-y4-bgx" firstAttribute="top" secondItem="gBO-jc-bOZ" secondAttribute="bottom" constant="12" id="Oba-9O-FPg"/>
                             <constraint firstItem="lzU-RO-TjM" firstAttribute="centerX" secondItem="e7M-O8-91l" secondAttribute="centerX" id="PCY-35-otb"/>
                             <constraint firstItem="z1q-3G-yfh" firstAttribute="top" secondItem="lzU-RO-TjM" secondAttribute="bottom" constant="5" id="PYB-Z9-D32"/>
-                            <constraint firstAttribute="trailing" secondItem="lVA-PZ-Xec" secondAttribute="trailing" id="QuG-zv-Bcu"/>
                             <constraint firstItem="lzU-RO-TjM" firstAttribute="top" secondItem="gBO-jc-bOZ" secondAttribute="bottom" constant="12" id="S36-De-NQy"/>
                             <constraint firstItem="gBO-jc-bOZ" firstAttribute="top" secondItem="e7M-O8-91l" secondAttribute="top" constant="15" id="XQ4-jy-fOR"/>
                             <constraint firstItem="Cwf-y4-bgx" firstAttribute="width" secondItem="hqD-jx-Dw9" secondAttribute="width" id="aCj-of-8Wn"/>
@@ -178,7 +178,7 @@
                 <outlet property="cellStyle" destination="lVA-PZ-Xec" id="h6I-wI-FT6"/>
                 <outlet property="cellTitleLab" destination="gBO-jc-bOZ" id="r5z-Yn-h0I"/>
             </connections>
-            <point key="canvasLocation" x="-278" y="40"/>
+            <point key="canvasLocation" x="-663" y="-35"/>
         </tableViewCell>
     </objects>
     <resources>
