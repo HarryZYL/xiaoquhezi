@@ -146,7 +146,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 
-    [BPush registerChannel:launchOptins apiKey:@"<#string#>" pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptins apiKey:@"5520310" pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"从消息启动:%@",userInfo);

@@ -153,7 +153,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]];
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]] + 8;
     if (noticModel.detailReplyArrary.count < 3) {
         for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
             SummerHomeDetailNoticeModel *noticeDetail = noticModel.detailReplyArrary[index];
@@ -163,22 +163,22 @@
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
             }
-            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:15]];
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]];
+        }
+    }
+    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
+        if ([noticModel.detailNoticeModel.pictures count] > 0) {
+            heightCell += 70;
         }
     }
     
-    
-//    if (noticModel.detailNoticeModel.childrenCount.intValue > 0 && noticModel.detailNoticeModel.childrenCount.intValue < 2) {
-//        heightCell += 15 * (noticModel.detailNoticeModel.childrenCount.intValue + 1);
-//    }
-    
-    if ([noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
-        return 90 + heightCell;
+    if (noticModel.detailNoticeModel.childrenCount.intValue > 2) {
+        heightCell += 60;
+    }else{
+        return heightCell + 40;
     }
-    if ([noticModel.detailNoticeModel.pictures count] > 0) {
-        return 90 + heightCell + 80.0;;
-    }
-    return 0;
+
+    return heightCell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

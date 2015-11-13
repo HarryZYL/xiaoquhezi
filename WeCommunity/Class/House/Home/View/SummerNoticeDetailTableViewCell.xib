@@ -170,7 +170,7 @@
                 <outlet property="cellLabTop" destination="WfT-DI-SQ8" id="sj8-5d-Moq"/>
                 <outlet property="cellTitleImg" destination="0ug-kM-V5j" id="nYT-vQ-4vg"/>
             </connections>
-            <point key="canvasLocation" x="-1912" y="-56.5"/>
+            <point key="canvasLocation" x="-2157" y="-218.5"/>
         </tableViewCell>
     </objects>
     <resources>

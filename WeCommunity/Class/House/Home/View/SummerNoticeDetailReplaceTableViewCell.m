@@ -31,16 +31,18 @@
 - (void)confirmCellInformationWithData:(SummerNoticeCenterDetailModel *)dicTemp{
     
     [_cellTitleImg sd_setImageWithURL:dicTemp.detailNoticeModel.creatorInFo.headPhoto placeholderImage:[UIImage imageNamed:@"宠物"]];
-    _cellNameLab.text = dicTemp.detailNoticeModel.creatorInFo.nickName;
+    NSString *strTime = [Util formattedDate:dicTemp.detailNoticeModel.createTime type:5];
+    NSString *strName = [NSString stringWithFormat:@"%@  %@",dicTemp.detailNoticeModel.creatorInFo.nickName,strTime];
+    NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strName];
+    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} range:NSMakeRange(0, dicTemp.detailNoticeModel.creatorInFo.nickName.length - 1)];
+    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor colorWithWhite:0.463 alpha:1.000]} range:NSMakeRange(strName.length - strTime.length, strTime.length)];
+    _cellNameLab.attributedText = attriStr;
     CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:14]];
     
-    _cellTimeLab.text = [Util formattedDate:dicTemp.detailNoticeModel.createTime type:1];
-    _cellTimeLab.frame = CGRectMake(69, 35, SCREENSIZE.width - 70, 15);
-    
-    _cellContenLab.frame = CGRectMake(69, 60, SCREENSIZE.width - 80, contentHeight);
+    _cellContenLab.frame = CGRectMake(69, 30, SCREENSIZE.width - 100, contentHeight);
     _cellContenLab.text = dicTemp.detailNoticeModel.content;
     
-    _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 54, 0, 54, 60);
+    _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 30, 10, 19, 19);
     
     for (int index = 0; index < 8; index ++) {
         UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
