@@ -143,6 +143,7 @@
         // Delete the row from the data source
         cellDidSelect = indexPath;
         SummerMemberAlertView *alertView = [[NSBundle mainBundle] loadNibNamed:@"SummerMemberAlertView" owner:self options:nil].firstObject;
+        alertView.alertViewType = SummerMemberAlertViewTypeMemery;
         alertView.frame = [[UIScreen mainScreen] bounds];
         alertView.delegate = self;
         [self.view.window addSubview:alertView];
@@ -154,9 +155,9 @@
 
 #pragma mark - SummerMemberAlertViewDelegate
 
-- (void)didSelectIndexWithInformation:(NSInteger)index{
+- (void)didSelectIndexWithInformation:(NSInteger)index WtihSelf:(UIButton *)sender{
     NSLog(@"--%d-->%d",cellDidSelect.section,cellDidSelect.row);
-    if (index == 4) {
+    if (sender.tag == 4) {
         NSArray *arraryAuth = _dataArrary[cellDidSelect.section][@"authcs"];
         NSDictionary *dicTemp = arraryAuth[cellDidSelect.row];
         [Networking retrieveData:getMyAuthentictionDelete parameters:@{@"token": [User getUserToken],@"id":dicTemp[@"id"]}];
@@ -164,29 +165,6 @@
     }
     
 }
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (void)receivePersonalsData{
     [_dataArrary removeAllObjects];

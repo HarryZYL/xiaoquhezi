@@ -14,7 +14,7 @@
 @property (nonatomic ,weak)IBOutlet UILabel *cellLabTitle;
 @property (nonatomic ,weak)IBOutlet UILabel *cellLabTime;
 @property (nonatomic ,weak)IBOutlet UILabel *cellLabTop;
-@property (nonatomic ,weak)IBOutlet UILabel *cellLabContent;
+@property (nonatomic ,weak)IBOutlet UITextView *cellLabContent;
 @property (nonatomic ,weak)IBOutlet UILabel *cellLabReplay;
 
 //@property (nonatomic ,weak)IBOutlet UIWebView *cellWebView;

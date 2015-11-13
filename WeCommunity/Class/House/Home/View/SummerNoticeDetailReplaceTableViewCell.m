@@ -8,7 +8,7 @@
 #import "UITapGestureRecognizer+Data.h"
 #import "SummerNoticeDetailReplaceTableViewCell.h"
 
-#define IMG_WIDTH 40
+#define IMG_WIDTH 70
 @implementation SummerNoticeDetailReplaceTableViewCell
 
 - (void)awakeFromNib {
@@ -41,7 +41,6 @@
     _cellContenLab.text = dicTemp.detailNoticeModel.content;
     
     _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 54, 0, 54, 60);
-    [_cellFloorBtn setTitle:[NSString stringWithFormat:@"%@楼",dicTemp.detailNoticeModel.replyIndex] forState:UIControlStateNormal];
     
     for (int index = 0; index < 8; index ++) {
         UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
@@ -52,7 +51,7 @@
             for (int indexPath = 0; indexPath < dicTemp.detailNoticeModel.pictures.count; indexPath ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]]];
-                CGFloat xRow = 69 + (10 + 40) * (indexPath%4);
+                CGFloat xRow = 69 + (10 + IMG_WIDTH) * (indexPath%4);
                 CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 5 + (40 + 5) * (indexPath/4);
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
             }
@@ -62,20 +61,12 @@
         UIView *view = [self viewWithTag:index + 10];
         view.frame = CGRectZero;
     }
-    if (dicTemp.detailNoticeModel.childrenCount.intValue > 0) {
+    if (![dicTemp.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         for (NSInteger index = 0; index < dicTemp.detailReplyArrary.count; index ++) {
+            UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:1];
             SummerHomeDetailNoticeModel *noticeDetail = dicTemp.detailReplyArrary[index];
             UILabel *labReplay = (UILabel *)[self viewWithTag:index + 10];
-            if (index == 0) {
-                labReplay.frame = CGRectMake(69, self.frame.size.height - 60, SCREENSIZE.width - 70, 15);
-            }else{
-                labReplay.frame = CGRectMake(69, self.frame.size.height - 40, SCREENSIZE.width - 70, 15);
-            }
-            
-            
             NSString *strTemp;
-            
-            NSLog(@"---%@---->%@",noticeDetail.createTime,[Util formattedDate:noticeDetail.createTime type:5]);
             if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
@@ -89,13 +80,50 @@
                 [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
+            CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
+            if (index == 0) {
+                labReplay.frame = CGRectMake(69, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 5, SCREENSIZE.width - 70, ceil(replayLabHeight));
+            }else{
+                UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
+                labReplay.frame = CGRectMake(69, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, ceil(replayLabHeight));
+            }
+        }
+    }else{
+        for (NSInteger index = 0; index < dicTemp.detailReplyArrary.count; index ++) {
+            SummerHomeDetailNoticeModel *noticeDetail = dicTemp.detailReplyArrary[index];
+            UILabel *labReplay = (UILabel *)[self viewWithTag:index + 10];
+            NSString *strTemp;
+            if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+                NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
+                
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                labReplay.attributedText = attriStr;
+            }else{
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+                NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
+                
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                labReplay.attributedText = attriStr;
+            }
+            CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
+            if (index == 0) {
+                labReplay.frame = CGRectMake(69, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
+            }else{
+                UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
+                labReplay.frame = CGRectMake(69, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, replayLabHeight);
+            }
             
         }
     }
     if (dicTemp.detailNoticeModel.childrenCount.intValue > 2) {
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];
+        btnReply.hidden = NO;
         btnReply.frame = CGRectMake(SCREENSIZE.width - 74, self.contentView.frame.size.height - 30, 74, 30);
         [btnReply setTitle:@"查看更多回复" forState:UIControlStateNormal];
+    }else{
+        UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];
+        btnReply.hidden = YES;
     }
 }
 

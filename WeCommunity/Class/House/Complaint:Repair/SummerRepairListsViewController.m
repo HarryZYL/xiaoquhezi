@@ -158,6 +158,10 @@
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
     if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+        if (self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count < 1) {
+            [self showHint:@"发送内容和图片不能都为空"];
+            return;
+        }
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"上传中";
         hud.dimBackground = YES;
@@ -174,20 +178,31 @@
 #pragma mark -
 
 - (void)senderPostNoticeReplayWith:(MBProgressHUD *)hud{
-    if (self.chosenImages.count < 1) {
+    __weak typeof(self)weakSelf = self;
+    if (self.chosenImages.count > 1 && self.summerInputView.summerInputView.text.length < 1) {
+        //只发送图片
+        [Networking upload:self.chosenImages success:^(id responseObject) {
+            [weakSelf.chosenImages removeAllObjects];
+            [Networking retrieveData:GET_REPAIR_REPLY parameters:@{@"token": [User getUserToken],@"id":_detailTextModel.Objectid,@"pictures":responseObject} success:^(id responseObject) {
+                weakSelf.summerInputView.summerInputLabNumbers.text = 0;
+                weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+                [weakSelf getReceveData];
+            }];
+        }];
+    }else if(self.chosenImages.count < 1 && self.summerInputView.summerInputView.text.length > 1){
+        //文字
         [Networking retrieveData:GET_REPAIR_REPLY parameters:@{@"token": [User getUserToken],
                                                                @"id":_detailTextModel.Objectid,
                                                                @"content":self.summerInputView.summerInputView.text} success:^(id responseObject) {
-                                                                   //                                                                   返回NoticeReply
+                                                                   //NoticeReply
                                                                    [hud removeFromSuperview];
-                                                                   [self showHint:@"评论成功"];
-                                                                   self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                   
-                                                                   self.summerInputView.summerInputView.text = nil;
-                                                                   [self getReceveData];
+                                                                   [weakSelf showHint:@"评论成功"];
+                                                                   weakSelf.summerInputView.summerInputLabNumbers.text = 0;
+                                                                   weakSelf.summerInputView.summerInputView.text = nil;
+                                                                   [weakSelf getReceveData];
                                                                }];
     }else{
-        
+        //图片，文字
         [Networking upload:self.chosenImages success:^(id responseObject) {
             [Networking retrieveData:GET_REPAIR_REPLY parameters:@{@"token": [User getUserToken],
                                                                    @"id":_detailTextModel.Objectid,
@@ -196,17 +211,16 @@
                                                                        // 发送成功NoticeReply
                                                                        [hud removeFromSuperview];
                                                                        
-                                                                       [self showHint:@"评论成功"];
-                                                                       [self.chosenImages removeAllObjects];
-                                                                       self.summerInputView.summerInputLabNumbers.hidden = YES;
-                                                                       self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                       self.summerInputView.summerInputView.text = nil;
+                                                                       [weakSelf showHint:@"评论成功"];
+                                                                       [weakSelf.chosenImages removeAllObjects];
+                                                                       weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+                                                                       weakSelf.summerInputView.summerInputLabNumbers.text = 0;
+                                                                       weakSelf.summerInputView.summerInputView.text = nil;
                                                                        
-                                                                       [self getReceveData];
+                                                                       [weakSelf getReceveData];
                                                                    }];
         }];
     }
-    
 }
 
 //- (void)senderPostReplyToReplyWith:(MBProgressHUD *)hud{

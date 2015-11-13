@@ -58,13 +58,19 @@
             break;
         case 3:
         {//取消
-            [self.delegate didSelectIndexWithInformation:_currentIndex];
+            if (self.alertViewType == SummerMemberAlertViewTypeDefault) {
+                [self.delegate didSelectIndexWithInformation:_currentIndex];
+            }
             [self removeFromSuperview];
         }
             break;
         case 4:
         {
-            [self.delegate didSelectIndexWithInformation:_currentIndex];
+            if (self.alertViewType == SummerMemberAlertViewTypeDefault) {
+                [self.delegate didSelectIndexWithInformation:_currentIndex];
+            }else{
+                [self.delegate didSelectIndexWithInformation:_currentIndex WtihSelf:sender];
+            }
             [self removeFromSuperview];
         }
             break;

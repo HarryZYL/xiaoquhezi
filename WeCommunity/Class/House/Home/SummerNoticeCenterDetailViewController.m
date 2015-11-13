@@ -118,7 +118,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     CGFloat rectHeight = [Util getHeightForString:dicNotice[@"content"] width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
-    return rectHeight + 91;
+    return rectHeight + 91 + 70;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -143,6 +143,7 @@
     }
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[dicNotice[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.cellLabContent.attributedText = attrStr;
+    
     return cell;
 }
 
@@ -152,21 +153,30 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [noticModel.detailNoticeModel.content boundingRectWithSize:CGSizeMake(SCREENSIZE.width - 50, 2000) options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12]} context:nil].size.height;
-    
-    if (noticModel.detailNoticeModel.childrenCount.intValue > 0 && noticModel.detailNoticeModel.childrenCount.intValue < 3) {
-        heightCell += 15 * (noticModel.detailNoticeModel.childrenCount.intValue + 1);
-    }else if(noticModel.detailNoticeModel.childrenCount.intValue > 3){
-        heightCell += 50;
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]];
+    if (noticModel.detailReplyArrary.count < 3) {
+        for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
+            SummerHomeDetailNoticeModel *noticeDetail = noticModel.detailReplyArrary[index];
+            NSString *strTemp;
+            if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+            }else{
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+            }
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:15]];
+        }
     }
+    
+    
+//    if (noticModel.detailNoticeModel.childrenCount.intValue > 0 && noticModel.detailNoticeModel.childrenCount.intValue < 2) {
+//        heightCell += 15 * (noticModel.detailNoticeModel.childrenCount.intValue + 1);
+//    }
     
     if ([noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         return 90 + heightCell;
     }
-    if ([noticModel.detailNoticeModel.pictures count] == 0) {
-        return 100 + heightCell;
-    }else{
-        return 100 + heightCell + ([noticModel.detailNoticeModel.pictures count]/4 + 1) * 45.0;
+    if ([noticModel.detailNoticeModel.pictures count] > 0) {
+        return 90 + heightCell + 80.0;;
     }
     return 0;
 }

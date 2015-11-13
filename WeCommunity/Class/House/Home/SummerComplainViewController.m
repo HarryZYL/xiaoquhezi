@@ -240,12 +240,36 @@
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     [self.view endEditing:YES];
+    if (self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count < 1) {
+        [self showHint:@"发送内容或者图片，不能都为空"];
+        return;
+    }
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"上传中";
     hud.dimBackground = YES;
     [hud hide:YES afterDelay:50];
     
-    if (self.chosenImages.count > 0) {
+    if (self.summerInputView.summerInputView.text.length > 1 && self.chosenImages.count < 1) {
+        //文字
+        [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],@"id":_strDetailID,@"content":self.summerInputView.summerInputView.text} success:^(id responseObject) {
+            [hud removeFromSuperview];
+            [self showHint:@"评论成功"];
+            self.summerInputView.summerInputView.text = nil;
+            [self getComplaintDetail];
+        }];
+    }else if(self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count > 0){
+        //图片
+        [Networking upload:self.chosenImages success:^(id responseObject) {
+            [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],@"id":_strDetailID,@"pictures":responseObject} success:^(id responseObject) {
+                [hud removeFromSuperview];
+                [self showHint:@"评论成功"];
+                self.summerInputView.summerInputLabNumbers.hidden = YES;
+                self.summerInputView.summerInputView.text = nil;
+                [self getComplaintDetail];
+            }];
+        }];
+    }else{
+        //图片，文字
         [Networking upload:self.chosenImages success:^(id responseObject) {
             [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],
                                                                       @"id":_strDetailID,
@@ -259,18 +283,8 @@
                                                                           [self getComplaintDetail];
                                                                       }];
         }];
-    }else{
-        [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],
-                                                                  @"id":_strDetailID,
-                                                                  @"content":self.summerInputView.summerInputView.text} success:^(id responseObject) {
-                                                                      [hud removeFromSuperview];
-                                                                      [self showHint:@"评论成功"];
-                                                                      self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                      
-                                                                      self.summerInputView.summerInputView.text = nil;
-                                                                      [self getComplaintDetail];
-                                                                  }];
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
