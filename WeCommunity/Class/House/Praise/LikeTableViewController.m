@@ -47,7 +47,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     // Return the number of rows in the section.
     if (section == 0) {
         return 1;
@@ -69,9 +68,7 @@
             cell = [[NSBundle mainBundle]loadNibNamed:@"SummerLikeTableViewCell" owner:self options:nil].firstObject;
         }
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
-        [cell confirmsSummerLikeTableViewData:like];
-//        [cell configureLikeCellImage:like.praiseType[@"logo"] title:like.content userName:like.creatorInfo[@"nickName"] date:like.createTime pictures:like.pictures];
-        
+        [cell confirmsSummerLikeTableViewData:like];        
         return cell;
     }
     return nil;

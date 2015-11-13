@@ -100,7 +100,6 @@
         
         browser.displayActionButton = NO;
         [browser setCurrentPhotoIndex:sender.tag - 1];
-//        [self.view addSubview:browser.view];
         [self.navigationController pushViewController:browser animated:YES];
     }
 }

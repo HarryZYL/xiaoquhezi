@@ -26,7 +26,7 @@ static CGFloat height = 60;
 }
 
 -(void)configureImage:(NSMutableArray*)imageArr{
-    if (self.addImageBtn) {
+    if (!self.addImageBtn) {
         self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.addImageBtn setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
         self.addImageBtn.frame = CGRectMake(0, 0, height, height);
@@ -54,8 +54,10 @@ static CGFloat height = 60;
     
     if (imageArr.count < 4) {
         self.addImageBtn.frame = CGRectMake((height+margin) * imageArr.count, 0, height, height);
-    }else{
+    }else if(imageArr.count >= 4 && imageArr.count <= 7){
         self.addImageBtn.frame = CGRectMake((height+margin) * (imageArr.count-4), height+margin-5, height, height);
+    }else{
+        self.addImageBtn.frame = CGRectMake(SCREENSIZE.width, height+margin-5, height, height);
     }
 }
 

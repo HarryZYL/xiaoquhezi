@@ -37,7 +37,8 @@
     
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
-    
+    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
+    self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     [self.mTableView registerNib:[UINib nibWithNibName:@"SummerComplainDetailHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
     
@@ -53,14 +54,38 @@
 
 - (void)getComplaintDetail{
     __weak typeof(self)weakSelf = self;
+    if (_arraryData) {
+        [_arraryData removeAllObjects];
+    }
     NSDictionary *parama = @{@"id": self.strDetailID,
                              @"page":[NSNumber numberWithInteger:numberPage],
                              @"row":@"30",
                              @"token":[User getUserToken]};
     [Networking retrieveData:get_REPLIES_DETAIL parameters:parama success:^(id responseObject) {
         NSLog(@"---->%@",responseObject);
+        [weakSelf.mTableView.mj_header endRefreshing];
         for (NSDictionary *dicTemp in responseObject[@"rows"]) {
             [_arraryData addObject:[[TextDeal alloc] initWithData:dicTemp textType:@"complaint"]];
+        }
+        [weakSelf.mTableView reloadData];
+    }];
+}
+
+- (void)refreshFooter{
+    __weak typeof(self)weakSelf = self;
+    numberPage ++;
+    NSDictionary *parama = @{@"id": self.strDetailID,
+                             @"page":[NSNumber numberWithInteger:numberPage],
+                             @"row":@"30",
+                             @"token":[User getUserToken]};
+    [Networking retrieveData:get_REPLIES_DETAIL parameters:parama success:^(id responseObject) {
+        NSLog(@"---->%@",responseObject);
+        [weakSelf.mTableView.mj_footer endRefreshing];
+        for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+            [weakSelf.arraryData addObject:[[TextDeal alloc] initWithData:dicTemp textType:@"complaint"]];
+        }
+        if (numberPage * 30 > weakSelf.arraryData.count) {
+            [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.mTableView reloadData];
     }];
@@ -168,7 +193,9 @@
     }else{
         detailModel = _arraryData[index.row];
     }
-    
+    if (!self.photos) {
+        [self.photos removeAllObjects];
+    }
     for (int i = 0; i< [detailModel.pictures count]; i++) {
         MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:detailModel.pictures[i]]];
         [self.photos addObject:photo];

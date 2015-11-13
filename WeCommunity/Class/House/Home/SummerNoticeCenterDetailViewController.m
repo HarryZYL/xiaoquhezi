@@ -38,7 +38,9 @@
     self.chosenImages = [[NSMutableArray alloc] init];
     
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
-    
+    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
+    self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
     
@@ -65,6 +67,57 @@
     }];
 }
 
+- (void)refreshFooter{
+    numberPage ++;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"加载中";
+    [hud hide:YES afterDelay:5];
+    __weak typeof(self) weakSelf = self;
+    [Networking retrieveData:GET_NOTICE_REPLIS parameters:@{@"id": self.strNoticeID,
+                                                            @"page":[NSNumber numberWithInteger:numberPage],
+                                                            @"row":@"30"}success:^(id responseObject) {
+                                                                [hud removeFromSuperview];
+                                                                [weakSelf.mTableView.mj_footer endRefreshing];
+                                                                NSMutableArray *arraryTemp = [[NSMutableArray alloc] init];
+                                                                
+                                                                for (NSDictionary *dicTemp in responseObject[@"rows"]) {
+                                                                    if ([dicTemp[@"parentId"] isEqual:[NSNull null]]) {
+                                                                        SummerNoticeCenterDetailModel *detail = [[SummerNoticeCenterDetailModel alloc] init];
+                                                                        detail.detailNoticeModel = [[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp];
+                                                                        [weakSelf.arraryData addObject:detail];
+                                                                    }else{
+                                                                        SummerHomeDetailNoticeModel *detail = [[SummerHomeDetailNoticeModel alloc] init];
+                                                                        detail = [[SummerHomeDetailNoticeModel alloc] initWithData:dicTemp];
+                                                                        [arraryTemp addObject:detail];
+                                                                    }
+                                                                }
+                                                                if (weakSelf.arraryData.count < numberPage * 30) {
+                                                                    [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
+                                                                }
+                                                                for (int index = 0; index < [arraryTemp count]; index ++) {
+                                                                    SummerHomeDetailNoticeModel *dicTemp = arraryTemp[index];
+                                                                    
+                                                                    if (![dicTemp.objectID isEqual:[NSNull null]]) {
+                                                                        
+                                                                        for (SummerNoticeCenterDetailModel *detailModel in _arraryData) {
+                                                                            if ([detailModel.detailNoticeModel.objectID isEqualToString:dicTemp.parentId]) {
+                                                                                [detailModel.detailReplyArrary addObject:dicTemp];
+                                                                            }
+                                                                        }
+                                                                        
+                                                                    }
+                                                                    
+                                                                }
+                                                                
+                                                                [self.summerInputView.summerInputView resignFirstResponder];
+                                                                self.summerInputView.summerInputView.text = @"";
+                                                                self.summerInputView.btnAddImg.hidden = NO;
+                                                                self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
+                                                                _identifyNotice = nil;
+                                                                [weakSelf.mTableView reloadData];
+                                                            }];
+}
+
 - (void)getReceveData{
     if (_arraryData.count) {
         [_arraryData removeAllObjects];
@@ -76,6 +129,7 @@
     [Networking retrieveData:GET_NOTICE_REPLIS parameters:@{@"id": self.strNoticeID,
                                                             @"page":[NSNumber numberWithInteger:numberPage],
                                                             @"row":@"30"}success:^(id responseObject) {
+                                                                [weakSelf.mTableView.mj_header endRefreshing];
         [hud removeFromSuperview];
         NSMutableArray *arraryTemp = [[NSMutableArray alloc] init];
         for (NSDictionary *dicTemp in responseObject[@"rows"]) {

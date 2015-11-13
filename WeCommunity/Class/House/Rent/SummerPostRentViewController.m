@@ -231,6 +231,9 @@
 }
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
+    if (!self.chosenImages) {
+        [self.chosenImages removeAllObjects];
+    }
     for (int i = 0; i<self.chosenImages.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
         [self.chosenImages addObject:photo];

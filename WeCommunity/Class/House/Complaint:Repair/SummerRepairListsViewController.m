@@ -36,7 +36,8 @@
     
     [self.mTableView registerNib:[UINib nibWithNibName:@"SummerRepairListsRepairCellTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
-    
+    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
+    self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     [self.view addSubview:_mTableView];
     _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:_summerInputView];
@@ -47,9 +48,25 @@
 }
 
 - (void)getReceveData{
+    if (_arraryData) {
+        [_arraryData removeAllObjects];
+    }
+    pageNumber = 1;
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:GET_REPLISE parameters:@{@"token": [User getUserToken],@"id":_detailTextModel.Objectid,@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
-        weakSelf.arraryData = responseObject[@"rows"];
+        [weakSelf.mTableView.mj_header endRefreshing];
+        [weakSelf.arraryData addObjectsFromArray:responseObject[@"rows"]];
+        [weakSelf.mTableView reloadData];
+        NSLog(@"---->%@",responseObject);
+    }];
+}
+
+- (void)refreshFooter{
+    pageNumber ++;
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:GET_REPLISE parameters:@{@"token": [User getUserToken],@"id":_detailTextModel.Objectid,@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
+        [weakSelf.mTableView.mj_footer endRefreshing];
+        [weakSelf.arraryData addObjectsFromArray:responseObject[@"rows"]];
         [weakSelf.mTableView reloadData];
         NSLog(@"---->%@",responseObject);
     }];

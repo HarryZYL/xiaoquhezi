@@ -67,29 +67,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
-            timestampString = "469096011.893942"
+            filePath = "WeCommunity/Class/House/Home/SummerNoticeCenterDetailViewController.m"
+            timestampString = "469102289.372264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
-            landmarkName = "-imagePicker:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
-            timestampString = "469096099.146209"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "345"
-            endingLineNumber = "345"
-            landmarkName = "-uzysAssetsPickerController:didFinishPickingAssets:"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
+            landmarkName = "-senderPostNoticeReplayWith:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

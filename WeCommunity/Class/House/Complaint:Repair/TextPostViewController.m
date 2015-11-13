@@ -344,7 +344,7 @@
         }];
         [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
-        
+        [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 }
@@ -352,7 +352,10 @@
 #pragma mark - cameraViewDelegate
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
-    for (int i = 0; i<self.chosenImages.count; i++) {
+    if (photos) {
+        [photos removeAllObjects];
+    }
+    for (int i = 0; i < self.chosenImagesSmall.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
         [photos addObject:photo];
     }
@@ -377,24 +380,23 @@
 }
 
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
-    // If we subscribe to this method we must dismiss the view controller ourselves
-    NSLog(@"Did finish modal presentation");
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
     [photos removeObjectAtIndex:index];
+    
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenImagesSmall removeObjectAtIndex:index];
     if (self.chosenImages.count < 1) {
+        [photos removeAllObjects];
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
     
-//    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)btnSelectRoom{

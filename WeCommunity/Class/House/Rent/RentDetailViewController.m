@@ -178,9 +178,11 @@
 #pragma mark preview photos
 
 -(void)previewFullImage:(id)sender{
-    
-    self.photos = [[NSMutableArray alloc] initWithCapacity:0];
-
+    if (!self.photos) {
+        self.photos = [[NSMutableArray alloc] initWithCapacity:0];
+    }else{
+        [self.photos removeAllObjects];
+    }
     for (int i = 0; i<self.houseDeal.pictures.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:self.houseDeal.pictures[i]]];
         [self.photos addObject:photo];

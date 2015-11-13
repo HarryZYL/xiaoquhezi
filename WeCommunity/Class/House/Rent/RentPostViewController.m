@@ -148,6 +148,9 @@
 #pragma mark - cameraViewDelegate
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
+    if (!self.photos) {
+        [self.photos removeAllObjects];
+    }
     for (int i = 0; i<self.chosenImages.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
         [self.photos addObject:photo];
@@ -430,7 +433,9 @@
 }
 
 - (void)rentPostViewSelecteImageViewIndex:(NSInteger)index{
-    
+    if (!self.photos) {
+        [self.photos removeAllObjects];
+    }
     for (int i = 0; i<self.chosenImages.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImagesSmall[i]];
         [self.photos addObject:photo];
