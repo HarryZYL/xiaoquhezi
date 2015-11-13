@@ -173,7 +173,7 @@
     }
     
     if (noticModel.detailNoticeModel.childrenCount.intValue > 2) {
-        heightCell += 60;
+        heightCell += 60 + 20;
     }else{
         return heightCell + 40;
     }
