@@ -320,7 +320,6 @@
     picker.delegate = self;
     picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
     [self presentViewController:picker animated:YES completion:nil];
-    
 }
 
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
@@ -394,7 +393,8 @@
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
-    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    
+//    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)btnSelectRoom{
@@ -407,6 +407,8 @@
     pickerView.dataSource = self;
     [self.view addSubview:pickerView];
 }
+
+#pragma mark - UIPickerViewDelegate
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;

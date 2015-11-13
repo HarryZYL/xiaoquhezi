@@ -39,7 +39,7 @@
     _cellNameLab.attributedText = attriStr;
     CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:14]];
     
-    _cellContenLab.frame = CGRectMake(69, 30, SCREENSIZE.width - 100, contentHeight);
+    _cellContenLab.frame = CGRectMake(64, 30, SCREENSIZE.width - 100, contentHeight);
     _cellContenLab.text = dicTemp.detailNoticeModel.content;
     
     _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 30, 10, 19, 19);
@@ -53,7 +53,7 @@
             for (int indexPath = 0; indexPath < dicTemp.detailNoticeModel.pictures.count; indexPath ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]]];
-                CGFloat xRow = 69 + (10 + IMG_WIDTH) * (indexPath%4);
+                CGFloat xRow = 64 + (10 + IMG_WIDTH) * (indexPath%4);
                 CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 5 + (40 + 5) * (indexPath/4);
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
             }
@@ -84,10 +84,10 @@
             }
             CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labReplay.frame = CGRectMake(69, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 5, SCREENSIZE.width - 70, ceil(replayLabHeight));
+                labReplay.frame = CGRectMake(64, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 5, SCREENSIZE.width - 70, ceil(replayLabHeight));
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(69, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, ceil(replayLabHeight));
+                labReplay.frame = CGRectMake(64, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, ceil(replayLabHeight));
             }
         }
     }else{
@@ -110,10 +110,10 @@
             }
             CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labReplay.frame = CGRectMake(69, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
+                labReplay.frame = CGRectMake(64, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(69, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, replayLabHeight);
+                labReplay.frame = CGRectMake(64, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, replayLabHeight);
             }
             
         }

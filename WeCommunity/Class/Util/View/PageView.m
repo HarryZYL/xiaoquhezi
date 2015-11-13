@@ -100,4 +100,8 @@
 
 }
 
+- (void)dealloc{
+    [_moveTime isValid];
+}
+
 @end

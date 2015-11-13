@@ -227,7 +227,7 @@
 - (void)btnSelectedImageViews:(UIButton *)sender{
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
-    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
+    picker.maximumNumberOfSelectionMedia = 3 - self.chosenImages.count;
     [self presentViewController:picker animated:YES completion:nil];
     
 }
@@ -238,7 +238,7 @@
     {
         [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             ALAsset *representation = obj;
-            if (self.chosenImages.count >= 8) {
+            if (self.chosenImages.count >= 3) {
                 [self showHint:@"只能选择四张图片"];
             }
             UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage

@@ -41,7 +41,9 @@
     _mTaleView.dataSource = self;
     _mTaleView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_mTaleView];
-    
+    UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 10)];
+    titleLab.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    [self.view addSubview:titleLab];
     [self receveData];
 }
 

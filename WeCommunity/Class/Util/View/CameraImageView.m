@@ -64,8 +64,10 @@ static CGFloat height = 60;
 }
 
 - (void)chuckSubViews{
-    for (UIView *views in self.subviews) {
-        [views removeFromSuperview];
+    for (id views in self.subviews) {
+        if ([views isKindOfClass:[UIImageView class]]) {
+            [views removeFromSuperview];
+        }        
     }
 }
 
