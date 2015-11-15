@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, SummerPostRentType) {
 @property (nonatomic,strong) UIScrollView *scollView;
 @property (nonatomic, strong) NSMutableArray *chosenImages;
 @property (nonatomic, strong) NSMutableArray *chosenImagesSmall;
+@property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic,strong) UIButton *imageBtn;
 @property (nonatomic,strong) NSArray *houseTypeArr;
 @property (nonatomic,strong) NSString *houseType;

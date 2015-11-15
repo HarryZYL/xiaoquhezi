@@ -148,7 +148,7 @@
 #pragma mark - cameraViewDelegate
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
-    if (!self.photos) {
+    if (self.photos) {
         [self.photos removeAllObjects];
     }
     for (int i = 0; i<self.chosenImages.count; i++) {
@@ -191,7 +191,7 @@
     
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
-    [self.cameraView configureImage:self.photos];
+    [self.cameraView configureImage:self.chosenImagesSmall];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -419,7 +419,7 @@
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             
             [self.chosenImages addObject:img];
-            [self.chosenImagesSmall addObject:[Util scaleToSize:img size:CGSizeMake(200, 200)]];
+            [self.chosenImagesSmall addObject:[Util scaleToSize:img size:CGSizeMake(100, 100)]];
             
             if (idx==0 && self.chosenImages.count == 1) {
                 
@@ -427,7 +427,9 @@
             
         }];
         
+        [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
+        [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 }

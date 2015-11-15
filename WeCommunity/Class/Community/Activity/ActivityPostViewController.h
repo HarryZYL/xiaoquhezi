@@ -16,5 +16,6 @@
 @property (nonatomic) NSString *dateType;
 @property (nonatomic, strong) NSMutableArray *chosenImages;
 @property (nonatomic, strong) NSMutableArray *chosenImagesSmall;
+
 @end
 //活动发布页面

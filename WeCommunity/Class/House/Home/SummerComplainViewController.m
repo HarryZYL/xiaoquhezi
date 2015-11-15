@@ -33,7 +33,7 @@
     self.arraryData = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
     numberPage = 1;
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStylePlain];
     
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;

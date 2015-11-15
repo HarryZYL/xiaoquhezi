@@ -122,6 +122,7 @@
     if (_arraryData.count) {
         [_arraryData removeAllObjects];
     }
+    numberPage = 1;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"加载中";
     [hud hide:YES afterDelay:5];

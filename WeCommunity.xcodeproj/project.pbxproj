@@ -175,6 +175,7 @@
 		D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */; };
 		D47996861BF04E7200994024 /* SummerNoticeCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996851BF04E7200994024 /* SummerNoticeCenterDetailModel.m */; };
 		D47996891BF08F2E00994024 /* SummerMoreReplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996881BF08F2E00994024 /* SummerMoreReplayViewController.m */; };
+		D47E08471BF744EF008A71B4 /* aps_production.cer in Resources */ = {isa = PBXBuildFile; fileRef = D47E08461BF744EF008A71B4 /* aps_production.cer */; };
 		D48662AF1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D48662AE1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m */; };
 		D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D48C41161BE8970B00A5DF45 /* SummerNoticeDetailViewController.m */; };
 		D4AC4C071BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4AC4C051BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.m */; };
@@ -621,6 +622,7 @@
 		D47996851BF04E7200994024 /* SummerNoticeCenterDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerNoticeCenterDetailModel.m; path = HomeModel/SummerNoticeCenterDetailModel.m; sourceTree = "<group>"; };
 		D47996871BF08F2E00994024 /* SummerMoreReplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMoreReplayViewController.h; sourceTree = "<group>"; };
 		D47996881BF08F2E00994024 /* SummerMoreReplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerMoreReplayViewController.m; sourceTree = "<group>"; };
+		D47E08461BF744EF008A71B4 /* aps_production.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_production.cer; sourceTree = "<group>"; };
 		D48662AD1BE94951006D1E4A /* SummerSelectSellerOrOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectSellerOrOrderView.h; sourceTree = "<group>"; };
 		D48662AE1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectSellerOrOrderView.m; sourceTree = "<group>"; };
 		D48C41151BE8970B00A5DF45 /* SummerNoticeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerNoticeDetailViewController.h; path = ../Home/SummerNoticeDetailViewController.h; sourceTree = "<group>"; };
@@ -1412,6 +1414,7 @@
 		4ADDB9821B5D235F002A188E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D47E08461BF744EF008A71B4 /* aps_production.cer */,
 				4A118E121BA48FFC00BC2C4E /* WeCommunity-Prefix.pch */,
 				4ADDB9831B5D235F002A188E /* Info.plist */,
 				4AD3DFA91B731E4B007F51E0 /* Setting.plist */,
@@ -1824,6 +1827,7 @@
 				D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */,
 				4A118EBD1BA4900400BC2C4E /* Overlay.png in Resources */,
 				D4E5081A1BF25A050057AFDB /* SummerRepairListTableViewCell.xib in Resources */,
+				D47E08471BF744EF008A71B4 /* aps_production.cer in Resources */,
 				D46ADC0E1BF3588A00AFA6DC /* SummerLikeTableViewCell.xib in Resources */,
 				D452F2401BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib in Resources */,
 				D42BB1291BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib in Resources */,
@@ -2203,8 +2207,8 @@
 			baseConfigurationReference = 9914193A5A7538191672005B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2256,9 +2260,9 @@
 			baseConfigurationReference = E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

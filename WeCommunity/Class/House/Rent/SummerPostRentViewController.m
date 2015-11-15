@@ -10,7 +10,10 @@
 #import "UIViewController+HUD.h"
 
 @interface SummerPostRentViewController ()<CameraImageViewDelegate ,MWPhotoBrowserDelegate>
-
+@property (nonatomic ,strong)UIView *detailView;
+@property (nonatomic ,strong)UITextField *titelField;
+@property (nonatomic ,strong)UITextField *contentField;
+@property (nonatomic ,strong)CameraImageView *cameraView;
 @end
 
 @implementation SummerPostRentViewController
@@ -54,9 +57,11 @@
             [self.postView setupSecondPart];
             break;
         case 2:
-            self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
-            self.postView.delegate = self;
-            [self.postView setupThirdPart];
+            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
+            self.detailView.backgroundColor = [UIColor whiteColor];
+            [self.scollView addSubview:self.detailView];
+            
+            [self initWithDetailView];
             break;
             
         default:
@@ -76,6 +81,7 @@
     
     self.chosenImages = [[NSMutableArray alloc] initWithCapacity:9];
     self.chosenImagesSmall = [[NSMutableArray alloc] initWithCapacity:9];
+    self.photos = [[NSMutableArray alloc] init];
     
     self.houseTypeArr = @[@"普通住宅",@"商住两用",@"公寓",@"别墅",@"其他"];
     self.houseOrientationArr = @[@"东",@"西",@"南",@"北",@"东北",@"西北",@"东南",@"西南",@"东西",@"南北"];
@@ -100,6 +106,54 @@
     
     self.postView.titleField.text = self.houseDeal.title;
     self.postView.contentField.text = self.houseDeal.content;
+}
+
+- (void)initWithDetailView{
+    CGFloat textHeight = 45;
+    GrayLine *fourthLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, 1)];
+    [_detailView addSubview:fourthLine];
+    
+    NSArray *fourthArray = @[@"标题",@"描述"];
+    
+    
+    for (int i = 0; i<2; i++) {
+        UILabel *title = [[UILabel alloc] init];
+        title.frame = CGRectMake(10,fourthLine.frame.origin.y +fourthLine.frame.size.height + textHeight*i, 50, textHeight);
+        title.textAlignment = NSTextAlignmentCenter;
+        title.text = fourthArray[i];
+        [self.detailView addSubview:title];
+        GrayLine *bottomLine = [[GrayLine alloc] initWithFrame:CGRectMake(8,title.frame.origin.y +textHeight, _detailView.frame.size.width-16, 1)];
+        [self.detailView addSubview:bottomLine];
+        
+        GrayLine *rightLine = [[GrayLine alloc] initWithFrame:CGRectMake(title.frame.size.width+title.frame.origin.x, title.frame.origin.y+4, 1, textHeight-8)];
+        [self.detailView addSubview:rightLine];
+        
+        // the width on the right
+        CGFloat labelWidth = bottomLine.frame.size.width - title.frame.size.width;
+        switch (i) {
+            case 0:
+                self.titelField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
+                self.titelField.placeholder = @"1-20个字";
+                [_detailView addSubview:self.titelField];
+                
+                break;
+            case 1:
+                self.contentField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
+                self.contentField.placeholder = @"交通配置等";
+                [_detailView addSubview:self.contentField];
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+    }
+    
+    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, _detailView.frame.size.width-10, 150)];
+    self.cameraView.delegate = self;
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    [_detailView addSubview:self.cameraView];
 }
 
 #pragma mark picker
@@ -224,19 +278,20 @@
             }
             
         }];
-        [self.postView.cameraView configureImage:self.chosenImagesSmall];
-        
+        [self.cameraView chuckSubViews];
+        [self.cameraView configureImage:self.chosenImagesSmall];
+        [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
 }
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
-    if (!self.chosenImages) {
-        [self.chosenImages removeAllObjects];
+    if (self.photos) {
+        [self.photos removeAllObjects];
     }
     for (int i = 0; i<self.chosenImages.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
-        [self.chosenImages addObject:photo];
+        [self.photos addObject:photo];
     }
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
@@ -249,12 +304,12 @@
 #pragma mark - MWPhotoBrowserDelegate
 
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.chosenImages.count;
+    return self.photos.count;
 }
 
 - (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < self.chosenImages.count)
-        return [self.chosenImages objectAtIndex:index];
+    if (index < self.photos.count)
+        return [self.photos objectAtIndex:index];
     return nil;
 }
 
@@ -265,6 +320,7 @@
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.photos removeObjectAtIndex:index];
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenImagesSmall removeObjectAtIndex:index];
     if (self.chosenImages.count < 1) {
@@ -272,9 +328,9 @@
     }
     
     [photoBrowser reloadData];
-    [self.postView.cameraView chuckSubViews];
-    [self.postView.cameraView configureImage:self.chosenImagesSmall];
-    [self.postView.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    [self.cameraView chuckSubViews];
+    [self.cameraView configureImage:self.chosenImagesSmall];
+    [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -309,12 +365,12 @@
 
 -(void)setupSubmitBtn:(int)step{
     self.submitBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.submitBtn.frame = CGRectMake(20, self.postView.frame.origin.y+self.postView.frame.size.height+30, self.view.frame.size.width-40, 45);
-    
     if (self.step<2) {
+        self.submitBtn.frame = CGRectMake(20, self.postView.frame.origin.y+self.postView.frame.size.height+30, self.view.frame.size.width-40, 45);
         [self.submitBtn configureButtonTitle:@"下一步" backgroundColor:THEMECOLOR];
     }else{
         [self.submitBtn configureButtonTitle:@"发布" backgroundColor:THEMECOLOR];
+        self.submitBtn.frame = CGRectMake(20, self.detailView.frame.origin.y + self.detailView.frame.size.height + 30, SCREENSIZE.width - 40, 45);
     }
     [self.submitBtn addTarget:self action:@selector(nextStep) forControlEvents:UIControlEventTouchUpInside];
     [self.submitBtn roundRect];
