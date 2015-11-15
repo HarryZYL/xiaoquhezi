@@ -44,9 +44,17 @@
     NSLog(@"------>%@",deviceToken);
     [BPush registerDeviceToken:deviceToken];
     
-//    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
-//        <#code#>
-//    }];
+    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
+        // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
+        if (result) {
+            [BPush setTag:@"Mytag" withCompleteHandler:^(id result, NSError *error) {
+                if (result) {
+                    NSLog(@"设置tag成功");
+                }
+            }];
+        }
+    }];
+
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{

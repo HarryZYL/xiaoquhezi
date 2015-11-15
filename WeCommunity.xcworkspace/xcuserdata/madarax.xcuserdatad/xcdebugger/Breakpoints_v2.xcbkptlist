@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeCommunity/Class/House/Home/SummerNoticeCenterDetailViewController.m"
-            timestampString = "469113108.844961"
+            timestampString = "469260189.389282"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "375"
+            endingLineNumber = "375"
             landmarkName = "-senderPostNoticeReplayWith:"
             landmarkType = "5">
          </BreakpointContent>

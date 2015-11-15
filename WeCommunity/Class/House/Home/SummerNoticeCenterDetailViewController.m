@@ -228,12 +228,21 @@
     }
     
     if (noticModel.detailNoticeModel.childrenCount.intValue > 2) {
-        heightCell += 60 + 20;
-    }else{
-        return heightCell + 40;
+        for (SummerHomeDetailNoticeModel *noticeDetailModel in noticModel.detailReplyArrary) {
+            NSString *strTemp;
+            if (![noticeDetailModel.creatorInFo.nickName isEqual:[NSNull null]]) {
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetailModel.creatorInFo.nickName,noticeDetailModel.content,[Util formattedDate:noticeDetailModel.createTime type:5]];
+                
+            }else{
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetailModel.creatorInFo.userName,noticeDetailModel.content,[Util formattedDate:noticeDetailModel.createTime type:5]];
+                
+            }
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
+        }
     }
+    return heightCell + 40;
 
-    return heightCell;
+//    return heightCell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
