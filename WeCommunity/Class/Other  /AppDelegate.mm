@@ -60,6 +60,7 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //推送消息
     NSLog(@"----->%@",userInfo);
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
         NSLog(@"acitve or background");
         UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
