@@ -39,7 +39,7 @@
     _cellNameLab.attributedText = attriStr;
     CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:14]];
     
-    _cellContenLab.frame = CGRectMake(60, 30, SCREENSIZE.width - 100, contentHeight);
+    _cellContenLab.frame = CGRectMake(60, 30, SCREENSIZE.width - 100, contentHeight + 10);
     _cellContenLab.text = dicTemp.detailNoticeModel.content;
     
     _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 30, 10, 19, 19);
@@ -52,7 +52,8 @@
         if (dicTemp.detailNoticeModel.pictures.count > 0) {
             for (int indexPath = 0; indexPath < dicTemp.detailNoticeModel.pictures.count; indexPath ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
-                [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]]];
+                [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+
                 CGFloat xRow = 60 + (10 + IMG_WIDTH) * (indexPath%4);
                 CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 5 + (40 + 5) * (indexPath/4);
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
@@ -62,6 +63,12 @@
     for (NSInteger index = 0; index < 3; index ++) {
         UIView *view = [self viewWithTag:index + 10];
         view.frame = CGRectZero;
+    }
+    UILabel *labLine = (UILabel *)[self viewWithTag:9];
+    if (dicTemp.detailReplyArrary.count) {
+        labLine.hidden = NO;
+    }else{
+        labLine.hidden = YES;
     }
     if (![dicTemp.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         for (NSInteger index = 0; index < dicTemp.detailReplyArrary.count; index ++) {
@@ -82,12 +89,13 @@
                 [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
-            CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
+            CGFloat replayLabHeight = [Util getHeightForString:[strTemp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labReplay.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 5, SCREENSIZE.width - 70, ceil(replayLabHeight));
+                labLine.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 10, SCREENSIZE.width - 60, 1);
+                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + 10, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, ceil(replayLabHeight));
+                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 10, SCREENSIZE.width - 70, ceil(replayLabHeight));
             }
         }
     }else{
@@ -110,18 +118,20 @@
             }
             CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labReplay.frame = CGRectMake(64, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
+                labLine.frame = CGRectMake(60, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 60, 1);
+                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + labLine.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(64, labReplay1.frame.origin.y + labReplay1.frame.size.height, SCREENSIZE.width - 70, replayLabHeight);
+                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
             }
             
         }
     }
+    UILabel *labLast = (UILabel *)[self.contentView viewWithTag:11];
     if (dicTemp.detailNoticeModel.childrenCount.intValue > 2) {
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];
         btnReply.hidden = NO;
-        btnReply.frame = CGRectMake(SCREENSIZE.width - 74, self.contentView.frame.size.height - 30, 74, 30);
+        btnReply.frame = CGRectMake(60, labLast.frame.origin.y + labLast.frame.size.height, 74, 30);
         [btnReply setTitle:@"查看更多回复" forState:UIControlStateNormal];
     }else{
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];

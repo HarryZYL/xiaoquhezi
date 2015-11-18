@@ -110,7 +110,7 @@
 
 +(CGFloat)getHeightForString:(NSString*)message width:(CGFloat)width font:(UIFont*)font{
     CGRect describe = [message boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:(NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName: font} context:nil];
-    return CGRectGetHeight(describe);
+    return ceil(describe.size.height);
 }
 
 +(CGFloat)getWidthForString:(NSString*)message font:(UIFont*)font{

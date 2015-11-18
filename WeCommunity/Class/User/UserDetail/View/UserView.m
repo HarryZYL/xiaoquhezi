@@ -146,7 +146,7 @@
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.scrollEnabled   = NO;
-        _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _mTableView.separatorColor = [UIColor whiteColor];
         [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
         _mTableView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:204.0/255.0 blue:180.0/255.0 alpha:0.9];
         _mTableView.delegate = self;
@@ -191,7 +191,7 @@
     [self addSubview:iconImg];
     
     UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-30, iconImg.frame.origin.y, 20, 20)];
-    selectImg.image = [UIImage imageNamed:@"箭头"];
+    selectImg.image = [UIImage imageNamed:@"cell_selection_stype"];
     [self addSubview:selectImg];
     //      设置地址
     UILabel *address = [[UILabel alloc] init];

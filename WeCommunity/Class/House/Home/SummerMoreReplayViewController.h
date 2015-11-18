@@ -10,7 +10,7 @@
 #import "SummerInputView.h"
 #import "SummerHomeDetailNoticeModel.h"
 
-@interface SummerMoreReplayViewController : UIViewController<UITableViewDataSource ,UITableViewDelegate ,UITextViewDelegate>
+@interface SummerMoreReplayViewController : UIViewController<UITableViewDataSource ,UITableViewDelegate ,UITextFieldDelegate>
 
 @property (nonatomic ,copy)NSString *strID;/**<回复ID*/
 @property (nonatomic ,copy)NSString *strNoticeID;/**<公告ID*/

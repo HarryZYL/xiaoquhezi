@@ -37,7 +37,7 @@
     
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
-    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
+    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getComplaintDetail)];
     self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     [self.mTableView registerNib:[UINib nibWithNibName:@"SummerComplainDetailHeaderTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
@@ -106,6 +106,7 @@
     [Networking retrieveData:get_COMPLAINTS_DETAIL parameters:@{@"id": self.strDetailID,
                                                             @"token":[User getUserToken],}success:^(id responseObject) {
                                                                 [hud removeFromSuperview];
+                                                                [weakSelf.mTableView.mj_header endRefreshing];
                                                                 _complainModel = [[TextDeal alloc] initWithData:responseObject textType:@"complaint"];
                                                                 [weakSelf.mTableView reloadData];
                                                             }];
@@ -131,19 +132,21 @@
         if ([_complainModel.pictures isEqual:[NSNull null]]) {
             return 61 + rectHeight;
         }
-        headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
+        headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (70 + 5) + rectHeight;
         return headerViewHeight;
     }
     TextDeal *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:13]];
+    CGFloat heightCell = [Util getHeightForString:noticModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]];
     
     if ([noticModel.pictures isEqual:[NSNull null]]) {
         return 54 + heightCell;
     }
-    if ([noticModel.pictures count] == 0) {
+    if ([noticModel.pictures count] == 0 || [noticModel.pictures.firstObject length] < 5) {
         return 54 + heightCell;
-    }else{
-        return 54 + heightCell + ([noticModel.pictures count]/4 + 1) * 45.0;
+    }else if (noticModel.pictures.count > 1 && noticModel.pictures.count < 5){
+        return 54 + heightCell + 90;
+    }else if(noticModel.pictures.count > 4){
+        return 54 + heightCell + ([noticModel.pictures count]/4) * 70.0 + 30;
     }
     return 0;
 }

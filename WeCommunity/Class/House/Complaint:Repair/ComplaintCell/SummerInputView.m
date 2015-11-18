@@ -17,7 +17,7 @@
         self.backgroundColor = [UIColor colorWithWhite:0.949 alpha:1.000];
         
         self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnAddImg.frame = CGRectMake(15, 3 + 8, 25, 25);
+        self.btnAddImg.frame = CGRectMake(15, 11, 25, 25);
         [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
         [self addSubview:self.btnAddImg];
         
@@ -41,7 +41,7 @@
         self.btnSenderMessage.titleLabel.font = [UIFont systemFontOfSize:16];
         [self.btnSenderMessage setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
         [self addSubview:self.btnSenderMessage];
-        
+
         self.viewWithImg = [[UIView alloc] initWithFrame:CGRectMake(0, 60, SCREENSIZE.width, 0)];
         [self addSubview:self.viewWithImg];
     }

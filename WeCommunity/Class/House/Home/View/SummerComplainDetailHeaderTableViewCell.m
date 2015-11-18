@@ -10,7 +10,7 @@
 #import "UITapGestureRecognizer+Data.h"
 
 @implementation SummerComplainDetailHeaderTableViewCell
-#define IMG_WIDTH 40
+#define IMG_WIDTH 70
 - (void)awakeFromNib {
     // Initialization code
     self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -48,8 +48,8 @@
         for (int indexPath = 0; indexPath < dicTemp.pictures.count; indexPath ++) {
             UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
             [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.pictures[indexPath]]];
-            CGFloat xRow = 69 + (20 + 40) * (indexPath%4);
-            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 5 + (40 + 5) * (indexPath/4);
+            CGFloat xRow = 60 + (5 + IMG_WIDTH) * (indexPath%4);
+            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 10 + (IMG_WIDTH + 10) * (indexPath/4);
             imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
         }
     }
@@ -79,8 +79,8 @@
         for (int indexPath = 0; indexPath < dicTemp.pictures.count; indexPath ++) {
             UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
             [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.pictures[indexPath]]];
-            CGFloat xRow = 69 + (20 + 40) * (indexPath%4);
-            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 5 + (40 + 5) * (indexPath/4);
+            CGFloat xRow = 60 + (10 + IMG_WIDTH) * (indexPath%4);
+            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 5 + (IMG_WIDTH + 5) * (indexPath/4);
             imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
         }
     }

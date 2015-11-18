@@ -14,6 +14,6 @@
 @property (nonatomic ,weak)IBOutlet UILabel *cellTitleName;
 @property (nonatomic ,weak)IBOutlet UILabel *cellTimeLabe;
 @property (nonatomic ,weak)IBOutlet UILabel *cellContenLab;
-@property (nonatomic ,weak)IBOutlet UIButton *cellCountNumber;
+@property (nonatomic ,weak)IBOutlet UILabel *cellCountNumber;
 
 @end

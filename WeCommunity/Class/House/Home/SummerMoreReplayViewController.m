@@ -76,7 +76,7 @@
     cell.cellTitleName.text = _detailNoticeModel.creatorInFo.nickName;
     cell.cellTimeLabe.text = [Util formattedDate:_detailNoticeModel.createTime type:1];
     cell.cellContenLab.text = _detailNoticeModel.content;
-    [cell.cellCountNumber setTitle:[NSString stringWithFormat:@"%@",_detailNoticeModel.childrenCount] forState:UIControlStateNormal];
+    cell.cellCountNumber.text = [NSString stringWithFormat:@"评论：%@",_detailNoticeModel.childrenCount];
     
     return cell;
 }
@@ -111,11 +111,11 @@
     }
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    if (textView == self.summerInputView.summerInputView) {
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (textField == self.summerInputView.summerInputView) {
         if (![[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] && ![[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]){
             [self showHint:@"认证后，才能评论"];
-            [textView resignFirstResponder];
+            [textField resignFirstResponder];
         }
     }
 }

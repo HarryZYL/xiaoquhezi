@@ -1,7 +1,8 @@
 *.gitignore
-/mtk/.gitignore.swp
+*.swp
 /mtk/
 /mtk/Pods/Masonry/LICENSE
 /mtk/WeCommunity.xcworkspace/xcuserdata/madarax.xcuserdatad/xcdebugger/WeCommunity/Vendor/AlipaySDK/AlipaySDK.framework/en.lproj/
 *.DS_Store
 *.md
+*.lock

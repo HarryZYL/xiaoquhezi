@@ -9,7 +9,7 @@
 #import "CameraImageView.h"
 #import "UITapGestureRecognizer+Data.h"
 
-static CGFloat height = 60;
+static CGFloat height = 72;
 
 @implementation CameraImageView
 

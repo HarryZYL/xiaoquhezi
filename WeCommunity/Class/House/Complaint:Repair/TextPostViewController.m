@@ -18,6 +18,7 @@
     UIButton *btnAddress;
     UIPickerView *pickerView;
     NSDictionary *dicSelectAddress;
+    UILabel *labAddress;
 }
 @end
 
@@ -83,52 +84,64 @@
     
     [self.scrollView addSubview:self.functionView];
     
-    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 100)];
+    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 160)];
     if ([self.function isEqualToString:@"praise"]) {
         self.describleView.placeholder = @"物业服务很好，赞一个";
     }else{
-        self.describleView.placeholder = @"说点什么";
+        self.describleView.placeholder = @"说点什么吧...";
     }
-    
-    self.describleView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
+    self.describleView.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
+    self.describleView.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
     self.describleView.font=[UIFont fontWithName:@"Arial" size:15];
     self.describleView.returnKeyType = UIReturnKeyDone;
+    self.describleView.layer.cornerRadius = 3;
+    self.describleView.layer.masksToBounds = YES;
     self.describleView.delegate = self;
     [self.scrollView addSubview:self.describleView];
     
-    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.size.height+self.describleView.frame.origin.y+5, self.view.frame.size.width-20, 150)];
+    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, 80, self.view.frame.size.width-20, 160)];
     self.cameraView.delegate = self;
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
-    [self.scrollView addSubview:self.cameraView];
+    [self.describleView addSubview:self.cameraView];
     
     if (![self.function isEqualToString:@"praise"]) {
-    self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.cameraView.frame.origin.y+self.cameraView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 45)];
-        self.nickNameField.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
-    self.nickNameField.placeholder = @"昵称";
-    self.nickNameField.textColor = FONT_COLOR;
-    self.nickNameField.borderStyle = UITextBorderStyleRoundedRect;
-    self.nickNameField.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
-    self.nickNameField.text = self.user.nickName;
-    [self.scrollView addSubview:self.nickNameField];
-    
-    self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.nickNameField.frame.origin.x, self.nickNameField.frame.origin.y+self.nickNameField.frame.size.height+10, self.nickNameField.frame.size.width, self.nickNameField.frame.size.height)];
-    self.phoneField.placeholder = @"手机号";
-    self.phoneField.text = self.user.userName;
-    self.phoneField.borderStyle = UITextBorderStyleRoundedRect;
-    self.phoneField.backgroundColor =[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
-    [self.scrollView addSubview:self.phoneField];
+        self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.describleView.frame.origin.y+self.describleView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 45)];
+            self.nickNameField.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
+        self.nickNameField.placeholder = @"昵称";
+        self.nickNameField.textColor = FONT_COLOR;
+        self.nickNameField.borderStyle = UITextBorderStyleRoundedRect;
+        self.nickNameField.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
+        self.nickNameField.text = self.user.nickName;
+        [self.scrollView addSubview:self.nickNameField];
+        
+        self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.nickNameField.frame.origin.x, self.nickNameField.frame.origin.y+self.nickNameField.frame.size.height+10, self.nickNameField.frame.size.width, self.nickNameField.frame.size.height)];
+        self.phoneField.placeholder = @"手机号";
+        self.phoneField.text = self.user.userName;
+        self.phoneField.textColor = FONT_COLOR;
+        self.phoneField.borderStyle = UITextBorderStyleRoundedRect;
+        self.phoneField.backgroundColor =[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
+        [self.scrollView addSubview:self.phoneField];
     }
     
     if([self.function isEqualToString:@"repair"]){
+        labAddress = [[UILabel alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x + 10, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width - 10, self.phoneField.frame.size.height)];
+        labAddress.textColor = FONT_COLOR;
+        
+        labAddress.text = @"维修地址：";
+        [self.scrollView addSubview:labAddress];
+        
         btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
         btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width, self.phoneField.frame.size.height);
-//        [btnAddress setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
         [btnAddress leftStyle];
+        btnAddress.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+        btnAddress.layer.borderWidth = 1;
         [btnAddress addTarget:self action:@selector(btnSelectRoom) forControlEvents:UIControlEventTouchUpInside];
         [btnAddress roundRect];
-        [btnAddress setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btnAddress configureButtonTitle:@"维修地址" backgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5]];
+        [btnAddress setTitleColor:FONT_COLOR forState:UIControlStateNormal];
+        [btnAddress configureButtonTitle:@"" backgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5]];
         [self.scrollView addSubview:btnAddress];
+        
+        
         
         BottomButton *bottomBtn = [[BottomButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-50, self.view.frame.size.width, 50)];
         [bottomBtn.secondBtn addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
@@ -345,9 +358,28 @@
         }];
         [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
+        [self confirmSubViewsFrams];
         [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+}
+
+- (void)confirmSubViewsFrams{
+    CGFloat textY = 300;
+    if([self.function isEqualToString:@"repair"]) {
+        textY = 200;
+    }
+    if (self.chosenImages.count > 4) {
+        self.describleView.frame = CGRectMake(10, textY, self.view.frame.size.width-20, 250);
+    }else{
+        self.describleView.frame = CGRectMake(10, textY, self.view.frame.size.width-20, 160);
+        
+    }
+    self.nickNameField.frame = CGRectMake(self.describleView.frame.origin.x, self.describleView.frame.origin.y+self.describleView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 45);
+    
+    self.phoneField.frame = CGRectMake(self.nickNameField.frame.origin.x, self.nickNameField.frame.origin.y+self.nickNameField.frame.size.height+10, self.nickNameField.frame.size.width, self.nickNameField.frame.size.height);
+    labAddress.frame = CGRectMake(self.describleView.frame.origin.x + 10, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width - 10, self.phoneField.frame.size.height);
+    btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width, self.phoneField.frame.size.height);
 }
 
 #pragma mark - cameraViewDelegate
@@ -396,15 +428,15 @@
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
-    
+    [self confirmSubViewsFrams];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)btnSelectRoom{
     dicSelectAddress = arrRoomAddress[0];
     NSString *str = [NSString stringWithFormat:@"维修地址：%@",[dicSelectAddress[@"parentNames"] componentsJoinedByString:@""]];
-    [btnAddress setTitle:str forState:UIControlStateNormal];
     
+    labAddress.text = str;
     pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - 200, SCREENSIZE.width, 200)];
     pickerView.delegate = self;
     pickerView.dataSource = self;
@@ -430,7 +462,7 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     dicSelectAddress = arrRoomAddress[row];
     NSString *str = [NSString stringWithFormat:@"维修地址：%@",[dicSelectAddress[@"parentNames"] componentsJoinedByString:@""]];
-    [btnAddress setTitle:str forState:UIControlStateNormal];
+    labAddress.text = str;
     [self->pickerView removeFromSuperview];
 }
 

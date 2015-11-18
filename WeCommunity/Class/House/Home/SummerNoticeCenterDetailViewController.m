@@ -13,7 +13,7 @@
 #import "SummerNoticeDetailReplaceTableViewCell.h"
 #import "SummerNoticeDetailTableViewCell.h"
 
-#define IMPUT_VIEW_HEIGHT 40
+#define IMPUT_VIEW_HEIGHT 50
 @interface SummerNoticeCenterDetailViewController ()<UzysAssetsPickerControllerDelegate,SummerNoticeDetailReplaceTableViewCellDelegate>
 {
     NSInteger numberPage;
@@ -22,6 +22,8 @@
 }
 @property (nonatomic ,strong) NSMutableArray *chosenImages;
 @property (nonatomic ,strong) NSMutableArray *arraryData;
+@property (nonatomic ,strong) NSMutableArray *needLoadArr;
+
 @end
 
 @implementation SummerNoticeCenterDetailViewController
@@ -30,6 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
+    _needLoadArr = [[NSMutableArray alloc] init];
     self.title = @"公告详情";
     numberPage = 1;
     
@@ -112,7 +115,7 @@
                                                                 [self.summerInputView.summerInputView resignFirstResponder];
                                                                 self.summerInputView.summerInputView.text = @"";
                                                                 self.summerInputView.btnAddImg.hidden = NO;
-                                                                self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
+//                                                                self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
                                                                 _identifyNotice = nil;
                                                                 [weakSelf.mTableView reloadData];
                                                             }];
@@ -163,7 +166,7 @@
         [self.summerInputView.summerInputView resignFirstResponder];
         self.summerInputView.summerInputView.text = @"";
         self.summerInputView.btnAddImg.hidden = NO;
-        self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
+//        self.summerInputView.summerInputView.frame = CGRectMake(44, 5, SCREENSIZE.width - 88, 30);
         _identifyNotice = nil;
         [weakSelf.mTableView reloadData];
     }];
@@ -207,10 +210,26 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (!_arraryData) {
+        return 0;
+    }
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]] + 8;
-    if (noticModel.detailReplyArrary.count < 3) {
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]] + 17;
+    
+    if (noticModel.detailNoticeModel.childrenCount.integerValue <= 2) {
         for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
+            SummerHomeDetailNoticeModel *noticeDetail = noticModel.detailReplyArrary[index];
+            NSString *strTemp;
+            if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+            }else{
+                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
+            }
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]] + 10;
+        }
+
+    }else{
+        for(NSInteger index = 0;index < 2;index ++){
             SummerHomeDetailNoticeModel *noticeDetail = noticModel.detailReplyArrary[index];
             NSString *strTemp;
             if (![noticeDetail.creatorInFo.nickName isEqual:[NSNull null]]) {
@@ -220,35 +239,23 @@
             }
             heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]];
         }
+        heightCell += 10 + 30;
     }
     if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         if ([noticModel.detailNoticeModel.pictures count] > 0) {
-            heightCell += 70;
+            heightCell += 70 + 10;
         }
     }
     
-    if (noticModel.detailNoticeModel.childrenCount.intValue > 2) {
-        for (SummerHomeDetailNoticeModel *noticeDetailModel in noticModel.detailReplyArrary) {
-            NSString *strTemp;
-            if (![noticeDetailModel.creatorInFo.nickName isEqual:[NSNull null]]) {
-                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetailModel.creatorInFo.nickName,noticeDetailModel.content,[Util formattedDate:noticeDetailModel.createTime type:5]];
-                
-            }else{
-                strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetailModel.creatorInFo.userName,noticeDetailModel.content,[Util formattedDate:noticeDetailModel.createTime type:5]];
-                
-            }
-            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
-        }
-    }
     return heightCell + 40;
-
-//    return heightCell;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     cell.delegate = self;
+
     [cell confirmCellInformationWithData:_arraryData[indexPath.row]];
+    
     return cell;
 }
 
@@ -258,7 +265,7 @@
     if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
         self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_identifyNotice.creatorInFo.nickName];
         self.summerInputView.btnAddImg.hidden = YES;
-        self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
+//        self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
         [self.summerInputView.summerInputView becomeFirstResponder];
     }else{
         [self showHint:@"认证后，才能评论"];
@@ -266,6 +273,25 @@
     
     
 }
+
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
+//    NSIndexPath *ip = [self.mTableView indexPathForRowAtPoint:CGPointMake(0, targetContentOffset->y)];
+//    NSIndexPath *cip = [[self.mTableView indexPathsForVisibleRows] firstObject];
+//    NSInteger skipCount = 8;
+//    if (labs(cip.row-ip.row)>skipCount) {
+//        NSArray *temp = [self.mTableView indexPathsForRowsInRect:CGRectMake(0, targetContentOffset->y, SCREENSIZE.width, self.view.frame.size.height)];
+//        NSMutableArray *arr = [NSMutableArray arrayWithArray:temp];
+//        if (velocity.y<0) {
+//            NSIndexPath *indexPath = [temp lastObject];
+//            if (indexPath.row+33) {
+//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-3 inSection:0]];
+//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:0]];
+//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
+//            }
+//        }
+//        [_needLoadArr addObjectsFromArray:arr];
+//    }
+//}
 
 - (void)summerNoticeDetailMoreClickWithData:(id)viewModel{
     UIView *viewDetailModel = (UIView *)viewModel;
