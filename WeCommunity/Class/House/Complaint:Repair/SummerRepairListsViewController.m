@@ -20,7 +20,7 @@
 @end
 
 @implementation SummerRepairListsViewController
-#define IMPUT_VIEW_HEIGHT 40
+#define IMPUT_VIEW_HEIGHT 50
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

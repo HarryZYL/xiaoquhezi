@@ -111,20 +111,20 @@ static int timeToGetCaptcha = 60;
     
     [self.view addSubview:self.loadingView];
     [self.view endEditing:YES];
-    
+    __weak typeof(self)weakSelf = self;
     NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"newPassword":self.loginView.passwordField1.text,@"captcha":self.loginView.captchaField.text};
     
     [Networking retrieveData:resetUserPassword parameters:parameters success:^(id responseObject) {
-        [Util alertNetworingError:@"重置成功"];
+        [weakSelf showHint:@"重置成功"];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     } addition:^{
-        [self.loadingView removeFromSuperview];
+        [weakSelf.loadingView removeFromSuperview];
     }];
     
 }
 
 //获取重设密码验证码
 -(void)getResetUserPasswordCaptchaFunction:(id)sender{
-    
     if (self.loginView.tellField.text.length == 0) {
         [Util alertNetworingError:@"手机号不能为空"];
     }else{
@@ -240,5 +240,6 @@ static int timeToGetCaptcha = 60;
         [self pushVC:forgetView title:@"绑定手机号"];
     }
 }
+
 
 @end

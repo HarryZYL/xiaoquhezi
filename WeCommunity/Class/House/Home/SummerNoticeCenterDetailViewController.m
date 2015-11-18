@@ -194,7 +194,7 @@
     if (self.detailNotice.replyCount.intValue == 0) {
         cell.cellLabReplay.text = @"暂无评论";
     }else{
-        cell.cellLabReplay.text  = [NSString stringWithFormat:@"%@",self.detailNotice.replyCount];
+        cell.cellLabReplay.text  = [NSString stringWithFormat:@"评论 %@",self.detailNotice.replyCount];
     }
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[dicNotice[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
     cell.cellLabContent.attributedText = attrStr;

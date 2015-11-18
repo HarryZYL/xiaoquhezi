@@ -131,7 +131,7 @@
         
         //tableView init
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, 0) style:UITableViewStylePlain];
-        _tableView.rowHeight = 38;
+        _tableView.rowHeight = 45;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         
@@ -230,7 +230,7 @@
 
 - (CGSize)calculateTitleSizeWithString:(NSString *)string
 {
-    CGFloat fontSize = 14.0;
+    CGFloat fontSize = 16.0;
     NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:fontSize]};
     CGSize size = [string boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
     return size;
@@ -305,6 +305,7 @@
         
         [UIView animateWithDuration:0.2 animations:^{
             view.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
+            
         }];
     } else {
         [UIView animateWithDuration:0.2 animations:^{
@@ -375,6 +376,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.textLabel.font = [UIFont systemFontOfSize:16];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
     }
     NSAssert(self.dataSource != nil, @"menu's datasource shouldn't be nil");
     if ([self.dataSource respondsToSelector:@selector(menu:titleForRowAtIndexPath:)]) {
@@ -383,11 +386,10 @@
         NSAssert(0 == 1, @"dataSource method needs to be implemented");
     }
     cell.backgroundColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
     cell.separatorInset = UIEdgeInsetsZero;
     
     if (cell.textLabel.text == [(CATextLayer *)[_titles objectAtIndex:_currentSelectedMenudIndex] string]) {
-        cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+        cell.backgroundColor = [UIColor colorWithWhite:0.949 alpha:1.000];
     }
     
     return cell;

@@ -7,7 +7,7 @@
 //
 
 #import "SummerNoticeDetailViewController.h"
-#define IMPUT_VIEW_HEIGHT 40
+#define IMPUT_VIEW_HEIGHT 50
 
 @interface SummerNoticeDetailViewController ()
 @property (nonatomic ,strong) RDRStickyKeyboardView *contentWrapper;
@@ -18,13 +18,14 @@
 @synthesize strNoticeID;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillHide:) name:UIKeyboardWillHideNotification object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"公告详情";
     [self.view addSubview:self.mTableView];
@@ -81,22 +82,23 @@
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
-    [self.view endEditing:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (scrollView.contentOffset.y < 0) {
+        [self.view endEditing:YES];
+    }
 }
 
 - (UITableView *)mTableView{
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT)
                                                   style:UITableViewStyleGrouped];
     _mTableView.dataSource = self;
-    _mTableView.delegate = self;
-//    [_mTableView registerClass:[UITableViewCell class]
-//           forCellReuseIdentifier:@"cell"];
+    _mTableView.delegate   = self;
+
     _mTableView.tableFooterView = [[UIView alloc] init];
     return _mTableView;
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 /*

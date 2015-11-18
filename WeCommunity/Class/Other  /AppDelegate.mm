@@ -42,7 +42,11 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     //注册成功，把deviceToken发给后台
     NSLog(@"------>%@",deviceToken);
+    User *userModel = [[User alloc] initWithData];
     [BPush registerDeviceToken:deviceToken];
+    if ([User getUserToken]) {
+        [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
+    }
     
     [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
         // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
@@ -133,7 +137,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 
-    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeDevelopment withFirstAction:@"回复" withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:@"回复" withSecondAction:nil withCategory:nil isDebug:YES];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"从消息启动:%@",userInfo);

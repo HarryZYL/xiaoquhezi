@@ -12,6 +12,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+//    self.layer.borderWidth = 1;
+//    self.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

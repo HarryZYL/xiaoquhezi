@@ -12,13 +12,16 @@
 
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor grayColor];
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+        self.backgroundColor = [UIColor colorWithWhite:0.949 alpha:1.000];
+        
         self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnAddImg.frame = CGRectMake(0, 0, 40, 40);
-        [self.btnAddImg setImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
+        self.btnAddImg.frame = CGRectMake(15, 3 + 8, 25, 25);
+        [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
         [self addSubview:self.btnAddImg];
         
-        self.summerInputLabNumbers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        self.summerInputLabNumbers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
         self.summerInputLabNumbers.textAlignment = NSTextAlignmentCenter;
         self.summerInputLabNumbers.backgroundColor = [UIColor redColor];
         self.summerInputLabNumbers.layer.cornerRadius = self.summerInputLabNumbers.frame.size.width/2;
@@ -27,15 +30,16 @@
         self.summerInputLabNumbers.textColor = [UIColor whiteColor];
         [self addSubview:self.summerInputLabNumbers];
         
-        self.summerInputView = [[UITextView alloc] initWithFrame:CGRectMake(44, 5, SCREENSIZE.width - 88, 30)];
-        self.summerInputView.layer.cornerRadius = 3;
-        self.summerInputView.layer.masksToBounds = YES;
+        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
+        self.summerInputView.placeholder = @"添加评论....";
+        self.summerInputView.borderStyle = UITextBorderStyleRoundedRect;
         [self addSubview:self.summerInputView];
         
         self.btnSenderMessage = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnSenderMessage.frame = CGRectMake(SCREENSIZE.width - 40, 0, 40, 40);
+        self.btnSenderMessage.frame = CGRectMake(SCREENSIZE.width - 50, 0, 50, 50);
         [self.btnSenderMessage setTitle:@"发送" forState:UIControlStateNormal];
-        [self.btnSenderMessage setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:184/255.0 alpha:1] forState:UIControlStateNormal];
+        self.btnSenderMessage.titleLabel.font = [UIFont systemFontOfSize:16];
+        [self.btnSenderMessage setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
         [self addSubview:self.btnSenderMessage];
         
         self.viewWithImg = [[UIView alloc] initWithFrame:CGRectMake(0, 60, SCREENSIZE.width, 0)];

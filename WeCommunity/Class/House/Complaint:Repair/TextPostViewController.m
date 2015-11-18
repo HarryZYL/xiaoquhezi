@@ -9,7 +9,7 @@
 #import "TextPostViewController.h"
 
 #import "SummerPriceListViewController.h"
-
+#define FONT_COLOR [UIColor colorWithWhite:0.533 alpha:1.000]
 @interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate ,UIPickerViewDataSource ,UIPickerViewDelegate>
 {
     NSMutableArray *photos;
@@ -102,11 +102,12 @@
     [self.scrollView addSubview:self.cameraView];
     
     if (![self.function isEqualToString:@"praise"]) {
-    self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.cameraView.frame.origin.y+self.cameraView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 50)];
-        
+    self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.cameraView.frame.origin.y+self.cameraView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 45)];
+        self.nickNameField.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
     self.nickNameField.placeholder = @"昵称";
+    self.nickNameField.textColor = FONT_COLOR;
     self.nickNameField.borderStyle = UITextBorderStyleRoundedRect;
-    self.nickNameField.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5];
+    self.nickNameField.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
     self.nickNameField.text = self.user.nickName;
     [self.scrollView addSubview:self.nickNameField];
     

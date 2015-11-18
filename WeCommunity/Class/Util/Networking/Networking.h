@@ -99,6 +99,8 @@
 // 订单
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 
+#define get_Baidu_Push (HOST_URL @"/user/baidu/setPushId")   //推送
+
 @interface Networking : NSObject
 
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters success:(void (^)(id responseObject))ablock;

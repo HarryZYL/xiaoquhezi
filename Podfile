@@ -9,6 +9,6 @@ pod 'Masonry', '~> 0.6.3'
 pod 'Pgyer'
 pod 'PgyUpdate'
 pod 'MBProgressHUD'
-
+pod 'UITableView+FDTemplateLayoutCell', '~> 1.4.beta'
 pod 'DACircularProgress', '~> 2.3.1'
 pod 'MJRefresh','~>3.0.1'

@@ -146,6 +146,7 @@
         }
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.scrollEnabled   = NO;
+        _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_mTableView registerNib:[UINib nibWithNibName:@"SummerUserViewTableViewCell" bundle:nil] forCellReuseIdentifier:@"summercell"];
         _mTableView.backgroundColor = [UIColor colorWithRed:61.0/255.0 green:204.0/255.0 blue:180.0/255.0 alpha:0.9];
         _mTableView.delegate = self;
@@ -237,7 +238,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerUserViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"summercell" forIndexPath:indexPath];
-    
+    if (indexPath.row == 0) {
+        cell.backgroundColor = [UIColor colorWithRed:0.498 green:0.867 blue:0.804 alpha:.9];
+    }
     cell.imageView.image = [UIImage imageNamed:_functionImage[indexPath.row]];
     cell.nameLab.text = _functionArray[indexPath.row];
     return cell;
@@ -296,9 +299,6 @@
 
 - (void)dealloc{
     _mTableView.delegate = nil;
-    _mTableView = nil;
-    _functionImage = nil;
-    _functionArray = nil;
 }
 
 @end

@@ -54,6 +54,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>UzysAssetsPickerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,11 +67,6 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2733EA21E2B77CC426D1D4ACB169F530</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
@@ -82,17 +82,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62FCD4C84C374444B671039655DA5D59</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>8F74D9EA91F4C43190670066BAC37D44</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>9775596B3CA16905FC8F66DA8E2A3C67</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9B59602E6D8CBA525B2959307E5DFD82</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B97A2BD802B7D28BF72A26C1993CC478</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CEBD55AAB3F6DFAD06F4A6D47C856640</key>
 		<dict>
 			<key>primary</key>
 			<true/>

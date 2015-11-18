@@ -193,12 +193,12 @@
         url = getMyHouseDealsOfCommunity;
         
     }
-    
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        [self.tableView reloadData];
+        weakSelf.dataArray = responseObject[@"rows"];
+        [weakSelf.tableView reloadData];
     } addition:^{
-        [self.loadingView removeFromSuperview];
+        [weakSelf.loadingView removeFromSuperview];
     }];
     
 }
@@ -230,13 +230,13 @@
         url = getMyHouseDealsOfCommunity;
         
     }
-    
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer resetNoMoreData];
-        self.page = 1;
+        weakSelf.dataArray = responseObject[@"rows"];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer resetNoMoreData];
+        weakSelf.page = 1;
     }];
 }
 
@@ -268,13 +268,13 @@
         url = getMyHouseDealsOfCommunity;
         
     }
-    
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        [self.tableView reloadData];
-        [self.tableView.footer endRefreshing];
-        if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer endRefreshingWithNoMoreData];
+        weakSelf.dataArray = responseObject[@"rows"];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_footer endRefreshing];
+        if (weakSelf.dataArray.count < row*self.page) {
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

@@ -5,7 +5,7 @@
 //  Created by Harry on 7/29/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
+#define BOOTOM_HEIGHT 45
 #import "RentDetailViewController.h"
 #import "RentPostViewController.h"
 #import "UIViewController+HUD.h"
@@ -67,11 +67,12 @@
 }
 
 - (void)setupLoadRoomData{
+    __weak typeof(self)weakSelf = self;
     NSDictionary *parama = @{@"token": [User getUserToken],
                              @"houseDealId":self.houseDeal.objectId};
     [Networking retrieveData:GET_USER_BOOK parameters:parama roomSuccess:^(id responseObject) {
         _isBooking = [responseObject[@"msg"] boolValue];//是否当前用户租售过
-        [self confirmBootomButtonTitle];
+        [weakSelf confirmBootomButtonTitle];
     }];
 }
 
@@ -99,10 +100,10 @@
 -(void)setupBottomButton{
     User *user = [[User alloc] initWithData];
     if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
-        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, self.view.frame.size.width, 40) withItem:2];
+        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-BOOTOM_HEIGHT, self.view.frame.size.width, BOOTOM_HEIGHT) withItem:2];
         [self.functionBtn.btnRight addTarget:self action:@selector(rentDetailRePaier) forControlEvents:UIControlEventTouchUpInside];
     }else{
-        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-40, SCREENSIZE.width, 40) withItem:1];
+        self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-BOOTOM_HEIGHT, SCREENSIZE.width, BOOTOM_HEIGHT) withItem:1];
     }
     [self confirmBootomButtonTitle];
     [self.functionBtn.btnLeft addTarget:self action:@selector(order:) forControlEvents:UIControlEventTouchUpInside];
@@ -164,12 +165,13 @@
 }
 
 - (void)cansoleBooking{
+    __weak typeof(self)weakSelf = self;
     NSDictionary *parama = @{@"token":[User getUserToken],
                              @"houseDealId":[NSNumber numberWithLong:self.houseDeal.objectId.integerValue]};
     [Networking retrieveData:POST_CANCELL_BOOKING parameters:parama roomSuccess:^(id responseObject) {
         if ([responseObject[@"state"] intValue] == 0) {
-            [self showHint:@"取消预约成功"];
-            [self.functionBtn.btnLeft configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
+            [weakSelf showHint:@"取消预约成功"];
+            [weakSelf.functionBtn.btnLeft configureButtonTitle:@"预约看房" backgroundColor:THEMECOLOR];
         }
     }];
     

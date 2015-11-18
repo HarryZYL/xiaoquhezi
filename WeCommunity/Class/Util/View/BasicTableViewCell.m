@@ -495,13 +495,13 @@
     
     [self.iconImage sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     
-    self.titleLabel.frame = CGRectMake(self.iconImage.frame.origin.x + self.iconImage.frame.size.width + 10 , 10, self.frame.size.width-130, 25);
+    self.titleLabel.frame = CGRectMake(self.iconImage.frame.origin.x + self.iconImage.frame.size.width + 10 , 10, self.frame.size.width-140, 25);
     self.titleLabel.font = [UIFont fontWithName:fontName size:18];
     self.titleLabel.text = title;
     self.titleLabel.textColor = [UIColor colorWithRed:0.4 green:0.4 blue:0.4 alpha:1.0];
     
     
-    self.detailLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height +5, self.frame.size.width-100, 20);
+    self.detailLabel.frame = CGRectMake(self.titleLabel.frame.origin.x, self.titleLabel.frame.origin.y + self.titleLabel.frame.size.height +5, self.frame.size.width-140, 20);
     [self.detailLabel grayColorStyle:15];
     self.detailLabel.text = detail;
     
@@ -522,10 +522,7 @@
     self.dateLabel.frame = CGRectMake(self.frame.size.width-50, self.priceUnitLabel.frame.origin.y, 40, 15);
     self.dateLabel.font = [UIFont fontWithName:fontName size:15];
     self.dateLabel.text = date;
-    
     self.grayLine.frame = CGRectMake(0, self.contentView.frame.size.height, self.contentView.frame.size.width, 1);
-    
-    
 }
 
 //activity

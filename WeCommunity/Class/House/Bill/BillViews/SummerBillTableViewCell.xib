@@ -47,7 +47,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="XWc-Sq-a4J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2QO-KQ-T9n"/>
                     <constraint firstItem="Viw-Xl-LFG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="4vT-Bc-SfZ"/>
@@ -64,6 +64,7 @@
                     <constraint firstAttribute="bottom" secondItem="SfB-m1-vAC" secondAttribute="bottom" id="x5Q-Ty-wDa"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="cellImgSelect" destination="Xi1-8r-LdD" id="v8w-AT-UpU"/>
                 <outlet property="cellName" destination="XWc-Sq-a4J" id="yBK-kZ-XeC"/>

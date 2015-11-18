@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#define THEMECOLOR [UIColor colorWithRed:77.0/255.0 green:192.0/255.0 blue:168.0/255.0 alpha:1.0]
+#define THEMECOLOR [UIColor colorWithRed:0.239 green:0.800 blue:0.706 alpha:1.000]
 #define SCREENSIZE [UIScreen mainScreen].bounds.size
 #define is_IOS_8_Later ([[[UIDevice currentDevice] systemVersion] floatValue] < 9.0)
 #define is_IOS_9_Later ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)

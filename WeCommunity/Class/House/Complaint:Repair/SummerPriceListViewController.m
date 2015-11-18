@@ -35,7 +35,7 @@
     self.dataArrary = [[NSMutableArray alloc] init];
     _mTaleView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, self.view.frame.size.height - 10) style:UITableViewStylePlain];
     [_mTaleView registerNib:[UINib nibWithNibName:@"SummerPriceListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    _mTaleView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+    _mTaleView.backgroundColor = [UIColor whiteColor];
 //    [_mTaleView registerNib:[UINib nibWithNibName:@"SummerPriceHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"headerview"];
     _mTaleView.delegate = self;
     _mTaleView.dataSource = self;
@@ -69,7 +69,7 @@
     SummerPriceListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row%2 == 1) {
-        cell.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
+        cell.backgroundColor = [UIColor colorWithWhite:0.965 alpha:1.000];
     }
     NSDictionary *dic = self.dataArrary[indexPath.row];
     cell.cellPriceNO.text = [NSString stringWithFormat:@"%d",indexPath.row + 1];

@@ -11,7 +11,7 @@
 @interface SummerInputView : UIView
 
 @property (nonatomic ,strong)UILabel *summerInputLabNumbers;
-@property (nonatomic ,strong)UITextView *summerInputView;
+@property (nonatomic ,strong)UITextField *summerInputView;
 @property (nonatomic ,strong)UIButton *btnAddImg;
 @property (nonatomic ,strong)UIButton *btnSenderMessage;
 @property (nonatomic ,strong)UIView *viewWithImg;

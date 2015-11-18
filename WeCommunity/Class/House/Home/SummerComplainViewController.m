@@ -11,7 +11,7 @@
 #import "SummerNoticeDetailTableViewCell.h"
 #import "TextDeal.h"
 
-#define IMPUT_VIEW_HEIGHT 40
+#define IMPUT_VIEW_HEIGHT 50
 @interface SummerComplainViewController ()<UzysAssetsPickerControllerDelegate ,SummerComplainDetailHeaderTableViewCellDelegate ,MWPhotoBrowserDelegate>
 {
     NSInteger numberPage;
@@ -29,11 +29,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"投诉详情";
-    self.photos = [[NSMutableArray alloc] init];
-    self.arraryData = [[NSMutableArray alloc] init];
+    self.photos       = [[NSMutableArray alloc] init];
+    self.arraryData   = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
-    numberPage = 1;
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStylePlain];
+    numberPage        = 1;
+    _mTableView       = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStylePlain];
     
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
@@ -54,7 +54,7 @@
 
 - (void)getComplaintDetail{
     __weak typeof(self)weakSelf = self;
-    if (_arraryData) {
+    if (_arraryData.count) {
         [_arraryData removeAllObjects];
     }
     NSDictionary *parama = @{@"id": self.strDetailID,
@@ -65,7 +65,10 @@
         NSLog(@"---->%@",responseObject);
         [weakSelf.mTableView.mj_header endRefreshing];
         for (NSDictionary *dicTemp in responseObject[@"rows"]) {
-            [_arraryData addObject:[[TextDeal alloc] initWithData:dicTemp textType:@"complaint"]];
+            [weakSelf.arraryData addObject:[[TextDeal alloc] initWithData:dicTemp textType:@"complaint"]];
+        }
+        if (numberPage * 30 > weakSelf.arraryData.count) {
+            [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.mTableView reloadData];
     }];
@@ -109,26 +112,6 @@
 }
 
 #pragma mark - UITableViewDelegate
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-//    CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
-//    if ([_complainModel.pictures isEqual:[NSNull null]]) {
-//        return 61 + rectHeight;
-//    }
-//    headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (40 + 5) + rectHeight;
-//    return headerViewHeight;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    SummerComplainDetailHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellheaderdetail"];
-//    if (!cell) {
-//        cell = [[NSBundle mainBundle] loadNibNamed:@"SummerComplainDetailHeaderTableViewCell" owner:self options:nil].firstObject;
-//        cell.delegate = self;
-//    }
-//    [cell confirmCellInformationWithData:self.complainModel withHeightHeaderView:headerViewHeight];
-//
-//    return cell;
-//}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
@@ -233,18 +216,19 @@
 
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
+    __weak typeof(self)weakSelf = self;
     if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
     {
         [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             ALAsset *representation = obj;
-            if (self.chosenImages.count >= 8) {
-                [self showHint:@"只能选择八张图片"];
+            if (weakSelf.chosenImages.count >= 8) {
+                [weakSelf showHint:@"只能选择八张图片"];
             }
             UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
                                                scale:representation.defaultRepresentation.scale
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             
-            [self.chosenImages addObject:img];
+            [weakSelf.chosenImages addObject:img];
             
             if (idx==0 && self.chosenImages.count == 1) {
                 
@@ -275,24 +259,24 @@
     hud.labelText = @"上传中";
     hud.dimBackground = YES;
     [hud hide:YES afterDelay:50];
-    
+    __weak typeof(self)weakSelf = self;
     if (self.summerInputView.summerInputView.text.length > 1 && self.chosenImages.count < 1) {
         //文字
         [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],@"id":_strDetailID,@"content":self.summerInputView.summerInputView.text} success:^(id responseObject) {
             [hud removeFromSuperview];
-            [self showHint:@"评论成功"];
-            self.summerInputView.summerInputView.text = nil;
-            [self getComplaintDetail];
+            [weakSelf showHint:@"评论成功"];
+            weakSelf.summerInputView.summerInputView.text = nil;
+            [weakSelf getComplaintDetail];
         }];
     }else if(self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count > 0){
         //图片
         [Networking upload:self.chosenImages success:^(id responseObject) {
             [Networking retrieveData:get_reply_complaint parameters:@{@"token": [User getUserToken],@"id":_strDetailID,@"pictures":responseObject} success:^(id responseObject) {
                 [hud removeFromSuperview];
-                [self showHint:@"评论成功"];
-                self.summerInputView.summerInputLabNumbers.hidden = YES;
-                self.summerInputView.summerInputView.text = nil;
-                [self getComplaintDetail];
+                [weakSelf showHint:@"评论成功"];
+                weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+                weakSelf.summerInputView.summerInputView.text = nil;
+                [weakSelf getComplaintDetail];
             }];
         }];
     }else{
@@ -303,11 +287,11 @@
                                                                       @"content":self.summerInputView.summerInputView.text,
                                                                       @"pictures":responseObject} success:^(id responseObject) {
                                                                           [hud removeFromSuperview];
-                                                                          [self showHint:@"评论成功"];
-                                                                          self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                          self.summerInputView.summerInputLabNumbers.hidden = YES;
-                                                                          self.summerInputView.summerInputView.text = nil;
-                                                                          [self getComplaintDetail];
+                                                                          [weakSelf showHint:@"评论成功"];
+                                                                          weakSelf.summerInputView.summerInputLabNumbers.text = 0;
+                                                                          weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+                                                                          weakSelf.summerInputView.summerInputView.text = nil;
+                                                                          [weakSelf getComplaintDetail];
                                                                       }];
         }];
     }
@@ -343,13 +327,13 @@
     [self.view endEditing:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*

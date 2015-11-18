@@ -39,7 +39,7 @@
     self.houseTypeArr = @[@"Sale",@"Rent"];
     [self retrireveData];
     
-    orderSelectView = [[SummerSelectSellerOrOrderView alloc] initWithFrame:CGRectMake(SCREENSIZE.width - 100, 64, 100, 80)];
+    orderSelectView = [[SummerSelectSellerOrOrderView alloc] initWithFrame:CGRectMake(SCREENSIZE.width - 100, 64, 100, 90)];
     orderSelectView.alpha = 0;
     [orderSelectView.btnRent addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
     [orderSelectView.btnSell addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
@@ -81,7 +81,6 @@
 #pragma mark filter button
 -(void)setupChooseList{
     if ([self.function isEqualToString:@"rent"] || [self.function isEqualToString:@"user"]) {
-        
         self.filterArray1 = @[@"本小区",@"所有小区"];
         self.filterArray2 = @[@"所有",@"出售",@"出租"];
     }else  if ([self.function isEqualToString:@"activity"]){
@@ -95,26 +94,22 @@
         self.filterArray2 = @[@"所有",@"转让",@"求购"];
     }
 
-
-    
     if (!self.playAdvertise) {
-        
         DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:50];
         menu.dataSource = self;
         menu.delegate = self;
+        
         [self.view addSubview:menu];
-        
     }else{
-        
         DOPDropDownMenu *menu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 210) andHeight:50];
         menu.dataSource = self;
-        menu.delegate = self;
+        menu.delegate   = self;
         [self.view addSubview:menu];
-        
     }
     
 }
 
+#pragma mark - DOPDropDownMenuDataSource
 
 - (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu {
     return 2;
@@ -135,9 +130,10 @@
 }
 
 - (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
+    menu.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
     switch (indexPath.column) {
-            
-        case 0: return self.filterArray1[indexPath.row];
+        case 0:
+            return self.filterArray1[indexPath.row];
             break;
         case 1: return self.filterArray2[indexPath.row];
             break;
@@ -219,7 +215,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     if ([self.function isEqualToString:@"rent"]) {
         
         HouseDeal *houseDeal = [[HouseDeal alloc] initWithData:self.dataArray[indexPath.row]];
