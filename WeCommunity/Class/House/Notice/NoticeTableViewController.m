@@ -104,9 +104,9 @@
     [Networking retrieveData:getNoticesOfCommunity parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
-        [self.tableView.footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         if (self.dataArray.count < row*self.page) {
-            [self.tableView.footer noticeNoMoreData];
+            [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

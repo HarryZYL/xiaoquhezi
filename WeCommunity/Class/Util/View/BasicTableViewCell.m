@@ -434,6 +434,7 @@
     self.selectionStyle = NO;
     
     self.titleLabel.frame = CGRectMake(10, 10, self.contentView.frame.size.width-20, 20);
+    self.titleLabel.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
     if ([top isEqualToString:@"1"]) {
         self.titleLabel.text = [NSString stringWithFormat:@"[置顶]%@",title];
         self.titleLabel.textColor = [UIColor redColor];
@@ -456,7 +457,7 @@
     self.detailLabel.text = detail;
     self.detailLabel.font = font;
     [self.detailLabel grayColorStyle:15];
-    
+    self.detailLabel.textColor = [UIColor colorWithWhite:0.463 alpha:1.000];
     
     self.grayLine.frame = CGRectMake(0,self.detailLabel.frame.origin.y + self.detailLabel.frame.size.height +10 , self.contentView.frame.size.width, 1);
     
@@ -466,12 +467,13 @@
     
     if (!detailDisplay) {
         self.grayLine2.frame = CGRectMake(0, self.frame.size.height-10, SCREENSIZE.width, 10);
+        self.grayLine2.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     }
     self.commentImage.frame = CGRectMake(self.frame.size.width-60, self.dateLabel.frame.origin.y, 20, 20);
     self.commentImage.image = [UIImage imageNamed:@"comment"];
     
     self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
-    self.commentLabel.textColor = [UIColor lightGrayColor];
+    self.commentLabel.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
     self.commentLabel.text = [NSString stringWithFormat:@"%@", replyCount];
     
 }
