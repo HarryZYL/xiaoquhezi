@@ -41,7 +41,6 @@
 		4A6B35811BBF754D007D3BFE /* TextDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B35801BBF754D007D3BFE /* TextDetailTableViewController.m */; };
 		4AA9F8201BA4A6D7006284FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9F81F1BA4A6D7006284FF /* MapKit.framework */; };
 		4AA9F8301BA71EDB006284FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */; };
-		4AA9F8341BA81592006284FF /* DOPDropDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9F8331BA81592006284FF /* DOPDropDownMenu.m */; };
 		4AA9F8371BA87685006284FF /* UILabel+style.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9F8361BA87685006284FF /* UILabel+style.m */; };
 		4AB6B2571BAF0F41000E5FBA /* CameraImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6B2561BAF0F41000E5FBA /* CameraImageView.m */; };
 		4ACCCE571BBF35E20001227A /* Accreditation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCCE561BBF35E20001227A /* Accreditation.m */; };
@@ -296,8 +295,6 @@
 		4A6B35801BBF754D007D3BFE /* TextDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetailTableViewController.m; sourceTree = "<group>"; };
 		4AA9F81F1BA4A6D7006284FF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		4AA9F8321BA81592006284FF /* DOPDropDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DOPDropDownMenu.h; sourceTree = "<group>"; };
-		4AA9F8331BA81592006284FF /* DOPDropDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DOPDropDownMenu.m; sourceTree = "<group>"; };
 		4AA9F8351BA87685006284FF /* UILabel+style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+style.h"; sourceTree = "<group>"; };
 		4AA9F8361BA87685006284FF /* UILabel+style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+style.m"; sourceTree = "<group>"; };
 		4AB6B2551BAF0F41000E5FBA /* CameraImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraImageView.h; sourceTree = "<group>"; };
@@ -886,7 +883,6 @@
 				D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */,
 				D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */,
 				4AFFD6871BCC736000D33F5C /* RDRStickyKeyboardView */,
-				4AA9F8311BA81592006284FF /* DOPDropDownMenu */,
 				4A118E971BA4900400BC2C4E /* Advertisement */,
 				4A118E9A1BA4900400BC2C4E /* ELCImagePicker */,
 			);
@@ -937,15 +933,6 @@
 				4A118EB11BA4900400BC2C4E /* Overlay@2x.png */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		4AA9F8311BA81592006284FF /* DOPDropDownMenu */ = {
-			isa = PBXGroup;
-			children = (
-				4AA9F8321BA81592006284FF /* DOPDropDownMenu.h */,
-				4AA9F8331BA81592006284FF /* DOPDropDownMenu.m */,
-			);
-			path = DOPDropDownMenu;
 			sourceTree = "<group>";
 		};
 		4ACCCE541BBF349F0001227A /* Model */ = {
@@ -2027,7 +2014,6 @@
 				D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */,
 				4A6B35811BBF754D007D3BFE /* TextDetailTableViewController.m in Sources */,
 				4AFFD6901BCD3D5000D33F5C /* PickerView.m in Sources */,
-				4AA9F8341BA81592006284FF /* DOPDropDownMenu.m in Sources */,
 				D414F3881BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.m in Sources */,
 				4A118E8F1BA48FFC00BC2C4E /* GrayLine.m in Sources */,
 				D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */,

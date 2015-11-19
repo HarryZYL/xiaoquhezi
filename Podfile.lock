@@ -21,11 +21,12 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
+  - DOPDropDownMenu-Enhanced (1.0.0)
   - JSONKit (1.5pre)
   - libWeChatSDK (1.6)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (3.0.2)
+  - MJRefresh (3.0.4)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -41,6 +42,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - DACircularProgress (~> 2.3.1)
+  - DOPDropDownMenu-Enhanced (~> 1.0.0)
   - JSONKit (~> 1.5pre)
   - libWeChatSDK
   - Masonry (~> 0.6.3)
@@ -56,11 +58,12 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  DOPDropDownMenu-Enhanced: 9ec473b16351b5b0b2d6ef87e7f666fe5ff54ad5
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: 85377dc8c70395cf329e102a5c55505ef387c2e1
+  MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
   PgyUpdate: a42e82cec5ad4e992af390e9d494f6fc62db65e4
