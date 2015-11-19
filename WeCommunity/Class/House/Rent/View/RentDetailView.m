@@ -37,9 +37,15 @@
         self.headView.headDate.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
         [self addSubview:self.headView];
         
-        GrayLine *firstLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, self.headView.headDate.frame.origin.y+self.headView.headDate.frame.size.height+5, frame.size.width, 15)];
-        firstLine.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
-        [self addSubview:firstLine];
+//        GrayLine *firstLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, self.headView.headDate.frame.origin.y+self.headView.headDate.frame.size.height+5, frame.size.width, 15)];
+//        firstLine.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
+//        [self addSubview:firstLine];
+        CALayer *firstLine = [[CALayer alloc] init];
+        firstLine.frame = CGRectMake(0, self.headView.headDate.frame.origin.y+self.headView.headDate.frame.size.height+5, frame.size.width, 15);
+        firstLine.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000].CGColor;
+        firstLine.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+        
+        [self.layer addSublayer:firstLine];
         
         // middle part
         CGFloat margin = 5;

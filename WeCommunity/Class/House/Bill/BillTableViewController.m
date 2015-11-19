@@ -112,6 +112,9 @@
     }else{
         [cell configureBillCellConten:dicTemp withSelectOrNot:NO];
     }
+    if (indexPath.row == billArrary.count - 1) {
+        cell.cellLineLab.hidden = YES;
+    }
     return cell;
 }
 

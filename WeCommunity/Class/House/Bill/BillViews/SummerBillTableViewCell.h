@@ -13,6 +13,7 @@
 @property(nonatomic,weak)IBOutlet UIImageView *cellImgSelect;
 @property(nonatomic,weak)IBOutlet UILabel *cellName;
 @property(nonatomic,weak)IBOutlet UILabel *cellPrice;
+@property(nonatomic,weak)IBOutlet UILabel *cellLineLab;
 
 - (void)configureBillCellConten:(NSDictionary *)dicTemp withSelectOrNot:(BOOL)isSelected;
 
