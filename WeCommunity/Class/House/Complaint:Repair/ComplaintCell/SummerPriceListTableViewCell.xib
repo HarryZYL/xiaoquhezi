@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -51,7 +51,7 @@
                         <rect key="frame" x="28" y="0.0" width="1" height="30"/>
                         <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="1.5" id="CgN-2J-HCq"/>
+                            <constraint firstAttribute="width" constant="1" id="CgN-2J-HCq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,7 +78,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2dJ-nV-E4v">
-                        <rect key="frame" x="148" y="0.0" width="1" height="30"/>
+                        <rect key="frame" x="149" y="0.0" width="1" height="30"/>
                         <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="1" id="Dpt-38-H3j"/>
@@ -111,7 +111,7 @@
                     <constraint firstItem="NkH-99-UNu" firstAttribute="leading" secondItem="AUe-Yu-vyK" secondAttribute="trailing" constant="3" id="gXT-bM-1gN"/>
                     <constraint firstItem="QTt-SS-edb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iUv-GV-96s"/>
                     <constraint firstAttribute="bottom" secondItem="AUe-Yu-vyK" secondAttribute="bottom" constant="2" id="oMA-CI-ttm"/>
-                    <constraint firstItem="2dJ-nV-E4v" firstAttribute="leading" secondItem="NkH-99-UNu" secondAttribute="trailing" id="saO-63-neN"/>
+                    <constraint firstItem="2dJ-nV-E4v" firstAttribute="leading" secondItem="NkH-99-UNu" secondAttribute="trailing" constant="1" id="saO-63-neN"/>
                     <constraint firstItem="Z4d-rq-WPF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uwj-Px-eVA"/>
                     <constraint firstItem="Z4d-rq-WPF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="28" id="vBb-jb-igs"/>
                 </constraints>

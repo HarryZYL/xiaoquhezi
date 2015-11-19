@@ -85,7 +85,7 @@
     
     [self.scrollView addSubview:self.functionView];
     
-    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, self.view.frame.size.width-20, 160)];
+    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, SCREENSIZE.width - 20, 160)];
     if ([self.function isEqualToString:@"praise"]) {
         self.describleView.placeholder = @"物业服务很好，赞一个";
     }else{
@@ -106,37 +106,43 @@
     [self.describleView addSubview:self.cameraView];
     
     if (![self.function isEqualToString:@"praise"]) {
-        bgNamePhone = [[UIView alloc] initWithFrame:CGRectMake(10, 0, bgNamePhone.frame.size.width - 20, 90)];
+        bgNamePhone = [[UIView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.origin.y + self.describleView.frame.size.height + 10, SCREENSIZE.width - 20, 90)];
+        bgNamePhone.layer.cornerRadius = 5;
+        bgNamePhone.layer.masksToBounds = YES;
         bgNamePhone.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
         bgNamePhone.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         bgNamePhone.layer.borderWidth = 1;
+        
         [self.scrollView addSubview:bgNamePhone];
         
-        self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x, self.describleView.frame.origin.y+self.describleView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 45)];
+        CALayer *lineLayer = [[CALayer alloc] init];
+        lineLayer.frame = CGRectMake(0, bgNamePhone.frame.size.height/2, SCREENSIZE.width - 20, 1);
+        lineLayer.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+        [bgNamePhone.layer addSublayer:lineLayer];
+        
+        self.nickNameField = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, bgNamePhone.frame.size.width-20, 45)];
         self.nickNameField.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
         self.nickNameField.placeholder = @"昵称";
         self.nickNameField.textColor = FONT_COLOR;
-        self.nickNameField.backgroundColor = bgNamePhone.backgroundColor;
         self.nickNameField.text = self.user.nickName;
         [bgNamePhone addSubview:self.nickNameField];
         
         self.phoneField = [[UITextField alloc] initWithFrame:CGRectMake(self.nickNameField.frame.origin.x, self.nickNameField.frame.origin.y+self.nickNameField.frame.size.height+1, self.nickNameField.frame.size.width, self.nickNameField.frame.size.height)];
         self.phoneField.placeholder = @"手机号";
         self.phoneField.text = self.user.userName;
-        self.phoneField.backgroundColor = bgNamePhone.backgroundColor;
         self.phoneField.textColor = FONT_COLOR;
         [bgNamePhone addSubview:self.phoneField];
     }
     
     if([self.function isEqualToString:@"repair"]){
-        labAddress = [[UILabel alloc] initWithFrame:CGRectMake(self.describleView.frame.origin.x + 10, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width - 10, self.phoneField.frame.size.height)];
+        labAddress = [[UILabel alloc] initWithFrame:CGRectMake(bgNamePhone.frame.origin.x + 10, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgNamePhone.frame.size.width - 10, 45)];
         labAddress.textColor = FONT_COLOR;
         
         labAddress.text = @"维修地址：";
         [self.scrollView addSubview:labAddress];
         
         btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width, self.phoneField.frame.size.height);
+        btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgNamePhone.frame.size.width, self.phoneField.frame.size.height);
         [btnAddress leftStyle];
         btnAddress.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         btnAddress.layer.borderWidth = 1;
