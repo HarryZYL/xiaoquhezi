@@ -524,7 +524,7 @@
     self.dateLabel.frame = CGRectMake(self.frame.size.width-50, self.priceUnitLabel.frame.origin.y, 40, 15);
     self.dateLabel.font = [UIFont fontWithName:fontName size:15];
     self.dateLabel.text = date;
-    self.grayLine.frame = CGRectMake(0, self.contentView.frame.size.height, self.contentView.frame.size.width, 1);
+    self.grayLine.frame = CGRectMake(0, self.contentView.frame.size.height, self.contentView.frame.size.width, .5);
 }
 
 //activity

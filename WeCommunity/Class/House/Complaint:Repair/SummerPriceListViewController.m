@@ -39,7 +39,10 @@
 //    [_mTaleView registerNib:[UINib nibWithNibName:@"SummerPriceHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"headerview"];
     _mTaleView.delegate = self;
     _mTaleView.dataSource = self;
-    _mTaleView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _mTaleView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    _mTaleView.separatorInset = UIEdgeInsetsMake(0, -15, 0, 0);
+    _mTaleView.separatorColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    _mTaleView.tableFooterView = [UIView new];
     [self.view addSubview:_mTaleView];
     UILabel *titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 10)];
     titleLab.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];

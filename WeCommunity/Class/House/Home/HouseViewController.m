@@ -13,6 +13,7 @@
 #import "UIViewController+HUD.h"
 #import "SummerCommunityBrowserViewController.h"
 #import "SummerBillRoomViewController.h"
+#import "SummerLoadingPageViewController.h"
 #import "SummerMessageCenterTableViewController.h"
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
@@ -63,7 +64,10 @@
 
 
 -(void)viewWillAppear:(BOOL)animated{
-    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {
+        SummerLoadingPageViewController *loadingPageVC = [[SummerLoadingPageViewController alloc] init];
+        [self presentViewController:loadingPageVC animated:NO completion:nil];
+    }
     if (![User judgeLogin]) {
         UserLoginViewController *loginVC = [[UserLoginViewController alloc] init];
         loginVC.function = @"login";
@@ -75,7 +79,6 @@
             LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
             UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
             [self.navigationController presentViewController:nav animated:YES completion:nil];
-            
         }else{
             [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
             [self retrireveData];
@@ -124,7 +127,7 @@
     [self.scrollView addSubview:self.functionView];
     
     //line
-    GrayLine *footLine = [[GrayLine alloc] initWithFrame:CGRectMake(20, self.functionView.frame.size.height+self.functionView.frame.origin.y+15, self.view.frame.size.width-40, 1)];
+    GrayLine *footLine = [[GrayLine alloc] initWithFrame:CGRectMake(20, self.functionView.frame.size.height+self.functionView.frame.origin.y+15, self.view.frame.size.width-40, .5)];
     [self.scrollView addSubview:footLine];
     
     self.footerView = [[HouseFooterView alloc] initWithFrame:CGRectMake(0, footLine.frame.origin.y+20, self.view.frame.size.width, 150)];

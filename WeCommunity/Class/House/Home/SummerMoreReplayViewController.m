@@ -19,7 +19,7 @@
 @end
 
 @implementation SummerMoreReplayViewController
-#define IMPUT_VIEW_HEIGHT 40
+#define IMPUT_VIEW_HEIGHT 50
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -39,7 +39,7 @@
     _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:_summerInputView];
     self.summerInputView.btnAddImg.hidden = YES;
-    self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
+    self.summerInputView.summerInputView.frame = CGRectMake(10, 8, SCREENSIZE.width - 80, 34);
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
     [self getReceveData];
 }

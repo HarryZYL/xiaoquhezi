@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -175,6 +175,7 @@
                 <outlet property="cellBtnCount" destination="6vZ-9a-ebz" id="LhT-Vg-M4e"/>
                 <outlet property="cellImageViewTitle" destination="BRx-QY-Feh" id="oig-54-QMi"/>
                 <outlet property="cellLabTime" destination="Gzl-ED-wfp" id="pZQ-xy-1Iq"/>
+                <outlet property="cellLineSingleLayout" destination="yC2-fy-YOd" id="hES-Gy-tgn"/>
                 <outlet property="cellStyle" destination="lVA-PZ-Xec" id="h6I-wI-FT6"/>
                 <outlet property="cellTitleLab" destination="gBO-jc-bOZ" id="r5z-Yn-h0I"/>
             </connections>

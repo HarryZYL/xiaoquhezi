@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    self.cellLineSingleLayout.constant = .5;
     for (NSInteger index = 0; index < 3; index ++) {
         UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
         

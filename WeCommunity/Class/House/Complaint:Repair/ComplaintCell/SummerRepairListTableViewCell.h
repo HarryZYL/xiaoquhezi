@@ -23,7 +23,7 @@
 @property (nonatomic ,weak)IBOutlet UIButton *cellBtnCount;
 @property (nonatomic ,weak)IBOutlet UIImageView *cellStyle;
 
-@property (nonatomic ,weak)IBOutlet NSLayoutConstraint *cellContentLayout;
+@property (nonatomic ,weak)IBOutlet NSLayoutConstraint *cellLineSingleLayout;
 
 @property (nonatomic ,weak) id delegate;
 

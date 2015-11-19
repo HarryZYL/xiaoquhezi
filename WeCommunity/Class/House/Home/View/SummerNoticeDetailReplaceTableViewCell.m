@@ -37,6 +37,7 @@
     [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} range:NSMakeRange(0, dicTemp.detailNoticeModel.creatorInFo.nickName.length - 1)];
     [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor colorWithWhite:0.463 alpha:1.000]} range:NSMakeRange(strName.length - strTime.length, strTime.length)];
     _cellNameLab.attributedText = attriStr;
+    
     CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:14]];
     
     _cellContenLab.frame = CGRectMake(60, 30, SCREENSIZE.width - 100, contentHeight + 10);
@@ -80,18 +81,18 @@
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
                 labReplay.attributedText = attriStr;
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
             CGFloat replayLabHeight = [Util getHeightForString:[strTemp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labLine.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 10, SCREENSIZE.width - 60, 1);
+                labLine.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 10, SCREENSIZE.width - 60, .5);
                 labReplay.frame = CGRectMake(60, labLine.frame.origin.y + 10, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
@@ -107,18 +108,18 @@
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
                 labReplay.attributedText = attriStr;
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor]} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
             CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labLine.frame = CGRectMake(60, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 60, 1);
+                labLine.frame = CGRectMake(60, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 60, .5);
                 labReplay.frame = CGRectMake(60, labLine.frame.origin.y + labLine.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];

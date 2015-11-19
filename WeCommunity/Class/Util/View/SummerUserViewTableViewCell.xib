@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -32,14 +32,11 @@
                             <constraint firstAttribute="width" constant="30" id="Czt-SY-URl"/>
                         </constraints>
                     </imageView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-hY-RiJ">
-                        <rect key="frame" x="0.0" y="42" width="320" height="1"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QFe-hY-RiJ">
+                        <rect key="frame" x="15" y="42" width="305" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="MEl-aW-uob"/>
-                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -47,31 +44,39 @@
                 <constraints>
                     <constraint firstItem="whQ-rL-h8Y" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="0eu-Z7-KcJ"/>
                     <constraint firstItem="MWi-0v-FwT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CAx-g1-OEC"/>
-                    <constraint firstItem="QFe-hY-RiJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ClR-1j-ufE"/>
+                    <constraint firstItem="QFe-hY-RiJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ClR-1j-ufE"/>
+                    <constraint firstItem="QFe-hY-RiJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Cn3-E1-Tz0"/>
                     <constraint firstAttribute="bottom" secondItem="QFe-hY-RiJ" secondAttribute="bottom" id="FuR-pq-bh6"/>
                     <constraint firstItem="MWi-0v-FwT" firstAttribute="leading" secondItem="whQ-rL-h8Y" secondAttribute="trailing" id="Lwl-4k-RF0"/>
                     <constraint firstAttribute="bottom" secondItem="mc7-Zq-whm" secondAttribute="bottom" constant="1" id="MtZ-DG-xex"/>
                     <constraint firstItem="whQ-rL-h8Y" firstAttribute="leading" secondItem="QFe-hY-RiJ" secondAttribute="trailing" id="cdG-TC-oqx"/>
                     <constraint firstItem="mc7-Zq-whm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="dht-o7-6gb"/>
+                    <constraint firstItem="QFe-hY-RiJ" firstAttribute="top" secondItem="mc7-Zq-whm" secondAttribute="bottom" id="eFy-qv-xzj"/>
+                    <constraint firstAttribute="bottom" secondItem="QFe-hY-RiJ" secondAttribute="bottom" constant="0.5" id="fXA-if-TFA"/>
                     <constraint firstItem="whQ-rL-h8Y" firstAttribute="leading" secondItem="mc7-Zq-whm" secondAttribute="trailing" constant="5" id="fXt-B1-xMU"/>
                     <constraint firstItem="mc7-Zq-whm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="iVO-PZ-o5a"/>
                     <constraint firstAttribute="trailing" secondItem="QFe-hY-RiJ" secondAttribute="trailing" id="oBI-ox-Igi"/>
                     <constraint firstAttribute="bottom" secondItem="MWi-0v-FwT" secondAttribute="bottom" constant="4" id="oqx-4j-goA"/>
+                    <constraint firstAttribute="trailing" secondItem="QFe-hY-RiJ" secondAttribute="trailing" id="qrz-4N-YnS"/>
                     <constraint firstAttribute="trailing" secondItem="MWi-0v-FwT" secondAttribute="trailing" constant="8" id="sHN-Tl-AUm"/>
                     <constraint firstAttribute="bottom" secondItem="whQ-rL-h8Y" secondAttribute="bottom" constant="1" id="y1n-kS-Med"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
+                        <exclude reference="ClR-1j-ufE"/>
+                        <exclude reference="FuR-pq-bh6"/>
+                        <exclude reference="oBI-ox-Igi"/>
                         <exclude reference="cdG-TC-oqx"/>
                     </mask>
                 </variation>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.23921568627450979" green="0.80000000000000004" blue="0.70588235294117641" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="labLine" destination="QFe-hY-RiJ" id="S5I-1b-wOi"/>
                 <outlet property="nameLab" destination="whQ-rL-h8Y" id="vhq-8c-4E1"/>
                 <outlet property="titleView" destination="mc7-Zq-whm" id="8Hw-uu-eUl"/>
             </connections>
-            <point key="canvasLocation" x="-282" y="126"/>
+            <point key="canvasLocation" x="-806" y="79"/>
         </tableViewCell>
     </objects>
     <resources>

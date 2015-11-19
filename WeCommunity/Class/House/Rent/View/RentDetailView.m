@@ -16,8 +16,6 @@
     if (self) {
         
         self.houseDeal = [[HouseDeal alloc] initWithData:dataArray];
-        UIColor *fontColorGray = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
-        
         
         // head part
         self.headView = [[BasicHeadDetailView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width+100)];
@@ -37,14 +35,16 @@
         self.headView.headDate.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
         [self addSubview:self.headView];
         
-//        GrayLine *firstLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, self.headView.headDate.frame.origin.y+self.headView.headDate.frame.size.height+5, frame.size.width, 15)];
-//        firstLine.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
-//        [self addSubview:firstLine];
         CALayer *firstLine = [[CALayer alloc] init];
         firstLine.frame = CGRectMake(0, self.headView.headDate.frame.origin.y+self.headView.headDate.frame.size.height+5, frame.size.width, 15);
         firstLine.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000].CGColor;
-        firstLine.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+//        firstLine.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+//        firstLine.borderWidth = 1;
         
+        firstLine.shadowColor = [UIColor colorWithWhite:0.851 alpha:1.00].CGColor;
+        firstLine.shadowRadius = .5;
+        firstLine.shadowOpacity = 1;
+        firstLine.shadowOffset = CGSizeMake(0, -.5);
         [self.layer addSublayer:firstLine];
         
         // middle part
@@ -97,7 +97,7 @@
             [self addSubview:addressLabel];
         }
         
-        GrayLine *addressLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, secondLine.frame.origin.y+secondLine.frame.size.height + addressHeight, frame.size.width, 1)];
+        GrayLine *addressLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, secondLine.frame.origin.y+secondLine.frame.size.height + addressHeight, frame.size.width, .5)];
         [self addSubview:addressLine];
         
         GrayLine *thirdLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, secondLine.frame.origin.y+secondLine.frame.size.height + addressHeight*2, frame.size.width, 15)];

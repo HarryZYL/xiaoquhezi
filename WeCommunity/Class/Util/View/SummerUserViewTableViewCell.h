@@ -13,5 +13,6 @@
 @property(nonatomic, weak)IBOutlet UILabel *nameLab;
 @property(nonatomic, weak)IBOutlet UIImageView *titleView;
 @property(nonatomic, weak)IBOutlet UIImageView *cellDetailImg;
+@property(nonatomic, weak)IBOutlet UILabel *labLine;
 
 @end

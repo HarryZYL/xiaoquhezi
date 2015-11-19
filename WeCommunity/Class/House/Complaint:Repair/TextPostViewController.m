@@ -111,12 +111,12 @@
         bgNamePhone.layer.masksToBounds = YES;
         bgNamePhone.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
         bgNamePhone.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
-        bgNamePhone.layer.borderWidth = 1;
+        bgNamePhone.layer.borderWidth = .5;
         
         [self.scrollView addSubview:bgNamePhone];
         
         CALayer *lineLayer = [[CALayer alloc] init];
-        lineLayer.frame = CGRectMake(0, bgNamePhone.frame.size.height/2, SCREENSIZE.width - 20, 1);
+        lineLayer.frame = CGRectMake(0, bgNamePhone.frame.size.height/2, SCREENSIZE.width - 20, .5);
         lineLayer.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         [bgNamePhone.layer addSublayer:lineLayer];
         
@@ -145,7 +145,7 @@
         btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgNamePhone.frame.size.width, self.phoneField.frame.size.height);
         [btnAddress leftStyle];
         btnAddress.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
-        btnAddress.layer.borderWidth = 1;
+        btnAddress.layer.borderWidth = .5;
         [btnAddress addTarget:self action:@selector(btnSelectRoom) forControlEvents:UIControlEventTouchUpInside];
         [btnAddress roundRect];
         [btnAddress setTitleColor:FONT_COLOR forState:UIControlStateNormal];
