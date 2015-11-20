@@ -215,6 +215,7 @@
 		D4DA2D201BE53734003C61C7 /* payRequsestHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1C1BE53734003C61C7 /* payRequsestHandler.mm */; };
 		D4DA2D211BE53734003C61C7 /* WXUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */; };
 		D4DA2D241BE5483E003C61C7 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */; };
+		D4DBDE3B1BFEB7920000BE3B /* SummerBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */; };
 		D4E508191BF25A050057AFDB /* SummerRepairListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */; };
 		D4E5081A1BF25A050057AFDB /* SummerRepairListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */; };
 		D4E5F0681BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */; };
@@ -684,6 +685,8 @@
 		D4DA2D1E1BE53734003C61C7 /* WXUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WXUtil.mm; sourceTree = "<group>"; };
 		D4DA2D221BE5483E003C61C7 /* WechatPayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatPayManager.h; sourceTree = "<group>"; };
 		D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WechatPayManager.m; sourceTree = "<group>"; };
+		D4DBDE391BFEB7920000BE3B /* SummerBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerBusinessViewController.h; path = WeCommunity/Class/Business/SummerBusinessViewController.h; sourceTree = SOURCE_ROOT; };
+		D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBusinessViewController.m; path = WeCommunity/Class/Business/SummerBusinessViewController.m; sourceTree = SOURCE_ROOT; };
 		D4E508161BF25A050057AFDB /* SummerRepairListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRepairListTableViewCell.h; path = ComplaintCell/SummerRepairListTableViewCell.h; sourceTree = "<group>"; };
 		D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerRepairListTableViewCell.m; path = ComplaintCell/SummerRepairListTableViewCell.m; sourceTree = "<group>"; };
 		D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListTableViewCell.xib; path = ComplaintCell/SummerRepairListTableViewCell.xib; sourceTree = "<group>"; };
@@ -752,8 +755,9 @@
 		4A118D291BA48FFB00BC2C4E /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				4A118E061BA48FFC00BC2C4E /* Util */,
 				4ACCCFE51BBF49600001227A /* House */,
+				D4DBDE381BFEB6DA0000BE3B /* Business */,
+				4A118E061BA48FFC00BC2C4E /* Util */,
 				4ACCCEA41BBF44D00001227A /* Community */,
 				4A118DDB1BA48FFC00BC2C4E /* User */,
 				4A118DD81BA48FFC00BC2C4E /* Other   */,
@@ -1724,6 +1728,16 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
+		D4DBDE381BFEB6DA0000BE3B /* Business */ = {
+			isa = PBXGroup;
+			children = (
+				D4DBDE391BFEB7920000BE3B /* SummerBusinessViewController.h */,
+				D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */,
+			);
+			name = Business;
+			path = House/Signin;
+			sourceTree = "<group>";
+		};
 		D4E8F91B1BE5F1BE00E2338C /* HomeModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2071,6 +2085,7 @@
 				D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */,
 				D452F2471BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.m in Sources */,
 				D452F23F1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m in Sources */,
+				D4DBDE3B1BFEB7920000BE3B /* SummerBusinessViewController.m in Sources */,
 				4ACCCEA11BBF40120001227A /* EditDetailTableViewController.m in Sources */,
 				4ACCD0541BBF49600001227A /* SigninViewController.m in Sources */,
 				4ACCD0561BBF49600001227A /* SigninHeader.m in Sources */,

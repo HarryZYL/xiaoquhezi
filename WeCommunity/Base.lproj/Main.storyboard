@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="71W-GV-J9K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bAV-TC-Uhr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -10,19 +10,19 @@
             <objects>
                 <tabBarController id="bAV-TC-Uhr" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="d9K-M3-GMI">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="d9K-M3-GMI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="71W-GV-J9K" kind="relationship" relationship="viewControllers" id="qIt-vx-wzP"/>
                         <segue destination="b60-mu-Rjn" kind="relationship" relationship="viewControllers" id="FRp-iH-OWO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RWa-pJ-bVs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-34.5" y="87.75"/>
+            <point key="canvasLocation" x="-141" y="-401.25"/>
         </scene>
         <!--House View Controller-->
         <scene sceneID="lby-E0-iN6">
@@ -42,12 +42,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4r9-9x-w9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="746" y="-794"/>
+            <point key="canvasLocation" x="1423.5" y="-561.75"/>
         </scene>
-        <!--Community View Controller-->
+        <!--Summer Business View Controller-->
         <scene sceneID="1tj-zx-BdS">
             <objects>
-                <viewController id="51E-aQ-RDR" customClass="CommunityViewController" sceneMemberID="viewController">
+                <viewController id="51E-aQ-RDR" customClass="SummerBusinessViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Wl3-AJ-YkG"/>
                         <viewControllerLayoutGuide type="bottom" id="yG5-Tn-YMr"/>
@@ -62,13 +62,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="swD-Z3-z8A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1570" y="88"/>
+            <point key="canvasLocation" x="1423.5" y="156"/>
         </scene>
-        <!--邻里-->
+        <!--商家-->
         <scene sceneID="CFT-9l-jOR">
             <objects>
                 <navigationController id="b60-mu-Rjn" customClass="MainViewController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="邻里" image="邻里" id="3rY-e6-b46"/>
+                    <tabBarItem key="tabBarItem" title="商家" image="邻里" id="3rY-e6-b46"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="boL-qq-8Sz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -80,7 +80,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f1T-zo-mJS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="759" y="88"/>
+            <point key="canvasLocation" x="622.5" y="156"/>
         </scene>
         <!--管家-->
         <scene sceneID="ZHi-Wr-SQ0">
@@ -98,7 +98,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMv-VB-GF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-21" y="-794.25"/>
+            <point key="canvasLocation" x="654" y="-561.75"/>
         </scene>
     </scenes>
     <resources>
