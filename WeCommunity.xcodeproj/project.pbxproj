@@ -194,6 +194,7 @@
 		D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5591BE7659D00B782DB /* SummerBillRoomViewController.m */; };
 		D4CDD5631BE7A0A000B782DB /* SummerBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4CDD5611BE7A09F00B782DB /* SummerBillTableViewCell.m */; };
 		D4CDD5641BE7A0A000B782DB /* SummerBillTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4CDD5621BE7A09F00B782DB /* SummerBillTableViewCell.xib */; };
+		D4D3B1861BFDF42E0058A5E5 /* UINavigationController+BackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D3B1851BFDF42E0058A5E5 /* UINavigationController+BackItem.m */; };
 		D4D4007B1BDF059B005F6095 /* libBPush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D4007A1BDF059B005F6095 /* libBPush.a */; };
 		D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4007E1BDF160F005F6095 /* SummerAlertView.m */; };
 		D4D400811BDF1625005F6095 /* SummerAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D400801BDF1625005F6095 /* SummerAlertView.xib */; };
@@ -635,8 +636,8 @@
 		D4B6ACB71BD7BA88005CC778 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D4B6ACB91BD7BA99005CC778 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		D4B6ACBB1BD7BAAF005CC778 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		D4B9B7D41BFD714700D82286 /* SummerLoadingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerLoadingPageViewController.h; sourceTree = "<group>"; };
-		D4B9B7D51BFD714700D82286 /* SummerLoadingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerLoadingPageViewController.m; sourceTree = "<group>"; };
+		D4B9B7D41BFD714700D82286 /* SummerLoadingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerLoadingPageViewController.h; path = "Class/Other  /SummerLoadingPageViewController.h"; sourceTree = "<group>"; };
+		D4B9B7D51BFD714700D82286 /* SummerLoadingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerLoadingPageViewController.m; path = "Class/Other  /SummerLoadingPageViewController.m"; sourceTree = "<group>"; };
 		D4B9FF861BF84BC0006806D0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D4BCD2431BEF7874006CFE46 /* SummerComplainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerComplainViewController.h; path = ../Home/SummerComplainViewController.h; sourceTree = "<group>"; };
 		D4BCD2441BEF7874006CFE46 /* SummerComplainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerComplainViewController.m; path = ../Home/SummerComplainViewController.m; sourceTree = "<group>"; };
@@ -651,6 +652,8 @@
 		D4CDD5601BE7A09F00B782DB /* SummerBillTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerBillTableViewCell.h; path = BillViews/SummerBillTableViewCell.h; sourceTree = "<group>"; };
 		D4CDD5611BE7A09F00B782DB /* SummerBillTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBillTableViewCell.m; path = BillViews/SummerBillTableViewCell.m; sourceTree = "<group>"; };
 		D4CDD5621BE7A09F00B782DB /* SummerBillTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerBillTableViewCell.xib; path = BillViews/SummerBillTableViewCell.xib; sourceTree = "<group>"; };
+		D4D3B1841BFDF42E0058A5E5 /* UINavigationController+BackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+BackItem.h"; sourceTree = "<group>"; };
+		D4D3B1851BFDF42E0058A5E5 /* UINavigationController+BackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+BackItem.m"; sourceTree = "<group>"; };
 		D4D400791BDF059B005F6095 /* BPush.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPush.h; sourceTree = "<group>"; };
 		D4D4007A1BDF059B005F6095 /* libBPush.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBPush.a; sourceTree = "<group>"; };
 		D4D4007D1BDF160F005F6095 /* SummerAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerAlertView.h; sourceTree = "<group>"; };
@@ -761,10 +764,9 @@
 		4A118DD81BA48FFC00BC2C4E /* Other   */ = {
 			isa = PBXGroup;
 			children = (
+				4ADDB98C1B5D235F002A188E /* Main.storyboard */,
 				4A118DD91BA48FFC00BC2C4E /* AppDelegate.h */,
 				4A118DDA1BA48FFC00BC2C4E /* AppDelegate.mm */,
-				D4B9B7D41BFD714700D82286 /* SummerLoadingPageViewController.h */,
-				D4B9B7D51BFD714700D82286 /* SummerLoadingPageViewController.m */,
 			);
 			path = "Other  ";
 			sourceTree = "<group>";
@@ -795,14 +797,16 @@
 		4A118E071BA48FFC00BC2C4E /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */,
+				D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */,
 				4A118E081BA48FFC00BC2C4E /* UIButton+BottomBtn.h */,
 				4A118E091BA48FFC00BC2C4E /* UIButton+BottomBtn.m */,
 				4A118EBF1BA490EB00BC2C4E /* UIImageView+Scale.h */,
 				4A118EC01BA490EB00BC2C4E /* UIImageView+Scale.m */,
 				4AA9F8351BA87685006284FF /* UILabel+style.h */,
 				4AA9F8361BA87685006284FF /* UILabel+style.m */,
-				D4B6AC8C1BD776E7005CC778 /* NSString+HTML.h */,
-				D4B6AC8D1BD776E7005CC778 /* NSString+HTML.m */,
+				D4D3B1841BFDF42E0058A5E5 /* UINavigationController+BackItem.h */,
+				D4D3B1851BFDF42E0058A5E5 /* UINavigationController+BackItem.m */,
 				D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */,
 				D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */,
 			);
@@ -1377,8 +1381,6 @@
 				4ADDB9811B5D235F002A188E /* WeCommunity */,
 				4ADDB99B1B5D235F002A188E /* WeCommunityTests */,
 				4ADDB9801B5D235F002A188E /* Products */,
-				4ADDB98C1B5D235F002A188E /* Main.storyboard */,
-				4ADDB9911B5D235F002A188E /* LaunchScreen.xib */,
 				5B97ACE67E79CB56101CD0BA /* Frameworks */,
 				24B1E4D210270C062CCF72E0 /* Pods */,
 			);
@@ -1407,6 +1409,9 @@
 		4ADDB9821B5D235F002A188E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4B9B7D41BFD714700D82286 /* SummerLoadingPageViewController.h */,
+				D4B9B7D51BFD714700D82286 /* SummerLoadingPageViewController.m */,
+				4ADDB9911B5D235F002A188E /* LaunchScreen.xib */,
 				4A118E121BA48FFC00BC2C4E /* WeCommunity-Prefix.pch */,
 				4ADDB9831B5D235F002A188E /* Info.plist */,
 				4AD3DFA91B731E4B007F51E0 /* Setting.plist */,
@@ -2059,6 +2064,7 @@
 				D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */,
 				4AA9F8371BA87685006284FF /* UILabel+style.m in Sources */,
 				4ACCD03F1BBF49600001227A /* HouseFooterView.m in Sources */,
+				D4D3B1861BFDF42E0058A5E5 /* UINavigationController+BackItem.m in Sources */,
 				D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */,
 				4ACCD03D1BBF49600001227A /* HouseViewController.m in Sources */,
 				D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */,
@@ -2107,7 +2113,7 @@
 				4ADDB98D1B5D235F002A188E /* Base */,
 			);
 			name = Main.storyboard;
-			path = WeCommunity;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		4ADDB9911B5D235F002A188E /* LaunchScreen.xib */ = {
@@ -2116,7 +2122,6 @@
 				4ADDB9921B5D235F002A188E /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = WeCommunity;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
