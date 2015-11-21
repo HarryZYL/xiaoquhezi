@@ -7,6 +7,7 @@
 //
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import "SummerTabBarViewController.h"
 #import "SummerRegisterID.h"
 #import "ThirdUserModel.h"
 #import "BPush.h"
@@ -101,11 +102,11 @@
 - (void)customizeUserInterface {
     // Customize the nav bar
 //    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:77.0/255.0 green:192.0/255.0 blue:168.0/255.0 alpha:1.0]];
-    
+
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     
     //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
-    
+    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"billRight"]];
 
     NSDictionary *attributes = @{
                                  NSUnderlineStyleAttributeName: @1,
@@ -117,7 +118,7 @@
 
     [[UINavigationBar appearance] setTintColor:THEMECOLOR];
     
-    
+    [[UITabBar appearance] setTintColor:THEMECOLOR];
 }
 
 - (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins withApplication:(UIApplication *)application{

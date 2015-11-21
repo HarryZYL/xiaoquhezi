@@ -1,24 +1,28 @@
 //
-//  UINavigationController+BackItem.m
+//  SummerBusinessDetailViewController.m
 //  WeCommunity
 //
-//  Created by madarax on 15/11/19.
+//  Created by madarax on 15/11/20.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
 
-@interface UINavigationController ()
+#import "SummerBusinessDetailViewController.h"
+
+@interface SummerBusinessDetailViewController ()
 
 @end
 
-@implementation UINavigationController (BackImage)
+@implementation SummerBusinessDetailViewController
 
-- (void)viewDidLoad{
+- (void)viewDidLoad {
     [super viewDidLoad];
-//    if (self.viewControllers.count > 0) {
-//        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:nil];
-//    }
+    // Do any additional setup after loading the view.
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
 /*
 #pragma mark - Navigation

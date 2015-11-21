@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,37 +11,39 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="509"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="启动页" translatesAutoresizingMaskIntoConstraints="NO" id="Zmf-SI-3oF">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="启动页" translatesAutoresizingMaskIntoConstraints="NO" id="Zmf-SI-3oF">
                     <rect key="frame" x="91" y="0.0" width="298" height="509"/>
                     <animations/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="366" id="27W-8X-Yx0"/>
-                        <constraint firstAttribute="width" constant="298" id="M3b-nH-clj"/>
-                        <constraint firstAttribute="width" secondItem="Zmf-SI-3oF" secondAttribute="height" multiplier="1:1" id="etW-5I-Bre"/>
-                        <constraint firstAttribute="width" constant="480" id="fCb-pv-BLn"/>
-                        <constraint firstAttribute="width" secondItem="Zmf-SI-3oF" secondAttribute="height" multiplier="298:509" id="vw1-Jm-kLT"/>
-                    </constraints>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="27W-8X-Yx0"/>
-                            <exclude reference="etW-5I-Bre"/>
-                            <exclude reference="fCb-pv-BLn"/>
-                        </mask>
-                    </variation>
                 </imageView>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Zmf-SI-3oF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="18" id="Fu1-Jb-aNW"/>
-                <constraint firstItem="Zmf-SI-3oF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Pl0-UR-RVg"/>
-                <constraint firstItem="Zmf-SI-3oF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Uaf-b6-aHP"/>
+                <constraint firstAttribute="bottom" secondItem="Zmf-SI-3oF" secondAttribute="bottom" id="QHJ-4W-omn"/>
+                <constraint firstAttribute="trailing" secondItem="Zmf-SI-3oF" secondAttribute="trailing" constant="91" id="VER-75-0kj">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="Zmf-SI-3oF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="91" id="bSK-tp-njX">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
+                <constraint firstItem="Zmf-SI-3oF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="w65-hg-pjK"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="Fu1-Jb-aNW"/>
+                    <exclude reference="QHJ-4W-omn"/>
+                    <exclude reference="VER-75-0kj"/>
+                    <exclude reference="bSK-tp-njX"/>
+                    <exclude reference="w65-hg-pjK"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="QHJ-4W-omn"/>
+                    <include reference="VER-75-0kj"/>
+                    <include reference="bSK-tp-njX"/>
+                    <include reference="w65-hg-pjK"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="39" y="372.5"/>

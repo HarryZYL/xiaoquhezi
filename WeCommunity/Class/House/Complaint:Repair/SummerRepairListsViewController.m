@@ -49,13 +49,13 @@
 
 - (void)getReceveData{
     if (_arraryData) {
-        [_arraryData removeAllObjects];
+        _arraryData = nil;
     }
     pageNumber = 1;
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:GET_REPLISE parameters:@{@"token": [User getUserToken],@"id":_detailTextModel.Objectid,@"page":[NSNumber numberWithInteger:pageNumber],@"row":@"30"} success:^(id responseObject) {
         [weakSelf.mTableView.mj_header endRefreshing];
-        [weakSelf.arraryData addObjectsFromArray:responseObject[@"rows"]];
+        weakSelf.arraryData = responseObject[@"rows"];
         [weakSelf.mTableView reloadData];
         NSLog(@"---->%@",responseObject);
     }];
@@ -173,6 +173,7 @@
 
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
+    [self.view endEditing:YES];
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
     if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
         if (self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count < 1) {

@@ -9,6 +9,7 @@
 #import "SummerMoreReplayViewController.h"
 #import "UIViewController+HUD.h"
 #import "SummerHomeDetailNoticeModel.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 #import "SummerNoticeCenterDetailViewController.h"
 #import "SummerNoticeDetailReplaceTableViewCell.h"
 #import "SummerNoticeDetailTableViewCell.h"
@@ -246,8 +247,8 @@
             heightCell += 70 + 10;
         }
     }
-    
     return heightCell + 40;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -359,6 +360,7 @@
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
     if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+        self.summerInputView.btnSenderMessage.enabled = NO;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"上传中";
         hud.dimBackground = YES;
@@ -387,7 +389,7 @@
                                                                    [hud removeFromSuperview];
                                                                    [self showHint:@"评论成功"];
                                                                    self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                   
+                                                                   self.summerInputView.btnSenderMessage.enabled = NO;
                                                                    self.summerInputView.summerInputView.text = nil;
                                                                    [self getReceveData];
                                                                }];
@@ -406,7 +408,7 @@
                                                                        self.summerInputView.summerInputLabNumbers.hidden = YES;
                                                                        self.summerInputView.summerInputLabNumbers.text = 0;
                                                                        self.summerInputView.summerInputView.text = nil;
-                                                                       
+                                                                       self.summerInputView.btnSenderMessage.enabled = NO;
                                                                        [self getReceveData];
                                                                    }];
         }];

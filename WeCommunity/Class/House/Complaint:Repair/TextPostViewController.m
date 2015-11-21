@@ -66,7 +66,7 @@
         [self.functionView setupFunctionViewFirst:@"服务" title1:@"服务" Second:@"绿化" title2:@"环境绿化" Third:@"报修" title3:@"设备保养" Fourth:@"保安" title4:@"治安秩序" Fifth:@"保洁" title5:@"保洁服务" Sixth:@"其他" title6:@"其他"];
 
     }else if([self.function isEqualToString:@"repair"]) {
-        [self.functionView setupFunctionViewFirst:@"公共设施" title1:@"公共设施" Second:@"房屋维修" title2:@"房屋维修" Third:nil title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
+        [self.functionView setupFunctionViewFirst:@"房屋维修" title1:@"公共设施" Second:@"公共设施" title2:@"房屋维修" Third:nil title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
     }
     
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(chosen:) forControlEvents:UIControlEventTouchUpInside];
@@ -294,7 +294,7 @@
         if (pictures.count>0) {
             parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"houseId":dicSelectAddress[@"id"],@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         }else{
-            parameters = @{@"token":[User getUserToken],@"houseId":dicSelectAddress[@"id"],@"communityId":[Util getCommunityID],@"content":tempStr,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+            parameters = @{@"token":[User getUserToken],@"houseId":dicSelectAddress[@"id"],@"communityId":[Util getCommunityID],@"content":tempStr,@"repairTypeId":@"3",@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         }
         
     }else if ([self.function isEqualToString:@"praise"]){
@@ -328,14 +328,6 @@
         return NO;
     }
     return YES;
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    self.scrollView.contentInset = UIEdgeInsetsMake(-130, 0, 0, 0);
-}
-
-- (void)textViewDidEndEditing:(UITextView *)textView{
-    self.scrollView.contentInset = UIEdgeInsetsZero;
 }
 
 #pragma mark imagepicker

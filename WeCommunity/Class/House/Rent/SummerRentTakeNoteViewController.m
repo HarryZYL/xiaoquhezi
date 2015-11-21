@@ -35,8 +35,9 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"SummerRentTakeNoteTableViewCell" owner:self options:nil].firstObject;
         [cell.cellBtnPhone addTarget:self action:@selector(cellBtnPhoneNow:) forControlEvents:UIControlEventTouchUpInside];
     }
+    
     NSDictionary *dicTemp = _arraryData[indexPath.row];
-    cell.cellTimeLab.text = [NSString stringWithFormat:@"预约时间：%@",dicTemp[@"time"]];
+    cell.cellTimeLab.text = [NSString stringWithFormat:@"预约时间：%@",[Util formattedDate:dicTemp[@"time"] type:1]];
     cell.cellNameLab.text = [NSString stringWithFormat:@"姓       名：%@",dicTemp[@"name"]];
     cell.cellPhoneNumber.text = [NSString stringWithFormat:@"联系方式：%@",dicTemp[@"phone"]];
     return cell;

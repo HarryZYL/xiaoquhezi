@@ -312,6 +312,7 @@
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+                self.navigationController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:[[SummerPaymentRecordsTableViewController alloc] init] animated:YES];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -331,6 +332,7 @@
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+                self.navigationController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:[[SummerMessageCenterTableViewController alloc] init] animated:YES];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -355,6 +357,7 @@
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+                self.navigationController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:[[SummerMemberManagerTableViewController alloc] init] animated:YES];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -401,15 +404,7 @@
     SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
     noticeVC.strNoticeID = dicTemp[@"id"];
     noticeVC.detailNotice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
-    [self.navigationController pushViewController:noticeVC animated:YES];
-    
-//    TextDetailTableViewController *textVC = [[TextDetailTableViewController alloc] init];
-//    textVC.notice = [[Notice alloc] initWithData:self.noticeData[self.headView.pageView.adPageControl.currentPage]];
-//    textVC.title = @"详情";
-//    textVC.function = @"notice";
-//    textVC.noticeStyle = SettingTableViewControllerStyleNotice;
-//    [self.navigationController pushViewController:textVC animated:YES];
-    
+    [self pushVC:noticeVC title:nil];
 }
 
 #pragma mark user action

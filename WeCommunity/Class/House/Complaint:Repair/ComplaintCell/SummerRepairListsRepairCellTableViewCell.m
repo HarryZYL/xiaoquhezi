@@ -21,7 +21,7 @@
     self.cellContent.text = dicTemp[@"content"];
     for (NSInteger index = 0; index < 3; index ++) {
         UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
-        img.frame = CGRectZero;
+        img.hidden = YES;
     }
     NSArray *arraryImages = dicTemp[@"pictures"];
     if ([arraryImages isEqual:[NSNull null]]) {
@@ -30,11 +30,13 @@
         if (arraryImages.count > 3) {
             for (NSInteger index = 0; index < 3; index ++) {
                 UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
+                img.hidden = NO;
                 [img sd_setImageWithURL:[NSURL URLWithString:arraryImages[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
             }
         }else{
             for (NSInteger index = 0; index < arraryImages.count; index ++) {
                 UIImageView *img = (UIImageView *)[self viewWithTag:index + 1];
+                img.hidden = NO;
                 [img sd_setImageWithURL:[NSURL URLWithString:arraryImages[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
             }
         }

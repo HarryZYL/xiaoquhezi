@@ -280,12 +280,12 @@
             break;
         case 2:
 //            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0 || self.chosenImages.count == 0) {
-            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0) {
+            if (self.titelField.text.length == 0 || self.contentField.text.length ==0) {
                 [Util alertNetworingError:@"信息不完整"];
                 break;
             }else{
-                self.houseData.title = self.postView.titleField.text;
-                self.houseData.content = self.postView.contentField.text;
+                self.houseData.title = self.titelField.text;
+                self.houseData.content = self.contentField.text;
                 [self uploadRentInfo];
                 break;
             }

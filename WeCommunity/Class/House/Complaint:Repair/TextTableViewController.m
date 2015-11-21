@@ -40,7 +40,9 @@
     
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     if ([User judgeLogin]) {
         [self retrireveData];
     }else{
@@ -48,8 +50,6 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
