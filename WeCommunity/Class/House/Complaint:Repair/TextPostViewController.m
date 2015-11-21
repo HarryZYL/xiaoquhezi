@@ -192,10 +192,12 @@
     switch (button.tag) {
         case 1:
             [self.functionView.firstItem chosen];
+            self.repareType = ReparePostTypePublicFacility;
             self.postID = [NSNumber numberWithInt:1+i];
             break;
         case 2:
             [self.functionView.secondItem chosen];
+            self.repareType = ReparePostTypeHome;
             self.postID =[NSNumber numberWithInt:2+i];
             break;
 
@@ -292,9 +294,19 @@
             tempStr = self.describleView.text;
         }
         if (pictures.count>0) {
+            if (self.repareType == ReparePostTypeHome) {
+                self.postID = [NSNumber numberWithInteger:3];
+            }else{
+                self.postID = [NSNumber numberWithInteger:1];
+            }
             parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"content":tempStr,@"houseId":dicSelectAddress[@"id"],@"pictures":pictures,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         }else{
-            parameters = @{@"token":[User getUserToken],@"houseId":dicSelectAddress[@"id"],@"communityId":[Util getCommunityID],@"content":tempStr,@"repairTypeId":@"3",@"name":self.nickNameField.text,@"phone":self.phoneField.text};
+            if (self.repareType == ReparePostTypeHome) {
+                self.postID = [NSNumber numberWithInteger:3];
+            }else{
+                self.postID = [NSNumber numberWithInteger:1];
+            }
+            parameters = @{@"token":[User getUserToken],@"houseId":dicSelectAddress[@"id"],@"communityId":[Util getCommunityID],@"content":tempStr,@"repairTypeId":self.postID,@"name":self.nickNameField.text,@"phone":self.phoneField.text};
         }
         
     }else if ([self.function isEqualToString:@"praise"]){

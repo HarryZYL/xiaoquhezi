@@ -222,6 +222,7 @@
 		D4DBDE491BFEC8670000BE3B /* SummerBusinessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE481BFEC8670000BE3B /* SummerBusinessDetailViewController.m */; };
 		D4E508191BF25A050057AFDB /* SummerRepairListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */; };
 		D4E5081A1BF25A050057AFDB /* SummerRepairListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */; };
+		D4E5D9471C0054D100759611 /* SummerSearchBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E5D9461C0054D100759611 /* SummerSearchBusinessViewController.m */; };
 		D4E5F0681BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */; };
 		D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E6E7231BE73E3600C3E6C4 /* SummerInputView.m */; };
 		D4E8D62B1BEE647E00B41223 /* SummerPostRentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */; };
@@ -702,6 +703,8 @@
 		D4E508161BF25A050057AFDB /* SummerRepairListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRepairListTableViewCell.h; path = ComplaintCell/SummerRepairListTableViewCell.h; sourceTree = "<group>"; };
 		D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerRepairListTableViewCell.m; path = ComplaintCell/SummerRepairListTableViewCell.m; sourceTree = "<group>"; };
 		D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListTableViewCell.xib; path = ComplaintCell/SummerRepairListTableViewCell.xib; sourceTree = "<group>"; };
+		D4E5D9451C0054D100759611 /* SummerSearchBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSearchBusinessViewController.h; sourceTree = "<group>"; };
+		D4E5D9461C0054D100759611 /* SummerSearchBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSearchBusinessViewController.m; sourceTree = "<group>"; };
 		D4E5F0651BEC39FE009D2F15 /* SummerCommunityBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerCommunityBrowserViewController.h; sourceTree = "<group>"; };
 		D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerCommunityBrowserViewController.m; sourceTree = "<group>"; };
 		D4E6E7221BE73E3600C3E6C4 /* SummerInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerInputView.h; path = ComplaintCell/SummerInputView.h; sourceTree = "<group>"; };
@@ -769,7 +772,6 @@
 			children = (
 				4ACCCFE51BBF49600001227A /* House */,
 				D4DBDE381BFEB6DA0000BE3B /* Business */,
-				4A118E061BA48FFC00BC2C4E /* Util */,
 				4ACCCEA41BBF44D00001227A /* Community */,
 				4A118DDB1BA48FFC00BC2C4E /* User */,
 				4A118DD81BA48FFC00BC2C4E /* Other   */,
@@ -809,7 +811,8 @@
 				4A118E1F1BA48FFC00BC2C4E /* View */,
 				4A118E301BA48FFC00BC2C4E /* ViewController */,
 			);
-			path = Util;
+			name = Util;
+			path = Class/Util;
 			sourceTree = "<group>";
 		};
 		4A118E071BA48FFC00BC2C4E /* Categories */ = {
@@ -1417,6 +1420,7 @@
 			isa = PBXGroup;
 			children = (
 				4A118E961BA4900400BC2C4E /* Vendor */,
+				4A118E061BA48FFC00BC2C4E /* Util */,
 				4A118D291BA48FFB00BC2C4E /* Class */,
 				4ADDB98F1B5D235F002A188E /* Images.xcassets */,
 				4ADDB9821B5D235F002A188E /* Supporting Files */,
@@ -1748,6 +1752,8 @@
 				D4DBDE401BFEC0470000BE3B /* BusinessViews */,
 				D4DBDE391BFEB7920000BE3B /* SummerBusinessViewController.h */,
 				D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */,
+				D4E5D9451C0054D100759611 /* SummerSearchBusinessViewController.h */,
+				D4E5D9461C0054D100759611 /* SummerSearchBusinessViewController.m */,
 				D4DBDE471BFEC8670000BE3B /* SummerBusinessDetailViewController.h */,
 				D4DBDE481BFEC8670000BE3B /* SummerBusinessDetailViewController.m */,
 				D4DBDE3C1BFEBF9F0000BE3B /* BusinessModel */,
@@ -2024,6 +2030,7 @@
 				D48662AF1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m in Sources */,
 				D4E5F0681BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m in Sources */,
 				4ACCCE6E1BBF384F0001227A /* creatorInfo.m in Sources */,
+				D4E5D9471C0054D100759611 /* SummerSearchBusinessViewController.m in Sources */,
 				4A118EB51BA4900400BC2C4E /* ELCAssetCell.m in Sources */,
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,

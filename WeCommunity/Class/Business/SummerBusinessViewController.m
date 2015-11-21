@@ -39,8 +39,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerBusinessTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     cell.cellImgView.image = [UIImage imageNamed:@"house1"];
-    cell.cellTitleLab.text = @"123";
-    cell.cellContentLab.text = @"456";
+    cell.cellTitleLab.text = @"上海之夜";
+    cell.cellContentLab.text = @"开张大优惠";
     
     return cell;
 }

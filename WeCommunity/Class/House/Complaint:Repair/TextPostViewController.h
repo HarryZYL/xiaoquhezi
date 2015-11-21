@@ -19,8 +19,13 @@
 - (void)issueInformationSeccess;
 
 @end
-
+typedef NS_ENUM(NSUInteger, ReparePostType) {
+    ReparePostTypeDefult,
+    ReparePostTypeHome,
+    ReparePostTypePublicFacility,
+};
 @interface TextPostViewController : UIViewController<UzysAssetsPickerControllerDelegate>
+
 @property (nonatomic ,strong) FunctionView *functionView;
 @property (nonatomic, strong) SAMTextView  *describleView;
 @property (nonatomic, strong) NSString *function;
@@ -34,7 +39,7 @@
 @property (nonatomic, strong) CameraImageView *cameraView;
 @property (nonatomic, strong) NSMutableArray *chosenImages;
 @property (nonatomic, strong) NSMutableArray *chosenImagesSmall;
-
+@property (assign) ReparePostType repareType;/**<维修类型*/
 @property (nonatomic, weak) id delegate;
 
 @end
