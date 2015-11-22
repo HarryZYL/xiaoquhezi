@@ -10,6 +10,7 @@
 
 #import "SummerPriceListViewController.h"
 #define FONT_COLOR [UIColor colorWithWhite:0.533 alpha:1.000]
+
 @interface TextPostViewController ()<UITextViewDelegate ,CameraImageViewDelegate ,MWPhotoBrowserDelegate ,UIPickerViewDataSource ,UIPickerViewDelegate>
 {
     NSMutableArray *photos;
@@ -20,6 +21,9 @@
     NSDictionary *dicSelectAddress;
     UILabel *labAddress;
     UIView *bgNamePhone;
+    
+    UIView *bgContentView;/**<输入内容View*/
+    UIView *bgAddressView;/**<电话View*/
 }
 @end
 
@@ -84,29 +88,32 @@
     }
     
     [self.scrollView addSubview:self.functionView];
+    bgContentView = [[UIView alloc] initWithFrame:CGRectMake(10, textY, SCREENSIZE.width - 20, 160 + 90)];
+    bgContentView.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
+    bgContentView.layer.cornerRadius = 3;
+    bgContentView.layer.masksToBounds = YES;
+    [self.scrollView addSubview:bgContentView];
     
-    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(10, textY, SCREENSIZE.width - 20, 160)];
+    self.describleView=[[SAMTextView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width - 20, 160)];
     if ([self.function isEqualToString:@"praise"]) {
         self.describleView.placeholder = @"物业服务很好，赞一个";
     }else{
         self.describleView.placeholder = @"说点什么吧...";
     }
     self.describleView.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
-    self.describleView.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
+    self.describleView.backgroundColor = [UIColor clearColor];
     self.describleView.font=[UIFont fontWithName:@"Arial" size:15];
     self.describleView.returnKeyType = UIReturnKeyDone;
-    self.describleView.layer.cornerRadius = 3;
-    self.describleView.layer.masksToBounds = YES;
     self.describleView.delegate = self;
-    [self.scrollView addSubview:self.describleView];
+    [bgContentView addSubview:self.describleView];
     
-    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, 80, self.view.frame.size.width-20, 160)];
+    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.origin.y + self.describleView.frame.size.height + 5, self.view.frame.size.width-20, 160)];
     self.cameraView.delegate = self;
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
-    [self.describleView addSubview:self.cameraView];
+    [bgContentView addSubview:self.cameraView];
     
     if (![self.function isEqualToString:@"praise"]) {
-        bgNamePhone = [[UIView alloc] initWithFrame:CGRectMake(10, self.describleView.frame.origin.y + self.describleView.frame.size.height + 10, SCREENSIZE.width - 20, 90)];
+        bgNamePhone = [[UIView alloc] initWithFrame:CGRectMake(10, bgContentView.frame.origin.y + bgContentView.frame.size.height + 10, SCREENSIZE.width - 20, 90)];
         bgNamePhone.layer.cornerRadius = 5;
         bgNamePhone.layer.masksToBounds = YES;
         bgNamePhone.backgroundColor = [UIColor colorWithWhite:0.969 alpha:1.000];
@@ -135,22 +142,27 @@
     }
     
     if([self.function isEqualToString:@"repair"]){
-        labAddress = [[UILabel alloc] initWithFrame:CGRectMake(bgNamePhone.frame.origin.x + 10, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgNamePhone.frame.size.width - 10, 45)];
-        labAddress.textColor = FONT_COLOR;
+        bgAddressView = [[UIView alloc] initWithFrame:CGRectMake(bgContentView.frame.origin.x, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgContentView.frame.size.width, 45)];
+        bgAddressView.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+        bgAddressView.layer.borderWidth = .5;
+        bgAddressView.layer.cornerRadius = 5;
+        bgAddressView.layer.masksToBounds = YES;
+        bgAddressView.backgroundColor = bgNamePhone.backgroundColor;
+        [self.scrollView addSubview:bgAddressView];
         
+        labAddress = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, bgNamePhone.frame.size.width - 10, 45)];
+        labAddress.textColor = FONT_COLOR;
         labAddress.text = @"维修地址：";
-        [self.scrollView addSubview:labAddress];
+        [bgAddressView addSubview:labAddress];
         
         btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgNamePhone.frame.size.width, self.phoneField.frame.size.height);
+        btnAddress.frame = bgAddressView.frame;
         [btnAddress leftStyle];
-        btnAddress.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
-        btnAddress.layer.borderWidth = .5;
+        
         [btnAddress addTarget:self action:@selector(btnSelectRoom) forControlEvents:UIControlEventTouchUpInside];
         [btnAddress roundRect];
         [btnAddress setTitleColor:FONT_COLOR forState:UIControlStateNormal];
-        [btnAddress configureButtonTitle:@"" backgroundColor:[UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:0.5]];
-        [self.scrollView addSubview:btnAddress];
+        [bgAddressView addSubview:btnAddress];
         
         
         
@@ -179,6 +191,22 @@
         NSLog(@"---->%@",responseObject);
         arrRoomAddress = responseObject;
     }];
+}
+
+- (void)confirmsAddPhotosOrDelete{
+    // 设置不同的输入框位置
+    CGFloat textY = 300;
+    
+    if([self.function isEqualToString:@"repair"]) {
+        textY = 200;
+    }
+    if (self.chosenImages.count > 3) {
+        bgContentView.frame = CGRectMake(10, textY, SCREENSIZE.width - 20, 160 + 90 + 80);
+    }else{
+        bgContentView.frame = CGRectMake(10, textY, SCREENSIZE.width - 20, 160 + 90);
+    }
+    bgNamePhone.frame = CGRectMake(10, bgContentView.frame.origin.y + bgContentView.frame.size.height + 10, SCREENSIZE.width - 20, 90);
+    bgAddressView.frame = CGRectMake(bgContentView.frame.origin.x, bgNamePhone.frame.origin.y + bgNamePhone.frame.size.height + 10, bgContentView.frame.size.width, 45);
 }
 
 -(void)chosen:(id)sender{
@@ -373,27 +401,10 @@
         }];
         [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
-        [self confirmSubViewsFrams];
+        [self confirmsAddPhotosOrDelete];
+        
         [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-}
-
-- (void)confirmSubViewsFrams{
-    CGFloat textY = 300;
-    if([self.function isEqualToString:@"repair"]) {
-        textY = 200;
-    }
-    if (self.chosenImages.count > 4) {
-        self.describleView.frame = CGRectMake(10, textY, self.view.frame.size.width-20, 250);
-    }else{
-        self.describleView.frame = CGRectMake(10, textY, self.view.frame.size.width-20, 160);
-        
-    }
-    bgNamePhone.frame = CGRectMake(self.describleView.frame.origin.x, self.describleView.frame.origin.y+self.describleView.frame.size.height+20, self.view.frame.size.width-2*self.describleView.frame.origin.x, 90);
-    
-    labAddress.frame = CGRectMake(self.describleView.frame.origin.x + 10, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width - 10, self.phoneField.frame.size.height);
-    btnAddress.frame = CGRectMake(self.describleView.frame.origin.x, self.phoneField.frame.origin.y + self.phoneField.frame.size.height + 10, self.phoneField.frame.size.width, self.phoneField.frame.size.height);
     
 }
 
@@ -443,7 +454,7 @@
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self.cameraView configureImage:self.chosenImagesSmall];
-    [self confirmSubViewsFrams];
+    [self confirmsAddPhotosOrDelete];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 

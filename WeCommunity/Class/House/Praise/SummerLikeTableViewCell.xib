@@ -35,7 +35,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Ohe-1A-jAn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -128,7 +128,7 @@
                 <outlet property="cellTitleImg" destination="mUW-Xh-NRO" id="pfl-Oc-MG0"/>
                 <outlet property="cellTitleName" destination="7SR-4A-PFs" id="m4m-cf-UZv"/>
             </connections>
-            <point key="canvasLocation" x="174" y="202.5"/>
+            <point key="canvasLocation" x="-35" y="73.5"/>
         </tableViewCell>
     </objects>
 </document>

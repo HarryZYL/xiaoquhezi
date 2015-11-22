@@ -59,7 +59,7 @@
             [self.postView setupSecondPart];
             break;
         case 2:
-            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330)] ;
+            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330 - 90)] ;
             self.detailView.backgroundColor = [UIColor whiteColor];
             [self.scollView addSubview:self.detailView];
             
@@ -139,6 +139,7 @@
             case 0:
                 self.titelField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
                 self.titelField.placeholder = @"1-20个字";
+                self.titelField.text = self.houseDeal.title;
                 [_detailView addSubview:self.titelField];
                 
                 break;
@@ -147,11 +148,13 @@
                 self.contentField.font = [UIFont systemFontOfSize:16];
                 self.contentField.returnKeyType = UIReturnKeyDone;
                 self.contentField.delegate = self;
+                self.contentField.text = self.houseDeal.content;
                 [_detailView addSubview:self.contentField];
                 
                 self.placeHoderText = [[CATextLayer alloc] init];
                 self.placeHoderText.frame = CGRectMake(rightLine.frame.origin.x+5, self.titelField.frame.origin.y+self.titelField.frame.size.height + 10,_detailView.frame.size.width - rightLine.frame.origin.x-10, textHeight*2);
                 self.placeHoderText.fontSize = 16;
+                self.placeHoderText.hidden = YES;
                 self.placeHoderText.string = @"交通配置等";
                 self.placeHoderText.foregroundColor = [UIColor colorWithRed:0.733 green:0.733 blue:0.761 alpha:1.000].CGColor;
                 [_detailView.layer addSublayer:self.placeHoderText];
@@ -169,6 +172,17 @@
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     [_detailView addSubview:self.cameraView];
 }
+
+- (void)addPhotosOrMuteble{
+    if (self.chosenImages.count > 3) {
+        self.detailView.frame = CGRectMake(0, 120, self.view.frame.size.width,330);
+    }else{
+        self.detailView.frame = CGRectMake(0, 120, self.view.frame.size.width,330 - 90);
+    }
+    self.submitBtn.frame = CGRectMake(15, self.detailView.frame.origin.y + self.detailView.frame.size.height + 63, SCREENSIZE.width - 30, 47);
+}
+
+#pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView{
     if (textView.text.length > 0) {
@@ -310,6 +324,7 @@
         }];
         [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
+        [self addPhotosOrMuteble];
         [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -359,6 +374,7 @@
     
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
+    [self addPhotosOrMuteble];
     [self.cameraView configureImage:self.chosenImagesSmall];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }

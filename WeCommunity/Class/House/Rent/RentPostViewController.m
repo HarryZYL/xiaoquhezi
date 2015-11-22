@@ -60,7 +60,7 @@
             [self.postView setupSecondPart];
             break;
         case 2:
-            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330)] ;
+            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330 - 90)] ;
             self.detailView.backgroundColor = [UIColor whiteColor];
             [self.scollView addSubview:self.detailView];
             _photos = [[NSMutableArray alloc] init];
@@ -151,7 +151,7 @@
         
     }
     
-    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(10, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, _detailView.frame.size.width-10, 150)];
+    self.cameraView = [[CameraImageView alloc] initWithFrame:CGRectMake(20, self.contentField.frame.origin.y+self.contentField.frame.size.height+5, _detailView.frame.size.width-20, 150)];
     self.cameraView.delegate = self;
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     [_detailView addSubview:self.cameraView];
@@ -219,6 +219,7 @@
     
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
+    [self addPhotosOrMuteble];
     [self.cameraView configureImage:self.chosenImagesSmall];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -414,8 +415,6 @@
     }
     
     self.pickerStr = nil;
-
-    
 }
 
 -(void)cancelPicker:(id)sender{
@@ -454,11 +453,21 @@
             
         }];
         
+        [self addPhotosOrMuteble];
         [self.cameraView chuckSubViews];
         [self.cameraView configureImage:self.chosenImagesSmall];
         [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     
+}
+
+- (void)addPhotosOrMuteble{
+    if (self.chosenImages.count > 3) {
+        self.detailView.frame = CGRectMake(0, 120, self.view.frame.size.width,330);
+    }else{
+        self.detailView.frame = CGRectMake(0, 120, self.view.frame.size.width,330 - 90);
+    }
+    self.submitBtn.frame = CGRectMake(15, self.detailView.frame.origin.y + self.detailView.frame.size.height + 63, SCREENSIZE.width - 30, 47);
 }
 
 - (void)rentPostViewSelecteImageViewIndex:(NSInteger)index{

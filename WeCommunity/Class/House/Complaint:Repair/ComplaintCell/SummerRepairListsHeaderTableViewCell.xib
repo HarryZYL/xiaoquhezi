@@ -152,7 +152,7 @@
                 <outlet property="cellTitleImageView" destination="NhI-34-1TS" id="BOt-pj-IlJ"/>
                 <outlet property="cellTitleName" destination="yQN-k3-rvY" id="45d-Os-uVx"/>
             </connections>
-            <point key="canvasLocation" x="-186" y="101.5"/>
+            <point key="canvasLocation" x="-328" y="53.5"/>
         </tableViewCell>
     </objects>
 </document>

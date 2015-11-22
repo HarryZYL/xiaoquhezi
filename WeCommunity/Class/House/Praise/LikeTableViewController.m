@@ -83,7 +83,7 @@
         if (![like.pictures isEqual:[NSNull null]]) {
             return 152;
         }else{
-            return 92;
+            return 100;
         }
     }
     
