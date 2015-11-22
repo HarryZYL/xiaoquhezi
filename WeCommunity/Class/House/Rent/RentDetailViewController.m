@@ -121,7 +121,7 @@
                 [self.functionBtn.btnLeft configureButtonTitle:[NSString stringWithFormat:@"已有%@人预约",_strUserBookingCount] backgroundColor:THEMECOLOR];
                 [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             }else{
-                [self.functionBtn.btnLeft configureButtonTitle:@"暂未预约" backgroundColor:THEMECOLOR];
+                [self.functionBtn.btnLeft configureButtonTitle:@"暂无预约" backgroundColor:THEMECOLOR];
                 [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             }
             
@@ -145,7 +145,7 @@
         orderVC.houseID = self.houseDeal.objectId;
         orderVC.delegate = self;
         [self pushVC:orderVC title:@"预约看房"];
-    }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"暂未预约"]){
+    }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"暂无预约"]){
         
     }else if([self.functionBtn.btnLeft.currentTitle isEqualToString:@"取消预约"]){
         //取消预约

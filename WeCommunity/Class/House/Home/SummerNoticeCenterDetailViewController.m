@@ -50,7 +50,7 @@
     
     [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailReplaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
-    
+//    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"cellnoticecenterdetail"];
     [self.view addSubview:_mTableView];
     _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:_summerInputView];
@@ -176,8 +176,8 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat rectHeight = [Util getHeightForString:dicNotice[@"content"] width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
-    return rectHeight + 91 + 70;
+    CGFloat rectHeight = [Util getHeightForString:_detailNotice.contentTxt width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
+    return rectHeight + 450;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -201,6 +201,7 @@
         cell.cellLabReplay.text  = [NSString stringWithFormat:@"评论 %@",self.detailNotice.replyCount];
     }
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithData:[dicNotice[@"content"] dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType} documentAttributes:nil error:nil];
+    [attrStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15]} range:NSMakeRange(0, attrStr.length - 1)];
     cell.cellLabContent.attributedText = attrStr;
     
     return cell;
@@ -215,7 +216,7 @@
         return 0;
     }
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]] + 17;
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:17]] + 17;
     
     if (noticModel.detailNoticeModel.childrenCount.integerValue <= 2) {
         for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
@@ -226,7 +227,7 @@
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
             }
-            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]] + 10;
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]] + 8;
         }
 
     }else{
@@ -240,14 +241,14 @@
             }
             heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]];
         }
-        heightCell += 10 + 30;
+        heightCell += 45;
     }
     if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         if ([noticModel.detailNoticeModel.pictures count] > 0) {
-            heightCell += 70 + 10;
+            heightCell += 70 + 8;
         }
     }
-    return heightCell + 40;
+    return heightCell + 33;
     
 }
 

@@ -15,6 +15,8 @@
 @property (nonatomic ,weak)IBOutlet UILabel *cellTimeLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellContent;
 
+@property (nonatomic ,weak)IBOutlet NSLayoutConstraint *cellContentLayout;
+
 - (void)confirmsCellDataWithData:(NSDictionary *)dicTemp;
 
 @end

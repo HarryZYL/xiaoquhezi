@@ -461,7 +461,7 @@
     
     self.grayLine.frame = CGRectMake(0,self.detailLabel.frame.origin.y + self.detailLabel.frame.size.height +10 , self.contentView.frame.size.width, 1);
     
-    self.dateLabel.frame = CGRectMake(20, self.grayLine.frame.origin.y + 5, 200, 20);
+    self.dateLabel.frame = CGRectMake(10, self.grayLine.frame.origin.y + 5, 200, 20);
     self.dateLabel.font = [UIFont fontWithName:fontName size:14];
     self.dateLabel.text = date;
     
@@ -474,6 +474,7 @@
     
     self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
     self.commentLabel.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
+    self.commentLabel.font = [UIFont systemFontOfSize:14];
     self.commentLabel.text = [NSString stringWithFormat:@"%@", replyCount];
     
 }

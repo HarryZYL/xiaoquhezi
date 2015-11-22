@@ -34,13 +34,13 @@
     NSString *strTime = [Util formattedDate:dicTemp.detailNoticeModel.createTime type:5];
     NSString *strName = [NSString stringWithFormat:@"%@  %@",dicTemp.detailNoticeModel.creatorInFo.nickName,strTime];
     NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strName];
-    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:16]} range:NSMakeRange(0, dicTemp.detailNoticeModel.creatorInFo.nickName.length - 1)];
-    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor colorWithWhite:0.463 alpha:1.000]} range:NSMakeRange(strName.length - strTime.length, strTime.length)];
+    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} range:NSMakeRange(0, dicTemp.detailNoticeModel.creatorInFo.nickName.length - 1)];
+    [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:12],NSForegroundColorAttributeName:[UIColor colorWithWhite:0.463 alpha:1.000]} range:NSMakeRange(strName.length - strTime.length, strTime.length)];
     _cellNameLab.attributedText = attriStr;
     
-    CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:14]];
+    CGFloat contentHeight = [Util getHeightForString:dicTemp.detailNoticeModel.content width:SCREENSIZE.width - 100 font:[UIFont systemFontOfSize:15]];
     
-    _cellContenLab.frame = CGRectMake(60, 30, SCREENSIZE.width - 100, contentHeight + 10);
+    _cellContenLab.frame = CGRectMake(60, 26, SCREENSIZE.width - 100, contentHeight + 10);
     _cellContenLab.text = dicTemp.detailNoticeModel.content;
     
     _cellFloorBtn.frame = CGRectMake(SCREENSIZE.width - 30, 10, 19, 19);
@@ -56,7 +56,7 @@
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[indexPath]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
 
                 CGFloat xRow = 60 + (10 + IMG_WIDTH) * (indexPath%4);
-                CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 5 + (40 + 5) * (indexPath/4);
+                CGFloat yRow = _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 4 + (40 + 4) * (indexPath/4);
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
             }
         }
@@ -81,22 +81,22 @@
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
                 labReplay.attributedText = attriStr;
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
             CGFloat replayLabHeight = [Util getHeightForString:[strTemp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labLine.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 10, SCREENSIZE.width - 60, .5);
-                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + 10, SCREENSIZE.width - 70, replayLabHeight);
+                labLine.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height + 8, SCREENSIZE.width - 60, .5);
+                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + 8, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 10, SCREENSIZE.width - 70, ceil(replayLabHeight));
+                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 8, SCREENSIZE.width - 70, ceil(replayLabHeight));
             }
         }
     }else{
@@ -108,22 +108,22 @@
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.nickName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.nickName.length + 1, strTemp.length - noticeDetail.creatorInFo.nickName.length - 1)];
                 labReplay.attributedText = attriStr;
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
                 NSMutableAttributedString *attriStr = [[NSMutableAttributedString alloc] initWithString:strTemp];
                 
-                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:13],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
+                [attriStr addAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:15],NSForegroundColorAttributeName:[UIColor grayColor],NSKernAttributeName:@(1)} range:NSMakeRange(noticeDetail.creatorInFo.userName.length + 1, strTemp.length - noticeDetail.creatorInFo.userName.length - 1)];
                 labReplay.attributedText = attriStr;
             }
             CGFloat replayLabHeight = [Util getHeightForString:strTemp width:SCREENSIZE.width - 90 font:[UIFont systemFontOfSize:15]];
             if (index == 0) {
-                labLine.frame = CGRectMake(60, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 10, SCREENSIZE.width - 60, .5);
-                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + labLine.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
+                labLine.frame = CGRectMake(60, _cellContenLab.frame.origin.y + _cellContenLab.frame.size.height + 8, SCREENSIZE.width - 60, .5);
+                labReplay.frame = CGRectMake(60, labLine.frame.origin.y + labLine.frame.size.height + 8, SCREENSIZE.width - 70, replayLabHeight);
             }else{
                 UILabel *labReplay1 = (UILabel *)[self viewWithTag:10];
-                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 10, SCREENSIZE.width - 70, replayLabHeight);
+                labReplay.frame = CGRectMake(60, labReplay1.frame.origin.y + labReplay1.frame.size.height + 8, SCREENSIZE.width - 70, replayLabHeight);
             }
             
         }
@@ -132,7 +132,7 @@
     if (dicTemp.detailNoticeModel.childrenCount.intValue > 2) {
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];
         btnReply.hidden = NO;
-        btnReply.frame = CGRectMake(60, labLast.frame.origin.y + labLast.frame.size.height, 74, 30);
+        btnReply.frame = CGRectMake(60, labLast.frame.origin.y + labLast.frame.size.height + 5, SCREENSIZE.width - 70, 30);
         [btnReply setTitle:@"查看更多回复" forState:UIControlStateNormal];
     }else{
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];

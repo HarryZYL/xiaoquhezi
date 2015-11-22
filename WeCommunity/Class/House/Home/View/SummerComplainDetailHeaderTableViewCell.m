@@ -80,7 +80,7 @@
             UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
             [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.pictures[indexPath]]];
             CGFloat xRow = 60 + (10 + IMG_WIDTH) * (indexPath%4);
-            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 5 + (IMG_WIDTH + 5) * (indexPath/4);
+            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 8 + (IMG_WIDTH + 8) * (indexPath/4);
             imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
         }
     }

@@ -37,7 +37,7 @@
 }
 
 -(void)chosen{
-    self.titleLabel.textColor = [UIColor redColor];
+    self.titleLabel.textColor = THEMECOLOR;
 }
 -(void)clearColor{
     self.titleLabel.textColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];

@@ -104,13 +104,13 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary *dicTemp = _arraryData[indexPath.row];
-    CGFloat heightCell = 40 + [Util getHeightForString:dicTemp[@"content"] width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:14]];
+    CGFloat heightCell = 40 + [Util getHeightForString:[dicTemp[@"content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:15]];
     if ([dicTemp[@"pictures"] isEqual:[NSNull null]]) {
         return heightCell + 30;
     }else{
         NSArray *arr = dicTemp[@"pictures"];
         if (arr.count) {
-            return 135;
+            return 165;
         }
     }
     

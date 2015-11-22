@@ -128,11 +128,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:13]];
+        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
         if ([_complainModel.pictures isEqual:[NSNull null]]) {
             return 61 + rectHeight;
         }
-        headerViewHeight = 80 + (_complainModel.pictures.count/4 + 1) * (70 + 5) + rectHeight;
+        headerViewHeight = 70 + (_complainModel.pictures.count/4 + 1) * 70 + rectHeight;
         return headerViewHeight;
     }
     TextDeal *noticModel = _arraryData[indexPath.row];
