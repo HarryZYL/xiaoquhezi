@@ -165,6 +165,14 @@
     }
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - cameraViewDelegate
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{
@@ -486,8 +494,8 @@
                                          @"token":[User getUserToken],
                                          @"communityId":[Util getCommunityID],
                                          @"houseDealType":houseType,
-                                         @"title":self.houseData.title,
-                                         @"content":self.houseData.content,
+                                         @"title":self.titelField.text,
+                                         @"content":self.contentField.text,
                                          @"pictures":responseObject,
                                          @"room":self.houseData.room,
                                          @"sittingRoom":self.houseData.sittingRoom,
@@ -512,8 +520,8 @@
                                      @"token":[User getUserToken],
                                      @"communityId":[Util getCommunityID],
                                      @"houseDealType":houseType,
-                                     @"title":self.houseData.title,
-                                     @"content":self.houseData.content,
+                                     @"title":self.titelField.text,
+                                     @"content":self.contentField.text,
                                      @"room":self.houseData.room,
                                      @"sittingRoom":self.houseData.sittingRoom,
                                      @"bathRoom":self.houseData.bathRoom,

@@ -147,7 +147,6 @@
                 self.contentField.font = [UIFont systemFontOfSize:16];
                 self.contentField.returnKeyType = UIReturnKeyDone;
                 self.contentField.delegate = self;
-                self.contentField.text = @"交通配置等";
                 [_detailView addSubview:self.contentField];
                 
                 self.placeHoderText = [[CATextLayer alloc] init];
@@ -177,6 +176,14 @@
     }else{
         self.placeHoderText.hidden = NO;
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark picker
@@ -445,7 +452,6 @@
             }else{
                 post = YES;
                 
-                
                 postVC.houseDeal = self.houseDeal;
                 postVC.strHouseDeailID = self.strHouseDeailID;
                 postVC.houseDeal.title = self.houseDeal.title;
@@ -456,7 +462,7 @@
             
             break;
         case 2:
-            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0) {
+            if (self.titelField.text.length == 0 || self.contentField.text.length ==0) {
                 [Util alertNetworingError:@"信息不完整"];
                 break;
             }else{
@@ -495,8 +501,8 @@
                                          @"token":[User getUserToken],
                                          @"houseDealId":self.strHouseDeailID,
                                          @"houseDealType":houseType,
-                                         @"title":self.houseDeal.title,
-                                         @"content":self.houseDeal.content,
+                                         @"title":self.titelField.text,
+                                         @"content":self.contentField.text,
                                          @"pictures":responseObject,
                                          @"room":self.houseDeal.room,
                                          @"sittingRoom":self.houseDeal.sittingRoom,
@@ -521,8 +527,8 @@
                                      @"token":[User getUserToken],
                                      @"houseDealId":self.strHouseDeailID,
                                      @"houseDealType":houseType,
-                                     @"title":self.postView.titleField.text,
-                                     @"content":self.postView.contentField.text,
+                                     @"title":self.titelField.text,
+                                     @"content":self.contentField.text,
                                      @"room":self.houseDeal.room,
                                      @"sittingRoom":self.houseDeal.sittingRoom,
                                      @"bathRoom":self.houseDeal.bathRoom,
