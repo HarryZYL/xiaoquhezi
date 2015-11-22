@@ -9,11 +9,13 @@
 #import "SummerPostRentViewController.h"
 #import "UIViewController+HUD.h"
 
-@interface SummerPostRentViewController ()<CameraImageViewDelegate ,MWPhotoBrowserDelegate>
+@interface SummerPostRentViewController ()<CameraImageViewDelegate ,MWPhotoBrowserDelegate ,UITextViewDelegate>
 @property (nonatomic ,strong)UIView *detailView;
 @property (nonatomic ,strong)UITextField *titelField;
-@property (nonatomic ,strong)UITextField *contentField;
+@property (nonatomic ,strong)UITextView *contentField;
 @property (nonatomic ,strong)CameraImageView *cameraView;
+@property (nonatomic ,strong)CATextLayer *placeHoderText;
+
 @end
 
 @implementation SummerPostRentViewController
@@ -57,7 +59,7 @@
             [self.postView setupSecondPart];
             break;
         case 2:
-            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,250)] ;
+            self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330)] ;
             self.detailView.backgroundColor = [UIColor whiteColor];
             [self.scollView addSubview:self.detailView];
             
@@ -122,12 +124,15 @@
         title.textAlignment = NSTextAlignmentCenter;
         title.text = fourthArray[i];
         [self.detailView addSubview:title];
-        GrayLine *bottomLine = [[GrayLine alloc] initWithFrame:CGRectMake(8,title.frame.origin.y +textHeight, _detailView.frame.size.width-16, 1)];
-        [self.detailView addSubview:bottomLine];
         
-        GrayLine *rightLine = [[GrayLine alloc] initWithFrame:CGRectMake(title.frame.size.width+title.frame.origin.x, title.frame.origin.y+4, 1, textHeight-8)];
+        GrayLine *rightLine = [[GrayLine alloc] initWithFrame:CGRectMake(title.frame.size.width+title.frame.origin.x, title.frame.origin.y+4, .5, textHeight-8)];
         [self.detailView addSubview:rightLine];
         
+        GrayLine *bottomLine;
+        if (i ==  0) {
+            bottomLine = [[GrayLine alloc] initWithFrame:CGRectMake(8,title.frame.origin.y +textHeight, _detailView.frame.size.width-16, .5)];
+            [self.detailView addSubview:bottomLine];
+        }
         // the width on the right
         CGFloat labelWidth = bottomLine.frame.size.width - title.frame.size.width;
         switch (i) {
@@ -138,9 +143,19 @@
                 
                 break;
             case 1:
-                self.contentField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+5 , title.frame.origin.y,labelWidth-30 , textHeight)];
-                self.contentField.placeholder = @"交通配置等";
+                self.contentField = [[UITextView alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x + 1, self.titelField.frame.origin.y+self.titelField.frame.size.height + 5,_detailView.frame.size.width - rightLine.frame.origin.x-10, textHeight*2)];
+                self.contentField.font = [UIFont systemFontOfSize:16];
+                self.contentField.returnKeyType = UIReturnKeyDone;
+                self.contentField.delegate = self;
+                self.contentField.text = @"交通配置等";
                 [_detailView addSubview:self.contentField];
+                
+                self.placeHoderText = [[CATextLayer alloc] init];
+                self.placeHoderText.frame = CGRectMake(rightLine.frame.origin.x+5, self.titelField.frame.origin.y+self.titelField.frame.size.height + 10,_detailView.frame.size.width - rightLine.frame.origin.x-10, textHeight*2);
+                self.placeHoderText.fontSize = 16;
+                self.placeHoderText.string = @"交通配置等";
+                self.placeHoderText.foregroundColor = [UIColor colorWithRed:0.733 green:0.733 blue:0.761 alpha:1.000].CGColor;
+                [_detailView.layer addSublayer:self.placeHoderText];
                 
                 break;
                 
@@ -154,6 +169,14 @@
     self.cameraView.delegate = self;
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     [_detailView addSubview:self.cameraView];
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length > 0) {
+        self.placeHoderText.hidden = YES;
+    }else{
+        self.placeHoderText.hidden = NO;
+    }
 }
 
 #pragma mark picker

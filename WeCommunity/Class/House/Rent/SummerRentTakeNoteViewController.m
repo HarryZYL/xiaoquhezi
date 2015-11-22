@@ -49,10 +49,14 @@
 
 - (void)cellBtnPhoneNow:(UIButton *)sender{
     NSIndexPath *index = [_mTableView indexPathForCell:(UITableViewCell *)[sender superview].superview];
-    NSLog(@"------>%d",index.row);
+
     NSDictionary *dicTemp = _arraryData[index.row];
     NSString *strPhone = [NSString stringWithFormat:@"telprompt://%@",[dicTemp[@"phone"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strPhone]];
+    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:strPhone]]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:strPhone]];
+    }else{
+        [self showHint:@"当前设备不支持打电话"];
+    }
 }
 
 //查询预约看房记录

@@ -16,6 +16,7 @@
 @property (nonatomic ,strong)UITextField *titelField;
 @property (nonatomic ,strong)UITextView *contentField;
 @property (nonatomic ,strong)CameraImageView *cameraView;
+@property (nonatomic ,strong)CATextLayer *placeHoderText;
 
 @end
 
@@ -80,9 +81,6 @@
     
     [self setupSubmitBtn:self.step];
     
-    self.chosenImages = [[NSMutableArray alloc] initWithCapacity:9];
-    self.chosenImagesSmall = [[NSMutableArray alloc] initWithCapacity:9];
-    
     self.houseTypeArr = @[@"普通住宅",@"商住两用",@"公寓",@"别墅",@"其他"];
     self.houseOrientationArr = @[@"东",@"西",@"南",@"北",@"东北",@"西北",@"东南",@"西南",@"东西",@"南北"];
     self.pickerStr = nil;
@@ -99,11 +97,12 @@
 
 - (void)initWithDetailView{
     CGFloat textHeight = 45;
-    GrayLine *fourthLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, 1)];
+    GrayLine *fourthLine = [[GrayLine alloc] initWithFrame:CGRectMake(0, 0, _detailView.frame.size.width, .5)];
     [_detailView addSubview:fourthLine];
     
     NSArray *fourthArray = @[@"标题",@"描述"];
-    
+    self.chosenImages = [[NSMutableArray alloc] init];
+    self.chosenImagesSmall = [[NSMutableArray alloc] init];
     
     for (int i = 0; i<2; i++) {
         UILabel *title = [[UILabel alloc] init];
@@ -131,12 +130,18 @@
                 break;
             case 1:
                 self.contentField = [[UITextView alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x + 1, self.titelField.frame.origin.y+self.titelField.frame.size.height + 5,_detailView.frame.size.width - rightLine.frame.origin.x-10, textHeight*2)];
-//                self.contentField.backgroundColor = [UIColor redColor];
+                
                 self.contentField.font = [UIFont systemFontOfSize:16];
+                self.contentField.returnKeyType = UIReturnKeyDone;
                 self.contentField.delegate = self;
-                self.contentField.text = @"交通配置等";
                 [_detailView addSubview:self.contentField];
                 
+                self.placeHoderText = [[CATextLayer alloc] init];
+                self.placeHoderText.frame = CGRectMake(rightLine.frame.origin.x+5, self.titelField.frame.origin.y+self.titelField.frame.size.height + 10,_detailView.frame.size.width - rightLine.frame.origin.x-10, textHeight*2);
+                self.placeHoderText.fontSize = 16;
+                self.placeHoderText.string = @"交通配置等";
+                self.placeHoderText.foregroundColor = [UIColor colorWithRed:0.733 green:0.733 blue:0.761 alpha:1.000].CGColor;
+                [_detailView.layer addSublayer:self.placeHoderText];
                 break;
                 
             default:
@@ -152,8 +157,12 @@
     [_detailView addSubview:self.cameraView];
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    textView.text = @"";
+- (void)textViewDidChange:(UITextView *)textView{
+    if (textView.text.length > 0) {
+        self.placeHoderText.hidden = YES;
+    }else{
+        self.placeHoderText.hidden = NO;
+    }
 }
 
 #pragma mark - cameraViewDelegate
@@ -290,7 +299,6 @@
             
             break;
         case 2:
-//            if (self.postView.titleField.text.length == 0 || self.postView.contentField.text.length ==0 || self.chosenImages.count == 0) {
             if (self.titelField.text.length == 0 || self.contentField.text.length ==0) {
                 [Util alertNetworingError:@"信息不完整"];
                 break;
