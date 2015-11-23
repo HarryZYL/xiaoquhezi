@@ -192,6 +192,7 @@
     
     UIImageView *selectImg = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-30, iconImg.frame.origin.y, 20, 20)];
     selectImg.image = [UIImage imageNamed:@"cell_selection_stype"];
+    selectImg.contentMode = UIViewContentModeCenter;
     [self addSubview:selectImg];
     //      设置地址
     UILabel *address = [[UILabel alloc] init];
@@ -243,6 +244,9 @@
     }
     cell.imageView.image = [UIImage imageNamed:_functionImage[indexPath.row]];
     cell.nameLab.text = _functionArray[indexPath.row];
+    if (indexPath.row == _functionArray.count - 1) {
+        cell.labLine.hidden = YES;
+    }
     return cell;
 }
 

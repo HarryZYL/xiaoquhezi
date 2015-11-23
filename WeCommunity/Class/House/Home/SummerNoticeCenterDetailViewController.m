@@ -276,25 +276,6 @@
     
 }
 
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
-//    NSIndexPath *ip = [self.mTableView indexPathForRowAtPoint:CGPointMake(0, targetContentOffset->y)];
-//    NSIndexPath *cip = [[self.mTableView indexPathsForVisibleRows] firstObject];
-//    NSInteger skipCount = 8;
-//    if (labs(cip.row-ip.row)>skipCount) {
-//        NSArray *temp = [self.mTableView indexPathsForRowsInRect:CGRectMake(0, targetContentOffset->y, SCREENSIZE.width, self.view.frame.size.height)];
-//        NSMutableArray *arr = [NSMutableArray arrayWithArray:temp];
-//        if (velocity.y<0) {
-//            NSIndexPath *indexPath = [temp lastObject];
-//            if (indexPath.row+33) {
-//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-3 inSection:0]];
-//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-2 inSection:0]];
-//                [arr addObject:[NSIndexPath indexPathForRow:indexPath.row-1 inSection:0]];
-//            }
-//        }
-//        [_needLoadArr addObjectsFromArray:arr];
-//    }
-//}
-
 - (void)summerNoticeDetailMoreClickWithData:(id)viewModel{
     UIView *viewDetailModel = (UIView *)viewModel;
     if (viewDetailModel.tag == 12) {

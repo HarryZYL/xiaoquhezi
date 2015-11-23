@@ -26,7 +26,7 @@
         _btnSell.tag = 2;
         [self addSubview:_btnSell];
         
-        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(3, frame.size.height/2, frame.size.width - 6, 1)];
+        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(3, frame.size.height/2, frame.size.width - 6, .5)];
         lineLab.backgroundColor = [UIColor whiteColor];
         [self addSubview:lineLab];
     }

@@ -43,10 +43,9 @@
     
     self.scollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
     self.scollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    self.scollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+10);
+    self.scollView.contentSize = CGSizeMake(self.view.frame.size.width, 780);
     [self.view addSubview:self.scollView];
     [self setupStepView:self.step];
-    
     
     switch (self.step) {
         case 0:
@@ -58,6 +57,11 @@
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,92)] ;
             self.postView.delegate = self;
             [self.postView setupSecondPart];
+            if (_houseDealType == SummerHouseDealTypeSale) {
+                self.postView.areaLabel.text = @"元";
+                UILabel *labPostView = (UILabel *)[self.postView viewWithTag:101];
+                labPostView.text = @"售价";
+            }
             break;
         case 2:
             self.detailView = [[UIView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,330 - 90)] ;
@@ -518,7 +522,7 @@
                                          };
             [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
                 
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             } addition:^{
                 [self.loadingView removeFromSuperview];
             }];
@@ -542,7 +546,7 @@
                                      @"price":self.houseData.price
                                      };
         [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
         } addition:^{
             [self.loadingView removeFromSuperview];
         }];

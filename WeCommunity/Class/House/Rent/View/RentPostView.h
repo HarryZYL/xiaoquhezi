@@ -41,6 +41,8 @@
 @property (nonatomic ,strong) UIButton *imageBtn;
 @property (nonatomic ,strong) CameraImageView *cameraView;
 
+@property (nonatomic ,strong) UILabel *areaLabel;
+
 -(void)setupFirstPart;
 -(void)setupSecondPart;
 -(void)setupThirdPart;

@@ -217,9 +217,11 @@
     for (int i=0; i<2; i++) {
         UILabel *title = [[UILabel alloc] init];
         title.frame = CGRectMake(10,thirdLine.frame.origin.y +thirdLine.frame.size.height + textHeight*i, 50, textHeight);
+        title.tag = 100 + i;
         title.textAlignment = NSTextAlignmentCenter;
         title.text = thirdArray[i];
         [self addSubview:title];
+        
         GrayLine *bottomLine = [[GrayLine alloc] initWithFrame:CGRectMake(8,title.frame.origin.y +textHeight, self.frame.size.width-16, 1)];
         [self addSubview:bottomLine];
         
@@ -247,9 +249,9 @@
                 break;
             case 1:
                 for (int j = 0; j<1; j++) {
-                    UILabel *areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-50, title.frame.origin.y, 50, textHeight)];
-                    areaLabel.text = @"元/月";
-                    [self addSubview:areaLabel];
+                     _areaLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.frame.size.width-50, title.frame.origin.y, 50, textHeight)];
+                    _areaLabel.text = @"元/月";
+                    [self addSubview:_areaLabel];
                 }
                 
                 self.priceField= [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x+10, title.frame.origin.y, bottomLine.frame.size.width - title.frame.size.width -60, textHeight)];

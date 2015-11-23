@@ -25,6 +25,8 @@
 -(UIImageView*)iconImage{
     if (!_iconImage) {
         _iconImage = [[UIImageView alloc] init];
+        _iconImage.contentMode = UIViewContentModeScaleAspectFill;
+        _iconImage.clipsToBounds = YES;
         [self.contentView addSubview:_iconImage];
     }
     return _iconImage;

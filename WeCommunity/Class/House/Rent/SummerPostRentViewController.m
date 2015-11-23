@@ -454,7 +454,7 @@
                 postVC.houseDeal.totalFloor  = self.postView.totalFloorField.text;
                 postVC.houseDeal.area        = self.houseDeal.area;
                 postVC.houseDeal.price       = self.houseDeal.price;
-                postVC.houseData.pictures    = self.houseData.pictures;
+                postVC.houseData.pictures    = [self.houseData.pictures copy];
                 postVC.houseDeal.houseOrientation = self.houseOrientation;
                 break;
             }
@@ -474,7 +474,7 @@
                 postVC.houseDeal.title = self.houseDeal.title;
                 postVC.houseDeal.content = self.houseDeal.content;
                 postVC.houseDeal.area = self.postView.areaField.text;
-                postVC.houseData.pictures    = self.houseData.pictures;
+                postVC.houseData.pictures    = [self.houseData.pictures copy];
                 postVC.houseDeal.price = self.postView.priceField.text;
             }
             
@@ -533,8 +533,7 @@
                                          @"price":self.houseDeal.price
                                          };
             [Networking retrieveData:get_HOUSE_DETAIL_EDITE parameters:parameters success:^(id responseObject) {
-                
-                [self.navigationController popToRootViewControllerAnimated:YES];
+                [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             } addition:^{
                 [self.loadingView removeFromSuperview];
             }];
@@ -558,7 +557,7 @@
                                      @"price":self.houseDeal.price
                                      };
         [Networking retrieveData:get_HOUSE_DETAIL_EDITE parameters:parameters success:^(id responseObject) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
         } addition:^{
             [self.loadingView removeFromSuperview];
         }];
