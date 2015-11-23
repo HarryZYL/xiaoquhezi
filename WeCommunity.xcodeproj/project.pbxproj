@@ -103,7 +103,6 @@
 		4AD126201BAB05ED0017B220 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AD1261F1BAB05ED0017B220 /* Util.m */; };
 		4AD3DFAA1B731E4B007F51E0 /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AD3DFA91B731E4B007F51E0 /* Setting.plist */; };
 		4ADDB9851B5D235F002A188E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB9841B5D235F002A188E /* main.m */; };
-		4ADDB98E1B5D235F002A188E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ADDB98C1B5D235F002A188E /* Main.storyboard */; };
 		4ADDB9901B5D235F002A188E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ADDB98F1B5D235F002A188E /* Images.xcassets */; };
 		4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ADDB9911B5D235F002A188E /* LaunchScreen.xib */; };
 		4ADDB99F1B5D235F002A188E /* WeCommunityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB99E1B5D235F002A188E /* WeCommunityTests.m */; };
@@ -229,6 +228,7 @@
 		D4E8D62B1BEE647E00B41223 /* SummerPostRentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8D62A1BEE647E00B41223 /* SummerPostRentViewController.m */; };
 		D4E8F91E1BE5FBA000E2338C /* SummerPaymentListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */; };
 		D4E8F9201BE623F100E2338C /* SummerInputPhoneNumber.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */; };
+		D4F8F2AF1C037334007E2B23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F8F2AE1C037334007E2B23 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -427,7 +427,6 @@
 		4ADDB97F1B5D235F002A188E /* 小区盒子.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "小区盒子.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDB9831B5D235F002A188E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ADDB9841B5D235F002A188E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4ADDB98D1B5D235F002A188E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4ADDB98F1B5D235F002A188E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4ADDB9921B5D235F002A188E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4ADDB9981B5D235F002A188E /* WeCommunityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCommunityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -717,6 +716,7 @@
 		D4E8F91C1BE5FBA000E2338C /* SummerPaymentListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPaymentListModel.h; path = HomeModel/SummerPaymentListModel.h; sourceTree = "<group>"; };
 		D4E8F91D1BE5FBA000E2338C /* SummerPaymentListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPaymentListModel.m; path = HomeModel/SummerPaymentListModel.m; sourceTree = "<group>"; };
 		D4E8F91F1BE623F100E2338C /* SummerInputPhoneNumber.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerInputPhoneNumber.xib; sourceTree = "<group>"; };
+		D4F8F2AE1C037334007E2B23 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -785,7 +785,7 @@
 		4A118DD81BA48FFC00BC2C4E /* Other   */ = {
 			isa = PBXGroup;
 			children = (
-				4ADDB98C1B5D235F002A188E /* Main.storyboard */,
+				D4F8F2AE1C037334007E2B23 /* Main.storyboard */,
 				4A118DD91BA48FFC00BC2C4E /* AppDelegate.h */,
 				4A118DDA1BA48FFC00BC2C4E /* AppDelegate.mm */,
 				D48C26BC1BFEF935004F99CC /* SummerTabBarViewController.h */,
@@ -1906,7 +1906,6 @@
 				D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */,
 				D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */,
 				D4AC4C081BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.xib in Resources */,
-				4ADDB98E1B5D235F002A188E /* Main.storyboard in Resources */,
 				D42BB12E1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib in Resources */,
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D452F2481BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.xib in Resources */,
@@ -1920,6 +1919,7 @@
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,
 				4AD3DFAA1B731E4B007F51E0 /* Setting.plist in Resources */,
+				D4F8F2AF1C037334007E2B23 /* Main.storyboard in Resources */,
 				4ADDB9901B5D235F002A188E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2175,15 +2175,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4ADDB98C1B5D235F002A188E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4ADDB98D1B5D235F002A188E /* Base */,
-			);
-			name = Main.storyboard;
-			path = ../..;
-			sourceTree = "<group>";
-		};
 		4ADDB9911B5D235F002A188E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2281,8 +2272,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2323,7 +2314,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2335,9 +2326,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2378,7 +2369,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

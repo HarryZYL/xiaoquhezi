@@ -26,8 +26,8 @@
     [self customizeUserInterface];
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
-    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+//    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
+//    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
     
 
     return YES;

@@ -38,7 +38,7 @@
     numberPage = 1;
     
     dicNotice = [[NSMutableDictionary alloc] init];
-    self.arraryData = [[NSMutableArray alloc] init];
+    _arraryData = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
     
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
@@ -123,9 +123,6 @@
 }
 
 - (void)getReceveData{
-    if (_arraryData.count) {
-        [_arraryData removeAllObjects];
-    }
     numberPage = 1;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"加载中";
@@ -134,8 +131,10 @@
     [Networking retrieveData:GET_NOTICE_REPLIS parameters:@{@"id": self.strNoticeID,
                                                             @"page":[NSNumber numberWithInteger:numberPage],
                                                             @"row":@"30"}success:^(id responseObject) {
-                                                                [weakSelf.mTableView.mj_header endRefreshing];
+        [weakSelf.mTableView.mj_header endRefreshing];
         [hud removeFromSuperview];
+        [weakSelf.arraryData removeAllObjects];
+                                                                
         NSMutableArray *arraryTemp = [[NSMutableArray alloc] init];
         for (NSDictionary *dicTemp in responseObject[@"rows"]) {
             if ([dicTemp[@"parentId"] isEqual:[NSNull null]]) {
@@ -243,11 +242,11 @@
         }
         heightCell += 25 + 10;
     }
-    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
-        if ([noticModel.detailNoticeModel.pictures count] > 0) {
-            heightCell += 70 + 8;
-        }
-    }
+//    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
+//        if ([noticModel.detailNoticeModel.pictures count] > 0) {
+//            heightCell += 70 + 8;
+//        }
+//    }
     return heightCell + 33;
     
 }
@@ -298,6 +297,11 @@
 #pragma mark - 输入框，选择图片资源
 
 - (void)btnSelectedImageViews:(UIButton *)sender{
+    __weak typeof(self)weakSelf = self;
+    if (self.chosenImages.count == 3) {
+        [weakSelf showHint:@"只能选择三张"];
+        return;
+    }
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
     picker.maximumNumberOfSelectionMedia = 3 - self.chosenImages.count;
@@ -311,9 +315,6 @@
     {
         [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             ALAsset *representation = obj;
-            if (self.chosenImages.count >= 3) {
-                [self showHint:@"只能选择四张图片"];
-            }
             UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
                                                scale:representation.defaultRepresentation.scale
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
@@ -342,7 +343,7 @@
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
     if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
-        self.summerInputView.btnSenderMessage.enabled = NO;
+//        self.summerInputView.btnSenderMessage.enabled = NO;
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"上传中";
         hud.dimBackground = YES;
@@ -371,7 +372,7 @@
                                                                    [hud removeFromSuperview];
                                                                    [self showHint:@"评论成功"];
                                                                    self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                   self.summerInputView.btnSenderMessage.enabled = NO;
+//                                                                   self.summerInputView.btnSenderMessage.enabled = NO;
                                                                    self.summerInputView.summerInputView.text = nil;
                                                                    [self getReceveData];
                                                                }];
@@ -390,7 +391,7 @@
                                                                        self.summerInputView.summerInputLabNumbers.hidden = YES;
                                                                        self.summerInputView.summerInputLabNumbers.text = 0;
                                                                        self.summerInputView.summerInputView.text = nil;
-                                                                       self.summerInputView.btnSenderMessage.enabled = NO;
+//                                                                       self.summerInputView.btnSenderMessage.enabled = NO;
                                                                        [self getReceveData];
                                                                    }];
         }];

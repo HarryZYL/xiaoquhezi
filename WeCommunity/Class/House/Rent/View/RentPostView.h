@@ -20,7 +20,7 @@
 
 @end
 
-@interface RentPostView : UIView
+@interface RentPostView : UIView<UITextFieldDelegate>
 
 @property (nonatomic ,weak) id delegate;
 

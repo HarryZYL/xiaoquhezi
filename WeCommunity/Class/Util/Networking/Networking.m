@@ -89,7 +89,7 @@
     }
     
     NSDictionary *parameters = nil;
-    [manager POST:uploadImage parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [manager POST:upload_Images parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         for (int i = 0 ; i<imageDataArr.count; i++) {
             NSData *imageData = imageDataArr[i];

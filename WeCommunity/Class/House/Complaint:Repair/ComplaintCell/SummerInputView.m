@@ -20,10 +20,10 @@
         self.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         self.backgroundColor = [UIColor colorWithWhite:0.949 alpha:1.000];
         
-        self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.btnAddImg.frame = CGRectMake(15, 11, 25, 25);
-        [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
-        [self addSubview:self.btnAddImg];
+//        self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
+//        self.btnAddImg.frame = CGRectMake(15, 11, 25, 25);
+//        [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
+//        [self addSubview:self.btnAddImg];
         
         self.summerInputLabNumbers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
         self.summerInputLabNumbers.textAlignment = NSTextAlignmentCenter;
@@ -34,7 +34,8 @@
         self.summerInputLabNumbers.textColor = [UIColor whiteColor];
         [self addSubview:self.summerInputLabNumbers];
         
-        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
+//        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
+        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(15, 8, SCREENSIZE.width - 70, 34)];
         self.summerInputView.placeholder = @"添加评论....";
         [self.summerInputView addTarget:self action:@selector(summerInputViewChanges:) forControlEvents:UIControlEventEditingChanged];
         self.summerInputView.delegate = self;

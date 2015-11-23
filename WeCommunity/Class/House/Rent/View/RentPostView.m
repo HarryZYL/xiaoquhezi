@@ -206,6 +206,13 @@
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if ([string isEqualToString:@" "]) {
+        return nil;
+    }
+    return YES;
+}
+
 -(void)setupSecondPart{
     CGFloat textHeight = 45;
     // third part

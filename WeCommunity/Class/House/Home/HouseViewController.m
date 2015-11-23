@@ -40,6 +40,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {
+//        SummerLoadingPageViewController *loadingPageVC = [[SummerLoadingPageViewController alloc] init];
+//        [self presentViewController:loadingPageVC animated:NO completion:nil];
+//    }
+    
     barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     User *userInfo = [[User alloc] initWithData];
     [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
@@ -62,12 +67,7 @@
     // Do any additional setup after loading the view.
 }
 
-
 -(void)viewWillAppear:(BOOL)animated{
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {
-        SummerLoadingPageViewController *loadingPageVC = [[SummerLoadingPageViewController alloc] init];
-        [self presentViewController:loadingPageVC animated:NO completion:nil];
-    }
     if (![User judgeLogin]) {
         UserLoginViewController *loginVC = [[UserLoginViewController alloc] init];
         loginVC.function = @"login";

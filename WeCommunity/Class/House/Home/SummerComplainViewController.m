@@ -130,12 +130,7 @@
     if (indexPath.section == 0) {
         CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]];
         if ([_complainModel.pictures isEqual:[NSNull null]] || [_complainModel.pictures.firstObject length] < 5) {
-            if (rectHeight>30) {
-                return rectHeight + 77;
-            }else{
-                return 40 + rectHeight;
-            }
-            
+            return 77 + rectHeight;
         }
         headerViewHeight = 70 + (_complainModel.pictures.count/3 + 1) * 80 + rectHeight;
         return headerViewHeight;
