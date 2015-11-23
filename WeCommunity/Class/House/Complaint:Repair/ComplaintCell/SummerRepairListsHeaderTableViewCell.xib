@@ -88,14 +88,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报修人：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SbK-6F-yRi">
-                                <rect key="frame" x="15" y="6" width="273" height="18"/>
+                                <rect key="frame" x="5" y="6" width="273" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wHw-Us-J41">
-                                <rect key="frame" x="15" y="30" width="273" height="18"/>
+                                <rect key="frame" x="5" y="30" width="273" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -152,7 +152,7 @@
                 <outlet property="cellTitleImageView" destination="NhI-34-1TS" id="BOt-pj-IlJ"/>
                 <outlet property="cellTitleName" destination="yQN-k3-rvY" id="45d-Os-uVx"/>
             </connections>
-            <point key="canvasLocation" x="-328" y="53.5"/>
+            <point key="canvasLocation" x="-653" y="98.5"/>
         </tableViewCell>
     </objects>
 </document>

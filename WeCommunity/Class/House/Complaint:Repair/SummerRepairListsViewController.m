@@ -75,19 +75,20 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    CGFloat contentHeight = [Util getHeightForString:[_detailTextModel.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 20 font:[UIFont systemFontOfSize:15]];
+    CGFloat contentHeight = [Util getHeightForString:_detailTextModel.content width:SCREENSIZE.width - 30 font:[UIFont systemFontOfSize:15]] + 60;
     
     if (![_detailTextModel.pictures isEqual:[NSNull null]]) {
-        if (_detailTextModel.pictures.count > 0) {
-            if (_detailTextModel.pictures.count > 4) {
-                contentHeight = 100 + 60;
+        if (_detailTextModel.pictures.count > 0 && [_detailTextModel.pictures.firstObject length] > 5) {
+            if (_detailTextModel.pictures.count >= 4) {
+                contentHeight += 160;
             }else{
-                contentHeight = 120;
+                contentHeight += 100;
             }
         }
+        
     }
     
-    return contentHeight + 200;
+    return contentHeight + 55 + 67 + 40;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
