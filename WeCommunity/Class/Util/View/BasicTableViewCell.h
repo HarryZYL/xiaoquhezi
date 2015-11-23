@@ -20,6 +20,9 @@
 @property (nonatomic,strong) GrayLine *grayLine;
 @property (nonatomic,strong) GrayLine *grayLine2;
 @property (nonatomic,strong) UIImageView *dealImage;
+@property (nonatomic,strong) UIButton *cellAccreditationBtn;
+@property (nonatomic,copy)   void(^ButtonReturn)();
+
 @property (nonatomic,strong) UIImageView *commentImage;
 @property (nonatomic,strong) UILabel *commentLabel;
 @property (nonatomic,strong) UILabel *userLabel;

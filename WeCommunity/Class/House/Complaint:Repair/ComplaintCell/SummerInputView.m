@@ -56,6 +56,7 @@
 
 - (void)summerInputViewChanges:(UITextField *)textField{
     if (textField.text.length == 0) {
+        self.btnSenderMessage.frame = CGRectMake(SCREENSIZE.width - 50, 0, 50, 50);
         self.btnAddImg.hidden = NO;
     }
 }

@@ -19,7 +19,7 @@
 }
 @property (nonatomic ,strong) NSMutableArray *chosenImages;
 @property (nonatomic ,strong) NSMutableArray *arraryData;
-@property (nonatomic ,strong) TextDeal *complainModel;
+
 @property (nonatomic ,strong) NSMutableArray *photos;
 @end
 
@@ -107,7 +107,7 @@
                                                             @"token":[User getUserToken],}success:^(id responseObject) {
                                                                 [hud removeFromSuperview];
                                                                 [weakSelf.mTableView.mj_header endRefreshing];
-                                                                _complainModel = [[TextDeal alloc] initWithData:responseObject textType:@"complaint"];
+//                                                                _complainModel = [[TextDeal alloc] initWithData:responseObject textType:@"complaint"];
                                                                 [weakSelf.mTableView reloadData];
                                                             }];
 }
@@ -128,11 +128,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 50 font:[UIFont systemFontOfSize:15]];
-        if ([_complainModel.pictures isEqual:[NSNull null]]) {
-            return 61 + rectHeight;
+        CGFloat rectHeight = [Util getHeightForString:_complainModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]];
+        if ([_complainModel.pictures isEqual:[NSNull null]] || [_complainModel.pictures.firstObject length] < 5) {
+            if (rectHeight>30) {
+                return rectHeight + 77;
+            }else{
+                return 40 + rectHeight;
+            }
+            
         }
-        headerViewHeight = 70 + (_complainModel.pictures.count/4 + 1) * 70 + rectHeight;
+        headerViewHeight = 70 + (_complainModel.pictures.count/3 + 1) * 80 + rectHeight;
         return headerViewHeight;
     }
     TextDeal *noticModel = _arraryData[indexPath.row];

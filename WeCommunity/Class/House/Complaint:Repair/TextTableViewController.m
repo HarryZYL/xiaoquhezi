@@ -149,6 +149,7 @@
     if ([self.function isEqualToString:@"complaint"]) {
         SummerComplainViewController *complaintVC = [[SummerComplainViewController alloc] init];
         complaintVC.strDetailID = textVC.textDeal.Objectid;
+        complaintVC.complainModel = [[TextDeal alloc] initWithData:self.dataArray[indexPath.section] textType:self.function];
         complaintVC.title = @"投诉详情";
         [self.navigationController pushViewController:complaintVC animated:YES];
     }else if([self.function isEqualToString:@"repair"]){

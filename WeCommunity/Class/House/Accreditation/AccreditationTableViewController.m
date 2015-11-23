@@ -70,9 +70,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    
     [cell configureAccreditationCell:self.dataArray[indexPath.row]];
-
+//    [cell ];
     
     return cell;
 }

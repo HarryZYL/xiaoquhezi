@@ -103,6 +103,14 @@
     return _dealImage;
 }
 
+- (UIButton *)cellAccreditationBtn{
+    if (!_cellAccreditationBtn) {
+        _cellAccreditationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.contentView addSubview:_cellAccreditationBtn];
+    }
+    return _cellAccreditationBtn;
+}
+
 -(UIImageView*)commentImage{
     if (!_commentImage) {
         _commentImage = [[UIImageView alloc] init];
@@ -229,24 +237,35 @@
     [self.dateLabel grayColorStyle:15];
     self.dateLabel.text = accreditation.applyTime;
     
+    //deal
+    self.cellAccreditationBtn.frame = CGRectMake(self.contentView.frame.size.width - 100, self.grayLine.frame.origin.y, 80, textHeight+10);
+    [self.cellAccreditationBtn configureButtonTitle:@"再次认证" backgroundColor:nil];
+    [self.cellAccreditationBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
+//    [self.cellAccreditationBtn addTarget:self action:@selector(btnReAuthWithSelf:) forControlEvents:UIControlEventTouchUpInside];
+    self.cellAccreditationBtn.hidden = YES;
     // deal image
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
     
     if ([data[@"auditStatus"] isEqualToString:@"Pending"]) {
         self.dealImage.image = [UIImage imageNamed:@"deal"];
     }else if([data[@"auditStatus"] isEqualToString:@"Handling"]){
-
         self.dealImage.image = [UIImage imageNamed:@"dealing"];
     }else if ([data[@"auditStatus"] isEqualToString:@"Success"]){
         self.dealImage.image = [UIImage imageNamed:@"dealed"];
-        
     }else {
         self.dealImage.image = [UIImage imageNamed:@"认证-失败-0"];
+//        self.cellAccreditationBtn.hidden = NO;
     }
 
     [self setCellStyle];
     self.selectionStyle = NO;
 }
+
+//- (void)btnReAuthWithSelf:(UIButton *)sender{
+//    if (_ButtonReturn) {
+//        _ButtonReturn();
+//    }
+//}
 
 //-(UILabel*)setLabel:(UILabel*)label{
 //    label.font = [UIFont fontWithName:fontName size:15];

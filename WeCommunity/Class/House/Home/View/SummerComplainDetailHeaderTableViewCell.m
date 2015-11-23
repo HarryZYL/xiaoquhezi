@@ -60,7 +60,11 @@
 - (void)confirmCellInformationWithData:(TextDeal *)dicTemp withHeightHeaderView:(CGFloat)headerView{
     [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     self.cellHeaderName.text = dicTemp.creatorInfo.nickName;
-    self.cellHeaderContent.text = dicTemp.content;
+    
+    CGFloat heightContent = [Util getHeightForString:[dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]];
+    self.cellHeaderContent.text = [dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    self.cellHeaderContent.frame = CGRectMake(60, 31, SCREENSIZE.width - 70, heightContent);
     
     self.cellHeaderTime.frame = CGRectMake(60, headerView - 20, SCREENSIZE.width - 100, 15);
     self.cellHeaderReplayBtn.frame = CGRectMake(SCREENSIZE.width - 64, headerView - 26, 64, 26);
@@ -71,17 +75,24 @@
         UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
         imgViewInfo.frame = CGRectZero;
     }
-    if ([dicTemp.pictures isEqual:[NSNull null]]) {
+    if ([dicTemp.pictures isEqual:[NSNull null]]||[dicTemp.pictures.firstObject length]<5) {
+        self.cellHeaderTime.frame = CGRectMake(60, self.cellHeaderContent.frame.origin.y + self.cellHeaderContent.frame.size.height+ 7, SCREENSIZE.width - 80, 15);
+        self.cellHeaderReplayBtn.frame = CGRectMake(SCREENSIZE.width - 84, self.cellHeaderTime.frame.origin.y + 8, 64, 26);
+        
         return;
     }
     
-    if (dicTemp.pictures.count > 0) {
+    if (dicTemp.pictures.count > 0 && [dicTemp.pictures.firstObject length] > 5) {
         for (int indexPath = 0; indexPath < dicTemp.pictures.count; indexPath ++) {
             UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
             [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.pictures[indexPath]]];
-            CGFloat xRow = 60 + (10 + IMG_WIDTH) * (indexPath%4);
-            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 8 + (IMG_WIDTH + 8) * (indexPath/4);
+            CGFloat xRow = 60 + (20 + IMG_WIDTH) * (indexPath%3);
+            CGFloat yRow = _cellHeaderContent.frame.origin.y + _cellHeaderContent.frame.size.height + 8 + (IMG_WIDTH + 8) * (indexPath/3);
             imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
+            if (indexPath == dicTemp.pictures.count - 1) {
+                self.cellHeaderTime.frame = CGRectMake(60, imgViewInfo.frame.origin.y + imgViewInfo.frame.size.height+ 7, SCREENSIZE.width - 80, 15);
+                self.cellHeaderReplayBtn.frame = CGRectMake(SCREENSIZE.width - 84, self.cellHeaderTime.frame.origin.y + 8, 64, 26);
+            }
         }
     }
     
