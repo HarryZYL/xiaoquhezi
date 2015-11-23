@@ -202,9 +202,9 @@
     if(dict == nil){
         //错误提示
         NSString *debug = [req getDebugifo];
-        
-        [self alert:@"提示信息" msg:debug];
-        
+        if (debug.length > 3) {
+            [self alert:@"提示信息" msg:debug];
+        }
         NSLog(@"%@\n\n",debug);
     }else{
         NSLog(@"%@\n\n",[req getDebugifo]);
@@ -245,7 +245,10 @@
         [self performSelector:@selector(removeLoadinView) withObject:nil afterDelay:5];
     }else{
         PayResp*resp = [anotification.userInfo objectForKey:@"WXReturnModel"];
-        [self showHint:resp.errStr];
+        if ([resp.errStr length] > 3) {
+            [self showHint:resp.errStr];
+        }
+        
     }
 }
 
