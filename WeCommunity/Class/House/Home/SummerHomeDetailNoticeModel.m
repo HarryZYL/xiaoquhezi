@@ -15,7 +15,7 @@
         self.articleId = dicTemp[@"articleId"];
         self.childrenCount = dicTemp[@"childrenCount"];
         self.content = dicTemp[@"content"];
-        self.createTime = dicTemp[@"createTime"];
+        self.createTime = [dicTemp[@"createTime"] stringValue];
         self.creator = dicTemp[@"creator"];
         self.creatorInFo = [[creatorInfo alloc] initWithData:dicTemp[@"creatorInfo"]];
         self.objectID = [NSString stringWithFormat:@"%@",dicTemp[@"id"]];

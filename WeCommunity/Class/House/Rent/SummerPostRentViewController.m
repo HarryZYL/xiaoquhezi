@@ -454,6 +454,7 @@
                 postVC.houseDeal.totalFloor  = self.postView.totalFloorField.text;
                 postVC.houseDeal.area        = self.houseDeal.area;
                 postVC.houseDeal.price       = self.houseDeal.price;
+                postVC.houseData.pictures    = self.houseData.pictures;
                 postVC.houseDeal.houseOrientation = self.houseOrientation;
                 break;
             }
@@ -473,6 +474,7 @@
                 postVC.houseDeal.title = self.houseDeal.title;
                 postVC.houseDeal.content = self.houseDeal.content;
                 postVC.houseDeal.area = self.postView.areaField.text;
+                postVC.houseData.pictures    = self.houseData.pictures;
                 postVC.houseDeal.price = self.postView.priceField.text;
             }
             

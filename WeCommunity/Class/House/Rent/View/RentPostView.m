@@ -126,7 +126,7 @@
                 self.floorField.placeholder = @"楼层数";
                 [self addSubview:self.floorField];
                 
-                self.totalFloorField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x +(bottomLine.frame.size.width - title.frame.size.width)/2 + 13, title.frame.origin.y, labelWidth/2 -30, textHeight)];
+                self.totalFloorField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x +(bottomLine.frame.size.width - title.frame.size.width)/2 + 18, title.frame.origin.y, labelWidth/2 -30, textHeight)];
                 self.totalFloorField.keyboardType = UIKeyboardTypeNumberPad;
                 self.totalFloorField.textAlignment = NSTextAlignmentLeft;
                 self.totalFloorField.delegate = self;

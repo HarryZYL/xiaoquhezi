@@ -27,6 +27,17 @@ static int row = 15;
 + (MWPhotoBrowser*)fullImageSetting:(MWPhotoBrowser*)browser;
 +(void)alertNetworingError:(NSString*)msg;
 +(CGFloat)getHeightForString:(NSString*)message width:(CGFloat)width font:(UIFont*)font;
+/**
+ *   定义行间距的高度
+ *
+ *  @param message    内容
+ *  @param width      宽度
+ *  @param font       字体大小
+ *  @param floatSpace 行间距
+ *
+ *  @return 返回高度
+ */
++ (CGFloat)getHeightForString:(NSString *)message width:(CGFloat)width font:(UIFont *)font withLineSpace:(CGFloat)floatSpace;
 +(CGFloat)getWidthForString:(NSString*)message font:(UIFont*)font;
 +(id)modifyArray:(id)data;
 +(NSString*)translateOrientation:(NSString*)index En:(BOOL)english;

@@ -472,9 +472,10 @@
     self.commentImage.frame = CGRectMake(self.frame.size.width-60, self.dateLabel.frame.origin.y, 20, 20);
     self.commentImage.image = [UIImage imageNamed:@"comment"];
     
-    self.commentLabel.frame = CGRectMake(self.commentImage.frame.origin.x+30, self.commentImage.frame.origin.y, 50, 20);
+    self.commentLabel.frame = CGRectMake(self.frame.size.width - 40, self.dateLabel.frame.origin.y, 30, 20);
     self.commentLabel.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
     self.commentLabel.font = [UIFont systemFontOfSize:14];
+    self.commentLabel.textAlignment = NSTextAlignmentRight;
     self.commentLabel.text = [NSString stringWithFormat:@"%@", replyCount];
     
 }

@@ -18,9 +18,11 @@
 - (void)confirmTableViewHeaderViewWithData:(TextDeal *)dicTemp{
     [self.cellTitleImageView sd_setImageWithURL:dicTemp.textType[@"logo"] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     self.cellTitleName.text = [NSString stringWithFormat:@"%@",dicTemp.textType[@"name"]];
-    CGFloat contentHeight = [Util getHeightForString:[dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 20 font:[UIFont systemFontOfSize:15]];
-    self.cellImagesView.frame = CGRectMake(10, 60, SCREENSIZE.width - 20, contentHeight + 10);
-    self.cellContentLab.frame = CGRectMake(5, 5, SCREENSIZE.width - 30, contentHeight);
+    
+    CGFloat contentHeight = [Util getHeightForString:[dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 30 font:[UIFont systemFontOfSize:15]];
+    self.cellImagesView.frame = CGRectMake(10, 60, SCREENSIZE.width - 20, contentHeight + 15);
+    
+    self.cellContentLab.frame = CGRectMake(5, 0, SCREENSIZE.width - 30, contentHeight);
     
     self.cellContentLab.text = [dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
@@ -58,8 +60,8 @@
     
     
     self.cellRepairTakeNote.frame = CGRectMake(10, self.cellRepairManView.frame.origin.y + self.cellRepairManView.frame.size.height + 10, SCREENSIZE.width - 20, 80);
-    self.cellTakeNoteLab.text = [NSString stringWithFormat:@"维修记录"];
-    
+    self.cellTakeNoteLab.text = [NSString stringWithFormat:@"维修记录\n%@",dicTemp.createTime];
+    self.cellTakeNoteLab.frame = CGRectMake(10, 8, self.cellRepairTakeNote.frame.size.width - 20, 80);
     self.cellLineLab.frame = CGRectMake(0, self.cellRepairManView.frame.size.height/2, self.cellRepairManView.frame.size.width, .5);
 }
 

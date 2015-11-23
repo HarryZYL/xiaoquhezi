@@ -70,7 +70,7 @@
         [self.functionView setupFunctionViewFirst:@"服务" title1:@"服务" Second:@"绿化" title2:@"环境绿化" Third:@"报修" title3:@"设备保养" Fourth:@"保安" title4:@"治安秩序" Fifth:@"保洁" title5:@"保洁服务" Sixth:@"其他" title6:@"其他"];
 
     }else if([self.function isEqualToString:@"repair"]) {
-        [self.functionView setupFunctionViewFirst:@"房屋维修" title1:@"公共设施" Second:@"公共设施" title2:@"房屋维修" Third:nil title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
+        [self.functionView setupFunctionViewFirst:@"房屋维修" title1:@"房屋维修" Second:@"公共设施" title2:@"公共设施" Third:nil title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil ];
     }
     
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(chosen:) forControlEvents:UIControlEventTouchUpInside];
@@ -156,11 +156,12 @@
         [bgAddressView addSubview:labAddress];
         
         btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnAddress.frame = bgAddressView.frame;
-        [btnAddress leftStyle];
+        btnAddress.frame = CGRectMake(0, 0, bgContentView.frame.size.width, 45);
         
+        btnAddress.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [btnAddress addTarget:self action:@selector(btnSelectRoom) forControlEvents:UIControlEventTouchUpInside];
         [btnAddress roundRect];
+//        [btnAddress setBackgroundColor:[UIColor redColor]];
         [btnAddress setTitleColor:FONT_COLOR forState:UIControlStateNormal];
         [bgAddressView addSubview:btnAddress];
         

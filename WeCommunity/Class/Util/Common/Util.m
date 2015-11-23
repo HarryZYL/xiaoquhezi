@@ -113,6 +113,17 @@
     return ceil(describe.size.height);
 }
 
++ (CGFloat)getHeightForString:(NSString *)message width:(CGFloat)width font:(UIFont *)font withLineSpace:(CGFloat)floatSpace{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:floatSpace];
+    NSMutableAttributedString *attribute = [[NSMutableAttributedString alloc] initWithString:message];
+    [attribute addAttribute:NSPaperSizeDocumentAttribute value:paragraphStyle range:NSMakeRange(0, attribute.length - 1)];
+    [attribute addAttributes:@{NSFontAttributeName: font} range:NSMakeRange(0, attribute.length - 1)];
+    CGRect describe = [message boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX) options:(NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin) attributes:@{NSFontAttributeName: font} context:nil];
+    
+    return describe.size.height;
+}
+
 +(CGFloat)getWidthForString:(NSString*)message font:(UIFont*)font{
     CGSize stringsize = [message sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
     return stringsize.width;

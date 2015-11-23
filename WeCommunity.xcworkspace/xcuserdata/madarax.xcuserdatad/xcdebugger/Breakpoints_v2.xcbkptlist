@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "WeCommunity/Class/House/Complaint:Repair/TextPostViewController.m"
-            timestampString = "469890527.287837"
+            timestampString = "469937940.789381"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "349"
+            endingLineNumber = "349"
             landmarkName = "-uploadInfo:"
             landmarkType = "5">
             <Locations>
@@ -74,6 +74,22 @@
             startingLineNumber = "40"
             endingLineNumber = "40"
             landmarkName = "-nextViewController"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WeCommunity/Class/House/Rent/SummerPostRentViewController.m"
+            timestampString = "469934227.05373"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "488"
+            endingLineNumber = "488"
+            landmarkName = "-nextStep"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

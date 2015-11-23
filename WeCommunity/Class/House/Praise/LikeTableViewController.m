@@ -81,9 +81,9 @@
     }else{
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
         if (![like.pictures isEqual:[NSNull null]]) {
-            return 152;
+            return 152 + 10;
         }else{
-            return 100;
+            return 100 + 10;
         }
     }
     

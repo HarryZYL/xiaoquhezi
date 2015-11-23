@@ -19,7 +19,7 @@
 
 @property (nonatomic ,weak)IBOutlet UIImageView *cellTitleImg;
 @property (nonatomic ,weak)IBOutlet UILabel *cellNameLab;
-
+@property (nonatomic ,weak)IBOutlet UILabel *cellTimeLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellContenLab;
 
 @property (nonatomic ,weak)IBOutlet UIButton *cellFloorBtn;

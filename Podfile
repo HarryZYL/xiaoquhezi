@@ -7,7 +7,6 @@ pod "AFNetworking", "~> 2.0"
 pod 'JSONKit', '~> 1.5pre'
 pod 'Masonry', '~> 0.6.3'
 pod 'Pgyer'
-pod 'PgyUpdate'
 pod 'MBProgressHUD'
 pod 'UITableView+FDTemplateLayoutCell', '~> 1.4.beta'
 pod 'DOPDropDownMenu-Enhanced', '~> 1.0.0'

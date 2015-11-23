@@ -216,7 +216,7 @@
         return 0;
     }
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:17]] + 17;
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:17]] + 17 + 15;
     
     if (noticModel.detailNoticeModel.childrenCount.integerValue <= 2) {
         for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
@@ -241,7 +241,7 @@
             }
             heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]];
         }
-        heightCell += 45;
+        heightCell += 25 + 10;
     }
     if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         if ([noticModel.detailNoticeModel.pictures count] > 0) {

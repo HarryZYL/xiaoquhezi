@@ -26,10 +26,9 @@
     [self customizeUserInterface];
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-
-    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"1b3770561745742362df33e9c96817b2"];
-//    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"1b3770561745742362df33e9c96817b2"];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
+    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+    
 
     return YES;
 }
@@ -71,16 +70,6 @@
         UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
     }
-//    else//杀死状态下，直接跳转到跳转页面。
-//    {
-//        SkipViewController *skipCtr = [[SkipViewController alloc]init];
-//        // 根视图是nav 用push 方式跳转
-//        [_tabBarCtr.selectedViewController pushViewController:skipCtr animated:YES];
-//        /*
-//         // 根视图是普通的viewctr 用present跳转
-//         [_tabBarCtr.selectedViewController presentViewController:skipCtr animated:YES completion:nil]; */
-//    }
-//    [self.viewController addLogString:[NSString stringWithFormat:@"backgroud : %@",userInfo]];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

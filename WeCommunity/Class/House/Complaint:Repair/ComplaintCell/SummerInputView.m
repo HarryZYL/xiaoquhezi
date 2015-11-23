@@ -8,6 +8,10 @@
 
 #import "SummerInputView.h"
 
+@interface SummerInputView ()<UITextFieldDelegate>
+
+@end
+
 @implementation SummerInputView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -32,6 +36,8 @@
         
         self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
         self.summerInputView.placeholder = @"添加评论....";
+        [self.summerInputView addTarget:self action:@selector(summerInputViewChanges:) forControlEvents:UIControlEventEditingChanged];
+        self.summerInputView.delegate = self;
         self.summerInputView.borderStyle = UITextBorderStyleRoundedRect;
         [self addSubview:self.summerInputView];
         
@@ -46,6 +52,12 @@
         [self addSubview:self.viewWithImg];
     }
     return self;
+}
+
+- (void)summerInputViewChanges:(UITextField *)textField{
+    if (textField.text.length == 0) {
+        self.btnAddImg.hidden = NO;
+    }
 }
 
 - (void)confirmsSelectImage:(NSArray *)imgArrary{

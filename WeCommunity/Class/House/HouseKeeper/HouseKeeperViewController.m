@@ -31,7 +31,9 @@
 
 -(void)setupAppearance{
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 80, self.view.frame.size.width-60, 200)];
-    [self.functionView setupFunctionViewFirst:@"天气查询" title1:@"天气查询" Second:@"预约挂号" title2:@"火车查询" Third:@"火车查询" title3:@"预约挂号" Fourth:@"预约挂号" title4:nil Fifth:nil title5:nil Sixth:nil title6:nil];
+//    [self.functionView setupFunctionViewFirst:@"天气查询" title1:@"天气查询" Second:@"预约挂号" title2:@"火车查询" Third:@"火车查询" title3:@"预约挂号" Fourth:@"预约挂号" title4:nil Fifth:nil title5:nil Sixth:nil title6:nil];
+    
+    [self.functionView setupFunctionViewFirst:@"天气查询" title1:@"天气查询" Second:@"预约挂号" title2:@"火车查询" Third:@"火车查询" title3:nil Fourth:nil title4:nil Fifth:nil title5:nil Sixth:nil title6:nil];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(getWeather:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(getTrain:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];

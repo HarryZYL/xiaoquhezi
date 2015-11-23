@@ -161,7 +161,7 @@
 # pragma mark retrieve data
 
 -(void)retrireveData{
-
+    __weak typeof(self)weakSelf = self;
     [self.view addSubview:self.loadingView];
     NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     NSString *url = @"";
@@ -171,10 +171,10 @@
         url = getMyRepairsOfCommunity;
     }
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        [self.tableView reloadData];
+        weakSelf.dataArray = responseObject[@"rows"];
+        [weakSelf.tableView reloadData];
     } addition:^{
-        [self.loadingView removeFromSuperview];
+        [weakSelf.loadingView removeFromSuperview];
     }];
 }
 
