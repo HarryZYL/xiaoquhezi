@@ -26,8 +26,8 @@
 }
 
 - (void)confirmCellCompliteDetailWithData:(TextDeal *)dicTemp{
-    [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    self.cellHeaderName.text = dicTemp.creatorInfo.nickName;
+    [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo[@"headPhoto"] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+    self.cellHeaderName.text = dicTemp.creatorInfo[@"nickName"];
     self.cellHeaderTime.frame = CGRectMake(60, _cellHeaderName.frame.origin.y + 20, SCREENSIZE.width - 100, 15);
     self.cellHeaderTime.text = dicTemp.createTime;
     
@@ -58,8 +58,8 @@
 
 //配置section
 - (void)confirmCellInformationWithData:(TextDeal *)dicTemp withHeightHeaderView:(CGFloat)headerView{
-    [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo.headPhoto placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    self.cellHeaderName.text = dicTemp.creatorInfo.nickName;
+    [self.cellHeaderUserImg sd_setImageWithURL:dicTemp.creatorInfo[@"headPhoto"] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+    self.cellHeaderName.text = dicTemp.creatorInfo[@"nickName"];
     
     CGFloat heightContent = [Util getHeightForString:[dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]];
     self.cellHeaderContent.text = [dicTemp.content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

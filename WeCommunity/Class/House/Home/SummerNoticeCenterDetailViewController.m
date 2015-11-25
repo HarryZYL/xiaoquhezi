@@ -123,6 +123,9 @@
 }
 
 - (void)getReceveData{
+//    if (_arraryData.count) {
+//        [_arraryData removeAllObjects];
+//    }
     numberPage = 1;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"加载中";
@@ -215,8 +218,10 @@
         return 0;
     }
     SummerNoticeCenterDetailModel *noticModel = _arraryData[indexPath.row];
-    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:17]] + 17 + 15;
-    
+    CGFloat heightCell = [Util getHeightForString:noticModel.detailNoticeModel.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]] + 17 + 10;
+    if (noticModel.detailNoticeModel.childrenCount.integerValue <= 0) {
+        heightCell -= 9;
+    }
     if (noticModel.detailNoticeModel.childrenCount.integerValue <= 2) {
         for(NSInteger index = 0;index < noticModel.detailReplyArrary.count;index ++){
             SummerHomeDetailNoticeModel *noticeDetail = noticModel.detailReplyArrary[index];
@@ -226,7 +231,7 @@
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
             }
-            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]] + 8;
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]] + 8;
         }
 
     }else{
@@ -238,7 +243,7 @@
             }else{
                 strTemp = [NSString stringWithFormat:@"%@：%@  %@",noticeDetail.creatorInFo.userName,noticeDetail.content,[Util formattedDate:noticeDetail.createTime type:5]];
             }
-            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 69 font:[UIFont systemFontOfSize:15]];
+            heightCell += [Util getHeightForString:strTemp width:SCREENSIZE.width - 70 font:[UIFont systemFontOfSize:15]] + 4;
         }
         heightCell += 25 + 10;
     }

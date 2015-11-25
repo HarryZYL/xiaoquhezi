@@ -39,14 +39,19 @@
                                 <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-D6-R7M">
-                                <rect key="frame" x="64" y="34" width="230" height="16"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbW-D6-R7M">
+                                <rect key="frame" x="64" y="34" width="230" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="2L1-D2-pi5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2L1-D2-pi5"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbh-ze-8U0">
                                 <rect key="frame" x="8" y="130" width="288" height="1"/>
@@ -65,17 +70,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KgP-ar-GbR">
-                                <rect key="frame" x="64" y="58" width="48" height="48"/>
+                                <rect key="frame" x="64" y="60" width="48" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="h3V-9W-uki"/>
                                     <constraint firstAttribute="height" constant="48" id="jxA-Xz-Ee9"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kHP-tm-rlb">
-                                <rect key="frame" x="122" y="58" width="48" height="48"/>
+                                <rect key="frame" x="122" y="60" width="48" height="48"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ObI-Lj-j9y">
-                                <rect key="frame" x="180" y="58" width="48" height="48"/>
+                                <rect key="frame" x="180" y="60" width="48" height="48"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -128,7 +133,7 @@
                 <outlet property="cellTitleImg" destination="mUW-Xh-NRO" id="pfl-Oc-MG0"/>
                 <outlet property="cellTitleName" destination="7SR-4A-PFs" id="m4m-cf-UZv"/>
             </connections>
-            <point key="canvasLocation" x="-35" y="84"/>
+            <point key="canvasLocation" x="-178" y="67"/>
         </tableViewCell>
     </objects>
 </document>

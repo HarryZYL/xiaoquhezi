@@ -26,11 +26,12 @@ PODS:
   - libWeChatSDK (1.6)
   - Masonry (0.6.3)
   - MBProgressHUD (0.9.1)
-  - MJRefresh (3.0.4)
+  - MJRefresh (3.0.5)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
     - SDWebImage (!= 3.7.2, ~> 3.7)
+  - Pgyer (2.8.4)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJRefresh (~> 3.0.1)
   - MWPhotoBrowser (~> 2.1.1)
+  - Pgyer
   - SDWebImage (~> 3.7)
   - UITableView+FDTemplateLayoutCell (~> 1.4.beta)
   - UzysAssetsPickerController
@@ -59,8 +61,9 @@ SPEC CHECKSUMS:
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
+  MJRefresh: 809ed03f2014275056c3d65e2812aef1ba5b0f98
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
+  Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   UITableView+FDTemplateLayoutCell: 9d20bf0518f3c01e42ae614243b97f1161063d27
   UzysAssetsPickerController: 47c27bd96955467925f3d4d80b1e2e8aaeff766d

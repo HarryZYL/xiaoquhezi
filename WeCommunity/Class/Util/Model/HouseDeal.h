@@ -16,7 +16,7 @@
 @property (nonatomic,strong) NSArray *pictures;
 @property (nonatomic,strong) NSString *createTime;
 @property (nonatomic,strong) NSString *ip;//发布者ip
-@property (nonatomic,strong) creatorInfo *creatorInfo;
+@property (nonatomic,strong) NSDictionary *creatorInfo;
 @property (nonatomic,strong) NSString *replyCount;
 @property (nonatomic,strong) NSDictionary *community; //小区信息
 @property (nonatomic,strong) NSString *room;

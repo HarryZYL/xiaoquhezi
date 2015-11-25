@@ -75,15 +75,16 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
     if (indexPath.section == 0) {
         return 200;
     }else{
         Like *like =[[Like alloc] initWithData:self.dataArray[indexPath.row]];
+        CGFloat heightSection = [Util getHeightForString:like.content width:SCREENSIZE.width - 80 font:[UIFont systemFontOfSize:15]];
+        
         if (![like.pictures isEqual:[NSNull null]]) {
-            return 152 + 10;
+            return 142 + heightSection;
         }else{
-            return 100 + 10;
+            return 90 + heightSection;
         }
     }
     
@@ -176,14 +177,18 @@
 }
 
 -(void)refreshHeader{
+    __weak typeof(self)weakSelf = self;
     NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     [Networking retrieveData:getPraisesOfCommunity parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        self.totalLike = responseObject[@"total"];
-        [self.tableView reloadData];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer resetNoMoreData];
-        self.page = 1;
+        if (weakSelf.dataArray.count) {
+            weakSelf.dataArray = nil;
+        }
+        weakSelf.dataArray = responseObject[@"rows"];
+        weakSelf.totalLike = responseObject[@"total"];
+        [weakSelf.tableView reloadData];
+        [weakSelf.tableView.mj_header endRefreshing];
+        [weakSelf.tableView.mj_footer resetNoMoreData];
+        weakSelf.page = 1;
     }];
 }
 

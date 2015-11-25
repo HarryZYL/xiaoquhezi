@@ -31,7 +31,7 @@
         self.phone = data[@"phone"];
         self.createTime = [Util formattedDate:data[@"createTime"] type:1];
         self.creator = data[@"creator"];
-        self.creatorInfo = [[creatorInfo alloc] initWithData:data[@"creatorInfo"]];
+        self.creatorInfo = data[@"creatorInfo"];
         self.replyCount = data[@"replyCount"];
         self.senderNewReplyCount = data[@"senderNewReplyCount"];
         self.reciverNewReplyCount = data[@"reciverNewReplyCount"];

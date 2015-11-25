@@ -25,7 +25,7 @@
 #import "ELCImagePickerController.h"
 #import "ELCAssetTablePicker.h"
 #import "UzysAssetsPickerController.h"
-//#import <PgySDK/PgyManager.h>
+
 #import "MJRefresh.h"
 
 //category

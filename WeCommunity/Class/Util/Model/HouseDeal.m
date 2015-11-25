@@ -20,7 +20,7 @@
         self.pictures = [Util modifyArray:data[@"pictures"]];
         self.createTime = [Util formattedDate:data[@"createTime"] type:2];
         self.ip = data[@"ip"];
-        self.creatorInfo = [[creatorInfo alloc]initWithData:data[@"creatorInfo"]];
+        self.creatorInfo = data[@"creatorInfo"];
         self.replyCount = data[@"replyCount"];
         self.community = data[@"community"];
         self.room = data[@"room"];

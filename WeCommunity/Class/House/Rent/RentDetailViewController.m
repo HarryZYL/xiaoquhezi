@@ -51,7 +51,7 @@
     self.secondHand = [[SecondHand alloc] initWithData:self.detailData];
     User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
-        if (user.Userid.intValue != self.houseDeal.creatorInfo.Userid.intValue) {
+        if (user.Userid.intValue != [self.houseDeal.creatorInfo[@"userid"] intValue]) {
             [self setupLoadRoomData];//不是自己发布的,是否预约
         }else{
             //自己发布的,预约人数
@@ -99,7 +99,7 @@
 
 -(void)setupBottomButton{
     User *user = [[User alloc] initWithData];
-    if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
+    if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"userid"] intValue]) {
         self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-BOOTOM_HEIGHT, self.view.frame.size.width, BOOTOM_HEIGHT) withItem:2];
         [self.functionBtn.btnRight addTarget:self action:@selector(rentDetailRePaier) forControlEvents:UIControlEventTouchUpInside];
     }else{
@@ -115,7 +115,7 @@
     User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
         
-        if (user.Userid.intValue == self.houseDeal.creatorInfo.Userid.intValue) {
+        if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"userid"] intValue]) {
             if (_strUserBookingCount.intValue > 0) {
                 //有无预约人数
                 [self.functionBtn.btnLeft configureButtonTitle:[NSString stringWithFormat:@"已有%@人预约",_strUserBookingCount] backgroundColor:THEMECOLOR];

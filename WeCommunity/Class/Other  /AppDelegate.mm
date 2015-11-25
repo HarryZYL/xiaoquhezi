@@ -7,6 +7,7 @@
 //
 #import "AppDelegate.h"
 #import <AlipaySDK/AlipaySDK.h>
+#import <PgySDK/PgyManager.h>
 #import "SummerTabBarViewController.h"
 #import "SummerRegisterID.h"
 #import "ThirdUserModel.h"
@@ -26,8 +27,8 @@
     [self customizeUserInterface];
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-//    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
-//    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
+    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
     
 
     return YES;
@@ -44,7 +45,7 @@
     NSLog(@"------>%@",deviceToken);
     User *userModel = [[User alloc] initWithData];
     [BPush registerDeviceToken:deviceToken];
-    if ([User getUserToken]) {
+    if ([User getUserToken] && [BPush getChannelId]) {
         [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
     }
     
