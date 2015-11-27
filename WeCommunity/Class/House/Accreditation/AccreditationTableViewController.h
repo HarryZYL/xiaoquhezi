@@ -10,6 +10,7 @@
 #import "Util.h"
 #import "LoadingView.h"
 #import "User.h"
+#import "SummerReAccreditationViewController.h"
 #import "AccreditationPostViewController.h"
 @interface AccreditationTableViewController : UITableViewController<AccreditationPostViewControllerDelegate>
 

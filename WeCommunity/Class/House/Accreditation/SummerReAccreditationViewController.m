@@ -1,56 +1,32 @@
 //
-//  AccreditationPostViewController.m
+//  SummerReAccreditationViewController.m
 //  WeCommunity
 //
-//  Created by Harry on 8/31/15.
-//  Copyright (c) 2015 Harry. All rights reserved.
+//  Created by madarax on 15/11/27.
+//  Copyright © 2015年 Harry. All rights reserved.
 //
-#import "AccreditationPostViewController.h"
-#import "LocationTableViewController.h"
-#import "UIViewController+HUD.h"
-#import "NSString+HTML.h"
 
-@interface AccreditationPostViewController ()<UITextFieldDelegate ,LocationTableViewControllerDelegate>
+#import "SummerReAccreditationViewController.h"
+#import "LocationTableViewController.h"
+
+@interface SummerReAccreditationViewController ()<UITextFieldDelegate ,LocationTableViewControllerDelegate>
 {
     NSArray *hourseLeve;
     UIButton *btnUnit;
+    NSString *strUnitID;
 }
-
-
 
 @end
 
-@implementation AccreditationPostViewController
+@implementation SummerReAccreditationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.strCommunityName = [Util getCommunityName];
-    self.strCommunityID = [Util getCommunityID];
-    [self initViewsLeves];//当前小区层级
-    
-    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
-    self.loadingView.titleLabel.text = @"正在加载";
-    
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void)setupData{
-    if (hourseLeve.count == 2) {
-        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择房号"];
-        self.titleArray = @[section1,section2];
-    }else if (hourseLeve.count == 3){
-        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
-        self.titleArray = @[section1,section2];
-    }
-    [self setupAppearance];
+    self.title = @"再次认证";
+    self.strCommunityID = _dicAccreditation[@"communityId"];
+    self.houseId = _dicAccreditation[@"houseId"];
+    strUnitID = _dicAccreditation[@"parentIds"][1];
 }
 
 -(void)setupAppearance{
@@ -71,7 +47,7 @@
     [self.view addSubview:self.scrollView];
     
     CGFloat height = 50;
-
+    
     int floor = 0;
     
     for (int i = 0; i<self.titleArray.count; i++) {
@@ -96,6 +72,8 @@
                         case 0:
                             self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(60, 10, self.view.frame.size.width - 40, 30)];
                             self.nameField.placeholder = self.titleArray[i][j];
+                            self.nameField.text = _dicAccreditation[@"realName"];
+                            
                             self.nameField.delegate = self;
                             [background addSubview:self.nameField];
                             break;
@@ -104,6 +82,7 @@
                             self.cardNumberField = [[UITextField alloc] initWithFrame:self.nameField.frame];
                             self.cardNumberField.keyboardType = UIKeyboardTypeNumberPad;
                             self.cardNumberField.placeholder = self.titleArray[i][j];
+                            self.cardNumberField.text = _dicAccreditation[@"cardNumber"];
                             self.cardNumberField.delegate = self;
                             [background addSubview:self.cardNumberField];
                             break;
@@ -112,7 +91,9 @@
                             self.owerTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.owerTypeBtn.frame = self.nameField.frame;
                             [self.owerTypeBtn leftStyle];
-                            [self.owerTypeBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                        
+                            [self.owerTypeBtn setTitle:_dicAccreditation[@"ownerTypeName"] forState:UIControlStateNormal];
+                            self.owerType = _dicAccreditation[@"ownerTypeName"];
                             [background addSubview:self.owerTypeBtn];
                             break;
                             
@@ -127,14 +108,16 @@
                             self.communityName = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.communityName.frame = self.nameField.frame;
                             [self.communityName leftStyle];
-                            [self.communityName setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                            [self.communityName setTitle:_dicAccreditation[@"community"][@"name"] forState:UIControlStateNormal];
+                            self.strCommunityName = _dicAccreditation[@"community"][@"name"];
                             [background addSubview:self.communityName];
                             break;
                         case 1:
                             self.buildingIDBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.buildingIDBtn.frame = self.nameField.frame;
                             [self.buildingIDBtn leftStyle];
-                            [self.buildingIDBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                            [self.buildingIDBtn setTitle:[self.dicAccreditation[@"parentNames"] firstObject] forState:UIControlStateNormal];
+                            self.buildingId = [self.dicAccreditation[@"parentNames"] firstObject];
                             [background addSubview:self.buildingIDBtn];
                             
                             break;
@@ -143,14 +126,15 @@
                                 self.houseIDBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                                 self.houseIDBtn.frame = self.nameField.frame;
                                 [self.houseIDBtn leftStyle];
-                                [self.houseIDBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                                [self.houseIDBtn setTitle:self.dicAccreditation[@"parentNames"][1] forState:UIControlStateNormal];
+                                self.houseId = self.dicAccreditation[@"parentNames"][2];
                                 [background addSubview:self.houseIDBtn];
                             }else if (hourseLeve.count == 3){
                                 btnUnit = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                                 btnUnit.frame = self.nameField.frame;
                                 [btnUnit leftStyle];
-                                [btnUnit setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
-                                
+                                [btnUnit setTitle:self.dicAccreditation[@"parentNames"][1] forState:UIControlStateNormal];
+                                self.strUnit = self.dicAccreditation[@"parentIds"][1];
                                 [background addSubview:btnUnit];
                             }
                             
@@ -159,7 +143,8 @@
                             self.houseIDBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
                             self.houseIDBtn.frame = self.nameField.frame;
                             [self.houseIDBtn leftStyle];
-                            [self.houseIDBtn setTitle:self.titleArray[i][j] forState:UIControlStateNormal];
+                            [self.houseIDBtn setTitle:self.dicAccreditation[@"parentNames"][2] forState:UIControlStateNormal];
+                            self.houseId = self.dicAccreditation[@"parentNames"][2];
                             [background addSubview:self.houseIDBtn];
                             break;
                         default:
@@ -205,15 +190,55 @@
     [self.loadingView removeFromSuperview];
 }
 
-#pragma mark networking
-
-- (void)initViewsLeves{
-    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
-    self.loadingView.titleLabel.text = @"正在加载";
-    [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
-        hourseLeve = responseObject;
-        [self setupData];
-    }];
+-(void)uploadAccreditation{
+    
+    if (self.nameField.text.length == 0) {
+        [Util alertNetworingError:@"请输入姓名"];
+    }else if(self.cardNumberField.text.length == 0){
+        [Util alertNetworingError:@"请输入身份证号"];
+    }else if (self.owerType == nil){
+        [Util alertNetworingError:@"请选择身份类型"];
+    }else if (self.buildingId == nil){
+        [Util alertNetworingError:@"请选择楼号"];
+    }else if (self.houseId == nil){
+        [Util alertNetworingError:@"请选择房号"];
+    }else{
+        
+        [self.view addSubview:self.loadingView];
+        NSDictionary *parameters;
+        
+        NSUInteger index = [self.owerTypeArr indexOfObject:self.owerType];
+        if (hourseLeve.count == 2) {
+            parameters = @{
+                           @"id":self.dicAccreditation[@"id"],
+                           @"token":[User getUserToken],
+                           @"communityId":self.strCommunityID,
+                           @"realName":self.nameField.text,
+                           @"cardType":@"IdCard",
+                           @"cardNumber":self.cardNumberField.text,
+                           @"houseId":self.houseId,
+                           @"ownerType":self.owerTypeArrEn[index]
+                           };
+        }else{
+            parameters = @{
+                           @"id":self.dicAccreditation[@"id"],
+                           @"token":[User getUserToken],
+                           @"communityId":self.strCommunityID,
+                           @"realName":self.nameField.text,
+                           @"cardType":@"IdCard",
+                           @"cardNumber":self.cardNumberField.text,
+                           @"houseId":self.houseId,
+                           @"ownerType":self.owerTypeArrEn[index]
+                           };
+        }
+        [Networking retrieveData:get_Apple_ReAuthentication parameters:parameters success:^(id responseObject) {
+            [self.loadingView removeFromSuperview];
+            [self.delegate issueCertifySeccessful];
+            [self.navigationController popViewControllerAnimated:YES];
+        } addition:^{
+            [self.loadingView removeFromSuperview];
+        }];
+    }
 }
 
 -(void)getBuildingID:(id)sender{
@@ -227,7 +252,7 @@
     } addition:^{
         [self.loadingView removeFromSuperview];
     }];
-
+    
 }
 
 - (void)getUnitID:(id)sender{
@@ -257,21 +282,6 @@
         }
     }
 }
-
-#pragma mark - textFieldDelegate
-
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField == self.nameField && (self.nameField.text.length < 1 || [self.nameField.text isEqualToString:@" "])) {
-        [self showHint:@"请填写姓名" yOffset:-180.0];
-        return;
-    }
-    if (textField == self.cardNumberField && ![NSString filterIDCard:textField.text]) {
-        [self showHint:@"请填写有效的证件号码" yOffset:-180.0];
-        return;
-    }
-}
-
-#pragma mark picker
 
 -(void)selectPicker:(id)sender{
     UIButton *button = (UIButton*)sender;
@@ -316,14 +326,15 @@
 // 返回选中的行
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    
     if ([self.pickerTag isEqualToString:@"1"]) {
-       self.pickerStr =  self.owerTypeArr[row];
+        self.pickerStr =  self.owerTypeArr[row];
         self.owerType = self.owerTypeArrEn[row];
     }else if ([self.pickerTag isEqualToString:@"2"]){
         self.pickerStr = self.buildingArr[row][@"name"];
         self.buildingId = self.buildingArr[row][@"id"];
     }else if([self.pickerTag isEqualToString:@"3"]){
-       self.pickerStr = self.houseArr[row][@"name"];
+        self.pickerStr = self.houseArr[row][@"name"];
         self.houseId = self.houseArr[row][@"id"];
     }else{
         self.pickerStr = self.arraryUnit[row][@"name"];
@@ -362,18 +373,6 @@
             [self.owerTypeBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else if ([self.pickerTag isEqualToString:@"2"]){
             [self.buildingIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
-//            [Networking retrieveData:getBuilding parameters:@{@"buildingId":self.buildingId,@"id":self.buildingId} success:^(id responseObject) {
-//                [self.houseIDBtn setTitle:@"正在加载" forState:UIControlStateNormal];
-//                self.houseIDBtn.enabled = NO;
-//                self.houseArr = responseObject;
-//                if (self.houseArr.count == 0) {
-//                    [self.houseIDBtn setTitle:@"-此栋楼暂未录入-" forState:UIControlStateNormal];
-//                }else{
-//                    [self.houseIDBtn setTitle:@"-点击选择房号-" forState:UIControlStateNormal];
-//                    self.houseIDBtn.enabled = YES;
-//                }
-//                
-//            }];
             
         }else if([self.pickerTag isEqualToString:@"3"]){
             [self.houseIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
@@ -389,7 +388,7 @@
 }
 
 -(void)cancelPicker:(id)sender{
-   [self.pickerView removeFromSuperview];
+    [self.pickerView removeFromSuperview];
     
     if (self.pickerStr) {
         if ([self.pickerTag isEqualToString:@"1"]) {
@@ -408,75 +407,59 @@
     self.pickerStr = nil;
 }
 
-#pragma mark - did Upload
-
--(void)uploadAccreditation{
-    
-    if (self.nameField.text.length == 0) {
-        [Util alertNetworingError:@"请输入姓名"];
-    }else if(self.cardNumberField.text.length == 0){
-        [Util alertNetworingError:@"请输入身份证号"];
-    }else if (self.owerType == nil){
-        [Util alertNetworingError:@"请选择身份类型"];
-    }else if (self.buildingId == nil){
-        [Util alertNetworingError:@"请选择楼号"];
-    }else if (self.houseId == nil){
-        [Util alertNetworingError:@"请选择房号"];
-    }else{
-        [self.view addSubview:self.loadingView];
-        NSDictionary *parameters;
-        if (hourseLeve.count == 2) {
-            parameters = @{
-                           @"token":[User getUserToken],
-                           @"communityId":_strCommunityID,
-                           @"realName":self.nameField.text,
-                           @"cardType":@"IdCard",
-                           @"cardNumber":self.cardNumberField.text,
-                           @"houseId":self.houseId,
-                           @"ownerType":self.owerType
-                           };
-        }else{
-            parameters = @{
-                           @"token":[User getUserToken],
-                           @"communityId":_strCommunityID,
-                           @"realName":self.nameField.text,
-                           @"cardType":@"IdCard",
-                           @"cardNumber":self.cardNumberField.text,
-                           @"houseId":self.houseId,
-                           @"ownerType":self.owerType
-                           };
-        }
-        [Networking retrieveData:applyAuthentication parameters:parameters success:^(id responseObject) {
-            [self.loadingView removeFromSuperview];
-            [self.delegate issueCertifySeccessful];
-            [self.navigationController popViewControllerAnimated:YES];
-        } addition:^{
-            [self.loadingView removeFromSuperview];
-        }];
-    }
-}
-
-#pragma mark - SummerSelectCityOfHouseViewControllerDelegate
-- (void)selectedFinishedCommunityNameAndID:(NSDictionary *)dicTemp{
-    _strCommunityID = dicTemp[@"communityID"];
-    _strCommunityName = dicTemp[@"communityName"];
-    for (UIView *viewSub in self.scrollView.subviews) {
-        [viewSub removeFromSuperview];
-    }
-    [self initViewsLeves];//当前小区层级
-//    [self.communityName setTitle:_strCommunityName forState:UIControlStateNormal];
-}
-
 - (void)getOtherCommunityName{
     LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
+    //    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
     locationVC.delegate = self;
     locationVC.locationStyle = LocationStyleSelectCommunityNameAndID;
     [self.navigationController pushViewController:locationVC animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    [self.view endEditing:YES];
+- (void)selectedFinishedCommunityNameAndID:(NSDictionary *)dicTemp{
+    self.strCommunityID = dicTemp[@"communityID"];
+    self.strCommunityName = dicTemp[@"communityName"];
+    for (UIView *viewSub in self.scrollView.subviews) {
+        [viewSub removeFromSuperview];
+    }
+    [self initViewsLeves];//当前小区层级
+    //    [self.communityName setTitle:_strCommunityName forState:UIControlStateNormal];
 }
+
+- (void)initViewsLeves{
+    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
+    self.loadingView.titleLabel.text = @"正在加载";
+    [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+        hourseLeve = responseObject;
+        [self setupData];
+    }];
+}
+
+-(void)setupData{
+    if (hourseLeve.count == 2) {
+        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
+        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择房号"];
+        self.titleArray = @[section1,section2];
+    }else if (hourseLeve.count == 3){
+        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
+        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
+        self.titleArray = @[section1,section2];
+    }
+    [self setupAppearance];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

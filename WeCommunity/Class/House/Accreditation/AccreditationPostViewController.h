@@ -46,4 +46,5 @@
 @property (nonatomic,strong) NSArray *owerTypeArrEn;
 @property (nonatomic,strong) NSArray *buildingArr;
 @property (nonatomic,strong) NSArray *houseArr;
+
 @end

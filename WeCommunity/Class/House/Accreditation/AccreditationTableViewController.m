@@ -69,9 +69,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
+    [cell.cellAccreditationBtn addTarget:self action:@selector(oneMoreAccreditation:) forControlEvents:UIControlEventTouchUpInside];
     [cell configureAccreditationCell:self.dataArray[indexPath.row]];
-//    [cell ];
+    
     
     return cell;
 }
@@ -81,7 +81,14 @@
     return 140;
 }
 
-
+- (void)oneMoreAccreditation:(UIButton *)sender{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)sender.superview.superview];
+    
+    SummerReAccreditationViewController *summerReAccretationVC = [[SummerReAccreditationViewController alloc] init];
+    summerReAccretationVC.dicAccreditation = _dataArray[indexPath.row];
+    summerReAccretationVC.delegate = self;
+    [self.navigationController pushViewController:summerReAccretationVC animated:YES];
+}
 
 #pragma mark networking
 

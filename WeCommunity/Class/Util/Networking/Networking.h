@@ -50,14 +50,16 @@
 #define GET_PROPERTY_HOUSE_FEE    (HOST_URL @"/fee/property/house/get")//查找当前用户在指定小区已经认证过的房间,包含物业费是否缴纳信息
 
 #define getHouseId  (HOST_URL @"/community/getHouses")
-#define applyAuthentication (HOST_URL @"/user/applyAuthentication")
-#define getAuthenticationStatus (HOST_URL @"/user/getAuthenticationStatus")
-#define houseDeal_add (HOST_URL @"/houseDeal/add")
-#define complaint_add (HOST_URL @"/complaint/add")
-#define repair_add (HOST_URL @"/repair/add")
-#define praise_add (HOST_URL @"/praise/add")
 
-#define bookingHouse         (HOST_URL @"/houseDeal/bookingHouse")
+#define get_Apple_ReAuthentication (HOST_URL @"/user/authc/update")
+#define applyAuthentication        (HOST_URL @"/user/applyAuthentication")
+#define getAuthenticationStatus    (HOST_URL @"/user/getAuthenticationStatus")
+#define houseDeal_add              (HOST_URL @"/houseDeal/add")
+#define complaint_add              (HOST_URL @"/complaint/add")
+#define repair_add                 (HOST_URL @"/repair/add")
+#define praise_add                 (HOST_URL @"/praise/add")
+
+#define bookingHouse                (HOST_URL @"/houseDeal/bookingHouse")
 #define get_HOUSE_DETAIL_EDITE      (HOST_URL @"/houseDeal/edit")         //房屋租售再次编辑
 
 #define get_HOUSE_DETAIL     (HOST_URL @"/houseDeal/getHouseDeal") //房屋交易信息（若是自己的，是否有人预约）

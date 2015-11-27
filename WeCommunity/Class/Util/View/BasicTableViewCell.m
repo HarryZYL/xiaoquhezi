@@ -240,7 +240,7 @@
     self.dateLabel.text = accreditation.applyTime;
     
     //deal
-    self.cellAccreditationBtn.frame = CGRectMake(self.contentView.frame.size.width - 100, self.grayLine.frame.origin.y, 80, textHeight+10);
+    self.cellAccreditationBtn.frame = CGRectMake(self.contentView.frame.size.width - 90, self.grayLine.frame.origin.y, 80, textHeight+10);
     [self.cellAccreditationBtn configureButtonTitle:@"再次认证" backgroundColor:nil];
     [self.cellAccreditationBtn setTitleColor:THEMECOLOR forState:UIControlStateNormal];
 //    [self.cellAccreditationBtn addTarget:self action:@selector(btnReAuthWithSelf:) forControlEvents:UIControlEventTouchUpInside];
@@ -256,7 +256,7 @@
         self.dealImage.image = [UIImage imageNamed:@"dealed"];
     }else {
         self.dealImage.image = [UIImage imageNamed:@"认证-失败-0"];
-//        self.cellAccreditationBtn.hidden = NO;
+        self.cellAccreditationBtn.hidden = NO;
     }
 
     [self setCellStyle];
