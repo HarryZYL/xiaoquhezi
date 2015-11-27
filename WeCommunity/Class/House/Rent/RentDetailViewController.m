@@ -14,6 +14,7 @@
 @interface RentDetailViewController ()<OrderHouseViewControllerDelegate>
 @property (nonatomic ,strong)NSMutableDictionary *dicRoomData;
 @property (nonatomic ,copy)NSString *strUserBookingCount;/**<自己发布的房屋，预约人数*/
+//@property (nonatomic ,strong)NSMutableArray *roomArrary;/**<传人下一级的房屋图片*/
 @property (assign) BOOL isBooking;/**<不是自己发布的，是否预约过*/
 @end
 

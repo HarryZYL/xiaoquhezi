@@ -11,6 +11,7 @@
 #import "HouseDeal.h"
 
 @interface SummerRePostMyRentViewController : UIViewController
+
 @property(nonatomic , strong)SummerRentAlertView *alertViewModel;
 @property (nonatomic,strong) HouseDeal *houseDeal;
 @property (nonatomic,copy)NSString *strHouseDeailID;

@@ -11,6 +11,13 @@
 @implementation SummerRentAlertView
 @synthesize houseDeal = _houseDeal;
 
+- (instancetype)init{
+    if (self == [super init]) {
+        
+    }
+    return self;
+}
+
 - (void)setContentTitle{
     [self mScrollView];
     [self topView];
@@ -20,7 +27,8 @@
 }
 
 - (void)initWithTopViewSubViewsWithDataModel:(HouseDeal *)housePostModel{
-    __weak typeof(self)weakSelf = self;
+    self.selectImagesArrary = [[NSMutableArray alloc] init];
+//    __weak typeof(self)weakSelf = self;
     NSArray *nameArrary = @[@"房型",@"户型",@"楼层",@"朝向"];
     for (NSInteger index = 0; index < 4; index ++) {
         __block UILabel *numbersLab = [UILabel new];
@@ -235,9 +243,9 @@
         make.right.equalTo(weakSelf.mas_right).offset(0);
         make.left.equalTo(weakSelf.mas_left).offset(0);
         if (weakSelf.houseDeal.pictures.count > 3) {
-            make.height.mas_equalTo(310);
+            make.height.mas_equalTo(330);
         }else{
-            make.height.mas_equalTo(210);
+            make.height.mas_equalTo(250);
         }
     }];
     NSArray *bootomTitle = @[@"标题",@"描述"];
@@ -300,14 +308,24 @@
                 make.height.mas_equalTo(69);
             }];
             if (_houseDeal.pictures.count < 3) {
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 80)];
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width - 20, 80)];
             }else{
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(0, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
             }
+//            _photoImage.backgroundColor = [UIColor redColor];
             
             [_bootomView addSubview:_photoImage];
             
-            [_photoImage configureImage:(NSMutableArray *)_houseDeal.pictures];
+            for (NSString *str in housePostModel.pictures) {
+                dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:str]];
+                    UIImage *imgTemp = [UIImage imageWithData:imgData];
+                    [weakSelf.selectImagesArrary addObject:imgTemp];
+                    dispatch_sync(dispatch_get_main_queue(), ^{
+                        [weakSelf.photoImage configureImage:self.selectImagesArrary];
+                    });
+                });
+            }
         }
     }
 }

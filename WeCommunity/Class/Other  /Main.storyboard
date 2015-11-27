@@ -79,7 +79,8 @@
                                                             <exclude reference="ncE-uu-7yI"/>
                                                         </mask>
                                                     </variation>
-                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="100" y="10" width="130" height="20"/>
                                                         <mask key="constraints">
                                                             <exclude reference="ncE-uu-7yI"/>
                                                         </mask>
@@ -113,6 +114,9 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="100" y="38" width="130" height="21"/>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <constraints>
@@ -203,15 +207,35 @@
                                     <outlet property="delegate" destination="51E-aQ-RDR" id="53g-nR-hj8"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aqe-c6-N4A" customClass="DOPDropDownMenu">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="tOj-s6-vSl"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tOj-s6-vSl"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="tOj-s6-vSl"/>
+                                    </mask>
+                                </variation>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="aqe-c6-N4A" firstAttribute="leading" secondItem="1kQ-6E-YX1" secondAttribute="leading" id="CaY-km-XAM"/>
                             <constraint firstAttribute="trailing" secondItem="E3u-dP-bzD" secondAttribute="trailing" constant="63" id="aHK-a3-604">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                             </constraint>
+                            <constraint firstAttribute="trailing" secondItem="aqe-c6-N4A" secondAttribute="trailing" id="bdL-oF-IW6"/>
+                            <constraint firstItem="aqe-c6-N4A" firstAttribute="top" secondItem="Wl3-AJ-YkG" secondAttribute="bottom" id="ccN-H7-7bL"/>
                             <constraint firstItem="E3u-dP-bzD" firstAttribute="top" secondItem="Wl3-AJ-YkG" secondAttribute="bottom" constant="394" id="gTY-dU-pIb">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-64"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="44"/>
                             </constraint>
                             <constraint firstItem="E3u-dP-bzD" firstAttribute="leading" secondItem="1kQ-6E-YX1" secondAttribute="leading" constant="97" id="hlT-xn-Nrx">
                                 <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
@@ -223,23 +247,31 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="E3u-dP-bzD"/>
+                                <exclude reference="aqe-c6-N4A"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="tr8-ZG-ege"/>
+                                <exclude reference="CaY-km-XAM"/>
+                                <exclude reference="bdL-oF-IW6"/>
+                                <exclude reference="ccN-H7-7bL"/>
                                 <exclude reference="aHK-a3-604"/>
                                 <exclude reference="gTY-dU-pIb"/>
                                 <exclude reference="hlT-xn-Nrx"/>
+                                <exclude reference="tr8-ZG-ege"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="E3u-dP-bzD"/>
+                                <include reference="aqe-c6-N4A"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="tr8-ZG-ege"/>
+                                <include reference="CaY-km-XAM"/>
+                                <include reference="bdL-oF-IW6"/>
+                                <include reference="ccN-H7-7bL"/>
                                 <include reference="aHK-a3-604"/>
                                 <include reference="gTY-dU-pIb"/>
                                 <include reference="hlT-xn-Nrx"/>
+                                <include reference="tr8-ZG-ege"/>
                             </mask>
                         </variation>
                     </view>

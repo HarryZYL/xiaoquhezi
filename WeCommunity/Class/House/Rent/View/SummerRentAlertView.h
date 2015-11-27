@@ -20,6 +20,7 @@
 @property (nonatomic ,strong)UIView *middleView;
 @property (nonatomic ,strong)UIView *topView;
 @property (nonatomic ,strong)CameraImageView *photoImage;
+@property (nonatomic ,strong)NSMutableArray *selectImagesArrary;
 
 - (void)setContentTitle;
 

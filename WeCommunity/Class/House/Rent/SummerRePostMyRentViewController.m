@@ -8,9 +8,11 @@
 
 #import "SummerRePostMyRentViewController.h"
 
-@interface SummerRePostMyRentViewController ()
+@interface SummerRePostMyRentViewController ()<UzysAssetsPickerControllerDelegate ,MWPhotoBrowserDelegate>
 
 @property(nonatomic ,strong) NSMutableArray *chosenImages;
+@property(nonatomic ,strong) NSMutableArray *photosArrary;
+
 @end
 
 @implementation SummerRePostMyRentViewController
@@ -20,6 +22,7 @@
         UIBarButtonItem *pushItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(upLoadData)];
         self.navigationItem.rightBarButtonItem = pushItem;
         _chosenImages = [[NSMutableArray alloc] init];
+        _photosArrary = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -33,7 +36,11 @@
     _alertViewModel.houseDeal = self.houseDeal;
     [self.view addSubview:_alertViewModel];
     [_alertViewModel setContentTitle];
+    
+    [self.alertViewModel.photoImage.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+
 
 - (void)upLoadData{
     UITextField *titleField = (UITextField *)[self.alertViewModel viewWithTag:17];
@@ -73,7 +80,7 @@
                                          @"houseType":self.alertViewModel,
                                          @"price":priceField.text
                                          };
-            [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
+            [Networking retrieveData:get_HOUSE_DETAIL_EDITE parameters:parameters success:^(id responseObject) {
                 
                 [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
             } addition:^{
@@ -98,7 +105,7 @@
                                      @"houseType":self.alertViewModel,
                                      @"price":priceField.text
                                      };
-        [Networking retrieveData:houseDeal_add parameters:parameters success:^(id responseObject) {
+        [Networking retrieveData:get_HOUSE_DETAIL_EDITE parameters:parameters success:^(id responseObject) {
             [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
         } addition:^{
 
@@ -110,6 +117,68 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void)imagePicker:(id)sender{
+    
+    UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
+    picker.delegate = self;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
+    [self presentViewController:picker animated:YES completion:nil];
+    
+}
+
+- (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    
+    if([[assets[0] valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"]) //Photo
+    {
+        [assets enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            ALAsset *representation = obj;
+            
+            UIImage *img = [UIImage imageWithCGImage:representation.defaultRepresentation.fullResolutionImage
+                                               scale:representation.defaultRepresentation.scale
+                                         orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
+            
+            [self.chosenImages addObject:img];
+//            [self.chosenImagesSmall addObject:[Util scaleToSize:img size:CGSizeMake(100, 100)]];
+            
+            if (idx==0 && self.chosenImages.count == 1) {
+                
+            }
+            
+        }];
+        
+        [self addPhotosOrMuteble];
+        [self.alertViewModel.photoImage chuckSubViews];
+        [self.alertViewModel.photoImage configureImage:self.chosenImages];
+        [self.alertViewModel.photoImage.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)addPhotosOrMuteble{
+    if (self.chosenImages.count > 3) {
+        self.alertViewModel.photoImage.frame = CGRectMake(0, 120, self.view.frame.size.width,330);
+    }else{
+        self.alertViewModel.photoImage.frame = CGRectMake(0, 120, self.view.frame.size.width,330 - 80);
+    }
+}
+
+- (void)rentPostViewSelecteImageViewIndex:(NSInteger)index{
+    if (!self.chosenImages) {
+        [self.chosenImages removeAllObjects];
+    }
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [self.chosenImages addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation

@@ -60,8 +60,12 @@
     
     
     self.cellRepairTakeNote.frame = CGRectMake(10, self.cellRepairManView.frame.origin.y + self.cellRepairManView.frame.size.height + 10, SCREENSIZE.width - 20, 80);
-    
-    self.cellTakeNoteLab.text = [NSString stringWithFormat:@"维修记录\n%@ %@提交报修",dicTemp.createTime,dicTemp.creatorInfo[@"nickName"]];
+    NSString *strTemp;
+    strTemp = [NSString stringWithFormat:@"维修记录\n%@ 业主报修",dicTemp.createTime];
+    if (dicTemp.reciveTime) {
+        strTemp = [NSString stringWithFormat:@"维修记录\n%@ 业主报修\n%@  物业确认",dicTemp.createTime,dicTemp.reciveTime];
+    }
+    self.cellTakeNoteLab.text = strTemp;
     self.cellTakeNoteLab.frame = CGRectMake(10, 8, self.cellRepairTakeNote.frame.size.width - 20, 80);
     self.cellLineLab.frame = CGRectMake(0, self.cellRepairManView.frame.size.height/2, self.cellRepairManView.frame.size.width, .5);
 }
