@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
 #define BOOTOM_HEIGHT 45
+#import "SummerRePostMyRentViewController.h"
 #import "RentDetailViewController.h"
 #import "RentPostViewController.h"
 #import "UIViewController+HUD.h"
@@ -51,7 +52,7 @@
     self.secondHand = [[SecondHand alloc] initWithData:self.detailData];
     User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
-        if (user.Userid.intValue != [self.houseDeal.creatorInfo[@"userid"] intValue]) {
+        if (user.Userid.intValue != [self.houseDeal.creatorInfo[@"id"] intValue]) {
             [self setupLoadRoomData];//不是自己发布的,是否预约
         }else{
             //自己发布的,预约人数
@@ -93,13 +94,11 @@
         [self.secondHandView.headImg addGestureRecognizer:tapGesture];
         [self.scollView addSubview:self.secondHandView];
     }
-
-   
 }
 
 -(void)setupBottomButton{
     User *user = [[User alloc] initWithData];
-    if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"userid"] intValue]) {
+    if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"id"] intValue]) {
         self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-BOOTOM_HEIGHT, self.view.frame.size.width, BOOTOM_HEIGHT) withItem:2];
         [self.functionBtn.btnRight addTarget:self action:@selector(rentDetailRePaier) forControlEvents:UIControlEventTouchUpInside];
     }else{
@@ -115,14 +114,13 @@
     User *user = [[User alloc] initWithData];
     if ([self.function isEqualToString:@"rent"]) {
         
-        if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"userid"] intValue]) {
+        if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"id"] intValue]) {
+            [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             if (_strUserBookingCount.intValue > 0) {
                 //有无预约人数
                 [self.functionBtn.btnLeft configureButtonTitle:[NSString stringWithFormat:@"已有%@人预约",_strUserBookingCount] backgroundColor:THEMECOLOR];
-                [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             }else{
                 [self.functionBtn.btnLeft configureButtonTitle:@"暂无预约" backgroundColor:THEMECOLOR];
-                [self.functionBtn.btnRight configureButtonTitle:@"修改" backgroundColor:THEMECOLOR];
             }
             
         }else if (_isBooking){
@@ -200,7 +198,17 @@
 
 - (void)rentDetailRePaier{
     //修改,房屋信息
-    SummerPostRentViewController *postVC = [[SummerPostRentViewController alloc] init];
+//    SummerPostRentViewController *postVC = [[SummerPostRentViewController alloc] init];
+//    postVC.houseDeal = self.houseDeal;
+//    if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
+//        postVC.houseDealType = SummerPostRentTypeRent;
+//    }else{
+//        postVC.houseDealType = SummerPostRentTypeSale;
+//    }
+//    postVC.strHouseDeailID = self.houseDeal.objectId;
+//    [self.navigationController pushViewController:postVC animated:YES];
+    
+    SummerRePostMyRentViewController *postVC = [[SummerRePostMyRentViewController alloc] init];
     postVC.houseDeal = self.houseDeal;
     if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
         postVC.houseDealType = SummerPostRentTypeRent;

@@ -128,6 +128,7 @@
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
 		D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */; };
 		D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */; };
+		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
 		D44D60541BED01EF00E877F9 /* SummerRentDetailBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */; };
 		D44D9C791BE5DD16006340E2 /* SummerMemberAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D9C781BE5DD16006340E2 /* SummerMemberAlertView.m */; };
@@ -473,6 +474,8 @@
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
 		D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserViewTableViewCell.m; sourceTree = "<group>"; };
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
+		D44756021C06F3960085DDF8 /* SummerRentAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentAlertView.h; sourceTree = "<group>"; };
+		D44756031C06F3960085DDF8 /* SummerRentAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentAlertView.m; sourceTree = "<group>"; };
 		D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailReplaceTableViewCell.xib; sourceTree = "<group>"; };
 		D44D60521BED01EF00E877F9 /* SummerRentDetailBootomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentDetailBootomView.h; sourceTree = "<group>"; };
 		D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentDetailBootomView.m; sourceTree = "<group>"; };
@@ -1359,6 +1362,8 @@
 		4ACCD0261BBF49600001227A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D44756021C06F3960085DDF8 /* SummerRentAlertView.h */,
+				D44756031C06F3960085DDF8 /* SummerRentAlertView.m */,
 				D479967F1BF02DD500994024 /* SummerRentTakeNoteTableViewCell.h */,
 				D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */,
 				D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */,
@@ -1811,6 +1816,7 @@
 				4ADDB97D1B5D235F002A188E /* Resources */,
 				34F5D32AEF694EA1FD454A77 /* Copy Pods Resources */,
 				B18AF736E846C9A2A4E85894 /* Embed Pods Frameworks */,
+				D448914D1C07E8A900472ADE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1979,6 +1985,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D448914D1C07E8A900472ADE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2039,6 +2058,7 @@
 				D4E5D9471C0054D100759611 /* SummerSearchBusinessViewController.m in Sources */,
 				4A118EB51BA4900400BC2C4E /* ELCAssetCell.m in Sources */,
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
+				D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */,
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,
 				4A118EB61BA4900400BC2C4E /* ELCAssetTablePicker.m in Sources */,
 				D4B6AC8E1BD776E7005CC778 /* NSString+HTML.m in Sources */,

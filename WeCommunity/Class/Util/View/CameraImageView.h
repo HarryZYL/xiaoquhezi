@@ -21,6 +21,7 @@
 @property (nonatomic ,weak) id delegate;
 
 //- (void)setbtnAddSelectImage
+
 - (void)configureImage:(NSMutableArray*)imageArr;
 - (void)chuckSubViews;
 

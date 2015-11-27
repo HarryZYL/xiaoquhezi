@@ -9,27 +9,33 @@
 #import "SummerRePostMyRentViewController.h"
 
 @interface SummerRePostMyRentViewController ()
-@property (nonatomic ,strong)UIScrollView *mScrollView;
+
+
 @end
 
 @implementation SummerRePostMyRentViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+- (instancetype)init{
+    if (self == [super init]) {
+        UIBarButtonItem *pushItem = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(upLoadData)];
+        self.navigationItem.rightBarButtonItem = pushItem;
+    }
+    return self;
 }
 
-- (UIScrollView *)mScrollView{
-    _mScrollView = [UIScrollView new];
-    _mScrollView.backgroundColor = [UIColor redColor];
-    _mScrollView.contentSize = CGSizeMake(SCREENSIZE.width, 500);
-    [self.view addSubview:_mScrollView];
-    __weak typeof(self)weakSelf = self;
-    [_mScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(weakSelf.view).insets(UIEdgeInsetsMake(0, 0, 0, 0));
-    }];
-    return _mScrollView;
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
+    self.title = @"发布";
+    self.view.backgroundColor = [UIColor whiteColor];
+    _alertViewModel = [[SummerRentAlertView alloc] initWithFrame:self.view.frame];
+    _alertViewModel.houseDeal = self.houseDeal;
+    [self.view addSubview:_alertViewModel];
+    [_alertViewModel setContentTitle];
+}
+
+- (void)upLoadData{
+    
 }
 
 - (void)didReceiveMemoryWarning {

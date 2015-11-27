@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
 #import "AppDelegate.h"
+#import <Bugly/CrashReporter.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import <PgySDK/PgyManager.h>
 #import "SummerTabBarViewController.h"
@@ -28,7 +29,7 @@
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
-    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
     
 
     return YES;
@@ -113,6 +114,7 @@
 
 - (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins withApplication:(UIApplication *)application{
     [WXApi registerApp:@"wx8728578ba70796d9"];
+    [[CrashReporter sharedInstance] installWithAppId:@"900012985"];
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
     if (!ret) {
@@ -128,7 +130,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotifications];
     }
 
-    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:@"回复" withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:@"回复" withSecondAction:nil withCategory:nil isDebug:NO];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"从消息启动:%@",userInfo);

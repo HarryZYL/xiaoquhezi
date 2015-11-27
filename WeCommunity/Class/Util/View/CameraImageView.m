@@ -9,7 +9,7 @@
 #import "CameraImageView.h"
 #import "UITapGestureRecognizer+Data.h"
 
-static CGFloat height = 72;
+static CGFloat height = 70;
 
 @implementation CameraImageView
 
@@ -25,6 +25,7 @@ static CGFloat height = 72;
     return self;
 }
 
+
 -(void)configureImage:(NSMutableArray*)imageArr{
     if (!self.addImageBtn) {
         self.addImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -32,15 +33,20 @@ static CGFloat height = 72;
         self.addImageBtn.frame = CGRectMake(0, 0, height, height);
         [self addSubview:self.addImageBtn];
     }
-    
-    CGFloat margin = (self.frame.size.width - 4*height)/4;
-    
+    if ([imageArr.firstObject length] < 5) {
+        return;
+    }
+    CGFloat margin = (SCREENSIZE.width - 4*height)/4;
     for (int i = 0; i<imageArr.count; i++) {
         UIImage *image = imageArr[i];
         UIImageView *imageView = [[UIImageView alloc] init];
         imageView.userInteractionEnabled = YES;
         imageView.tag = 1000 + i;
-        imageView.image = image;
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:imageArr[i]]]) {
+            [imageView sd_setImageWithURL:[NSURL URLWithString:imageArr[i]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+        }else{
+            imageView.image = image;
+        }
         if (i<4) {
             imageView.frame = CGRectMake((height+margin)*i, 0, height, height);
         }else{

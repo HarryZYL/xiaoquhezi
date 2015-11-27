@@ -8,6 +8,7 @@
 
 #import "RentPostViewController.h"
 #import <UIKit/UIKit.h>
+
 typedef NS_ENUM(NSUInteger, SummerPostRentType) {
     SummerPostRentTypeSale,//出售
     SummerPostRentTypeBuy,
