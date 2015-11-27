@@ -247,18 +247,20 @@
     self.cellAccreditationBtn.hidden = YES;
     // deal image
     self.dealImage.frame = CGRectMake(self.frame.size.width-70, 20, 65, 40);
-    
-    if ([data[@"auditStatus"] isEqualToString:@"Pending"]) {
-        self.dealImage.image = [UIImage imageNamed:@"deal"];
-    }else if([data[@"auditStatus"] isEqualToString:@"Handling"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealing"];
-    }else if ([data[@"auditStatus"] isEqualToString:@"Success"]){
-        self.dealImage.image = [UIImage imageNamed:@"dealed"];
-    }else {
-        self.dealImage.image = [UIImage imageNamed:@"认证-失败-0"];
-        self.cellAccreditationBtn.hidden = NO;
+    if (![data[@"isDelete"] boolValue]) {
+        if ([data[@"auditStatus"] isEqualToString:@"Pending"]) {
+            self.dealImage.image = [UIImage imageNamed:@"deal"];
+        }else if([data[@"auditStatus"] isEqualToString:@"Handling"]){
+            self.dealImage.image = [UIImage imageNamed:@"dealing"];
+        }else if ([data[@"auditStatus"] isEqualToString:@"Success"]){
+            self.dealImage.image = [UIImage imageNamed:@"dealed"];
+        }else {
+            self.dealImage.image = [UIImage imageNamed:@"认证-失败-0"];
+            self.cellAccreditationBtn.hidden = NO;
+        }
+    }else{
+        self.dealImage.image = [UIImage imageNamed:@"已移出-Delete"];
     }
-
     [self setCellStyle];
     self.selectionStyle = NO;
 }

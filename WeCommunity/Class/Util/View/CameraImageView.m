@@ -36,7 +36,7 @@ static CGFloat height = 70;
     if ([imageArr.firstObject length] < 5) {
         return;
     }
-    CGFloat margin = (SCREENSIZE.width - 4*height)/4;
+    CGFloat margin = (self.frame.size.width - 4*height)/5;
     for (int i = 0; i<imageArr.count; i++) {
         UIImage *image = imageArr[i];
         UIImageView *imageView = [[UIImageView alloc] init];

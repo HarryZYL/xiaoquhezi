@@ -69,11 +69,6 @@
                                  @"row":@10
                                  };
     [Networking retrieveData:getBooking parameters:parameters success:^(id responseObject) {
-//        {
-//            rows =     (
-//            );
-//            total = 0;
-//        }
         if ([responseObject[@"rows"] count] < 1) {
             [self showHint:@"暂无预约"];
         }else{

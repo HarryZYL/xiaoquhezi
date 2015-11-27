@@ -11,7 +11,7 @@
 #import "SAMTextView.h"
 #import "CameraImageView.h"
 
-@interface SummerRentAlertView : UIView
+@interface SummerRentAlertView : UIView<UITextFieldDelegate>
 
 @property (nonatomic,strong) HouseDeal *houseDeal;
 

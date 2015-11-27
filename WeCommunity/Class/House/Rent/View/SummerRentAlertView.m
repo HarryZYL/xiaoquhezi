@@ -20,6 +20,7 @@
 }
 
 - (void)initWithTopViewSubViewsWithDataModel:(HouseDeal *)housePostModel{
+    __weak typeof(self)weakSelf = self;
     NSArray *nameArrary = @[@"房型",@"户型",@"楼层",@"朝向"];
     for (NSInteger index = 0; index < 4; index ++) {
         __block UILabel *numbersLab = [UILabel new];
@@ -63,30 +64,22 @@
                 break;
             case 1:
             {
+                CGFloat labelWidth = SCREENSIZE.width - 50;
                 NSArray *arraryType = @[@"室",@"厅",@"卫"];
                 for (NSInteger index = 0; index < 3; index ++) {
                     __block UILabel *typeLab = [UILabel new];
+                    typeLab.frame = CGRectMake(40 + (index+1)*labelWidth/3 -20, 182/4, 20, 182/4);
                     typeLab.textAlignment = NSTextAlignmentRight;
                     typeLab.text = arraryType[index];
                     [_topView addSubview:typeLab];
-                    [typeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.width.mas_equalTo(20);
-                        make.height.mas_equalTo(182/4);
-                        make.left.mas_equalTo(index*(SCREENSIZE.width - 60)/3 + 133);
-                        make.top.mas_equalTo(numbersLab);
-                    }];
                     
-                    UITextField *roomType = [UITextField new];
+                    UITextField *roomType = [[UITextField alloc] initWithFrame:CGRectMake(50 + labelWidth/3*index, 182/4, labelWidth/3-30, 182/4)];
                     roomType.keyboardType = UIKeyboardTypeNumberPad;
                     roomType.textAlignment = NSTextAlignmentCenter;
                     roomType.tag = 10 + index;
+//                    roomType.backgroundColor = [UIColor redColor];
                     [_topView addSubview:roomType];
-                    [roomType mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.top.mas_equalTo(typeLab);
-                        make.height.mas_equalTo(typeLab);
-                        make.width.mas_equalTo(80);
-                        make.left.equalTo(typeLab).offset(-80);
-                    }];
+
                     if (index == 0) {
                         roomType.text = self.houseDeal.room;
                     }else if (index == 1){
@@ -168,7 +161,7 @@
     for (NSInteger index = 0; index < 2; index ++) {
         UILabel *nameLab = [UILabel new];
         nameLab.text = nameArrary[index];
-        nameLab.textAlignment = NSTextAlignmentRight;
+//        nameLab.textAlignment = NSTextAlignmentRight;
         [_middleView addSubview:nameLab];
         
         UILabel *verticalLineLayer = [UILabel new];
@@ -284,6 +277,7 @@
             
             UITextField *nameField = [UITextField new];
             nameField.text = self.houseDeal.title;
+            nameField.tag = 17;
             nameField.placeholder = @"1-20个字";
             [_bootomView addSubview:nameField];
             [nameField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -294,6 +288,7 @@
             }];
         }else{
             SAMTextView *describeText = [SAMTextView new];
+            describeText.tag = 18;
             describeText.text = self.houseDeal.content;
             describeText.placeholder = @"交通配置等";
             describeText.font = [UIFont systemFontOfSize:17];
@@ -304,19 +299,14 @@
                 make.right.equalTo(weakSelf.bootomView).offset(-10);
                 make.height.mas_equalTo(69);
             }];
+            if (_houseDeal.pictures.count < 3) {
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 80)];
+            }else{
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
+            }
             
-            _photoImage = [CameraImageView new];
             [_bootomView addSubview:_photoImage];
-            [_photoImage mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(weakSelf.bootomView.mas_left).offset(10);
-                make.right.equalTo(weakSelf.bootomView.mas_right).offset(-10);
-                if (weakSelf.houseDeal.pictures.count<3) {
-                    make.height.mas_equalTo(80);
-                }else{
-                    make.height.mas_equalTo(160);
-                }
-                make.top.equalTo(titleLab.mas_bottom).offset(40);
-            }];
+            
             [_photoImage configureImage:(NSMutableArray *)_houseDeal.pictures];
         }
     }
