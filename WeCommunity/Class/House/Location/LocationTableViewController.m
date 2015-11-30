@@ -49,10 +49,10 @@
                                  @"row":@30};
     __weak typeof(self) weakSelf = self;
     [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
-        [weakSelf.tableView.header endRefreshing];
+        [weakSelf.tableView.mj_header endRefreshing];
         weakSelf.dataArrary = responseObject[@"rows"];
         if (weakSelf.dataArrary.count < pageNumber*30) {
-            [weakSelf.tableView.footer noticeNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.tableView reloadData];
     }];
@@ -68,10 +68,10 @@
                                  @"row":@30};
     __weak typeof(self) weakSelf = self;
     [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
-        [weakSelf.tableView.footer endRefreshing];
+        [weakSelf.tableView.mj_footer endRefreshing];
         weakSelf.dataArrary = responseObject[@"rows"];
         if (weakSelf.dataArrary.count < pageNumber*30) {
-            [weakSelf.tableView.footer noticeNoMoreData];
+            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         [weakSelf.tableView reloadData];
     }];
