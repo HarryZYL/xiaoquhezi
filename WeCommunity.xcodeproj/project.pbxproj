@@ -150,6 +150,7 @@
 		D45300D11BF20F40003654BF /* SummerRepairListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D01BF20F40003654BF /* SummerRepairListsViewController.m */; };
 		D45300D51BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */; };
 		D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */; };
+		D454D9761C0C2491003218B7 /* SummerSelectCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */; };
 		D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D454E83F1BE481310089333D /* AlipaySDK.bundle */; };
 		D454E8421BE481310089333D /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D454E8401BE481310089333D /* AlipaySDK.framework */; };
 		D454EA361BE48F800089333D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D454E9D61BE48F800089333D /* libcrypto.a */; };
@@ -513,6 +514,8 @@
 		D45300D21BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRepairListsHeaderTableViewCell.h; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerRepairListsHeaderTableViewCell.m; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListsHeaderTableViewCell.xib; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityViewController.h; sourceTree = "<group>"; };
+		D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCommunityViewController.m; sourceTree = "<group>"; };
 		D454E83F1BE481310089333D /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		D454E8401BE481310089333D /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		D454E9D61BE48F800089333D /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -1276,6 +1279,8 @@
 			children = (
 				4ACCD0061BBF49600001227A /* LocationTableViewController.h */,
 				4ACCD0071BBF49600001227A /* LocationTableViewController.m */,
+				D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */,
+				D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -2169,6 +2174,7 @@
 				4ACCD0541BBF49600001227A /* SigninViewController.m in Sources */,
 				4ACCD0561BBF49600001227A /* SigninHeader.m in Sources */,
 				4ACCCEDF1BBF456F0001227A /* GeneralTableViewController.m in Sources */,
+				D454D9761C0C2491003218B7 /* SummerSelectCommunityViewController.m in Sources */,
 				4ACCCE631BBF36EA0001227A /* Like.m in Sources */,
 				4ACCCEA21BBF40120001227A /* UserDetailTableViewController.m in Sources */,
 				4AFFD68C1BCC736000D33F5C /* RDRStickyKeyboardView.m in Sources */,

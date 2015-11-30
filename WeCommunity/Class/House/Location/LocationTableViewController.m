@@ -7,6 +7,7 @@
 //
 
 #import "LocationTableViewController.h"
+#import "SummerSelectCommunityViewController.h"
 
 @interface LocationTableViewController ()
 {
@@ -23,57 +24,36 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
+    __weak typeof(self)weakSelf = self;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.title = @"切换小区";
-    _dataArrary = [[NSMutableArray alloc] init];
-    [self.tableView registerClass:[BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
-//    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-//    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
-    self.tableView.tableFooterView = [[UIView alloc]init];
-//    [self refreshHeader];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.locationArr = @[@"玉兰香苑",@"幸福小区",@"光明小区"];
     self.locationID = @[@"1",@"813",@"814"];
+    _dataArrary = [[NSMutableArray alloc] init];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 64 - 60) style:UITableViewStylePlain];
+    _mTableView.delegate = self;
+    _mTableView.dataSource = self;
+    [self.mTableView registerClass:[BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
+    [self.view addSubview:_mTableView];
+    
+
+    self.mTableView.tableFooterView = [[UIView alloc]init];
+//    [self refreshHeader];
     
     
-}
-
-#pragma mark - Refreshing
-
-- (void)refreshHeader{
-    pageNumber = 1;
-    NSDictionary *parameters = @{@"baiduPosLong":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                                 @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
-                                 @"page":[NSNumber numberWithInteger:pageNumber],
-                                 @"row":@30};
-    __weak typeof(self) weakSelf = self;
-    [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
-        [weakSelf.tableView.mj_header endRefreshing];
-        weakSelf.dataArrary = responseObject[@"rows"];
-        if (weakSelf.dataArrary.count < pageNumber*30) {
-            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-        [weakSelf.tableView reloadData];
-    }];
-}
-
-- (void)refreshFooter{
-    pageNumber ++;
-    NSDictionary *dicLocation = [FileManager getData:@"userlocation"];
-    CLLocation *location = dicLocation[@"location"];
-    NSDictionary *parameters = @{@"baiduPosLong": @(location.coordinate.longitude),
-                                 @"baiduPosLati":@(location.coordinate.latitude),
-                                 @"page":[NSNumber numberWithInteger:pageNumber],
-                                 @"row":@30};
-    __weak typeof(self) weakSelf = self;
-    [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
-        [weakSelf.tableView.mj_footer endRefreshing];
-        weakSelf.dataArrary = responseObject[@"rows"];
-        if (weakSelf.dataArrary.count < pageNumber*30) {
-            [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
-        }
-        [weakSelf.tableView reloadData];
+    UIButton *btnSelectCommunity = [UIButton buttonWithType:UIButtonTypeCustom];
+    btnSelectCommunity.backgroundColor = [UIColor orangeColor];
+    [btnSelectCommunity setTitle:@"选择小区" forState:UIControlStateNormal];
+    [btnSelectCommunity addTarget:self action:@selector(selectCommunity) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnSelectCommunity];
+    
+    [btnSelectCommunity mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+        make.bottomMargin.equalTo(weakSelf.view.mas_bottom).offset(-20);
+        make.height.mas_equalTo(40);
     }];
 }
 
@@ -130,6 +110,12 @@
         [self.delegate selectedFinishedCommunityNameAndID:community];
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)selectCommunity{
+    SummerSelectCommunityViewController *selectCommunityVC = [[SummerSelectCommunityViewController alloc] init];
+    
+    [self.navigationController pushViewController:selectCommunityVC animated:YES];
 }
 
 @end

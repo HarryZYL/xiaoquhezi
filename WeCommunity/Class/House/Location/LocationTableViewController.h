@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, LocationTableViewControllerStyle) {
     LocationTableViewControllerStyleOther,
 };
 
-@interface LocationTableViewController : UITableViewController<MKMapViewDelegate,CLLocationManagerDelegate>{
+@interface LocationTableViewController : UIViewController<MKMapViewDelegate,CLLocationManagerDelegate ,UITableViewDataSource, UITableViewDelegate>{
     
      CLLocationManager *_locationManager;
      CLGeocoder *_geocoder;
@@ -32,6 +32,7 @@ typedef NS_ENUM(NSUInteger, LocationTableViewControllerStyle) {
 
 @property (nonatomic,strong) MKMapView *mapView;
 @property (weak) id delegate;
+@property (nonatomic ,strong)UITableView *mTableView;
 @property (assign)LocationTableViewControllerStyle locationStyle;
 
 @end
