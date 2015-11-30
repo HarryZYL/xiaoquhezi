@@ -56,7 +56,7 @@
                                     <constraint firstAttribute="height" constant="21" id="cEb-mt-wbv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.25882352941176467" green="0.25882352941176467" blue="0.25882352941176467" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vZ-9a-ebz">
@@ -149,6 +149,12 @@
                             <constraint firstItem="Gzl-ED-wfp" firstAttribute="leading" secondItem="e7M-O8-91l" secondAttribute="leading" constant="8" id="v3R-tt-waf"/>
                             <constraint firstItem="gBO-jc-bOZ" firstAttribute="leading" secondItem="BRx-QY-Feh" secondAttribute="trailing" constant="8" id="y3H-xo-L4u"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="siU-aB-hqK"/>

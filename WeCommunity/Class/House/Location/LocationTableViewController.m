@@ -33,8 +33,8 @@
 //    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.tableView.tableFooterView = [[UIView alloc]init];
 //    [self refreshHeader];
-    self.locationArr = @[@"玉兰香苑",@"幸福小区"];
-    self.locationID = @[@"1",@"813"];
+    self.locationArr = @[@"玉兰香苑",@"幸福小区",@"光明小区"];
+    self.locationID = @[@"1",@"813",@"814"];
     
     
 }

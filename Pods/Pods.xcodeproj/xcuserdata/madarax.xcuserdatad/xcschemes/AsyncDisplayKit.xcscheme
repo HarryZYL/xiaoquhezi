@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B1742F7370BBB0587CC49E69'
-               BlueprintName = 'MWPhotoBrowser'
+               BlueprintIdentifier = 'EC05F43D1493F4F351A7BD66'
+               BlueprintName = 'AsyncDisplayKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libMWPhotoBrowser.a'>
+               BuildableName = 'libAsyncDisplayKit.a'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

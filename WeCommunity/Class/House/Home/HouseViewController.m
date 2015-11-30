@@ -141,7 +141,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
 
 -(void)noFunction{

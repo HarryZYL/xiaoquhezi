@@ -6,6 +6,7 @@ platform :ios, '7.0'
 pod "AFNetworking", "~> 2.0"
 pod 'JSONKit', '~> 1.5pre'
 pod 'Masonry', '~> 0.6.3'
+pod 'AsyncDisplayKit', '~> 1.9.1'
 pod 'Pgyer'
 pod 'Bugly'
 pod 'MBProgressHUD'

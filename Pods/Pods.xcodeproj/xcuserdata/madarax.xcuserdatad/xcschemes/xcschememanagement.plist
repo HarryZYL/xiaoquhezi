@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>AsyncDisplayKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DACircularProgress.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,12 +77,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>08E2F50E71B508533FB6D7398F09D61E</key>
+		<key>1A9FA243F09D2D713D3412F7939DC5D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>21FA631A92A84A1DF3AD8E141AB8359E</key>
+		<key>26AFE0969BA78157AA42739C19C278FA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>30B4D76482333041E4162B118FF86899</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +103,11 @@
 			<true/>
 		</dict>
 		<key>5813251FEA21E4AEE97385709F1912DE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>89B8DF36A63B99F8811DBDAB4EAFB00C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,11 +133,6 @@
 			<true/>
 		</dict>
 		<key>E421B7471C420C1C227C435C434E45A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F1223CBA4C0D7E4E460659A9BAA1B26A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

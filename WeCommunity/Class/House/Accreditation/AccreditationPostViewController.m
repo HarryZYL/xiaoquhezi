@@ -22,14 +22,19 @@
 
 @implementation AccreditationPostViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self initViewsLeves];//当前小区层级
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"添加认证信息";
     self.view.backgroundColor = [UIColor whiteColor];
     self.strCommunityName = [Util getCommunityName];
     self.strCommunityID = [Util getCommunityID];
-    [self initViewsLeves];//当前小区层级
-    
+
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
     
@@ -54,7 +59,9 @@
 }
 
 -(void)setupAppearance{
-    
+    for (UIView *views in self.view.subviews) {
+        [views removeFromSuperview];
+    }
     NSArray *picArr;
     if (hourseLeve.count == 2) {
         picArr = @[@"姓名",@"证件号码",@"身份类型",@"小区名称",@"楼号",@"房号"];
@@ -210,7 +217,7 @@
 - (void)initViewsLeves{
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
-    [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": [Util getCommunityID]} success:^(id responseObject) {
+    [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": self.strCommunityID} success:^(id responseObject) {
         hourseLeve = responseObject;
         [self setupData];
     }];
@@ -239,7 +246,13 @@
 }
 
 - (void)getHouseIDSender:(id)sender{
-    NSDictionary *parama = @{@"communityId":self.strCommunityID,@"id":self.strUnit};
+    NSDictionary *parama;
+    if (self.strUnit) {
+        parama = @{@"communityId":self.strCommunityID,@"id":self.strUnit};
+    }else{
+        parama = @{@"communityId":self.strCommunityID,@"id":self.buildingId};
+    }
+    
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.houseArr = responseObject;
         [self selectPicker:sender];
