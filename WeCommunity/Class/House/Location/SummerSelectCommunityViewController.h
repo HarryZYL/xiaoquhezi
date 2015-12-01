@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
+#import "SummerSelectCityTableViewController.h"
+
+typedef void(^PopReturnView)(NSDictionary *);
 
 @interface SummerSelectCommunityViewController : UIViewController
+
+@property (nonatomic ,copy)PopReturnView backViewBlock;
 
 @end

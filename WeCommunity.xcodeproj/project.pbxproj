@@ -119,6 +119,7 @@
 		D414F3841BE8E5E2004F9C5B /* SummerRentMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */; };
 		D414F3881BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D414F3861BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.m */; };
 		D414F3891BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D414F3871BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.xib */; };
+		D425C07F1C0C45910013E1B8 /* SummerSelectCityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D425C07E1C0C45910013E1B8 /* SummerSelectCityTableViewController.m */; };
 		D42BB1281BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BB1261BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m */; };
 		D42BB1291BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42BB1271BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib */; };
 		D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BB12B1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m */; };
@@ -151,6 +152,8 @@
 		D45300D51BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */; };
 		D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */; };
 		D454D9761C0C2491003218B7 /* SummerSelectCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */; };
+		D454D97B1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9791C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m */; };
+		D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D454D97A1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib */; };
 		D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D454E83F1BE481310089333D /* AlipaySDK.bundle */; };
 		D454E8421BE481310089333D /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D454E8401BE481310089333D /* AlipaySDK.framework */; };
 		D454EA361BE48F800089333D /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D454E9D61BE48F800089333D /* libcrypto.a */; };
@@ -461,6 +464,8 @@
 		D414F3851BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeDetailTableViewCell.h; sourceTree = "<group>"; };
 		D414F3861BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeDetailTableViewCell.m; sourceTree = "<group>"; };
 		D414F3871BE924F5004F9C5B /* SummerNoticeDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailTableViewCell.xib; sourceTree = "<group>"; };
+		D425C07D1C0C45910013E1B8 /* SummerSelectCityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityTableViewController.h; sourceTree = "<group>"; };
+		D425C07E1C0C45910013E1B8 /* SummerSelectCityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCityTableViewController.m; sourceTree = "<group>"; };
 		D42BB1251BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerNoticeMoreReplysTableViewCell.h; sourceTree = "<group>"; };
 		D42BB1261BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerNoticeMoreReplysTableViewCell.m; sourceTree = "<group>"; };
 		D42BB1271BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeMoreReplysTableViewCell.xib; sourceTree = "<group>"; };
@@ -471,8 +476,8 @@
 		D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserHeaderView.m; sourceTree = "<group>"; };
 		D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityOfHouseViewController.h; sourceTree = "<group>"; };
 		D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCityOfHouseViewController.m; sourceTree = "<group>"; };
-		D433741F1BE1F58400BD438F /* SummerSelectCityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityView.h; sourceTree = "<group>"; };
-		D43374201BE1F58400BD438F /* SummerSelectCityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCityView.m; sourceTree = "<group>"; };
+		D433741F1BE1F58400BD438F /* SummerSelectCityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerSelectCityView.h; path = ../Rent/View/SummerSelectCityView.h; sourceTree = "<group>"; };
+		D43374201BE1F58400BD438F /* SummerSelectCityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerSelectCityView.m; path = ../Rent/View/SummerSelectCityView.m; sourceTree = "<group>"; };
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
 		D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserViewTableViewCell.m; sourceTree = "<group>"; };
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
@@ -516,6 +521,9 @@
 		D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListsHeaderTableViewCell.xib; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityViewController.h; sourceTree = "<group>"; };
 		D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCommunityViewController.m; sourceTree = "<group>"; };
+		D454D9781C0C3011003218B7 /* SummerSelectCommunityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityTableViewCell.h; sourceTree = "<group>"; };
+		D454D9791C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCommunityTableViewCell.m; sourceTree = "<group>"; };
+		D454D97A1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerSelectCommunityTableViewCell.xib; sourceTree = "<group>"; };
 		D454E83F1BE481310089333D /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		D454E8401BE481310089333D /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		D454E9D61BE48F800089333D /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libcrypto.a; sourceTree = "<group>"; };
@@ -1281,6 +1289,9 @@
 				4ACCD0071BBF49600001227A /* LocationTableViewController.m */,
 				D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */,
 				D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */,
+				D425C07D1C0C45910013E1B8 /* SummerSelectCityTableViewController.h */,
+				D425C07E1C0C45910013E1B8 /* SummerSelectCityTableViewController.m */,
+				D454D9771C0C2FD6003218B7 /* views */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -1379,16 +1390,14 @@
 				D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */,
 				D44D60521BED01EF00E877F9 /* SummerRentDetailBootomView.h */,
 				D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */,
-				D433741F1BE1F58400BD438F /* SummerSelectCityView.h */,
-				D43374201BE1F58400BD438F /* SummerSelectCityView.m */,
 				4ACCD0271BBF49600001227A /* ImagePickerCollectionViewCell.h */,
 				4ACCD0281BBF49600001227A /* ImagePickerCollectionViewCell.m */,
 				4ACCD0291BBF49600001227A /* ImagePickerLayout.h */,
 				4ACCD02A1BBF49600001227A /* ImagePickerLayout.m */,
-				4ACCD02B1BBF49600001227A /* RentDetailView.h */,
 				4ACCD02C1BBF49600001227A /* RentDetailView.m */,
 				4ACCD02D1BBF49600001227A /* RentPostView.h */,
 				4ACCD02E1BBF49600001227A /* RentPostView.m */,
+				4ACCD02B1BBF49600001227A /* RentDetailView.h */,
 				D48662AD1BE94951006D1E4A /* SummerSelectSellerOrOrderView.h */,
 				D48662AE1BE94951006D1E4A /* SummerSelectSellerOrOrderView.m */,
 			);
@@ -1508,6 +1517,18 @@
 				9A6A45E73D8E9EF485B0A714 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D454D9771C0C2FD6003218B7 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				D433741F1BE1F58400BD438F /* SummerSelectCityView.h */,
+				D43374201BE1F58400BD438F /* SummerSelectCityView.m */,
+				D454D9781C0C3011003218B7 /* SummerSelectCommunityTableViewCell.h */,
+				D454D9791C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m */,
+				D454D97A1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		D454E83E1BE481310089333D /* AlipaySDK */ = {
@@ -1930,6 +1951,7 @@
 				D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */,
 				D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */,
 				D414F3891BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.xib in Resources */,
+				D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */,
 				D4CDD5641BE7A0A000B782DB /* SummerBillTableViewCell.xib in Resources */,
 				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
@@ -2068,6 +2090,7 @@
 				D4E5D9471C0054D100759611 /* SummerSearchBusinessViewController.m in Sources */,
 				4A118EB51BA4900400BC2C4E /* ELCAssetCell.m in Sources */,
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
+				D425C07F1C0C45910013E1B8 /* SummerSelectCityTableViewController.m in Sources */,
 				D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */,
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,
 				4A118EB61BA4900400BC2C4E /* ELCAssetTablePicker.m in Sources */,
@@ -2111,6 +2134,7 @@
 				4AD126201BAB05ED0017B220 /* Util.m in Sources */,
 				D4D400841BDF6A9B005F6095 /* SummerPriceListViewController.m in Sources */,
 				D42BB1281BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m in Sources */,
+				D454D97B1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m in Sources */,
 				4ACCD0491BBF49600001227A /* OverView.m in Sources */,
 				D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */,
 				D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */,

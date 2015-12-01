@@ -12,6 +12,7 @@
 #import "SummerTabBarViewController.h"
 #import "SummerRegisterID.h"
 #import "ThirdUserModel.h"
+
 #import "BPush.h"
 
 @interface AppDelegate ()

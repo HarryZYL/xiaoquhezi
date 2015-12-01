@@ -14,7 +14,6 @@
     NSMutableArray *commnityArrary;
 }
 @property (nonatomic ,strong) UITableView *cityTableView;
-@property (nonatomic ,strong) UITableView *commnunityTableView;
 
 @end
 
@@ -23,28 +22,18 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.cityTableView];
-        [self addSubview:self.commnunityTableView];
         [self initOfData];
     }
     return self;
 }
 
 - (UITableView *)cityTableView{
-    _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 90, self.frame.size.height) style:UITableViewStylePlain];
+    _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, self.frame.size.height) style:UITableViewStylePlain];
     [_cityTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     _cityTableView.tableFooterView = [[UIView alloc] init];
     _cityTableView.delegate = self;
     _cityTableView.dataSource = self;
     return _cityTableView;
-}
-
-- (UITableView *)commnunityTableView{
-    _commnunityTableView = [[UITableView alloc] initWithFrame:CGRectMake(90, 64, self.frame.size.width - 90, self.frame.size.height - 64) style:UITableViewStylePlain];
-    [_commnunityTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    _commnunityTableView.tableFooterView = [[UIView alloc] init];
-    _commnunityTableView.delegate = self;
-    _commnunityTableView.dataSource = self;
-    return _commnunityTableView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -56,25 +45,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    if (tableView == _cityTableView) {
-        cell.textLabel.font = [UIFont systemFontOfSize:12];
-        NSDictionary *dicTemp = cityArrary[indexPath.row];
-        cell.textLabel.text = dicTemp[@"name"];
-    }else{
-        cell.textLabel.text = @"456";
-    }
     
+    cell.textLabel.font = [UIFont systemFontOfSize:12];
+    NSDictionary *dicTemp = cityArrary[indexPath.row];
+    cell.textLabel.text = dicTemp[@"name"];
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (tableView == _cityTableView) {
-        [commnityArrary removeAllObjects];
-        NSDictionary *dic = cityArrary[indexPath.row];
-        [self getCommnunityDataListWithCityName:dic[@"name"]];
-    }else{
-        
-    }
+    
+    [commnityArrary removeAllObjects];
+    NSDictionary *dic = cityArrary[indexPath.row];
+    [self getCommnunityDataListWithCityName:dic[@"name"]];
+    
 }
 
 - (void)initOfData{
@@ -101,8 +85,7 @@
                              @"row":@"30"};
     
     [Networking retrieveData:getCommnityOfCity parameters:parama success:^(id responseObject) {
-        commnityArrary = responseObject;
-        [_commnunityTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    commnityArrary = responseObject;
     }];
 
 }
