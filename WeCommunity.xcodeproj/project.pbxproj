@@ -129,6 +129,8 @@
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
 		D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */; };
 		D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */; };
+		D43E667C1C0DA7C50090E1E2 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43E667B1C0DA7C50090E1E2 /* HomeStoryboard.storyboard */; };
+		D43E667E1C0DA8150090E1E2 /* BusinessStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43E667D1C0DA8150090E1E2 /* BusinessStoryboard.storyboard */; };
 		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
@@ -481,6 +483,8 @@
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
 		D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserViewTableViewCell.m; sourceTree = "<group>"; };
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
+		D43E667B1C0DA7C50090E1E2 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
+		D43E667D1C0DA8150090E1E2 /* BusinessStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessStoryboard.storyboard; sourceTree = "<group>"; };
 		D44756021C06F3960085DDF8 /* SummerRentAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentAlertView.h; sourceTree = "<group>"; };
 		D44756031C06F3960085DDF8 /* SummerRentAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentAlertView.m; sourceTree = "<group>"; };
 		D448914E1C07F73400472ADE /* SummerReAccreditationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerReAccreditationViewController.h; sourceTree = "<group>"; };
@@ -1225,6 +1229,7 @@
 				D4E5F0651BEC39FE009D2F15 /* SummerCommunityBrowserViewController.h */,
 				D4E5F0661BEC39FE009D2F15 /* SummerCommunityBrowserViewController.m */,
 				4ACCCFF81BBF49600001227A /* View */,
+				D43E667B1C0DA7C50090E1E2 /* HomeStoryboard.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1798,6 +1803,7 @@
 				D4DBDE471BFEC8670000BE3B /* SummerBusinessDetailViewController.h */,
 				D4DBDE481BFEC8670000BE3B /* SummerBusinessDetailViewController.m */,
 				D4DBDE3C1BFEBF9F0000BE3B /* BusinessModel */,
+				D43E667D1C0DA8150090E1E2 /* BusinessStoryboard.storyboard */,
 			);
 			name = Business;
 			path = House/Signin;
@@ -1938,6 +1944,7 @@
 				D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */,
 				4A118EBE1BA4900400BC2C4E /* Overlay@2x.png in Resources */,
 				D45206911BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib in Resources */,
+				D43E667C1C0DA7C50090E1E2 /* HomeStoryboard.storyboard in Resources */,
 				D45939AB1BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.xib in Resources */,
 				D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */,
 				D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */,
@@ -1953,6 +1960,7 @@
 				D414F3891BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.xib in Resources */,
 				D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */,
 				D4CDD5641BE7A0A000B782DB /* SummerBillTableViewCell.xib in Resources */,
+				D43E667E1C0DA8150090E1E2 /* BusinessStoryboard.storyboard in Resources */,
 				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,

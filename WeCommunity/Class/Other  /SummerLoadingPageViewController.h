@@ -10,4 +10,6 @@
 
 @interface SummerLoadingPageViewController : UIViewController<UIScrollViewDelegate>
 
+@property (nonatomic ,copy) voidBlock returnViewController;
+
 @end

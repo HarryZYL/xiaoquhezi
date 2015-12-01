@@ -97,9 +97,7 @@
 
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     
-    //[[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navBarBackground"] forBarMetrics:UIBarMetricsDefault];
-    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"billRight"]];
-
+    
     NSDictionary *attributes = @{
                                  NSUnderlineStyleAttributeName: @1,
                                  NSForegroundColorAttributeName : THEMECOLOR,
@@ -109,6 +107,10 @@
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
 
     [[UINavigationBar appearance] setTintColor:THEMECOLOR];
+    
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[[UIImage imageNamed:@"leftBill"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 40, 0, 0)] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(NSIntegerMin, NSIntegerMin) forBarMetrics:UIBarMetricsDefault];
     
     [[UITabBar appearance] setTintColor:THEMECOLOR];
 }

@@ -40,10 +40,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {
-//        SummerLoadingPageViewController *loadingPageVC = [[SummerLoadingPageViewController alloc] init];
-//        [self presentViewController:loadingPageVC animated:NO completion:nil];
-//    }
     
     barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     User *userInfo = [[User alloc] initWithData];

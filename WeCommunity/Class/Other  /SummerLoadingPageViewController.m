@@ -39,7 +39,10 @@
 
 - (void)nextViewController{
     [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"FIRST_LOGING"];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (_returnViewController) {
+        _returnViewController();
+    }
+    [self removeFromParentViewController];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,6 +7,9 @@
 //
 
 #import "SummerTabBarViewController.h"
+#import "HouseViewController.h"
+#import "SummerBusinessViewController.h"
+#import "SummerLoadingPageViewController.h"
 
 @interface SummerTabBarViewController ()
 
@@ -18,7 +21,32 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    __weak typeof(self)weakSelf = self;
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {
+        self.tabBar.hidden = YES;
+        SummerLoadingPageViewController *loadingPageVC = [[SummerLoadingPageViewController alloc] init];
+        loadingPageVC.returnViewController = ^{
+            [weakSelf loadSubViewControllers];
+        };
+        [self addChildViewController:loadingPageVC];
+    }else{
+        [self loadSubViewControllers];
+    }
 }
+
+- (void)loadSubViewControllers{
+    self.tabBar.hidden = NO;
+    
+    UIStoryboard *homeStory = [UIStoryboard storyboardWithName:@"HomeStoryboard" bundle:nil];
+    UINavigationController *homeNav =  (UINavigationController *)[homeStory instantiateViewControllerWithIdentifier:@"HOME_STORY"];
+
+    UIStoryboard *businessStory = [UIStoryboard storyboardWithName:@"BusinessStoryboard" bundle:nil];
+    UINavigationController *businessNav = (UINavigationController *)[businessStory instantiateViewControllerWithIdentifier:@"BUSINESS_STORY"];
+
+    self.viewControllers = @[homeNav,businessNav];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
