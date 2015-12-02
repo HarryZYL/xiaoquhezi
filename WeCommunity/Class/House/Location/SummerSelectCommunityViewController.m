@@ -10,7 +10,7 @@
 #import "SummerSelectCommunityTableViewCell.h"
 
 
-@interface SummerSelectCommunityViewController ()<UITableViewDelegate ,UITableViewDataSource ,BMKGeoCodeSearchDelegate>
+@interface SummerSelectCommunityViewController ()<UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,BMKGeoCodeSearchDelegate>
 {
     NSInteger pageNumber;
     NSString *strCityName;
@@ -69,7 +69,8 @@
     
     _mTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width - 80, 50)];
     _mTextField.placeholder = @"搜索附近的小区";
-    
+    _mTextField.delegate = self;
+    _mTextField.returnKeyType = UIReturnKeySearch;
     UIImageView *searchImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search"]];
     searchImageView.frame = CGRectMake(0, 0, 26, 36);
     searchImageView.contentMode = UIViewContentModeCenter;
@@ -87,6 +88,11 @@
     _mTabelView.delegate   = self;
     _mTabelView.dataSource = self;
     [self.view addSubview:_mTabelView];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{

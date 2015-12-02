@@ -199,17 +199,7 @@
 
 - (void)rentDetailRePaier{
     //修改,房屋信息
-    SummerPostRentViewController *postVC = [[SummerPostRentViewController alloc] init];
-    postVC.houseDeal = self.houseDeal;
-    if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
-        postVC.houseDealType = SummerPostRentTypeRent;
-    }else{
-        postVC.houseDealType = SummerPostRentTypeSale;
-    }
-    postVC.strHouseDeailID = self.houseDeal.objectId;
-    [self.navigationController pushViewController:postVC animated:YES];
-    
-//    SummerRePostMyRentViewController *postVC = [[SummerRePostMyRentViewController alloc] init];
+//    SummerPostRentViewController *postVC = [[SummerPostRentViewController alloc] init];
 //    postVC.houseDeal = self.houseDeal;
 //    if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
 //        postVC.houseDealType = SummerPostRentTypeRent;
@@ -218,6 +208,16 @@
 //    }
 //    postVC.strHouseDeailID = self.houseDeal.objectId;
 //    [self.navigationController pushViewController:postVC animated:YES];
+    
+    SummerRePostMyRentViewController *postVC = [[SummerRePostMyRentViewController alloc] init];
+    postVC.houseDeal = self.houseDeal;
+    if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {
+        postVC.houseDealType = SummerPostRentTypeRent;
+    }else{
+        postVC.houseDealType = SummerPostRentTypeSale;
+    }
+    postVC.strHouseDeailID = self.houseDeal.objectId;
+    [self.navigationController pushViewController:postVC animated:YES];
 }
 
 #pragma mark - MWPhotoBrowserDelegate

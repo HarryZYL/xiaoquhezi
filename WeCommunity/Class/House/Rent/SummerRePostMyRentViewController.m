@@ -60,7 +60,7 @@
     }else if (self.houseDealType == SummerHouseDealTypeRent){
         houseType = @"Rent";
     }
-    if (self.chosenImages.count) {
+    if (self.alertViewModel.selectImagesArrary) {
         [Networking upload:self.chosenImages success:^(id responseObject) {
             NSDictionary *parameters = @{
                                          @"token":[User getUserToken],

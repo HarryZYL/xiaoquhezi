@@ -308,24 +308,26 @@
                 make.height.mas_equalTo(69);
             }];
             if (_houseDeal.pictures.count < 3) {
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(10, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width - 20, 80)];
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width - 20, 80)];
             }else{
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(0, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
             }
 //            _photoImage.backgroundColor = [UIColor redColor];
             
             [_bootomView addSubview:_photoImage];
-            
-            for (NSString *str in housePostModel.pictures) {
-                dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                    NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:str]];
-                    UIImage *imgTemp = [UIImage imageWithData:imgData];
-                    [weakSelf.selectImagesArrary addObject:imgTemp];
-                    dispatch_sync(dispatch_get_main_queue(), ^{
-                        [weakSelf.photoImage configureImage:self.selectImagesArrary];
+            if ([housePostModel.pictures.firstObject length] > 5) {
+                for (NSString *str in housePostModel.pictures) {
+                    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:str]];
+                        UIImage *imgTemp = [UIImage imageWithData:imgData];
+                        [_selectImagesArrary addObject:imgTemp];
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            [_photoImage configureImage:_selectImagesArrary];
+                        });
                     });
-                });
+                }
             }
+            
         }
     }
 }
