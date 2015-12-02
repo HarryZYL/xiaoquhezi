@@ -11,11 +11,14 @@
 #import "SAMTextView.h"
 #import "CameraImageView.h"
 
-@interface SummerRentAlertView : UIView<UITextFieldDelegate>
+@interface SummerRentAlertView : UIView<UITextFieldDelegate ,UITextViewDelegate>
 
 @property (nonatomic,strong) HouseDeal *houseDeal;
 
 @property (nonatomic ,strong)UIScrollView *mScrollView;
+@property (nonatomic ,strong)UIButton *roomType;
+@property (nonatomic ,strong)UIButton *orientationBtn;
+
 @property (nonatomic ,strong)UIView *bootomView;
 @property (nonatomic ,strong)UIView *middleView;
 @property (nonatomic ,strong)UIView *topView;

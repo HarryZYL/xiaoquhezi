@@ -125,12 +125,12 @@
 		D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D42BB12B1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m */; };
 		D42BB12E1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42BB12C1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib */; };
 		D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */; };
-		D433741E1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */; };
 		D43374211BE1F58400BD438F /* SummerSelectCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = D43374201BE1F58400BD438F /* SummerSelectCityView.m */; };
 		D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D43BD0801BDA1CD0002FFD02 /* SummerUserViewTableViewCell.m */; };
 		D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */; };
 		D43E667C1C0DA7C50090E1E2 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43E667B1C0DA7C50090E1E2 /* HomeStoryboard.storyboard */; };
 		D43E667E1C0DA8150090E1E2 /* BusinessStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43E667D1C0DA8150090E1E2 /* BusinessStoryboard.storyboard */; };
+		D44417371C0EF3150084FFDC /* SummerRunloopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44417361C0EF3150084FFDC /* SummerRunloopView.m */; };
 		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
@@ -226,7 +226,6 @@
 		D4DA2D241BE5483E003C61C7 /* WechatPayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DA2D231BE5483E003C61C7 /* WechatPayManager.m */; };
 		D4DBDE3B1BFEB7920000BE3B /* SummerBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */; };
 		D4DBDE431BFEC05E0000BE3B /* SummerBusinessTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE421BFEC05E0000BE3B /* SummerBusinessTableViewCell.m */; };
-		D4DBDE461BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE451BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.m */; };
 		D4DBDE491BFEC8670000BE3B /* SummerBusinessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4DBDE481BFEC8670000BE3B /* SummerBusinessDetailViewController.m */; };
 		D4E508191BF25A050057AFDB /* SummerRepairListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */; };
 		D4E5081A1BF25A050057AFDB /* SummerRepairListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */; };
@@ -476,8 +475,6 @@
 		D42BB12C1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeMoreReplysRowTableViewCell.xib; sourceTree = "<group>"; };
 		D43374191BE1E55800BD438F /* SummerUserHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserHeaderView.h; sourceTree = "<group>"; };
 		D433741A1BE1E55800BD438F /* SummerUserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerUserHeaderView.m; sourceTree = "<group>"; };
-		D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCityOfHouseViewController.h; sourceTree = "<group>"; };
-		D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCityOfHouseViewController.m; sourceTree = "<group>"; };
 		D433741F1BE1F58400BD438F /* SummerSelectCityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerSelectCityView.h; path = ../Rent/View/SummerSelectCityView.h; sourceTree = "<group>"; };
 		D43374201BE1F58400BD438F /* SummerSelectCityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerSelectCityView.m; path = ../Rent/View/SummerSelectCityView.m; sourceTree = "<group>"; };
 		D43BD07F1BDA1CD0002FFD02 /* SummerUserViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerUserViewTableViewCell.h; sourceTree = "<group>"; };
@@ -485,6 +482,8 @@
 		D43BD0811BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerUserViewTableViewCell.xib; sourceTree = "<group>"; };
 		D43E667B1C0DA7C50090E1E2 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
 		D43E667D1C0DA8150090E1E2 /* BusinessStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BusinessStoryboard.storyboard; sourceTree = "<group>"; };
+		D44417351C0EF3150084FFDC /* SummerRunloopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRunloopView.h; sourceTree = "<group>"; };
+		D44417361C0EF3150084FFDC /* SummerRunloopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRunloopView.m; sourceTree = "<group>"; };
 		D44756021C06F3960085DDF8 /* SummerRentAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentAlertView.h; sourceTree = "<group>"; };
 		D44756031C06F3960085DDF8 /* SummerRentAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentAlertView.m; sourceTree = "<group>"; };
 		D448914E1C07F73400472ADE /* SummerReAccreditationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerReAccreditationViewController.h; sourceTree = "<group>"; };
@@ -719,8 +718,6 @@
 		D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBusinessViewController.m; path = WeCommunity/Class/Business/SummerBusinessViewController.m; sourceTree = SOURCE_ROOT; };
 		D4DBDE411BFEC05E0000BE3B /* SummerBusinessTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBusinessTableViewCell.h; sourceTree = "<group>"; };
 		D4DBDE421BFEC05E0000BE3B /* SummerBusinessTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBusinessTableViewCell.m; sourceTree = "<group>"; };
-		D4DBDE441BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerBusinessTableViewHeaderView.h; path = WeCommunity/Class/Business/BusinessView/SummerBusinessTableViewHeaderView.h; sourceTree = SOURCE_ROOT; };
-		D4DBDE451BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBusinessTableViewHeaderView.m; path = WeCommunity/Class/Business/BusinessView/SummerBusinessTableViewHeaderView.m; sourceTree = SOURCE_ROOT; };
 		D4DBDE471BFEC8670000BE3B /* SummerBusinessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerBusinessDetailViewController.h; path = WeCommunity/Class/Business/SummerBusinessDetailViewController.h; sourceTree = SOURCE_ROOT; };
 		D4DBDE481BFEC8670000BE3B /* SummerBusinessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBusinessDetailViewController.m; path = WeCommunity/Class/Business/SummerBusinessDetailViewController.m; sourceTree = SOURCE_ROOT; };
 		D4E508161BF25A050057AFDB /* SummerRepairListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRepairListTableViewCell.h; path = ComplaintCell/SummerRepairListTableViewCell.h; sourceTree = "<group>"; };
@@ -1378,8 +1375,6 @@
 				D4A53DB81C00A306008699DD /* SummerRePostMyRentViewController.m */,
 				D414F3821BE8E5E1004F9C5B /* SummerRentMyViewController.h */,
 				D414F3831BE8E5E1004F9C5B /* SummerRentMyViewController.m */,
-				D433741C1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.h */,
-				D433741D1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m */,
 				4ACCD0261BBF49600001227A /* View */,
 			);
 			path = Rent;
@@ -1522,6 +1517,15 @@
 				9A6A45E73D8E9EF485B0A714 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D44417341C0EF2780084FFDC /* BusinessViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				D4DBDE411BFEC05E0000BE3B /* SummerBusinessTableViewCell.h */,
+				D4DBDE421BFEC05E0000BE3B /* SummerBusinessTableViewCell.m */,
+			);
+			name = BusinessViewCell;
 			sourceTree = "<group>";
 		};
 		D454D9771C0C2FD6003218B7 /* views */ = {
@@ -1795,6 +1799,7 @@
 		D4DBDE381BFEB6DA0000BE3B /* Business */ = {
 			isa = PBXGroup;
 			children = (
+				D44417341C0EF2780084FFDC /* BusinessViewCell */,
 				D4DBDE401BFEC0470000BE3B /* BusinessViews */,
 				D4DBDE391BFEB7920000BE3B /* SummerBusinessViewController.h */,
 				D4DBDE3A1BFEB7920000BE3B /* SummerBusinessViewController.m */,
@@ -1819,10 +1824,8 @@
 		D4DBDE401BFEC0470000BE3B /* BusinessViews */ = {
 			isa = PBXGroup;
 			children = (
-				D4DBDE411BFEC05E0000BE3B /* SummerBusinessTableViewCell.h */,
-				D4DBDE421BFEC05E0000BE3B /* SummerBusinessTableViewCell.m */,
-				D4DBDE441BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.h */,
-				D4DBDE451BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.m */,
+				D44417351C0EF3150084FFDC /* SummerRunloopView.h */,
+				D44417361C0EF3150084FFDC /* SummerRunloopView.m */,
 			);
 			name = BusinessViews;
 			sourceTree = "<group>";
@@ -2061,7 +2064,6 @@
 				4ACCD04E1BBF49600001227A /* RentPostViewController.m in Sources */,
 				D4B9B7D61BFD714700D82286 /* SummerLoadingPageViewController.m in Sources */,
 				4AB6B2571BAF0F41000E5FBA /* CameraImageView.m in Sources */,
-				D4DBDE461BFEC1A80000BE3B /* SummerBusinessTableViewHeaderView.m in Sources */,
 				D43BD0821BDA1CD1002FFD02 /* SummerUserViewTableViewCell.m in Sources */,
 				4ACCD04C1BBF49600001227A /* OrderHouseViewController.m in Sources */,
 				D48C26BE1BFEF935004F99CC /* SummerTabBarViewController.m in Sources */,
@@ -2122,6 +2124,7 @@
 				D454EAA51BE4949E0089333D /* DataSigner.m in Sources */,
 				D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */,
 				D4BCD2451BEF7874006CFE46 /* SummerComplainViewController.m in Sources */,
+				D44417371C0EF3150084FFDC /* SummerRunloopView.m in Sources */,
 				4A118EB81BA4900400BC2C4E /* ELCImagePickerController.m in Sources */,
 				D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */,
 				D44EDC101BEDE379003C1E96 /* SummerHomeDetailNoticeModel.m in Sources */,
@@ -2173,7 +2176,6 @@
 				D45300D11BF20F40003654BF /* SummerRepairListsViewController.m in Sources */,
 				D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */,
 				4ACCCE5A1BBF36410001227A /* TextDeal.m in Sources */,
-				D433741E1BE1EE8300BD438F /* SummerSelectCityOfHouseViewController.m in Sources */,
 				D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */,
 				D4DA2D211BE53734003C61C7 /* WXUtil.mm in Sources */,
 				4AFFD68D1BCC736000D33F5C /* RDRTextView.m in Sources */,

@@ -62,12 +62,13 @@
         switch (index) {
             case 0:
             {
-                UIButton *roomType = [UIButton buttonWithType:UIButtonTypeCustom];
-                [roomType setTitle:self.houseDeal.houseType forState:UIControlStateNormal];
-                roomType.frame = CGRectMake(SCREENSIZE.width - 90, 0, 80, 182/4);
-                roomType.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
-                [roomType setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [_topView addSubview:roomType];
+                _roomType = [UIButton buttonWithType:UIButtonTypeCustom];
+                _roomType.tag = 1;
+                [_roomType setTitle:self.houseDeal.houseType forState:UIControlStateNormal];
+                _roomType.frame = CGRectMake(SCREENSIZE.width - 90, 0, 80, 182/4);
+                _roomType.contentHorizontalAlignment =UIControlContentHorizontalAlignmentRight;
+                [_roomType setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_topView addSubview:_roomType];
             }
                 break;
             case 1:
@@ -85,7 +86,6 @@
                     roomType.keyboardType = UIKeyboardTypeNumberPad;
                     roomType.textAlignment = NSTextAlignmentCenter;
                     roomType.tag = 10 + index;
-//                    roomType.backgroundColor = [UIColor redColor];
                     [_topView addSubview:roomType];
 
                     if (index == 0) {
@@ -122,12 +122,12 @@
                 break;
             case 3:
             {
-                UIButton *orientationBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
-                orientationBtn.frame = CGRectMake(40, 182/2 + 50, SCREENSIZE.width - 50, 40);
-                orientationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
-                [orientationBtn setTitle:self.houseDeal.houseOrientation forState:UIControlStateNormal];
-                [orientationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-                [_topView addSubview:orientationBtn];
+                _orientationBtn  = [UIButton buttonWithType:UIButtonTypeCustom];
+                _orientationBtn.frame = CGRectMake(40, 182/2 + 50, SCREENSIZE.width - 50, 40);
+                _orientationBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+                [_orientationBtn setTitle:self.houseDeal.houseOrientation forState:UIControlStateNormal];
+                [_orientationBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+                [_topView addSubview:_orientationBtn];
             }
                 break;
                 
@@ -233,21 +233,11 @@
 
 - (void)initWithBotomViewWithDataModel:(HouseDeal *)housePostModel{
     __weak typeof(self)weakSelf = self;
-    _bootomView = [UIView new];
+    _bootomView = [[UIView alloc] initWithFrame:CGRectMake(0, 300, SCREENSIZE.width, 250)];
     _bootomView.clipsToBounds = YES;
     _bootomView.backgroundColor = [UIColor whiteColor];
     [_mScrollView addSubview:_bootomView];
     
-    [_bootomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(weakSelf.middleView.mas_bottom).offset(10);
-        make.right.equalTo(weakSelf.mas_right).offset(0);
-        make.left.equalTo(weakSelf.mas_left).offset(0);
-        if (weakSelf.houseDeal.pictures.count > 3) {
-            make.height.mas_equalTo(330);
-        }else{
-            make.height.mas_equalTo(250);
-        }
-    }];
     NSArray *bootomTitle = @[@"标题",@"描述"];
     for (NSInteger index = 0; index < 2; index ++) {
         UILabel *titleLab = [UILabel new];
@@ -286,6 +276,8 @@
             UITextField *nameField = [UITextField new];
             nameField.text = self.houseDeal.title;
             nameField.tag = 17;
+            nameField.delegate = self;
+            nameField.returnKeyType = UIReturnKeyDone;
             nameField.placeholder = @"1-20个字";
             [_bootomView addSubview:nameField];
             [nameField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -297,6 +289,8 @@
         }else{
             SAMTextView *describeText = [SAMTextView new];
             describeText.tag = 18;
+            describeText.delegate = self;
+            describeText.returnKeyType = UIReturnKeyDone;
             describeText.text = self.houseDeal.content;
             describeText.placeholder = @"交通配置等";
             describeText.font = [UIFont systemFontOfSize:17];
@@ -307,11 +301,11 @@
                 make.right.equalTo(weakSelf.bootomView).offset(-10);
                 make.height.mas_equalTo(69);
             }];
-            if (_houseDeal.pictures.count < 3) {
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width - 20, 80)];
-            }else{
-                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, describeText.frame.origin.y + describeText.frame.size.height + 160, SCREENSIZE.width, 160)];
-            }
+//            if (_houseDeal.pictures.count < 3) {
+//                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, 160, SCREENSIZE.width - 20, 80)];
+//            }else{
+                _photoImage = [[CameraImageView alloc] initWithFrame:CGRectMake(20, 160, SCREENSIZE.width, 160)];
+//            }
 //            _photoImage.backgroundColor = [UIColor redColor];
             
             [_bootomView addSubview:_photoImage];
@@ -322,6 +316,9 @@
                         UIImage *imgTemp = [UIImage imageWithData:imgData];
                         [_selectImagesArrary addObject:imgTemp];
                         dispatch_sync(dispatch_get_main_queue(), ^{
+                            if (_selectImagesArrary.count > 4) {
+                                _bootomView.frame = CGRectMake(0, 300, SCREENSIZE.width, 330);
+                            }
                             [_photoImage configureImage:_selectImagesArrary];
                         });
                     });
@@ -346,6 +343,17 @@
     return _mScrollView;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+    }
+    return YES;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

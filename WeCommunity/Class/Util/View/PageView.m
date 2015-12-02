@@ -102,6 +102,7 @@
 
 - (void)dealloc{
     [_moveTime isValid];
+    _moveTime = nil;
 }
 
 @end

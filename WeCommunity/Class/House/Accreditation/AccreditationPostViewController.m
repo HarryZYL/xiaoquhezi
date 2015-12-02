@@ -475,7 +475,7 @@
     }
 }
 
-#pragma mark - SummerSelectCityOfHouseViewControllerDelegate
+#pragma mark - LocationTableViewControllerDelegate
 - (void)selectedFinishedCommunityNameAndID:(NSDictionary *)dicTemp{
     _strCommunityID = dicTemp[@"communityID"];
     _strCommunityName = dicTemp[@"communityName"];

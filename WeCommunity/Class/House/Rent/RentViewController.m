@@ -12,9 +12,15 @@
 {
     SummerSelectSellerOrOrderView *orderSelectView;
 }
+@property (nonatomic ,strong)AdScrollView *adView;
 @end
 
 @implementation RentViewController
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    _adView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,19 +50,19 @@
     [orderSelectView.btnRent addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
     [orderSelectView.btnSell addTarget:self action:@selector(postButtonRent:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:orderSelectView];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resavedRequsetRefeshing) name:@"RENT_ROOM_UPDATE" object:nil];
     // Do any additional setup after loading the view.
 }
 
 -(void)setupAdvertisement{
     NSArray *imageArray = @[@"house1",@"house2",@"house3"];
-    AdScrollView *adView = [[AdScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 150)];
-    adView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    adView.imageNameArray = imageArray;
-    adView.PageControlShowStyle = UIPageControlShowStyleCenter;
-    adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    adView.pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
-    [self.view addSubview:adView];
+    _adView = [[AdScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 150)];
+    _adView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
+    _adView.imageNameArray = imageArray;
+    _adView.PageControlShowStyle = UIPageControlShowStyleCenter;
+    _adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    _adView.pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
+    [self.view addSubview:_adView];
 }
 
 
@@ -449,6 +455,14 @@
         }
         [self pushVC:postVC title:@"发布"];
     }
+}
+
+- (void)resavedRequsetRefeshing{
+    [self refreshHeader];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

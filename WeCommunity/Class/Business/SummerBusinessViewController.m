@@ -8,9 +8,13 @@
 
 #import "SummerBusinessViewController.h"
 #import "SummerBusinessTableViewCell.h"
+#import "SummerRunloopView.h"
 
-@interface SummerBusinessViewController ()<UITableViewDataSource ,UITableViewDelegate>
+@interface SummerBusinessViewController ()<UITableViewDataSource ,UITableViewDelegate ,DOPDropDownMenuDataSource ,DOPDropDownMenuDelegate>
 @property (nonatomic, strong)IBOutlet UITableView *mTableView;
+@property (nonatomic, strong) DOPDropDownMenu*businessMenu;
+@property (nonatomic, strong) SummerRunloopView *headerRunloopView;
+
 @end
 
 @implementation SummerBusinessViewController
@@ -25,12 +29,99 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _businessMenu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:50];
+    _businessMenu.delegate   = self;
+    _businessMenu.dataSource = self;
+    [self.view addSubview:_businessMenu];
+}
+
+#pragma mark - DOPDropDownMenuDataSource
+
+- (NSInteger)numberOfColumnsInMenu:(DOPDropDownMenu *)menu {
+    return 2;
+}
+
+- (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column {
+    switch (column) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return 1;
+            break;
+        default:
+            return 1;
+            break;
+    }
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
+- (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
+    menu.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
+    switch (indexPath.column) {
+        case 0:
+            return @"分类";
+            break;
+        case 1:
+            return @"筛选";
+            break;
+        default:
+            return nil;
+            break;
+    }
+    return @"123";
 }
+
+- (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
+    
+    switch (indexPath.column) {
+            
+        case 0:
+            switch (indexPath.row) {
+                case 0:
+//                    self.communityAll = NO;
+//                    [self retrireveData];
+                    break;
+                case 1:
+//                    self.communityAll = YES;
+//                    [self retrireveData];
+                    break;
+                    
+                default:
+                    break;
+            }
+            
+            break;
+        case 1:
+//            switch (indexPath.row) {
+//                case 0:
+//                    self.houseTypeArr = @[@"Sale",@"Rent"];
+//                    [self retrireveData];
+//                    break;
+//                case 1:
+//                    self.houseTypeArr = @[@"Sale"];
+//                    [self retrireveData];
+//                    break;
+//                case 2:
+//                    self.houseTypeArr = @[@"Rent"];
+//                    [self retrireveData];
+//                    break;
+//                    
+//                default:
+//                    break;
+//            }
+            
+            
+            break;
+        default:
+            
+            break;
+    }
+    
+    
+}
+
+#pragma mark - UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 2;
