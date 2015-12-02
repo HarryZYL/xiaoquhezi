@@ -15,6 +15,9 @@
 @property (nonatomic, strong) DOPDropDownMenu*businessMenu;
 @property (nonatomic, strong) SummerRunloopView *headerRunloopView;
 
+@property (nonatomic, strong) NSArray *classifyArrary;
+@property (nonatomic, strong) NSArray *siftArrary;
+
 @end
 
 @implementation SummerBusinessViewController
@@ -22,6 +25,8 @@
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if ([super initWithCoder:aDecoder]) {
         self.title = @"商家";
+        _classifyArrary = @[@"分类",@"全部",@"美食",@"休闲娱乐",@"运动健身",@"足疗按摩"];
+        _siftArrary = @[@"筛选",@"全部",@"可配送",@"有优惠",@"小区盒子-金马会.专属特惠"];
     }
     return self;
 }
@@ -44,32 +49,30 @@
 - (NSInteger)menu:(DOPDropDownMenu *)menu numberOfRowsInColumn:(NSInteger)column {
     switch (column) {
         case 0:
-            return 1;
+            return _classifyArrary.count;
             break;
         case 1:
-            return 1;
+            return _siftArrary.count;
             break;
         default:
-            return 1;
             break;
     }
-    
+    return 0;
 }
 
 - (NSString *)menu:(DOPDropDownMenu *)menu titleForRowAtIndexPath:(DOPIndexPath *)indexPath {
     menu.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
     switch (indexPath.column) {
         case 0:
-            return @"分类";
+            return _classifyArrary[indexPath.row];
             break;
         case 1:
-            return @"筛选";
+            return _siftArrary[indexPath.row];
             break;
         default:
             return nil;
             break;
     }
-    return @"123";
 }
 
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
