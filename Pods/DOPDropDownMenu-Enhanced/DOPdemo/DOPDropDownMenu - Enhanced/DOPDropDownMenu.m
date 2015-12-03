@@ -323,7 +323,8 @@
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
         _leftTableView.separatorColor = kSeparatorColor;
-        _leftTableView.separatorInset = UIEdgeInsetsZero;
+//        _leftTableView.separatorInset = UIEdgeInsetsZero;
+        _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _leftTableView.tableFooterView = [[UIView alloc]init];
         
         //righttableView init
@@ -332,7 +333,7 @@
         _rightTableView.dataSource = self;
         _rightTableView.delegate = self;
         _rightTableView.separatorColor = kSeparatorColor;
-        _rightTableView.separatorInset = UIEdgeInsetsZero;
+        _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         //_rightTableView.tableFooterView = [[UIView alloc]init];
         
         _buttomImageView = [[UIImageView alloc]initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, kButtomImageViewHeight)];
@@ -623,6 +624,7 @@
     //NSAssert(_dataSource != nil, @"menu's dataSource shouldn't be nil");
     if (_leftTableView == tableView) {
         if (_dataSourceFlags.numberOfRowsInColumn) {
+            _currentRowNumber = [_dataSource menu:self numberOfRowsInColumn:_currentSelectedMenudIndex];
             return [_dataSource menu:self
                 numberOfRowsInColumn:_currentSelectedMenudIndex];
         } else {
@@ -649,7 +651,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:_cellStyle reuseIdentifier:identifier];
         //cell.separatorInset = UIEdgeInsetsZero;
         DOPBackgroundCellView *bg = [[DOPBackgroundCellView alloc]init];
-        bg.backgroundColor = [UIColor whiteColor];
+//        bg.backgroundColor = [UIColor whiteColor];
+        bg.backgroundColor = kCellBgColor;
         cell.selectedBackgroundView = bg;
         cell.textLabel.highlightedTextColor = _textSelectedColor;
         cell.textLabel.textColor = _textColor;
@@ -658,6 +661,10 @@
             cell.detailTextLabel.textColor = _detailTextColor;
             cell.detailTextLabel.font = _detailTextFont;
         }
+        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height, SCREEN_WIDTH, 1)];
+        lineLab.backgroundColor = kSeparatorColor;
+        lineLab.tag = 1;
+        [cell addSubview:lineLab];
     }
     //NSAssert(_dataSource != nil, @"menu's datasource shouldn't be nil");
     if (tableView == _leftTableView) {
@@ -697,8 +704,8 @@
         } else {
             cell.accessoryView = nil;
         }
-        
-        cell.backgroundColor = kCellBgColor;
+//        cell.backgroundColor = kCellBgColor
+        cell.backgroundColor = [UIColor whiteColor];
         
     } else {
         if (_dataSourceFlags.titleForItemsInRowAtIndexPath) {
@@ -735,7 +742,12 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.accessoryView = nil;
     }
-    
+    UILabel *lineLab = (UILabel *)[cell viewWithTag:1];
+    if (_currentRowNumber - 1 == indexPath.row) {
+        lineLab.hidden = YES;
+    }else{
+        lineLab.hidden = NO;
+    }
     return cell;
 }
 

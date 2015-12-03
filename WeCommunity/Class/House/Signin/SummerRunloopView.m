@@ -31,6 +31,7 @@ static NSTimeInterval summerInterval = 10;
     }
     [self mPageControl];
     _summerTimmer = [NSTimer scheduledTimerWithTimeInterval:summerInterval target:self selector:@selector(nextImageView) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_summerTimmer forMode:NSRunLoopCommonModes];
 }
 
 - (void)tapCurrentIndex{
