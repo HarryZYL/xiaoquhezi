@@ -433,8 +433,8 @@
     
     if (self.nameField.text.length == 0) {
         [Util alertNetworingError:@"请输入姓名"];
-    }else if(self.cardNumberField.text.length == 0){
-        [Util alertNetworingError:@"请输入身份证号"];
+    }else if(self.cardNumberField.text.length == 0 || ![NSString filterIDCard:self.cardNumberField.text]){
+        [Util alertNetworingError:@"请输入正确的身份证号"];
     }else if (self.owerType == nil){
         [Util alertNetworingError:@"请选择身份类型"];
     }else if (self.buildingId == nil){
