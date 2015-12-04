@@ -25,7 +25,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if ([super initWithCoder:aDecoder]) {
-//        self.navigationItem.title = @"商家";
+        self.title = @"周边";
         _classifyArrary = @[@"分类",@"全部",@"美食",@"休闲娱乐",@"运动健身",@"足疗按摩"];
         _siftArrary = @[@"筛选",@"全部",@"可配送",@"有优惠",@"小区盒子-金马会.专属特惠"];
     }

@@ -92,6 +92,9 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
+    if (textField.text.length < 1) {
+        [self refreshHeader];
+    }
     return YES;
 }
 
