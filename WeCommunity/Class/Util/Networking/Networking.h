@@ -40,8 +40,9 @@
 #define updateBasicInfo (HOST_URL @"/user/updateBasicInfo")
 #define getPhoneRegisterCaptcha (HOST_URL @"/getPhoneRegisterCaptcha")
 #define getResetUserPasswordCaptcha (HOST_URL @"/user/getResetUserPasswordCaptcha")
-#define uploadImage (HOST_URL @"/upload/image/onem")
-#define upload_Images (HOST_URL @"/upload/image")
+#define uploadImage   (HOST_URL @"/upload/image/onem")//1M图片空间
+#define upload_Images (HOST_URL @"/upload/image")     //5M图片空间
+
 #define market_add  (HOST_URL @"/market/add")
 #define getBuilding (HOST_URL @"/community/house/list") /**<查找房号，楼号，单元号*/
 #define get_HOURSE_PEOPLE_NUMBER (HOST_URL @"/user/authc/house/authc/get")//查看所有认证的房间的认证用户

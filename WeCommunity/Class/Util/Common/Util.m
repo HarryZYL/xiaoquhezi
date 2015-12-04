@@ -144,6 +144,7 @@
 +(NSString*)translateOrientation:(NSString*)index En:(BOOL)english{
     
     NSDictionary *dictionary = @{@"East":@"东",@"South":@"南",@"West":@"西",@"North":@"北",@"SouthNorth":@"南北",@"EastWest":@"东西",@"EastSouth":@"东南",@"WestSouth":@"西南",@"EastNorth":@"东北",@"WestNorth":@"西北"};
+    
     return  [self translate:dictionary message:index En:english];
 }
 

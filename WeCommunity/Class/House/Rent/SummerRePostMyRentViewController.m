@@ -57,8 +57,8 @@
     [self.alertViewModel.orientationBtn addTarget:self action:@selector(selectPicker:) forControlEvents:UIControlEventTouchUpInside];
     [self.alertViewModel.roomType addTarget:self action:@selector(selectPicker:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.houseOrientation = self.alertViewModel.houseDeal.houseOrientation;
-    self.houseType = self.alertViewModel.houseDeal.houseType;
+    self.houseOrientation = [Util translateOrientation:self.alertViewModel.houseDeal.houseOrientation En:NO];
+    self.houseType = [Util translateHouseType:self.alertViewModel.houseDeal.houseType En:NO];
 }
 
 -(void)selectPicker:(UIButton *)sender{
@@ -177,6 +177,7 @@
     }else if (self.houseDealType == SummerHouseDealTypeRent){
         houseType = @"Rent";
     }
+    
     __weak typeof(self)weakSelf = self;
     if (self.chosenImages.count) {
         self.progessHUD.labelText = @"上传图片中";

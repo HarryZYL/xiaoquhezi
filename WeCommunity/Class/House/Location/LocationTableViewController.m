@@ -13,6 +13,7 @@
 {
     NSInteger pageNumber;
     NSString *strCommunityName;
+    UIButton *btnClearItem;
 }
 
 @property(nonatomic, strong)NSMutableArray *dataArrary;
@@ -27,8 +28,14 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     __weak typeof(self)weakSelf = self;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清除记录" style:UIBarButtonItemStylePlain target:self action:@selector(clearCommunity)];
-    self.navigationItem.rightBarButtonItem = clearItem;
+//    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清除记录" style:UIBarButtonItemStylePlain target:self action:@selector(clearCommunity)];
+    btnClearItem = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnClearItem setTitle:@"清除记录" forState:UIControlStateNormal];
+    [btnClearItem setTitleColor:THEMECOLOR forState:UIControlStateNormal];
+    btnClearItem.frame = CGRectMake(0, 0, 80, 40);
+    [btnClearItem addTarget:self action:@selector(clearCommunity) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:btnClearItem];
+    self.navigationItem.rightBarButtonItem = rightItem;
     
     self.title = @"切换小区";
     strCommunityName = [Util getCommunityName];
@@ -36,7 +43,9 @@
     self.locationArr = @[@"玉兰香苑",@"幸福小区",@"光明小区"];
     self.locationID = @[@"1",@"813",@"814"];
     _dataArrary = [FileManager getData:@"historyCommynity"][@"communityNames"];
-    
+    if (!_dataArrary || _dataArrary.count == 1) {
+        btnClearItem.hidden = YES;
+    }
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 64 - 60) style:UITableViewStylePlain];
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
@@ -67,6 +76,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex == 1) {
+        btnClearItem.hidden = YES;
         NSDictionary *dicCommunity = @{@"communityName":[Util getCommunityName],
                                        @"communityID":[Util getCommunityID]
                                        };
@@ -94,7 +104,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
    BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
     NSDictionary * tempDic = self.dataArrary[indexPath.row];
     if ([tempDic[@"communityName"] isEqualToString:strCommunityName]) {
         cell.textLabel.textColor = THEMECOLOR;
@@ -105,11 +116,13 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSDictionary * tempDic = self.dataArrary[indexPath.row];
-    
+    if (self.dataArrary.count == 1 || [tempDic[@"communityName"] isEqualToString:strCommunityName]) {
+        return;
+    }
     if (_locationStyle == LocationTableViewControllerStyleDefult) {
         NSDictionary *community = @{
-                                    @"communityName":tempDic[@"name"],
-                                    @"communityID":tempDic[@"id"]
+                                    @"communityName":tempDic[@"communityName"],
+                                    @"communityID":tempDic[@"communityID"]
                                     };
         [FileManager saveDataToFile:community filePath:@"Community"];
         [User SaveAuthentication];
