@@ -8,6 +8,7 @@
 
 #import "SummerBusinessViewController.h"
 #import "SummerBusinessTableViewCell.h"
+#import "SummerBusinessHeaderTableViewCell.h"
 #import "SummerRunloopView.h"
 
 @interface SummerBusinessViewController ()<UITableViewDataSource ,UITableViewDelegate ,DOPDropDownMenuDataSource ,DOPDropDownMenuDelegate>
@@ -24,7 +25,7 @@
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder{
     if ([super initWithCoder:aDecoder]) {
-        self.title = @"商家";
+//        self.navigationItem.title = @"商家";
         _classifyArrary = @[@"分类",@"全部",@"美食",@"休闲娱乐",@"运动健身",@"足疗按摩"];
         _siftArrary = @[@"筛选",@"全部",@"可配送",@"有优惠",@"小区盒子-金马会.专属特惠"];
     }
@@ -34,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     _businessMenu = [[DOPDropDownMenu alloc] initWithOrigin:CGPointMake(0, 64) andHeight:50];
     _businessMenu.delegate   = self;
     _businessMenu.dataSource = self;
@@ -126,11 +128,36 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 160;
+    }
+    return 80;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (section == 0) {
+        return 1;
+    }
     return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        SummerBusinessHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sectioncell" forIndexPath:indexPath];
+        __weak typeof(self)weakSelf = self;
+        cell.summerScrollView.loopImgArrary = @[@"http://img1.imgtn.bdimg.com/it/u=2282547951,3816622274&fm=21&gp=0.jpg",@"http://c.hiphotos.baidu.com/image/h%3D200/sign=869f1fd9329b033b3388fbda25cc3620/a6efce1b9d16fdfafde4c433b28f8c5495ee7b66.jpg",@"http://pic38.nipic.com/20140215/12359647_224249271130_2.jpg"];
+        [cell.summerScrollView confirmSubViews];
+        cell.summerScrollView.backgroundColor = [UIColor orangeColor];
+        cell.summerScrollView.tapIndex = ^(NSInteger index){
+            [weakSelf headerViewTapViewIndex:index];
+        };
+        return cell;
+    }
     SummerBusinessTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     cell.cellImgView.image = [UIImage imageNamed:@"house1"];
     cell.cellTitleLab.text = @"上海之夜";
@@ -141,6 +168,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self performSegueWithIdentifier:@"kBusinessID" sender:nil];
+}
+
+- (void)headerViewTapViewIndex:(NSInteger)index{
+    NSLog(@"---->%ld",index);
 }
 
 - (void)didReceiveMemoryWarning {

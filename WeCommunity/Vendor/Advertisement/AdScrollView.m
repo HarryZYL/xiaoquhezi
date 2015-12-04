@@ -160,7 +160,7 @@ static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为
     
     [self performSelector:@selector(addPageControl) withObject:nil afterDelay:0.1f];
 }
-//由于PageControl这个空间必须要添加在滚动视图的父视图上(添加在滚动视图上的话会随着图片滚动,而达不到效果)
+
 - (void)addPageControl
 {
     [[self superview] addSubview:_pageControl];
@@ -169,7 +169,6 @@ static NSUInteger currentImage = 1;//记录中间图片的下标,开始总是为
 #pragma mark - 计时器到时,系统滚动图片
 - (void)animalMoveImage
 {
-    NSLog(@"121111111111111111");
     [self setContentOffset:CGPointMake(UISCREENWIDTH * 2, 0) animated:YES];
     _isTimeUp = YES;
     [NSTimer scheduledTimerWithTimeInterval:0.4f target:self selector:@selector(scrollViewDidEndDecelerating:) userInfo:nil repeats:NO];

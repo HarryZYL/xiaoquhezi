@@ -19,13 +19,15 @@
 @implementation SummerRunloopView
 static NSTimeInterval summerInterval = 10;
 - (void)confirmSubViews{
-    
     [self mScrollView];
     for (NSInteger index = 0; index < self.loopImgArrary.count; index ++) {
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(index * self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(index * SCREENSIZE.width, 0, SCREENSIZE.width, 160)];
+        
         [imgView sd_setImageWithURL:[NSURL URLWithString:self.loopImgArrary[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
         imgView.userInteractionEnabled = YES;
         [_mScrollView addSubview:imgView];
+        
         UITapGestureRecognizer *tapView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapCurrentIndex)];
         [imgView addGestureRecognizer:tapView];
     }
@@ -45,7 +47,6 @@ static NSTimeInterval summerInterval = 10;
     _mPageControl = [UIPageControl new];
     [self addSubview:_mPageControl];
     _mPageControl.numberOfPages = self.loopImgArrary.count;
-    
     [_mPageControl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.mas_left);
         make.right.equalTo(weakSelf.mas_right);
@@ -59,11 +60,11 @@ static NSTimeInterval summerInterval = 10;
     _mScrollView = [UIScrollView new];
     _mScrollView.delegate = self;
     _mScrollView.pagingEnabled = YES;
-    _mScrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    _mScrollView.contentSize = CGSizeMake(self.frame.size.width * self.loopImgArrary.count, self.frame.size.height);
+    _mScrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    _mScrollView.showsHorizontalScrollIndicator = NO;
+    _mScrollView.contentSize = CGSizeMake(SCREENSIZE.width * self.loopImgArrary.count, self.frame.size.height);
     _mScrollView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     [self addSubview:_mScrollView];
-    
     [_mScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.insets(UIEdgeInsetsMake(0, 0, 0, 0));
     }];
