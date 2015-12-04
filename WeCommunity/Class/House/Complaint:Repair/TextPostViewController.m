@@ -462,12 +462,15 @@
 - (void)btnSelectRoom{
     dicSelectAddress = arrRoomAddress[0];
     NSString *str = [NSString stringWithFormat:@"维修地址：%@",[dicSelectAddress[@"parentNames"] componentsJoinedByString:@""]];
-    
+    [pickerView removeFromSuperview];
     labAddress.text = str;
-    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - 200, SCREENSIZE.width, 200)];
+    if (arrRoomAddress.count == 1) {
+        return;
+    }
+    pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, bgAddressView.frame.origin.y + bgAddressView.frame.size.height, SCREENSIZE.width, 200)];
     pickerView.delegate = self;
     pickerView.dataSource = self;
-    [self.view addSubview:pickerView];
+    [self.scrollView addSubview:pickerView];
 }
 
 #pragma mark - UIPickerViewDelegate

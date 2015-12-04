@@ -97,7 +97,7 @@
     [self.view endEditing:YES];
     [self.oneDatePicker removeFromSuperview];
     self.oneDatePicker = [[UIDatePicker alloc] init];
-    self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, 110); // 设置显示的位置和大小
+    self.oneDatePicker.frame = CGRectMake(0, self.orderBtn.frame.origin.y + 40, self.view.frame.size.width, 210); // 设置显示的位置和大小
     NSDate *minDate = [NSDate dateWithTimeIntervalSinceNow:15*60];
     self.oneDatePicker.minimumDate = minDate;
     newDate = minDate;
@@ -126,7 +126,7 @@
     selectDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 设置时间和日期的格式
     NSString *dateAndTime = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的string类型
     [self.dateBtn setTitle:dateAndTime forState:UIControlStateNormal];
-    
+    [self.oneDatePicker removeFromSuperview];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
