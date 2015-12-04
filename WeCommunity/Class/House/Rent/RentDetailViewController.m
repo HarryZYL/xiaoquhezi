@@ -190,9 +190,10 @@
     }
     // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.displayActionButton = YES;
+    
     browser = [Util fullImageSetting:browser];
 //    [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
+    browser.displayActionButton = NO;
     [self.navigationController pushViewController:browser animated:YES];
     
 }
