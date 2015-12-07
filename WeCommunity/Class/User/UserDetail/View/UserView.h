@@ -11,13 +11,15 @@
 #import "Util.h"
 
 typedef enum : NSUInteger {
-    UserViewTableViewCellTypeSalesManagement,
-    UserViewTableViewCellTypePaymentRecords,
-    UserViewTableViewCellTypeMessage,
-    UserViewTableViewCellTypeSeeting,
-    UserViewTableViewCellTypeMemberManager,
-    UserViewTableViewCellTypeUserInformation,
-    UserViewTableViewCellTypeRoomAuthen,
+    UserViewTableViewCellTypeSalesManagement,/**租售管理<*/
+    UserViewTableViewCellTypePaymentRecords,/**缴费记录<*/
+    UserViewTableViewCellTypeMessage,/**信息<*/
+    UserViewTableViewCellTypeSeeting,/**设置<*/
+    UserViewTableViewCellTypeMemberManager,/**成员管理<*/
+    UserViewTableViewCellTypeUserInformation,/**用户个人中心<*/
+    UserViewTableViewCellTypeRoomAuthen,/**房屋认证<*/
+    UserViewTableViewCellTypeCollection,/**用户收藏<*/
+    UserViewTableViewCellTypeScanBarCode,/**二维码<*/
 } UserViewTableViewCellType;
 //@[@"租售管理",@"消息中心",@"缴费记录",@"设置",@"成员管理"]
 @protocol UserViewDelegate <NSObject>

@@ -89,6 +89,7 @@
                 for (int j=0; j<3; j++) {
                     UILabel *setting = [[UILabel alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x + (j+1)*labelWidth/3 -20, title.frame.origin.y, 20, textHeight)];
                     setting.text = settingArray[j];
+                    setting.font = [UIFont systemFontOfSize:15];
                     [self addSubview:setting];
                 }
                 
@@ -124,6 +125,7 @@
                 self.floorField.textAlignment = NSTextAlignmentRight;
                 self.floorField.delegate = self;
                 self.floorField.placeholder = @"楼层数";
+                self.floorField.font = [UIFont systemFontOfSize:15];
                 [self addSubview:self.floorField];
                 
                 self.totalFloorField = [[UITextField alloc] initWithFrame:CGRectMake(rightLine.frame.origin.x +(bottomLine.frame.size.width - title.frame.size.width)/2 + 18, title.frame.origin.y, labelWidth/2 -30, textHeight)];
@@ -131,6 +133,7 @@
                 self.totalFloorField.textAlignment = NSTextAlignmentLeft;
                 self.totalFloorField.delegate = self;
                 self.totalFloorField.placeholder = @"总楼层数";
+                self.totalFloorField.font = [UIFont systemFontOfSize:15];
                 [self addSubview:self.totalFloorField];
 
                 break;
