@@ -10,12 +10,13 @@
 #import "SummerRepairListsHeaderTableViewCell.h"
 #import "SummerRepairListsRepairCellTableViewCell.h"
 
-@interface SummerRepairListsViewController ()<UzysAssetsPickerControllerDelegate>
+@interface SummerRepairListsViewController ()<UzysAssetsPickerControllerDelegate ,MWPhotoBrowserDelegate>
 {
     NSInteger pageNumber;
 }
 @property (nonatomic ,strong)NSMutableArray *chosenImages;
 @property (nonatomic ,strong)NSMutableArray *arraryData;
+@property (nonatomic ,strong)NSMutableArray *photos;
 
 @end
 
@@ -27,6 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"报修单";
     pageNumber = 1;
+    self.photos = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
     
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
@@ -57,7 +59,6 @@
         [weakSelf.mTableView.mj_header endRefreshing];
         weakSelf.arraryData = responseObject[@"rows"];
         [weakSelf.mTableView reloadData];
-        NSLog(@"---->%@",responseObject);
     }];
 }
 
@@ -68,7 +69,6 @@
         [weakSelf.mTableView.mj_footer endRefreshing];
         [weakSelf.arraryData addObjectsFromArray:responseObject[@"rows"]];
         [weakSelf.mTableView reloadData];
-        NSLog(@"---->%@",responseObject);
     }];
 }
 
@@ -96,8 +96,29 @@
     if (!cell) {
         cell = [[NSBundle mainBundle] loadNibNamed:@"SummerRepairListsHeaderTableViewCell" owner:self options:nil].firstObject;
     }
+    __weak typeof(self)weakSelf = self;
+    cell.tapItem = ^(NSInteger index){
+        [weakSelf tableViewHeaderViewTap:index];
+    };
     [cell confirmTableViewHeaderViewWithData:_detailTextModel];
     return cell;
+}
+
+- (void)tableViewHeaderViewTap:(NSInteger)index{
+    if (self.photos) {
+        [self.photos removeAllObjects];
+    }
+    for (int i = 0; i< [_detailTextModel.pictures count]; i++) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:_detailTextModel.pictures[i]]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    
+    browser.displayActionButton = NO;
+    [browser setCurrentPhotoIndex:index - 1];
+    [self.navigationController pushViewController:browser animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -127,6 +148,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
 }
 
 #pragma mark - 输入框，选择图片资源

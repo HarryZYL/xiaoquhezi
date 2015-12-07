@@ -5,14 +5,26 @@
 //  Created by madarax on 15/11/10.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
-
+#import "UITapGestureRecognizer+Data.h"
 #import "SummerRepairListsHeaderTableViewCell.h"
 
 @implementation SummerRepairListsHeaderTableViewCell
 #define IMG_WIDTH 70
 - (void)awakeFromNib {
     // Initialization code
-    
+    for (NSInteger index = 0; index < 8; index ++) {
+        UIImageView *contentImg = (UIImageView *)[self viewWithTag:index + 1];
+        contentImg.userInteractionEnabled = YES;
+        UITapGestureRecognizer_Data *tapItem = [[UITapGestureRecognizer_Data alloc] initWithTarget:self action:@selector(imgTap:)];
+        tapItem.tapTagImg = index + 1;
+        [contentImg addGestureRecognizer:tapItem];
+    }
+}
+
+- (void)imgTap:(UITapGestureRecognizer_Data *)sender{
+    if (self.tapItem) {
+        _tapItem(sender.tapTagImg);
+    }
 }
 
 - (void)confirmTableViewHeaderViewWithData:(TextDeal *)dicTemp{

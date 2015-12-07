@@ -23,6 +23,8 @@
 
 @property(nonatomic ,weak)IBOutlet UILabel *cellLineLab;
 
+@property(nonatomic ,copy)void (^tapItem)(NSInteger);
+
 - (void)confirmTableViewHeaderViewWithData:(TextDeal *)dicTemp;
 
 @end
