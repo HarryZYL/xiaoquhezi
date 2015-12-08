@@ -22,6 +22,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     _mTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerCollectionTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
+    _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _mTableView.rowHeight = 92;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;

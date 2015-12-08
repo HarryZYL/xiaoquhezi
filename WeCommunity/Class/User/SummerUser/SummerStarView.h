@@ -10,11 +10,4 @@
 
 @interface SummerStarView : UIView
 
-@property (nonatomic ,assign)CGFloat starSize;
-@property (nonatomic ,assign)CGFloat maxStar;
-@property (nonatomic ,assign)CGFloat showStar;
-@property (nonatomic ,strong)UIColor *emptyColor;
-@property (nonatomic ,strong)UIColor *fullColor;
-
-
 @end

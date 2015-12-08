@@ -12,7 +12,7 @@
 @interface SummerCollectionTableViewCell : UITableViewCell
 
 @property (nonatomic ,weak)IBOutlet UIImageView *cellImgView;
-@property (nonatomic ,weak)IBOutlet UIView *cellStarView;
+@property (nonatomic ,weak)IBOutlet SummerStarView *cellStarView;
 @property (nonatomic ,weak)IBOutlet UILabel *cellPrice;
 @property (nonatomic ,weak)IBOutlet UILabel *cellTitleLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellDistribution;
