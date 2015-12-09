@@ -9,7 +9,7 @@
 #import "SummerRepairListsHeaderTableViewCell.h"
 
 @implementation SummerRepairListsHeaderTableViewCell
-#define IMG_WIDTH 70
+#define IMG_WIDTH 65
 - (void)awakeFromNib {
     // Initialization code
     for (NSInteger index = 0; index < 8; index ++) {
@@ -49,7 +49,7 @@
             for (int indexPath = 0; indexPath < dicTemp.pictures.count; indexPath ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:indexPath + 1];
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.pictures[indexPath]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-                CGFloat xRow = 5 + (20 + IMG_WIDTH) * (indexPath%4);
+                CGFloat xRow = 5 + (10 + IMG_WIDTH) * (indexPath%4);
                 CGFloat yRow = (IMG_WIDTH + 5) * (indexPath/4) + self.cellContentLab.frame.size.height + self.cellContentLab.frame.origin.y + 8;
                 imgViewInfo.frame = CGRectMake(xRow, yRow, IMG_WIDTH, IMG_WIDTH);
                 imgHeight = yRow + 10;

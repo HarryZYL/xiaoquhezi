@@ -283,10 +283,16 @@
     isLocation = NO;
     strCityName = dicTemp[@"name"];
     self.title = strCityName;
+    NSString *strLong = [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"];
+    NSString *strLag =  [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"];
+    if (strLag.length < 1) {
+        strLag = @"0";
+        strLong = @"0";
+    }
     _mTextField.placeholder = [NSString stringWithFormat:@"搜索%@的小区",dicTemp[@"name"]];
     NSDictionary *parama = @{@"cityName": dicTemp[@"name"],
-                             @"baiduPosLong": [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                             @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
+                             @"baiduPosLong": strLong,
+                             @"baiduPosLati":strLag,
                              @"page":[NSNumber numberWithInteger:pageNumber],
                              @"row":@"30"};
     [self receveCityCommunityWithParama:parama];
