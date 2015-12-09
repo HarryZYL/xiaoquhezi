@@ -26,11 +26,12 @@
     _mTableView.rowHeight = 92;
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
+    _mTableView.backgroundColor = self.view.backgroundColor;
     [self.view addSubview:_mTableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

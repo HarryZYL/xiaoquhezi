@@ -178,6 +178,7 @@
 		D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB671BE387B20046F5F1 /* ThirdUserModel.m */; };
 		D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */; };
 		D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */; };
+		D475C63F1C16B22C00E5549C /* SummerQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D475C63E1C16B22C00E5549C /* SummerQRCodeViewController.m */; };
 		D47996821BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */; };
 		D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */; };
 		D47996861BF04E7200994024 /* SummerNoticeCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996851BF04E7200994024 /* SummerNoticeCenterDetailModel.m */; };
@@ -349,8 +350,8 @@
 		4ACCCE981BBF40120001227A /* EditDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDetailTableViewController.m; sourceTree = "<group>"; };
 		4ACCCE991BBF40120001227A /* UserDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailTableViewController.h; sourceTree = "<group>"; };
 		4ACCCE9A1BBF40120001227A /* UserDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailTableViewController.m; sourceTree = "<group>"; };
-		4ACCCE9C1BBF40120001227A /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
-		4ACCCE9D1BBF40120001227A /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		4ACCCE9C1BBF40120001227A /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserView.h; path = UserDetail/View/UserView.h; sourceTree = "<group>"; };
+		4ACCCE9D1BBF40120001227A /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserView.m; path = UserDetail/View/UserView.m; sourceTree = "<group>"; };
 		4ACCCEC71BBF456F0001227A /* ActivityPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityPostViewController.h; sourceTree = "<group>"; };
 		4ACCCEC81BBF456F0001227A /* ActivityPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityPostViewController.m; sourceTree = "<group>"; };
 		4ACCCECA1BBF456F0001227A /* ActivityDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailView.h; sourceTree = "<group>"; };
@@ -647,6 +648,8 @@
 		D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerInputPhoneNumber.m; sourceTree = "<group>"; };
 		D474AB6F1BE3B7890046F5F1 /* SummerBillConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBillConfirmViewController.h; sourceTree = "<group>"; };
 		D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillConfirmViewController.m; sourceTree = "<group>"; };
+		D475C63D1C16B22C00E5549C /* SummerQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerQRCodeViewController.h; path = UserDetail/SummerQRCodeViewController.h; sourceTree = "<group>"; };
+		D475C63E1C16B22C00E5549C /* SummerQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerQRCodeViewController.m; path = UserDetail/SummerQRCodeViewController.m; sourceTree = "<group>"; };
 		D479967F1BF02DD500994024 /* SummerRentTakeNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentTakeNoteTableViewCell.h; sourceTree = "<group>"; };
 		D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentTakeNoteTableViewCell.m; sourceTree = "<group>"; };
 		D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerRentTakeNoteTableViewCell.xib; sourceTree = "<group>"; };
@@ -829,13 +832,11 @@
 		4A118DDB1BA48FFC00BC2C4E /* User */ = {
 			isa = PBXGroup;
 			children = (
-				D48F8ECA1C1566600003C010 /* SummerCollectViewController.h */,
-				D48F8ECB1C1566600003C010 /* SummerCollectViewController.m */,
-				D48F8ECE1C1567860003C010 /* SummerCollectionTableViewCell.h */,
-				D48F8ECF1C1567860003C010 /* SummerCollectionTableViewCell.m */,
-				D48F8ED01C1567860003C010 /* SummerCollectionTableViewCell.xib */,
-				D48F8ED61C15820C0003C010 /* SummerStarView.h */,
-				D48F8ED71C15820C0003C010 /* SummerStarView.m */,
+				4ACCCE9C1BBF40120001227A /* UserView.h */,
+				4ACCCE9D1BBF40120001227A /* UserView.m */,
+				D475C63D1C16B22C00E5549C /* SummerQRCodeViewController.h */,
+				D475C63E1C16B22C00E5549C /* SummerQRCodeViewController.m */,
+				D475C63C1C16B1C000E5549C /* Collection */,
 				4ACCCE8D1BBF40120001227A /* Login */,
 				4ACCCE931BBF40120001227A /* Setting */,
 				4ACCCE961BBF40120001227A /* UserDetail */,
@@ -1076,18 +1077,8 @@
 				4ACCCE981BBF40120001227A /* EditDetailTableViewController.m */,
 				4ACCCE991BBF40120001227A /* UserDetailTableViewController.h */,
 				4ACCCE9A1BBF40120001227A /* UserDetailTableViewController.m */,
-				4ACCCE9B1BBF40120001227A /* View */,
 			);
 			path = UserDetail;
-			sourceTree = "<group>";
-		};
-		4ACCCE9B1BBF40120001227A /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4ACCCE9C1BBF40120001227A /* UserView.h */,
-				4ACCCE9D1BBF40120001227A /* UserView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		4ACCCEA41BBF44D00001227A /* Community */ = {
@@ -1726,6 +1717,20 @@
 			name = views;
 			sourceTree = "<group>";
 		};
+		D475C63C1C16B1C000E5549C /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				D48F8ECA1C1566600003C010 /* SummerCollectViewController.h */,
+				D48F8ECB1C1566600003C010 /* SummerCollectViewController.m */,
+				D48F8ECE1C1567860003C010 /* SummerCollectionTableViewCell.h */,
+				D48F8ECF1C1567860003C010 /* SummerCollectionTableViewCell.m */,
+				D48F8ED01C1567860003C010 /* SummerCollectionTableViewCell.xib */,
+				D48F8ED61C15820C0003C010 /* SummerStarView.h */,
+				D48F8ED71C15820C0003C010 /* SummerStarView.m */,
+			);
+			name = Collection;
+			sourceTree = "<group>";
+		};
 		D4D400781BDF059B005F6095 /* BaiduPush */ = {
 			isa = PBXGroup;
 			children = (
@@ -2149,6 +2154,7 @@
 				4ACCCEE11BBF456F0001227A /* SecondHandPostViewController.m in Sources */,
 				D454EAA51BE4949E0089333D /* DataSigner.m in Sources */,
 				D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */,
+				D475C63F1C16B22C00E5549C /* SummerQRCodeViewController.m in Sources */,
 				D4BCD2451BEF7874006CFE46 /* SummerComplainViewController.m in Sources */,
 				D48F8ED11C1567860003C010 /* SummerCollectionTableViewCell.m in Sources */,
 				D44417371C0EF3150084FFDC /* SummerRunloopView.m in Sources */,
@@ -2366,8 +2372,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2408,7 +2414,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2420,9 +2426,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2463,7 +2469,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

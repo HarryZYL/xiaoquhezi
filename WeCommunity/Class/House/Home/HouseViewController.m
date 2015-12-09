@@ -11,6 +11,7 @@
 #import "SummerRentMyViewController.h"
 #import "SummerUserHeaderView.h"
 #import "UIViewController+HUD.h"
+#import "SummerQRCodeViewController.h"
 #import "SummerCommunityBrowserViewController.h"
 #import "SummerCollectViewController.h"
 #import "SummerBillRoomViewController.h"
@@ -384,7 +385,14 @@
             collectionVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:collectionVC animated:YES];
         }
-            
+            break;
+        case 8:
+        {
+            SummerQRCodeViewController *qrCodeVC = [[SummerQRCodeViewController alloc] init];
+            qrCodeVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:qrCodeVC animated:YES];
+        }
+            break;
         default:
             break;
     }

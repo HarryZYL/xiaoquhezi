@@ -48,6 +48,19 @@
     }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 173;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *headerView = [tableView dequeueReusableCellWithIdentifier:@"headerView"];
+    if (!headerView) {
+        headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 173)];
+    }
+    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"my_personal_not_login_bg.jpg"]];
+    return headerView;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return arraryData.count;
 }

@@ -47,7 +47,7 @@
     NSLog(@"------>%@",deviceToken);
     User *userModel = [[User alloc] initWithData];
     [BPush registerDeviceToken:deviceToken];
-    if ([User getUserToken] && [BPush getChannelId]) {
+    if ([User getUserToken] && [BPush getChannelId] && userModel.Userid) {
         [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
     }
     

@@ -74,6 +74,7 @@
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else{
         NSDictionary *data = @{@"userName":@"0"};
+        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"WX_ID"];
         [FileManager saveDataToFile:data filePath:@"MyAppCache"];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }

@@ -13,7 +13,6 @@
 
 - (id) initWithData {
     self = [super init];
-    
     if ( self ){
         
         if ([User judgeLogin]) {
@@ -37,9 +36,7 @@
             self.headPhoto = [NSURL URLWithString:[NSString stringWithFormat:@"%@",data[@"headPhoto"]]];
             self.continuousSignDay = data[@"continuousSignDay"];
             self.hobby = data[@"hobby"];
-            
         }
-        
     }
     
     return self;
@@ -52,35 +49,63 @@
 
 //判断是否登录了
 +(BOOL)judgeLogin{
-    
+    NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
     NSDictionary *data = [FileManager getData:@"MyAppCache"];
     NSString *event = [NSString stringWithFormat:@"%@",data[@"userName"]];
     NSDictionary *password = [FileManager getData:@"Password"];
-    if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
-        return false;
+    if (wxIDd.length < 1) {
+        if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
+            return NO;
+        }else{
+            return YES;
+        }
     }else{
-        return true;
+        return YES;
     }
+    
+//    if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
+//        return false;
+//    }else{
+//        return true;
+//    }
 }
 
 
 //用户登陆
 +(void)login{
-    
     if ([self judgeLogin]) {
-        
-        NSDictionary *username = [FileManager getData:@"MyAppCache"];
-        NSDictionary *password = [FileManager getData:@"Password"];
-        NSDictionary *parameters = @{@"phoneNumber":username[@"user"][@"userName"],@"password":password[@"password"]};
-                
-        [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
+        NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
+        NSDictionary *parameters;
+        NSString *strUrl;
+        if (wxIDd.length < 1) {
+            NSDictionary *username = [FileManager getData:@"MyAppCache"];
+            NSDictionary *password = [FileManager getData:@"Password"];
+            parameters = @{@"phoneNumber":username[@"userName"],@"password":password[@"password"]};
+            strUrl = phoneLogin;
+//            [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
+//                NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+//                NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+//                [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+//                
+//                NSLog(@"Login success");
+//                [User SaveAuthentication];
+//            }];
+        }else{
+            User *user = [[User alloc] initWithData];
+            parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid};
+            strUrl = get_WXAPP_LOADING;
+//            [Networking retrieveData:get_WXAPP_LOADING parameters: success:^(id responseObject) {
+//                NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+//                NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+//                [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+//                [User SaveAuthentication];
+//            }];
+        }
+        [Networking retrieveData:strUrl parameters:parameters success:^(id responseObject) {
             NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
             NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
             [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-            
-            NSLog(@"Login success");
             [User SaveAuthentication];
-            
         }];
     }
 }
