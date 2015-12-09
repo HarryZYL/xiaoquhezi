@@ -12,9 +12,13 @@
 
 @property (nonatomic ,strong)UILabel *summerInputLabNumbers;
 @property (nonatomic ,strong)UITextField *summerInputView;
+@property (nonatomic ,strong)UIButton    *btnSelectAdd;
 @property (nonatomic ,strong)UIButton *btnAddImg;
 @property (nonatomic ,strong)UIButton *btnSenderMessage;
-@property (nonatomic ,strong)UIView *viewWithImg;
+
+@property (nonatomic ,copy)voidBlock btnAddImageViews;
+@property (nonatomic ,copy)void(^tapImageView)(NSInteger);
+//@property (nonatomic ,strong)UIView *viewWithImg;
 
 - (void)confirmsSelectImage:(NSArray *)imgArrary;
 

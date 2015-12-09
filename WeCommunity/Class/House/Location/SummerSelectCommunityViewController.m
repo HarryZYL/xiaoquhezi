@@ -141,17 +141,27 @@
 
 - (NSDictionary *)returnPostParama{
     NSDictionary *parameters;
+    NSString *strLong;
+    NSString *strLat;
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"] == nil) {
+        strLong = @"0";
+        strLat = @"0";
+    }else{
+        strLong = [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"];
+        strLat  = [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"];
+    }
     if (isLocation) {
         if (_mTextField.text.length > 0) {
-            parameters = @{@"baiduPosLong": [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                           @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
+            parameters = @{@"baiduPosLong": strLong,
+                           @"baiduPosLati":strLat,
                            @"page":[NSNumber numberWithInteger:pageNumber],
                            @"cityName":strCityName,
                            @"name":_mTextField.text,
                            @"row":@30};
         }else{
-            parameters = @{@"baiduPosLong":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                           @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
+            
+            parameters = @{@"baiduPosLong":strLong,
+                           @"baiduPosLati":strLat,
                            @"page":[NSNumber numberWithInteger:pageNumber],
                            @"cityName":strCityName,
                            @"row":@30};
@@ -161,14 +171,14 @@
         if (_mTextField.text.length > 0) {
             parameters = @{@"cityName": strCityName,
                            @"name":_mTextField.text,
-                           @"baiduPosLong": [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                           @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
+                           @"baiduPosLong": strLong,
+                           @"baiduPosLati":strLat,
                            @"page":[NSNumber numberWithInteger:pageNumber],
                            @"row":@30};
         }else{
             parameters = @{@"cityName": strCityName,
-                           @"baiduPosLong": [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"],
-                           @"baiduPosLati":[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"],
+                           @"baiduPosLong": strLong,
+                           @"baiduPosLati":strLat,
                            @"page":[NSNumber numberWithInteger:pageNumber],
                            @"row":@30};
         }

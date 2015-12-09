@@ -7,9 +7,11 @@
 //
 
 #import "SummerInputView.h"
+#import "UITapGestureRecognizer+Data.h"
 
-@interface SummerInputView ()<UITextFieldDelegate>
-
+#define SELECT_IMG_HIGHT 70
+@interface SummerInputView ()<UITextFieldDelegate ,UIScrollViewDelegate>
+@property (nonatomic ,strong)UIScrollView *mScrollView;
 @end
 
 @implementation SummerInputView
@@ -20,10 +22,10 @@
         self.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         self.backgroundColor = [UIColor colorWithWhite:0.949 alpha:1.000];
         
-//        self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
-//        self.btnAddImg.frame = CGRectMake(15, 11, 25, 25);
-//        [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
-//        [self addSubview:self.btnAddImg];
+        self.btnAddImg = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.btnAddImg.frame = CGRectMake(15, 11, 25, 25);
+        [self.btnAddImg setBackgroundImage:[UIImage imageNamed:@"xiangce"] forState:UIControlStateNormal];
+        [self addSubview:self.btnAddImg];
         
         self.summerInputLabNumbers = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 25, 25)];
         self.summerInputLabNumbers.textAlignment = NSTextAlignmentCenter;
@@ -34,8 +36,8 @@
         self.summerInputLabNumbers.textColor = [UIColor whiteColor];
         [self addSubview:self.summerInputLabNumbers];
         
-//        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
-        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(15, 8, SCREENSIZE.width - 70, 34)];
+        self.summerInputView = [[UITextField alloc] initWithFrame:CGRectMake(55, 8, SCREENSIZE.width - 110, 34)];
+
         self.summerInputView.placeholder = @"添加评论....";
         [self.summerInputView addTarget:self action:@selector(summerInputViewChanges:) forControlEvents:UIControlEventEditingChanged];
         self.summerInputView.delegate = self;
@@ -48,9 +50,15 @@
         self.btnSenderMessage.titleLabel.font = [UIFont systemFontOfSize:16];
         [self.btnSenderMessage setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
         [self addSubview:self.btnSenderMessage];
-
-        self.viewWithImg = [[UIView alloc] initWithFrame:CGRectMake(0, 60, SCREENSIZE.width, 0)];
-        [self addSubview:self.viewWithImg];
+        
+        _mScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, SCREENSIZE.width, SELECT_IMG_HIGHT + 20)];
+        _mScrollView.contentSize = CGSizeMake(80, SELECT_IMG_HIGHT + 20);
+        [self addSubview:_mScrollView];
+        _btnSelectAdd = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnSelectAdd.frame = CGRectMake(10, 10, 70, 70);
+        [_btnSelectAdd addTarget:self action:@selector(addImagesView) forControlEvents:UIControlEventTouchUpInside];
+        [_btnSelectAdd setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        [_mScrollView addSubview:_btnSelectAdd];
     }
     return self;
 }
@@ -63,16 +71,41 @@
 }
 
 - (void)confirmsSelectImage:(NSArray *)imgArrary{
-    for (UIImageView *img in self.viewWithImg.subviews) {
-        [img removeFromSuperview];
+    if (imgArrary.count == 8) {
+        self.btnSelectAdd.hidden = YES;
+        _mScrollView.contentSize = CGSizeMake(10 + 80 * (imgArrary.count), 90);
+    }else{
+        _mScrollView.contentSize = CGSizeMake(10 + 80 * (imgArrary.count + 1), 90);
+        self.btnSelectAdd.hidden = NO;
     }
-    self.viewWithImg.frame = CGRectMake(0, 60, SCREENSIZE.width, 3 + (imgArrary.count/4 + 1)*(SCREENSIZE.width - 50)/2);
+    for (id imgSub in self.mScrollView.subviews) {
+        if ([imgSub isKindOfClass:[UIImageView class]]) {
+            [imgSub removeFromSuperview];
+        }
+    }
     for (NSInteger index = 0; index < imgArrary.count; index ++) {
         UIImageView *imgView = [[UIImageView alloc] initWithImage:imgArrary[index]];
-        int xLine = 10 + (10 + (SCREENSIZE.width - 50)/2) * index;
-        int yRow  = 3 + index/4*((SCREENSIZE.width - 50)/2 + 3);
-        imgView.frame = CGRectMake(xLine, yRow, (SCREENSIZE.width - 50)/2, (SCREENSIZE.width - 50)/2);
-        [self.viewWithImg addSubview:imgView];
+        imgView.userInteractionEnabled = YES;
+        NSInteger xLine = 10 + 80 * index;
+        NSInteger yRow  = 10;
+        imgView.frame = CGRectMake(xLine, yRow, 70, 70);
+        [_mScrollView addSubview:imgView];
+        UITapGestureRecognizer_Data *tapImg = [[UITapGestureRecognizer_Data alloc] initWithTarget:self action:@selector(selectImageViewCheck:)];
+        tapImg.tapTagImg = index + 1;
+        [imgView addGestureRecognizer:tapImg];
+    }
+    _btnSelectAdd.frame = CGRectMake(10 + 80 * imgArrary.count, 10, 70, 70);
+}
+
+- (void)selectImageViewCheck:(UITapGestureRecognizer_Data *)sender{
+    if (self.tapImageView) {
+        _tapImageView(sender.tapTagImg);
+    }
+}
+
+- (void)addImagesView{
+    if (self.btnAddImageViews) {
+        _btnAddImageViews();
     }
 }
 

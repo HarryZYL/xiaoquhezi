@@ -15,32 +15,41 @@
 #import "SummerNoticeDetailTableViewCell.h"
 
 #define IMPUT_VIEW_HEIGHT 50
-@interface SummerNoticeCenterDetailViewController ()<UzysAssetsPickerControllerDelegate,SummerNoticeDetailReplaceTableViewCellDelegate>
+@interface SummerNoticeCenterDetailViewController ()<UzysAssetsPickerControllerDelegate,SummerNoticeDetailReplaceTableViewCellDelegate ,MWPhotoBrowserDelegate>
 {
     NSInteger numberPage;
     NSMutableDictionary *dicNotice;
     
 }
-@property (nonatomic ,strong) NSMutableArray *chosenImages;
-@property (nonatomic ,strong) NSMutableArray *arraryData;
+@property (nonatomic ,strong) NSMutableArray *chosenImages;     /**<选择的图片*/
+@property (nonatomic ,strong) NSMutableArray *chosenSmallImages;/**<选择的小图*/
+@property (nonatomic ,strong) NSMutableArray *arraryData;       /**<返回的评论数据*/
+@property (nonatomic ,strong) NSMutableArray *photos;
 @property (nonatomic ,strong) NSMutableArray *needLoadArr;
 
 @end
 
 @implementation SummerNoticeCenterDetailViewController
 
+- (instancetype)init{
+    if (self = [super init]) {
+        _needLoadArr = [[NSMutableArray alloc] init];
+        
+        numberPage = 1;
+        _photos = [[NSMutableArray alloc] init];
+        dicNotice = [[NSMutableDictionary alloc] init];
+        _arraryData = [[NSMutableArray alloc] init];
+        self.chosenImages = [[NSMutableArray alloc] init];
+        self.chosenSmallImages = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    _needLoadArr = [[NSMutableArray alloc] init];
     self.title = @"公告详情";
-    numberPage = 1;
-    
-    dicNotice = [[NSMutableDictionary alloc] init];
-    _arraryData = [[NSMutableArray alloc] init];
-    self.chosenImages = [[NSMutableArray alloc] init];
-    
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
     self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
     self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
@@ -50,13 +59,17 @@
     
     [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailReplaceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     _mTableView.tableFooterView = [[UIView alloc] init];
-//    [self.mTableView registerNib:[UINib nibWithNibName:@"SummerNoticeDetailTableViewCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"cellnoticecenterdetail"];
+
     [self.view addSubview:_mTableView];
     _summerInputView = [[SummerInputView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT)];
     [self.view addSubview:_summerInputView];
     
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.summerInputView.btnAddImg addTarget:self action:@selector(btnSelectedImageViews:) forControlEvents:UIControlEventTouchUpInside];
+    __weak typeof(self)weakSelf = self;
+    self.summerInputView.btnAddImageViews = ^{
+        [weakSelf btnSelectedImageViews:nil];
+    };
     [self getTableViewHeaderData];
     
     [self getReceveData];
@@ -248,7 +261,7 @@
         heightCell += 25 + 10;
     }
 //    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
-//        if ([noticModel.detailNoticeModel.pictures count] > 0) {
+//        if ([noticModel.detailNoticeModel.pictures.firstObject length] > 0) {
 //            heightCell += 70 + 8;
 //        }
 //    }
@@ -303,15 +316,17 @@
 
 - (void)btnSelectedImageViews:(UIButton *)sender{
     __weak typeof(self)weakSelf = self;
-    if (self.chosenImages.count == 3) {
-        [weakSelf showHint:@"只能选择三张"];
+    if (self.chosenImages.count == 8) {
+        [weakSelf showHint:@"只能选择八张"];
+        return;
+    }
+    if (self.chosenImages.count > 0 && sender) {
         return;
     }
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
-    picker.maximumNumberOfSelectionMedia = 3 - self.chosenImages.count;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
     [self presentViewController:picker animated:YES completion:nil];
-    
 }
 
 - (void)uzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
@@ -324,12 +339,10 @@
                                                scale:representation.defaultRepresentation.scale
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             
-            [self.chosenImages addObject:img];
-            
+            [self.chosenImages addObject:[Util scaleToSize:img size:CGSizeMake(800, 800)]];
+            [self.chosenSmallImages addObject:[Util scaleToSize:img size:CGSizeMake(70, 70)]];
             if (idx==0 && self.chosenImages.count == 1) {
-                
             }
-            
         }];
         
     }
@@ -338,10 +351,71 @@
 }
 
 - (void)updatePhotoImages{
-    if (self.chosenImages.count > 0) {
+    if (self.chosenSmallImages.count < 1) {
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+    }else{
         self.summerInputView.summerInputLabNumbers.hidden = NO;
         self.summerInputView.summerInputLabNumbers.text = [NSString stringWithFormat:@"%ld",self.chosenImages.count];
+        
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90, SCREENSIZE.width, IMPUT_VIEW_HEIGHT + 90);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90);
     }
+    __weak typeof(self)weakSelf = self;
+    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    self.summerInputView.tapImageView = ^(NSInteger index){//查看图片
+        [weakSelf returnTapImageViewTagIndex:index];
+    };
+}
+
+- (void)returnTapImageViewTagIndex:(NSInteger)index{
+    if (self.photos) {
+        [self.photos removeAllObjects];
+    }
+    for (int i = 0; i<self.chosenImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index - 1];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return self.photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < self.photos.count)
+        return [self.photos objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.photos removeObjectAtIndex:index];
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenSmallImages removeObjectAtIndex:index];
+    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    if (self.chosenSmallImages.count < 1) {
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        _mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+    }
+    self.summerInputView.summerInputLabNumbers.text = [NSString stringWithFormat:@"%ld",self.chosenImages.count];
+    if (self.chosenImages.count < 1) {
+        self.summerInputView.summerInputLabNumbers.hidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [photoBrowser reloadData];
 }
 
 //发送信息
@@ -369,6 +443,7 @@
 #pragma mark -
 
 - (void)senderPostNoticeReplayWith:(MBProgressHUD *)hud{
+    __weak typeof(self)weakSelf = self;
     if (self.chosenImages.count < 1) {
         [Networking retrieveData:get_reply_notice parameters:@{@"token": [User getUserToken],
                                                                @"id":_detailNotice.Objectid,
@@ -391,13 +466,15 @@
                                                                        // 发送成功NoticeReply
                                                                        [hud removeFromSuperview];
                                                                        
-                                                                       [self showHint:@"评论成功"];
-                                                                       [self.chosenImages removeAllObjects];
-                                                                       self.summerInputView.summerInputLabNumbers.hidden = YES;
-                                                                       self.summerInputView.summerInputLabNumbers.text = 0;
-                                                                       self.summerInputView.summerInputView.text = nil;
-//                                                                       self.summerInputView.btnSenderMessage.enabled = NO;
-                                                                       [self getReceveData];
+                                                                       [weakSelf showHint:@"评论成功"];
+                                                                       [weakSelf.chosenImages removeAllObjects];
+                                                                       [weakSelf.chosenSmallImages removeAllObjects];
+                                                                       [weakSelf.photos removeAllObjects];
+                                                                       weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+                                                                       weakSelf.summerInputView.summerInputLabNumbers.text = 0;
+                                                                       weakSelf.summerInputView.summerInputView.text = nil;
+                                                                       [weakSelf summerKeybordViewWillHide:nil];
+                                                                       [weakSelf getReceveData];
                                                                    }];
         }];
     }
@@ -437,10 +514,16 @@
 
 - (void)summerKeybordViewWillHide:(NSNotification *)aNotification{
     NSTimeInterval animationDuration = [[[aNotification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    __weak typeof(self)weakSelf = self;
     [UIView animateWithDuration:animationDuration animations:^{
-        _summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        if (weakSelf.chosenSmallImages.count < 1) {
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+        }else{
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90, SCREENSIZE.width, IMPUT_VIEW_HEIGHT + 90);
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90);
+        }
         
-        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
     }];
 }
 
@@ -451,6 +534,7 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
 
 /*
 #pragma mark - Navigation

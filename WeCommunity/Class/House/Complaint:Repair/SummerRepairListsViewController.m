@@ -15,6 +15,7 @@
     NSInteger pageNumber;
 }
 @property (nonatomic ,strong)NSMutableArray *chosenImages;
+@property (nonatomic ,strong)NSMutableArray *chosenSmallImages;
 @property (nonatomic ,strong)NSMutableArray *arraryData;
 @property (nonatomic ,strong)NSMutableArray *photos;
 
@@ -30,6 +31,7 @@
     pageNumber = 1;
     self.photos = [[NSMutableArray alloc] init];
     self.chosenImages = [[NSMutableArray alloc] init];
+    self.chosenSmallImages = [[NSMutableArray alloc] init];
     
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
     
@@ -46,6 +48,10 @@
     
     [self.summerInputView.btnSenderMessage addTarget:self action:@selector(btnSenderMessageWithAddImage:) forControlEvents:UIControlEventTouchUpInside];
     [self.summerInputView.btnAddImg addTarget:self action:@selector(btnSelectedImageViews:) forControlEvents:UIControlEventTouchUpInside];
+    __weak typeof(self)weakSelf = self;
+    self.summerInputView.btnAddImageViews = ^{
+        [weakSelf btnSelectedImageViews:nil];
+    };
     [self getReceveData];
 }
 
@@ -165,9 +171,18 @@
 #pragma mark - 输入框，选择图片资源
 
 - (void)btnSelectedImageViews:(UIButton *)sender{
+    __weak typeof(self)weakSelf = self;
+    if (self.chosenImages.count == 8) {
+        [weakSelf showHint:@"只能选择八张"];
+        return;
+    }
+    if (self.chosenImages.count > 0 && sender) {
+        return;
+    }
+    
     UzysAssetsPickerController *picker = [[UzysAssetsPickerController alloc] init];
     picker.delegate = self;
-    picker.maximumNumberOfSelectionMedia = 8 - self.chosenImages.count;
+    picker.maximumNumberOfSelectionMedia = 8 - self.chosenSmallImages.count;
     [self presentViewController:picker animated:YES completion:nil];
     
 }
@@ -186,7 +201,7 @@
                                          orientation:(UIImageOrientation)representation.defaultRepresentation.orientation];
             
             [self.chosenImages addObject:img];
-            
+            [self.chosenSmallImages addObject:[Util scaleToSize:img size:CGSizeMake(70, 70)]];
             if (idx==0 && self.chosenImages.count == 1) {
                 
             }
@@ -199,10 +214,71 @@
 }
 
 - (void)updatePhotoImages{
-    if (self.chosenImages.count > 0) {
+    if (self.chosenSmallImages.count < 1) {
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+    }else{
         self.summerInputView.summerInputLabNumbers.hidden = NO;
         self.summerInputView.summerInputLabNumbers.text = [NSString stringWithFormat:@"%ld",self.chosenImages.count];
+        
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90, SCREENSIZE.width, IMPUT_VIEW_HEIGHT + 90);
+        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90);
     }
+    __weak typeof(self)weakSelf = self;
+    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    self.summerInputView.tapImageView = ^(NSInteger index){//查看图片
+        [weakSelf returnTapImageViewTagIndex:index];
+    };
+}
+
+- (void)returnTapImageViewTagIndex:(NSInteger)index{
+    if (self.photos) {
+        [self.photos removeAllObjects];
+    }
+    for (int i = 0; i<self.chosenSmallImages.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithImage:self.chosenImages[i]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayNavArrows = YES;
+    [browser setCurrentPhotoIndex:index - 1];
+    [self.navigationController pushViewController:browser animated:YES];
+}
+
+//#pragma mark - MWPhotoBrowserDelegate
+//
+//- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+//    return self.photos.count;
+//}
+//
+//- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+//    if (index < self.photos.count)
+//        return [self.photos objectAtIndex:index];
+//    return nil;
+//}
+//
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index{
+    [self.photos removeObjectAtIndex:index];
+    [self.chosenImages removeObjectAtIndex:index];
+    [self.chosenSmallImages removeObjectAtIndex:index];
+    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    if (self.chosenSmallImages.count < 1) {
+        self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        _mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+    }
+    self.summerInputView.summerInputLabNumbers.text = [NSString stringWithFormat:@"%ld",self.chosenImages.count];
+    if (self.chosenImages.count < 1) {
+        self.summerInputView.summerInputLabNumbers.hidden = YES;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    [photoBrowser reloadData];
 }
 
 //发送信息
@@ -235,6 +311,11 @@
         //只发送图片
         [Networking upload:self.chosenImages success:^(id responseObject) {
             [weakSelf.chosenImages removeAllObjects];
+            [weakSelf.chosenSmallImages removeAllObjects];
+            
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+            weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
             [Networking retrieveData:GET_REPAIR_REPLY parameters:@{@"token": [User getUserToken],@"id":_detailTextModel.Objectid,@"pictures":responseObject} success:^(id responseObject) {
                 weakSelf.summerInputView.summerInputLabNumbers.text = 0;
                 weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
@@ -256,6 +337,10 @@
     }else{
         //图片，文字
         [Networking upload:self.chosenImages success:^(id responseObject) {
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+            weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+            
             [Networking retrieveData:GET_REPAIR_REPLY parameters:@{@"token": [User getUserToken],
                                                                    @"id":_detailTextModel.Objectid,
                                                                    @"content":self.summerInputView.summerInputView.text,
@@ -265,6 +350,7 @@
                                                                        
                                                                        [weakSelf showHint:@"评论成功"];
                                                                        [weakSelf.chosenImages removeAllObjects];
+                                                                       [weakSelf.chosenSmallImages removeAllObjects];
                                                                        weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
                                                                        weakSelf.summerInputView.summerInputLabNumbers.text = 0;
                                                                        weakSelf.summerInputView.summerInputView.text = nil;
@@ -297,10 +383,16 @@
 
 - (void)summerKeybordViewWillHide:(NSNotification *)aNotification{
     NSTimeInterval animationDuration = [[[aNotification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    __weak typeof(self)weakSelf = self;
     [UIView animateWithDuration:animationDuration animations:^{
-        _summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+        if (weakSelf.chosenSmallImages.count < 1) {
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
+        }else{
+            weakSelf.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90, SCREENSIZE.width, IMPUT_VIEW_HEIGHT + 90);
+            weakSelf.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90);
+        }
         
-        self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);
     }];
 }
 

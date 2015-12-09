@@ -51,7 +51,7 @@
 +(BOOL)judgeLogin{
     NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
     NSDictionary *data = [FileManager getData:@"MyAppCache"];
-    NSString *event = [NSString stringWithFormat:@"%@",data[@"userName"]];
+    NSString *event = [NSString stringWithFormat:@"%@",data[@"user"][@"userName"]];
     NSDictionary *password = [FileManager getData:@"Password"];
     if (wxIDd.length < 1) {
         if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
@@ -80,7 +80,7 @@
         if (wxIDd.length < 1) {
             NSDictionary *username = [FileManager getData:@"MyAppCache"];
             NSDictionary *password = [FileManager getData:@"Password"];
-            parameters = @{@"phoneNumber":username[@"userName"],@"password":password[@"password"]};
+            parameters = @{@"phoneNumber":username[@"user"][@"userName"],@"password":password[@"password"]};
             strUrl = phoneLogin;
 //            [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
 //                NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
