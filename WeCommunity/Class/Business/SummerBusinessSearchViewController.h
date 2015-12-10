@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SummerBusinessSearchViewController : UIViewController
+@property (nonatomic ,weak)IBOutlet UITableView *mTableView;
 
 @end

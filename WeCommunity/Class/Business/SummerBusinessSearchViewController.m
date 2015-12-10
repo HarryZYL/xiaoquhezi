@@ -10,6 +10,7 @@
 
 @interface SummerBusinessSearchViewController ()
 
+
 @end
 
 @implementation SummerBusinessSearchViewController
@@ -17,6 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 9;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    cell.textLabel.text = @"123";
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -285,7 +285,7 @@
     self.title = strCityName;
     NSString *strLong = [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"];
     NSString *strLag =  [[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"];
-    if (strLag.length < 1) {
+    if (strLag != nil) {
         strLag = @"0";
         strLong = @"0";
     }

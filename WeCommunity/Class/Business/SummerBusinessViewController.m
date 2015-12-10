@@ -5,7 +5,7 @@
 //  Created by madarax on 15/11/20.
 //  Copyright © 2015年 Harry. All rights reserved.
 //
-
+#import "SummerBusinessSearchViewController.h"
 #import "SummerBusinessViewController.h"
 #import "SummerBusinessTableViewCell.h"
 #import "SummerBusinessHeaderTableViewCell.h"
