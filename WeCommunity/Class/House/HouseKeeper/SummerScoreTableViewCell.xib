@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellItem" rowHeight="84" id="KGk-i7-Jjw" customClass="SummerScoreTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="卡特维拉进口孔雀干红葡萄酒特品专卖" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqs-vA-62E">
+                        <rect key="frame" x="106" y="8" width="206" height="34"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3990积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1Z-Ks-cl4">
+                        <rect key="frame" x="106" y="45" width="123" height="16"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="123" id="oWV-vg-CXL"/>
+                            <constraint firstAttribute="height" constant="16" id="oYE-Q7-bSW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="1" green="0.17470426089999999" blue="0.20882990209999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="house1" translatesAutoresizingMaskIntoConstraints="NO" id="z4L-yB-kvT">
+                        <rect key="frame" x="8" y="8" width="90" height="59"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="KhV-sL-88j"/>
+                            <constraint firstAttribute="height" constant="59" id="g58-Cw-PCb"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONt-qe-Ua3">
+                        <rect key="frame" x="0.0" y="73" width="320" height="10"/>
+                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="g5B-Gp-V5O"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-Cm-u9t">
+                        <rect key="frame" x="257" y="38" width="55" height="30"/>
+                        <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="55" id="SdD-GB-zKb"/>
+                            <constraint firstAttribute="height" constant="30" id="gA5-DM-b3a"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="兑换">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="qqs-vA-62E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="1AH-eY-Kzv"/>
+                    <constraint firstAttribute="trailing" secondItem="qqs-vA-62E" secondAttribute="trailing" constant="8" id="3G0-Ig-O8z"/>
+                    <constraint firstItem="ONt-qe-Ua3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6IK-b4-aFU"/>
+                    <constraint firstItem="qqs-vA-62E" firstAttribute="leading" secondItem="z4L-yB-kvT" secondAttribute="trailing" constant="8" id="80P-kZ-92z"/>
+                    <constraint firstAttribute="bottom" secondItem="ONt-qe-Ua3" secondAttribute="bottom" id="I7m-61-MhC"/>
+                    <constraint firstItem="z4L-yB-kvT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="PRQ-zZ-8CZ"/>
+                    <constraint firstItem="ONt-qe-Ua3" firstAttribute="top" secondItem="C1Z-Ks-cl4" secondAttribute="bottom" constant="12" id="URs-Nc-S5o"/>
+                    <constraint firstItem="ONt-qe-Ua3" firstAttribute="top" secondItem="kdo-Cm-u9t" secondAttribute="bottom" constant="5" id="W1e-dr-hA5"/>
+                    <constraint firstItem="z4L-yB-kvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Yrt-wB-tvp"/>
+                    <constraint firstAttribute="trailing" secondItem="ONt-qe-Ua3" secondAttribute="trailing" id="cLU-WR-zkJ"/>
+                    <constraint firstItem="C1Z-Ks-cl4" firstAttribute="leading" secondItem="z4L-yB-kvT" secondAttribute="trailing" constant="8" id="dSe-kD-ShN"/>
+                    <constraint firstAttribute="trailing" secondItem="kdo-Cm-u9t" secondAttribute="trailing" constant="8" id="qfC-gi-Xsn"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="cellExchange" destination="kdo-Cm-u9t" id="gdi-mB-ibQ"/>
+                <outlet property="cellImgView" destination="z4L-yB-kvT" id="rgf-ih-76A"/>
+                <outlet property="cellScoreLab" destination="C1Z-Ks-cl4" id="Gp7-iP-WLu"/>
+                <outlet property="cellTitleLab" destination="qqs-vA-62E" id="rgs-tk-NdM"/>
+            </connections>
+            <point key="canvasLocation" x="92" y="141"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="house1" width="304" height="190"/>
+    </resources>
+</document>

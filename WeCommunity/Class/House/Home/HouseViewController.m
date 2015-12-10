@@ -19,7 +19,7 @@
 #import "SummerMessageCenterTableViewController.h"
 #import "SummerPaymentRecordsTableViewController.h"
 #import "SummerMemberManagerTableViewController.h"
-
+#import "SummerIntegralExchangeViewController.h"
 #import "SummerNoticeCenterDetailViewController.h"
 
 @interface HouseViewController ()<UserViewDelegate ,UIAlertViewDelegate>
@@ -115,13 +115,13 @@
     [self.scrollView addSubview:self.headView];
     
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
-    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"其他Home" title5:@"更多" Sixth:nil title6:nil];
+    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"其他Home" title5:@"积分兑换" Sixth:@"其他Home" title6:@"更多"];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(repair:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.fourthItem.functionButton addTarget:self action:@selector(noFunction) forControlEvents:UIControlEventTouchUpInside];
-    [self.functionView.fifthItem.functionButton addTarget:self action:@selector(houseKeeper:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.functionView.sixthItem.functionButton addTarget:self action:@selector(houseKeeper:) forControlEvents:UIControlEventTouchUpInside];
+    [self.functionView.fifthItem.functionButton addTarget:self action:@selector(integralExchange) forControlEvents:UIControlEventTouchUpInside];
+    [self.functionView.sixthItem.functionButton addTarget:self action:@selector(houseKeeper:) forControlEvents:UIControlEventTouchUpInside];
     [self.scrollView addSubview:self.functionView];
     
     //line
@@ -219,6 +219,10 @@
     [self pushVC:overViewVC title:@"小区一览"];
 }
 
+- (void)integralExchange{
+    SummerIntegralExchangeViewController *integralExchangeVC = [[SummerIntegralExchangeViewController alloc] init];
+    [self pushVC:integralExchangeVC title:@"积分兑换"];
+}
 
 -(void)pushVC:(UIViewController*)vc title:(NSString*)title{
     vc.navigationItem.title = title;

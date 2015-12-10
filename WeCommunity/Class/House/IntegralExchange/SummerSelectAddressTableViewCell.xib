@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellItem" rowHeight="85" id="KGk-i7-Jjw" customClass="SummerSelectAddressTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王小白 15986868666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jax-z3-uB4">
+                        <rect key="frame" x="10" y="10" width="300" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="ZYJ-6J-ksP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海市浦东新区XXXX路XXX号XX公寓XX号楼ZXXXX室" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-wD-J4P">
+                        <rect key="frame" x="10" y="31" width="300" height="39"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYV-f4-LaT">
+                        <rect key="frame" x="0.0" y="79" width="320" height="5"/>
+                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="0FU-cx-Zub"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MQs-wD-J4P" firstAttribute="top" secondItem="Jax-z3-uB4" secondAttribute="bottom" constant="5" id="7be-Z6-3sm"/>
+                    <constraint firstItem="Jax-z3-uB4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="FXE-JV-jQB"/>
+                    <constraint firstItem="Jax-z3-uB4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LNu-ru-L1k"/>
+                    <constraint firstItem="MQs-wD-J4P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="SDM-16-v0L"/>
+                    <constraint firstAttribute="trailing" secondItem="MQs-wD-J4P" secondAttribute="trailing" constant="10" id="SaP-iR-h6H"/>
+                    <constraint firstAttribute="trailing" secondItem="HYV-f4-LaT" secondAttribute="trailing" id="XB6-xW-Ied"/>
+                    <constraint firstItem="MQs-wD-J4P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="lZ0-HR-moK"/>
+                    <constraint firstAttribute="bottom" secondItem="HYV-f4-LaT" secondAttribute="bottom" id="nlf-YS-lGF"/>
+                    <constraint firstItem="HYV-f4-LaT" firstAttribute="top" secondItem="MQs-wD-J4P" secondAttribute="bottom" constant="9" id="noN-Kz-CWt"/>
+                    <constraint firstAttribute="bottom" secondItem="MQs-wD-J4P" secondAttribute="bottom" constant="8" id="rKL-L2-fY9"/>
+                    <constraint firstItem="HYV-f4-LaT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rVO-Xn-DQD"/>
+                    <constraint firstAttribute="trailing" secondItem="Jax-z3-uB4" secondAttribute="trailing" constant="10" id="wWn-Ja-CiR"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="SDM-16-v0L"/>
+                        <exclude reference="rKL-L2-fY9"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="109" y="129.5"/>
+        </tableViewCell>
+    </objects>
+</document>
