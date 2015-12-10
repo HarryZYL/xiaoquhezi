@@ -262,7 +262,7 @@
     }
     if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
         if ([noticModel.detailNoticeModel.pictures.firstObject length] > 0) {
-            heightCell += 70 + 8;
+            heightCell += 70 + 15;
         }
     }
     return heightCell + 33;

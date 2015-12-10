@@ -68,19 +68,25 @@
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
                 imgViewInfo.hidden = NO;
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+//                imgViewInfo.image = [UIImage imageNamed:@"loadingLogo"];
             }
-        }else{
+        }else if(dicTemp.detailNoticeModel.pictures.count <= 3 && dicTemp.detailNoticeModel.pictures.count > 0){
             for (NSInteger index = 0; index < dicTemp.detailNoticeModel.pictures.count; index ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
                 imgViewInfo.hidden = NO;
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+//                imgViewInfo.image = [UIImage imageNamed:@"loadingLogo"];
             }
         }
+//        [self performSelectorOnMainThread:@selector(reupdateImage:) withObject:dicTemp.detailNoticeModel.pictures waitUntilDone:NO modes:@[NSDefaultRunLoopMode]];
     }else{
         self.cellContentLayout.constant = 8;
+        for (NSInteger index = 0; index < 3; index ++) {
+            UIView *view = [self viewWithTag:index + 10];
+            view.hidden = YES;
+        }
     }
     for (NSInteger index = 0; index < dicTemp.detailReplyArrary.count; index ++) {
-        
         SummerHomeDetailNoticeModel *noticeDetail = dicTemp.detailReplyArrary[index];
         UILabel *labReplay = (UILabel *)[self viewWithTag:index + 10];
         labReplay.hidden = NO;
@@ -114,6 +120,27 @@
     }else{
         UIButton *btnReply = (UIButton *)[self.contentView viewWithTag:12];
         btnReply.hidden = YES;
+    }
+}
+
+- (void)reupdateImage:(NSArray *)imgArrary{
+    if(imgArrary.count > 3){
+        for (NSInteger index = 0; index < 3; index ++) {
+            UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
+            imgViewInfo.hidden = NO;
+            [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:imgArrary[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+        }
+    }else if(imgArrary.count <= 3 && imgArrary.count > 0 && [imgArrary.firstObject length] > 5){
+        for (NSInteger index = 0; index < imgArrary.count; index ++) {
+            UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
+            imgViewInfo.hidden = NO;
+            [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:imgArrary[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+        }
+    }else{
+        for (NSInteger index = 0; index < 3; index ++) {
+            UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
+            imgViewInfo.hidden = YES;
+        }
     }
 }
 
