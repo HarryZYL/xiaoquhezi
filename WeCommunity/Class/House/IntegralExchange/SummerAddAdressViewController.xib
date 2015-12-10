@@ -47,6 +47,7 @@
                     <include reference="8J1-hd-Cyg"/>
                 </mask>
             </variation>
+            <point key="canvasLocation" x="212" y="285"/>
         </view>
     </objects>
 </document>

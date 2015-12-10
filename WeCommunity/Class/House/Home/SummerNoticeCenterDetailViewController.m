@@ -260,11 +260,11 @@
         }
         heightCell += 25 + 10;
     }
-//    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
-//        if ([noticModel.detailNoticeModel.pictures.firstObject length] > 0) {
-//            heightCell += 70 + 8;
-//        }
-//    }
+    if (![noticModel.detailNoticeModel.pictures isEqual:[NSNull null]]) {
+        if ([noticModel.detailNoticeModel.pictures.firstObject length] > 0) {
+            heightCell += 70 + 8;
+        }
+    }
     return heightCell + 33;
     
 }
