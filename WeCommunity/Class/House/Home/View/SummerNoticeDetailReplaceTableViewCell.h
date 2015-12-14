@@ -25,6 +25,7 @@
 @property (nonatomic ,weak)IBOutlet UIButton *cellFloorBtn;
 
 @property (nonatomic ,weak) id delegate;
+@property (nonatomic ,copy) void(^tapImageView)(UIImageView *);
 
 - (void)confirmCellInformationWithData:(SummerNoticeCenterDetailModel *)dicTemp;
 

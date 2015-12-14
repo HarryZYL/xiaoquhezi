@@ -7,7 +7,7 @@
 // 发布，报修，表扬，批评
 #import "UIViewController+HUD.h"
 #import "TextPostViewController.h"
-
+#import "SummerPriceListView.h"
 #import "SummerPriceListViewController.h"
 #define FONT_COLOR [UIColor colorWithWhite:0.533 alpha:1.000]
 
@@ -21,7 +21,7 @@
     NSDictionary *dicSelectAddress;
     UILabel *labAddress;
     UIView *bgNamePhone;
-    
+    SummerPriceListView *priceListView;
     UIView *bgContentView;/**<输入内容View*/
     UIView *bgAddressView;/**<电话View*/
 }
@@ -40,8 +40,20 @@
         self.navigationItem.rightBarButtonItem = postBtn;
         
     }else if([self.function isEqualToString:@"repair"]) {
-        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"价格单" style:UIBarButtonItemStylePlain target:self action:@selector(priceList)];
-        self.navigationItem.rightBarButtonItem = postBtn;
+//        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"价格单" style:UIBarButtonItemStylePlain target:self action:@selector(priceList)];
+//        self.navigationItem.rightBarButtonItem = postBtn;
+        
+        UIButton *btnPrice = [UIButton buttonWithType:UIButtonTypeCustom];
+        btnPrice.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
+        [btnPrice setTitle:@"价格单" forState:UIControlStateNormal];
+        [btnPrice setImage:[UIImage imageNamed:@"展开"] forState:UIControlStateNormal];
+        btnPrice.titleLabel.font = [UIFont systemFontOfSize:15];
+        btnPrice.titleEdgeInsets = UIEdgeInsetsMake(-15, -23, 0, 0);
+        btnPrice.imageEdgeInsets = UIEdgeInsetsMake(0, 43, -20, 0);
+        [btnPrice setBackgroundColor:THEMECOLOR];
+        [btnPrice addTarget:self action:@selector(showPriceList) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnPrice];
+        
         arrRoomAddress = [[NSMutableArray alloc] init];
         [self getCommunityHoom];
     }
@@ -59,6 +71,9 @@
 -(void)setupAppearance{
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    if([self.function isEqualToString:@"repair"]) {
+        self.scrollView.frame = CGRectMake(0, 44 + 64, SCREENSIZE.width, SCREENSIZE.height - 44 - 64);
+    }
     self.scrollView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 900);
     [self.view addSubview:self.scrollView];
@@ -260,6 +275,12 @@
 
 
 # pragma mark retrieve data 价格单
+
+- (void)showPriceList{
+    SummerPriceListView *priceListVC = [[SummerPriceListView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height)];
+    priceListVC.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.5];
+    [self.view.window addSubview:priceListVC];
+}
 
 -(void)priceList{
     [self.navigationController pushViewController:[[SummerPriceListViewController alloc] init] animated:YES];

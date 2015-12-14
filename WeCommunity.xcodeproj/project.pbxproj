@@ -134,6 +134,7 @@
 		D44417371C0EF3150084FFDC /* SummerRunloopView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44417361C0EF3150084FFDC /* SummerRunloopView.m */; };
 		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */; };
+		D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44893B31C199761004FD9E8 /* SummerPriceListView.m */; };
 		D4499FEE1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
 		D44D60541BED01EF00E877F9 /* SummerRentDetailBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */; };
@@ -507,6 +508,8 @@
 		D44756031C06F3960085DDF8 /* SummerRentAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentAlertView.m; sourceTree = "<group>"; };
 		D448914E1C07F73400472ADE /* SummerReAccreditationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerReAccreditationViewController.h; sourceTree = "<group>"; };
 		D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerReAccreditationViewController.m; sourceTree = "<group>"; };
+		D44893B21C199761004FD9E8 /* SummerPriceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceListView.h; path = ComplaintCell/SummerPriceListView.h; sourceTree = "<group>"; };
+		D44893B31C199761004FD9E8 /* SummerPriceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceListView.m; path = ComplaintCell/SummerPriceListView.m; sourceTree = "<group>"; };
 		D4499FEC1C11368300894D4B /* SummerBusinessHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBusinessHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBusinessHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailReplaceTableViewCell.xib; sourceTree = "<group>"; };
@@ -1829,6 +1832,8 @@
 				D4E508161BF25A050057AFDB /* SummerRepairListTableViewCell.h */,
 				D4E508171BF25A050057AFDB /* SummerRepairListTableViewCell.m */,
 				D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */,
+				D44893B21C199761004FD9E8 /* SummerPriceListView.h */,
+				D44893B31C199761004FD9E8 /* SummerPriceListView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2188,6 +2193,7 @@
 				4ACCCEDE1BBF456F0001227A /* ActivityPostView.m in Sources */,
 				4A118EB91BA4900400BC2C4E /* ELCOverlayImageView.m in Sources */,
 				4ACCCEE31BBF456F0001227A /* SecondHandView.m in Sources */,
+				D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */,
 				D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */,
 				D45206901BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m in Sources */,
 				4ACCCEA31BBF40120001227A /* UserView.m in Sources */,
@@ -2447,8 +2453,8 @@
 			baseConfigurationReference = 9914193A5A7538191672005B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2489,7 +2495,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2500,9 +2506,9 @@
 			baseConfigurationReference = E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2543,7 +2549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

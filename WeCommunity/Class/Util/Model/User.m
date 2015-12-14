@@ -54,7 +54,7 @@
     NSString *event = [NSString stringWithFormat:@"%@",data[@"user"][@"userName"]];
     NSDictionary *password = [FileManager getData:@"Password"];
     if (wxIDd.length < 1) {
-        if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
+        if ([event isEqualToString:@"0"] || [event length] < 1 || [event isEqual:([NSNull null])] || password == nil || [password[@"password"] isEqualToString:@"0"]) {
             return NO;
         }else{
             return YES;

@@ -115,7 +115,8 @@
     [self.scrollView addSubview:self.headView];
     
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
-    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"其他Home" title5:@"积分兑换" Sixth:@"其他Home" title6:@"更多"];
+    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"金融理财" title5:@"积分兑换" Sixth:@"其他Home" title6:@"更多"];
+//    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"其他Home" title5:@"更多" Sixth:nil title6:nil];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.thirdItem.functionButton addTarget:self action:@selector(repair:) forControlEvents:UIControlEventTouchUpInside];

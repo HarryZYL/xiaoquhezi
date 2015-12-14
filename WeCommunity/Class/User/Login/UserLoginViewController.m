@@ -23,9 +23,8 @@ static int timeToGetCaptcha = 60;
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
-    
 //    初始化登陆视图
-    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, self.view.frame.size.height)];
+    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, SCREENSIZE.height - 84)];
     
     if ([self.function isEqualToString:@"login"]) {
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
@@ -34,6 +33,7 @@ static int timeToGetCaptcha = 60;
         [self.loginView.rightBtn addTarget:self action:@selector(signin:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginView.mainBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserOrLoading:) name:@"kWXAppLoadingSeccess" object:nil];
+        
         //loding view
         self.loadingView.titleLabel.text = @"正在登录";
     }else if ([self.function isEqualToString:@"forget"]) {
@@ -191,13 +191,11 @@ static int timeToGetCaptcha = 60;
 #pragma mark 验证码
 
 -(void)buttonDisable{
-//    NSLog(@"test");
     self.timeIntervar = timeToGetCaptcha;
     self.loginView.captchaBtn.enabled = NO;
     self.loginView.captchaBtn.alpha = 0.55;
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(changeButtonNumber) userInfo:nil repeats:YES];
     [self.timer fire];
-    
 }
 
 -(void)changeButtonNumber{
@@ -240,6 +238,5 @@ static int timeToGetCaptcha = 60;
         [self pushVC:forgetView title:@"绑定手机号"];
     }
 }
-
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "SummerIntergralSelectAddressViewController.h"
+#import "SummerAddAdressViewController.h"
 #import "SummerSelectAddressTableViewCell.h"
 
 @interface SummerIntergralSelectAddressViewController ()<UITableViewDataSource ,UITableViewDelegate>
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    self.title = @"选择地址";
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
     _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
@@ -48,7 +50,9 @@
 }
 
 - (void)selectAddress{
+    SummerAddAdressViewController *addressVC = [[SummerAddAdressViewController alloc] init];
     
+    [self.navigationController pushViewController:addressVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

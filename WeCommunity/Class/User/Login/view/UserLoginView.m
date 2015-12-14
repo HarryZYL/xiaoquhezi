@@ -83,11 +83,33 @@
     self.mainBtn.frame = CGRectMake(30, self.passwordField1.frame.size.height+self.passwordField1.frame.origin.y+60, self.frame.size.width-60, 40);
     [self.mainBtn setTitle:@"登陆" forState:UIControlStateNormal];
     
-    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
+//    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    [btnWeiXin setTitle:@"微信登录" forState:UIControlStateNormal];
-    [btnWeiXin setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
-    btnWeiXin.frame = CGRectMake(30, self.mainBtn.frame.origin.y + 70, self.frame.size.width - 60, 40);
+//    [btnWeiXin setTitle:@"微信登录" forState:UIControlStateNormal];
+//    [btnWeiXin setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
+//    btnWeiXin.frame = CGRectMake(30, self.mainBtn.frame.origin.y + 70, self.frame.size.width - 60, 40);
+//    [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:btnWeiXin];
+    
+    CALayer *lineLayer = [CALayer layer];
+    lineLayer.frame = CGRectMake(0, self.frame.size.height - 215 + 84, self.frame.size.width, .5);
+    lineLayer.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+    [self.layer addSublayer:lineLayer];
+    
+    UILabel *nameLab = [[UILabel alloc] initWithFrame:CGRectMake(0, self.frame.size.height - 225 + 84, 100, 20)];
+    nameLab.layer.position = lineLayer.position;
+    nameLab.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
+    nameLab.text = @"微信账号登录";
+    nameLab.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
+    nameLab.font = [UIFont systemFontOfSize:15];
+    nameLab.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:nameLab];
+    
+    UIButton *btnWeiXin = [UIButton buttonWithType:UIButtonTypeSystem];
+    btnWeiXin.layer.cornerRadius = 3;
+    btnWeiXin.layer.masksToBounds = YES;
+    [btnWeiXin setBackgroundImage:[UIImage imageNamed:@"weixin_loading"] forState:UIControlStateNormal];
+    btnWeiXin.frame = CGRectMake((self.frame.size.width - 40)/2, self.frame.size.height - 190 + 84, 36, 36);
     [btnWeiXin addTarget:self action:@selector(wxinRegister) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btnWeiXin];
     

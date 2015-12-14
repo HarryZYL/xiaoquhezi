@@ -36,7 +36,6 @@
     _mTaleView = [[UITableView alloc] initWithFrame:CGRectMake(10, 10, self.view.frame.size.width - 20, self.view.frame.size.height - 10) style:UITableViewStylePlain];
     [_mTaleView registerNib:[UINib nibWithNibName:@"SummerPriceListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     _mTaleView.backgroundColor = [UIColor whiteColor];
-//    [_mTaleView registerNib:[UINib nibWithNibName:@"SummerPriceHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"headerview"];
     _mTaleView.delegate = self;
     _mTaleView.dataSource = self;
     _mTaleView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;

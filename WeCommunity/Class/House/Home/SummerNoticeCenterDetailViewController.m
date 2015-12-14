@@ -272,7 +272,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeDetailReplaceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     cell.delegate = self;
-
+    __weak typeof(self)weakSelf = self;
+    cell.tapImageView = ^(UIImageView *tapImgView){
+        [weakSelf tapCellImageView:tapImgView];
+    };
     [cell confirmCellInformationWithData:_arraryData[indexPath.row]];
     
     return cell;
@@ -366,6 +369,25 @@
     self.summerInputView.tapImageView = ^(NSInteger index){//查看图片
         [weakSelf returnTapImageViewTagIndex:index];
     };
+}
+
+- (void)tapCellImageView:(UIImageView *)tapImg{
+    NSIndexPath *indexPath = [_mTableView indexPathForCell:(UITableViewCell *)tapImg.superview.superview];
+    
+    SummerNoticeCenterDetailModel *imgModel = _arraryData[indexPath.row];
+    if (self.photos) {
+        [self.photos removeAllObjects];
+    }
+    for (int i = 0; i<imgModel.detailNoticeModel.pictures.count; i++) {
+        MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:imgModel.detailNoticeModel.pictures[i]]];
+        [self.photos addObject:photo];
+    }
+    // Create browser
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser = [Util fullImageSetting:browser];
+    browser.displayActionButton = NO;
+    [browser setCurrentPhotoIndex:tapImg.tag - 1];
+    [self.navigationController pushViewController:browser animated:YES];
 }
 
 - (void)returnTapImageViewTagIndex:(NSInteger)index{

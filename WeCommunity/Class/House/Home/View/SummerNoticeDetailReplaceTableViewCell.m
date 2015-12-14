@@ -32,6 +32,22 @@
     UITapGestureRecognizer_Data *labTap1 = [[UITapGestureRecognizer_Data alloc] initWithTarget:self action:@selector(replayTapWithTag:)];
     labTap1.tapTagImg = labeTapName1.tag;
     [labeTapName1 addGestureRecognizer:labTap1];
+    
+    for (NSInteger index = 1; index < 3; index ++) {
+        UIImageView *imgView = (UIImageView *)[self.contentView viewWithTag:index];
+        imgView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer_Data *imgTap = [[UITapGestureRecognizer_Data alloc] initWithTarget:self action:@selector(returnTapImgWithTag:)];
+        imgTap.tapTagImg = imgView.tag;
+        [imgView addGestureRecognizer:imgTap];
+    }
+}
+
+- (void)returnTapImgWithTag:(UITapGestureRecognizer_Data *)sender{
+    UIImageView *imgView = (UIImageView *)[self.contentView viewWithTag:sender.tapTagImg];
+    if (self.tapImageView) {
+        _tapImageView(imgView);
+    }
 }
 
 - (void)confirmCellInformationWithData:(SummerNoticeCenterDetailModel *)dicTemp{

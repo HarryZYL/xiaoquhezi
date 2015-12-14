@@ -76,6 +76,8 @@
         NSDictionary *data = @{@"userName":@"0"};
         [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"WX_ID"];
         [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+        NSDictionary *password = @{@"password":@"0"};
+        [FileManager saveDataToFile:password filePath:@"Password"];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
   

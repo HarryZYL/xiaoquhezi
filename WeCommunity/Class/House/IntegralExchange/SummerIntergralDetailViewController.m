@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    self.title = @"兑换详情";
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
