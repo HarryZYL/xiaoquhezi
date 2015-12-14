@@ -22,6 +22,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
     self.title = @"选择地址";
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editeButtonItem)];
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
     _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
@@ -53,6 +54,11 @@
     SummerAddAdressViewController *addressVC = [[SummerAddAdressViewController alloc] init];
     
     [self.navigationController pushViewController:addressVC animated:YES];
+}
+
+//地址编辑
+- (void)editeButtonItem{
+    [self.navigationController pushViewController:[[SummerEditeAddressViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

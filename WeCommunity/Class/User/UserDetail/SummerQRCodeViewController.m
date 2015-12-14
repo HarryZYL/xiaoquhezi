@@ -57,6 +57,7 @@
     layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     layer.frame = self.view.bounds;
     [imgView.layer addSublayer:layer];
+    
     [_avSession startRunning];
 }
 

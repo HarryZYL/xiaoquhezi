@@ -235,26 +235,26 @@
                     <exclude reference="nsD-JX-pMs"/>
                 </mask>
                 <mask key="constraints">
-                    <exclude reference="N8I-8y-HF5"/>
-                    <exclude reference="zMr-tf-BfN"/>
-                    <exclude reference="EGa-A0-dhy"/>
-                    <exclude reference="Sjv-qN-5TJ"/>
                     <exclude reference="Q2o-lK-yCf"/>
                     <exclude reference="oJ7-4c-6CN"/>
                     <exclude reference="zmj-ar-ZYl"/>
-                    <exclude reference="7WM-Nx-OWk"/>
-                    <exclude reference="8RM-Va-owF"/>
+                    <exclude reference="2vu-lb-UUv"/>
+                    <exclude reference="5yY-Fv-YF3"/>
+                    <exclude reference="9Qo-Kh-NUa"/>
                     <exclude reference="Una-HT-lxF"/>
                     <exclude reference="Zp4-Cx-NaJ"/>
                     <exclude reference="icU-Ic-rZ7"/>
                     <exclude reference="LMQ-L0-7PE"/>
                     <exclude reference="Z67-9f-ybn"/>
                     <exclude reference="wY9-R4-25Z"/>
+                    <exclude reference="N8I-8y-HF5"/>
+                    <exclude reference="zMr-tf-BfN"/>
                     <exclude reference="Gq9-pt-3Bp"/>
                     <exclude reference="la4-Ww-uAd"/>
-                    <exclude reference="2vu-lb-UUv"/>
-                    <exclude reference="5yY-Fv-YF3"/>
-                    <exclude reference="9Qo-Kh-NUa"/>
+                    <exclude reference="7WM-Nx-OWk"/>
+                    <exclude reference="8RM-Va-owF"/>
+                    <exclude reference="EGa-A0-dhy"/>
+                    <exclude reference="Sjv-qN-5TJ"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -269,26 +269,26 @@
                     <include reference="nsD-JX-pMs"/>
                 </mask>
                 <mask key="constraints">
-                    <include reference="N8I-8y-HF5"/>
-                    <include reference="zMr-tf-BfN"/>
-                    <include reference="EGa-A0-dhy"/>
-                    <include reference="Sjv-qN-5TJ"/>
                     <include reference="Q2o-lK-yCf"/>
                     <include reference="oJ7-4c-6CN"/>
                     <include reference="zmj-ar-ZYl"/>
-                    <include reference="7WM-Nx-OWk"/>
-                    <include reference="8RM-Va-owF"/>
+                    <include reference="2vu-lb-UUv"/>
+                    <include reference="5yY-Fv-YF3"/>
+                    <include reference="9Qo-Kh-NUa"/>
                     <include reference="Una-HT-lxF"/>
                     <include reference="Zp4-Cx-NaJ"/>
                     <include reference="icU-Ic-rZ7"/>
                     <include reference="LMQ-L0-7PE"/>
                     <include reference="Z67-9f-ybn"/>
                     <include reference="wY9-R4-25Z"/>
+                    <include reference="N8I-8y-HF5"/>
+                    <include reference="zMr-tf-BfN"/>
                     <include reference="Gq9-pt-3Bp"/>
                     <include reference="la4-Ww-uAd"/>
-                    <include reference="2vu-lb-UUv"/>
-                    <include reference="5yY-Fv-YF3"/>
-                    <include reference="9Qo-Kh-NUa"/>
+                    <include reference="7WM-Nx-OWk"/>
+                    <include reference="8RM-Va-owF"/>
+                    <include reference="EGa-A0-dhy"/>
+                    <include reference="Sjv-qN-5TJ"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="212" y="285"/>
