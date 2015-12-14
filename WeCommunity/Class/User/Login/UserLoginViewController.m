@@ -24,16 +24,16 @@ static int timeToGetCaptcha = 60;
     
     self.view.backgroundColor = [UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1];
 //    初始化登陆视图
-    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, SCREENSIZE.height - 84)];
-    
+    self.loginView = [[UserLoginView alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, SCREENSIZE.height - 94)];
     if ([self.function isEqualToString:@"login"]) {
         self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
+        
         [self.loginView configureLoginView];
         [self.loginView.leftBtn addTarget:self action:@selector(forgetPassword:) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.loginView.rightBtn addTarget:self action:@selector(signin:) forControlEvents:UIControlEventTouchUpInside];
         [self.loginView.mainBtn addTarget:self action:@selector(login:) forControlEvents:UIControlEventTouchUpInside];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newUserOrLoading:) name:@"kWXAppLoadingSeccess" object:nil];
-        
         //loding view
         self.loadingView.titleLabel.text = @"正在登录";
     }else if ([self.function isEqualToString:@"forget"]) {

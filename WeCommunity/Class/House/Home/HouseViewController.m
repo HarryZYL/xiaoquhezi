@@ -58,11 +58,8 @@
     [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
     self.navigationItem.titleView = titleViewItem;
     [self setupAppearance];
-        // login user
-    [User login];
     
-//    [[PgyUpdateManager sharedPgyManager] checkUpdate];
-    // Do any additional setup after loading the view.
+    [User login];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -73,9 +73,10 @@
         aboutVC.title = @"关于我们";
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else{
-        NSDictionary *data = @{@"userName":@"0"};
+        NSDictionary *data = @{@"user":@{@"userName": @"0"}};
         [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"WX_ID"];
         [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+        
         NSDictionary *password = @{@"password":@"0"};
         [FileManager saveDataToFile:password filePath:@"Password"];
         [self.navigationController popToRootViewControllerAnimated:NO];

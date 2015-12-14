@@ -7,6 +7,7 @@
 //
 
 #import "Util.h"
+#import <AVFoundation/AVFoundation.h>
 
 @implementation Util
 
@@ -15,7 +16,9 @@
     // 并把它设置成为当前正在使用的context
     UIGraphicsBeginImageContext(size);
     // 绘制改变大小的图片
-    [img drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    CGRect rectMake = AVMakeRectWithAspectRatioInsideRect(img.size, CGRectMake(0, 0, size.width, size.height));
+    
+    [img drawInRect:rectMake];
     // 从当前context中创建一个改变大小后的图片
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     // 使当前的context出堆栈
