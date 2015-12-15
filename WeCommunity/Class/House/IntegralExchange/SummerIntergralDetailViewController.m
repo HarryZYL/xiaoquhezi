@@ -10,8 +10,7 @@
 #import "SummerIntergralSelectAddressViewController.h"
 #import "SummerIntergralDetailTableViewCell.h"
 
-@interface SummerIntergralDetailViewController ()<UITableViewDelegate ,UITableViewDataSource>
-@property (nonatomic ,strong)UITableView *mTableView;
+@interface SummerIntergralDetailViewController ()
 @property (nonatomic ,strong)UIButton *btnAddAdress;
 @end
 
@@ -20,33 +19,95 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+//    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"兑换详情";
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
+    _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 40);
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
     [_btnAddAdress setTitleColor:THEMECOLOR forState:UIControlStateNormal];
-    [_btnAddAdress setTitle:@"点击添加地址" forState:UIControlStateNormal];
+    [_btnAddAdress setTitle:@"  点击添加地址" forState:UIControlStateNormal];
+    _btnAddAdress.titleLabel.font = [UIFont systemFontOfSize:14];
+    
+    _btnAddAdress.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [_btnAddAdress addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnAddAdress];
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 113, SCREENSIZE.width, SCREENSIZE.height - 113) style:UITableViewStylePlain];
-    _mTableView.delegate = self;
-    _mTableView.dataSource = self;
-    _mTableView.rowHeight = 130;
-    _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [_mTableView registerNib:[UINib nibWithNibName:@"SummerIntergralDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
-    [self.view addSubview:_mTableView];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    SummerIntergralDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    __weak typeof(self)weakSelf = self;
+    UIImageView *contentImg = [UIImageView new];
+    contentImg.image = [UIImage imageNamed:@"house3"];
+    contentImg.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:contentImg];
+    [contentImg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.top.equalTo(weakSelf.btnAddAdress.mas_bottom).offset(10);
+        make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+        make.height.mas_equalTo(204);
+        
+    }];
     
-    return cell;
+    UILabel *nameLab = [UILabel new];
+    nameLab.text = @"兑换书房咖啡优惠券";
+    nameLab.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
+//    nameLab.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    nameLab.font = [UIFont systemFontOfSize:16];
+    [self.view addSubview:nameLab];
+    [nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.top.equalTo(contentImg.mas_bottom).offset(10);
+        make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+        make.height.mas_equalTo(17);
+    }];
+    UILabel *lineLab = [UILabel new];
+    lineLab.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    [self.view addSubview:lineLab];
+    [lineLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+        make.top.equalTo(nameLab.mas_bottom).offset(10);
+        make.height.mas_equalTo(.5);
+    }];
+    
+    UILabel *contentLab = [UILabel new];
+    contentLab.textColor = [UIColor colorWithWhite:.259 alpha:1];
+    contentLab.text = @"文字介绍";
+    [contentLab sizeToFit];
+    [self.view addSubview:contentLab];
+    [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.top.equalTo(lineLab.mas_bottom).offset(10);
+        make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+        make.bottom.lessThanOrEqualTo(weakSelf.view.mas_bottom).offset(10);
+    }];
+    
+    UILabel *scoreLab = [UILabel new];
+    scoreLab.backgroundColor = THEMECOLOR;
+    scoreLab.text = @"   3500积分";
+    scoreLab.textColor = [UIColor whiteColor];
+    [self.view addSubview:scoreLab];
+    [scoreLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(weakSelf.view.mas_left).offset(10);
+        make.bottom.right.equalTo(weakSelf.view).offset(-10);
+        make.height.mas_equalTo(40);
+    }];
+    
+    UIButton *scoreBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [scoreBtn setTitle:@"兑换" forState:UIControlStateNormal];
+    [scoreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    scoreBtn.layer.cornerRadius = 5;
+    scoreBtn.layer.masksToBounds = YES;
+    scoreBtn.layer.borderColor = [UIColor whiteColor].CGColor;
+    scoreBtn.layer.borderWidth = 1;
+    [self.view addSubview:scoreBtn];
+    
+    [scoreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(scoreLab.mas_right).offset(-10);
+        make.centerY.equalTo(scoreLab.mas_centerY);
+        make.height.mas_equalTo(33);
+        make.width.mas_equalTo(71);
+    }];
 }
+
+
 
 - (void)selectAddress{
     SummerIntergralSelectAddressViewController *selectAddressVC = [[SummerIntergralSelectAddressViewController alloc] init];

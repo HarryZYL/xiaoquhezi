@@ -7,8 +7,9 @@
 //
 
 #import "SummerAddAdressViewController.h"
-
+#import "SummerAddressView.h"
 @interface SummerAddAdressViewController ()
+@property (nonatomic ,strong) SummerAddressView *contentView;
 
 @end
 
@@ -18,8 +19,21 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"添加收货地址";
+    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
     
+    __weak typeof(self)weakSelf = self;
+    _contentView = [SummerAddressView new];
+    _contentView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_contentView];
+    [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(weakSelf.view);
+        make.top.equalTo(weakSelf.view.mas_top).offset(74);
+        make.height.mas_equalTo(183);
+    }];
+        
 }
+
+
 
 - (IBAction)selectAddressInformation:(id)sender{
     [self.view endEditing:YES];

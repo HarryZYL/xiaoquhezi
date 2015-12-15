@@ -157,6 +157,7 @@
 		D45300D11BF20F40003654BF /* SummerRepairListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D01BF20F40003654BF /* SummerRepairListsViewController.m */; };
 		D45300D51BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */; };
 		D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */; };
+		D4532C811C201BC700A0E381 /* SummerAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4532C801C201BC700A0E381 /* SummerAddressView.m */; };
 		D454D9761C0C2491003218B7 /* SummerSelectCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */; };
 		D454D97B1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9791C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m */; };
 		D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D454D97A1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib */; };
@@ -254,7 +255,6 @@
 		D4FCD0F21C19598D0007B040 /* SummerSelectAddressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCD0F01C19598D0007B040 /* SummerSelectAddressTableViewCell.m */; };
 		D4FCD0F31C19598D0007B040 /* SummerSelectAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FCD0F11C19598D0007B040 /* SummerSelectAddressTableViewCell.xib */; };
 		D4FCD0F71C195DA60007B040 /* SummerAddAdressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4FCD0F51C195DA60007B040 /* SummerAddAdressViewController.m */; };
-		D4FCD0F81C195DA60007B040 /* SummerAddAdressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4FCD0F61C195DA60007B040 /* SummerAddAdressViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -549,6 +549,8 @@
 		D45300D21BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRepairListsHeaderTableViewCell.h; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerRepairListsHeaderTableViewCell.m; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListsHeaderTableViewCell.xib; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		D4532C7F1C201BC700A0E381 /* SummerAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerAddressView.h; path = IntegralExchange/SummerAddressView.h; sourceTree = "<group>"; };
+		D4532C801C201BC700A0E381 /* SummerAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAddressView.m; path = IntegralExchange/SummerAddressView.m; sourceTree = "<group>"; };
 		D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityViewController.h; sourceTree = "<group>"; };
 		D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCommunityViewController.m; sourceTree = "<group>"; };
 		D454D9781C0C3011003218B7 /* SummerSelectCommunityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityTableViewCell.h; sourceTree = "<group>"; };
@@ -786,7 +788,6 @@
 		D4FCD0F11C19598D0007B040 /* SummerSelectAddressTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerSelectAddressTableViewCell.xib; path = IntegralExchange/SummerSelectAddressTableViewCell.xib; sourceTree = "<group>"; };
 		D4FCD0F41C195DA60007B040 /* SummerAddAdressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerAddAdressViewController.h; path = IntegralExchange/SummerAddAdressViewController.h; sourceTree = "<group>"; };
 		D4FCD0F51C195DA60007B040 /* SummerAddAdressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAddAdressViewController.m; path = IntegralExchange/SummerAddAdressViewController.m; sourceTree = "<group>"; };
-		D4FCD0F61C195DA60007B040 /* SummerAddAdressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerAddAdressViewController.xib; path = IntegralExchange/SummerAddAdressViewController.xib; sourceTree = "<group>"; };
 		E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1581,7 +1582,6 @@
 				D44330D71C1E91BE0035F923 /* SummerEditeAddressViewController.m */,
 				D4FCD0F41C195DA60007B040 /* SummerAddAdressViewController.h */,
 				D4FCD0F51C195DA60007B040 /* SummerAddAdressViewController.m */,
-				D4FCD0F61C195DA60007B040 /* SummerAddAdressViewController.xib */,
 			);
 			name = IntegralExchange;
 			sourceTree = "<group>";
@@ -1931,6 +1931,8 @@
 		D4FCD0E31C19516B0007B040 /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				D4532C7F1C201BC700A0E381 /* SummerAddressView.h */,
+				D4532C801C201BC700A0E381 /* SummerAddressView.m */,
 				D4FCD0DE1C194BFB0007B040 /* SummerScoreTableViewCell.h */,
 				D4FCD0DF1C194BFB0007B040 /* SummerScoreTableViewCell.m */,
 				D4FCD0E01C194BFB0007B040 /* SummerScoreTableViewCell.xib */,
@@ -2066,7 +2068,6 @@
 				D44D9C7B1BE5DD86006340E2 /* SummerMemberAlertView.xib in Resources */,
 				D414F3891BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.xib in Resources */,
 				D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */,
-				D4FCD0F81C195DA60007B040 /* SummerAddAdressViewController.xib in Resources */,
 				D4CDD5641BE7A0A000B782DB /* SummerBillTableViewCell.xib in Resources */,
 				D43E667E1C0DA8150090E1E2 /* BusinessStoryboard.storyboard in Resources */,
 				D48F8ED21C1567860003C010 /* SummerCollectionTableViewCell.xib in Resources */,
@@ -2273,6 +2274,7 @@
 				4A118E8F1BA48FFC00BC2C4E /* GrayLine.m in Sources */,
 				D4FCD0F21C19598D0007B040 /* SummerSelectAddressTableViewCell.m in Sources */,
 				D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */,
+				D4532C811C201BC700A0E381 /* SummerAddressView.m in Sources */,
 				D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */,
 				4ACCCEA01BBF40120001227A /* SettingTableViewController.m in Sources */,
 				D4AC4C071BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.m in Sources */,
@@ -2469,6 +2471,7 @@
 					"$(PROJECT_DIR)/BaiduMapAPI",
 					"$(PROJECT_DIR)/WeCommunity/Vendor",
 					"$(PROJECT_DIR)/WeCommunity/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WeCommunity/Class/Util/Common/WeCommunity-Prefix.pch";
@@ -2523,6 +2526,7 @@
 					"$(PROJECT_DIR)/BaiduMapAPI",
 					"$(PROJECT_DIR)/WeCommunity/Vendor",
 					"$(PROJECT_DIR)/WeCommunity/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/WeCommunity/Class/Util/Common/WeCommunity-Prefix.pch";

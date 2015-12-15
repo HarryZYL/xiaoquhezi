@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     UIBarButtonItem *itemRight = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(scoreInformation)];
     self.navigationItem.rightBarButtonItem = itemRight;
     
@@ -33,28 +33,31 @@
         make.left.equalTo(weakSelf.view.mas_left).offset(0);
         make.top.equalTo(weakSelf.view.mas_top).offset(64);
         make.right.equalTo(weakSelf.view.mas_right).offset(0);
-        make.height.mas_equalTo(34);
+        make.height.mas_equalTo(45);
     }];
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, SCREENSIZE.width, SCREENSIZE.height - 100 - 40) style:UITableViewStylePlain];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, SCREENSIZE.width, SCREENSIZE.height - 120 - 50) style:UITableViewStylePlain];
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
-    _mTableView.rowHeight = 84;
+    _mTableView.rowHeight = 105;
+    _mTableView.backgroundColor = self.view.backgroundColor;
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerScoreTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
     
     CALayer *bgLayer = [CALayer layer];
-    bgLayer.frame = CGRectMake(0, SCREENSIZE.height - 30, SCREENSIZE.width, 30);
-    bgLayer.backgroundColor = [UIColor whiteColor].CGColor;
+    bgLayer.frame = CGRectMake(10, SCREENSIZE.height - 50, SCREENSIZE.width - 20, 40);
+    bgLayer.cornerRadius = 5;
+    bgLayer.masksToBounds = YES;
+    bgLayer.backgroundColor = THEMECOLOR.CGColor;
     [self.view.layer addSublayer:bgLayer];
     
-    UILabel *btnScore = [UILabel new];
-    btnScore.backgroundColor = THEMECOLOR;
-    btnScore.layer.cornerRadius = 5;
-    btnScore.layer.masksToBounds = YES;
-    btnScore.text = @"积分40000";
-    btnScore.frame = CGRectMake(10, SCREENSIZE.height - 30, SCREENSIZE.width - 20, 20);
-    [self.view addSubview:btnScore];
+//    UILabel *btnScore = [UILabel new];
+//    btnScore.backgroundColor = THEMECOLOR;
+//    btnScore.layer.cornerRadius = 5;
+//    btnScore.layer.masksToBounds = YES;
+//    btnScore.text = @"积分40000";
+//    btnScore.frame = CGRectMake(10, SCREENSIZE.height - 30, SCREENSIZE.width - 20, 20);
+//    [self.view addSubview:btnScore];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

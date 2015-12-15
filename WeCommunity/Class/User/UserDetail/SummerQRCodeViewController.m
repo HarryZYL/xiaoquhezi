@@ -25,7 +25,7 @@
     self.view.backgroundColor =[UIColor whiteColor];
     
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    imgView.image = [UIImage imageNamed:@"shadow"];
+//    imgView.image = [UIImage imageNamed:@"shadow"];
     [self.view addSubview:imgView];
     
     UIImageView *imgBound = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"qr_code_bg"]];
@@ -57,7 +57,7 @@
     layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     layer.frame = self.view.bounds;
     [imgView.layer addSublayer:layer];
-    
+
     [_avSession startRunning];
 }
 
