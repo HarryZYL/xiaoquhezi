@@ -28,6 +28,7 @@
     _mTableView.delegate   = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight  = 85;
+//    _mTableView.editing = YES;
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerSelectAddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
@@ -47,6 +48,16 @@
     SummerAddAdressViewController *editeVC = [[SummerAddAdressViewController alloc] init];
     editeVC.editeType = SummerEditeAddAdressTypeEidteOrDelete;
     [self.navigationController pushViewController:editeVC animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    return YES;
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
