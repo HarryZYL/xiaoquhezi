@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef NS_ENUM(NSUInteger, SummerEditeAddAdressType) {
+    SummerEditeAddAdressTypeAdd,
+    SummerEditeAddAdressTypeEidteOrDelete,
+};
 @interface SummerAddAdressViewController : UIViewController
+
+@property(nonatomic ,assign)SummerEditeAddAdressType editeType;
 
 @end

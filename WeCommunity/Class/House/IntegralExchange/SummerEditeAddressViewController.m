@@ -7,6 +7,7 @@
 //
 
 #import "SummerEditeAddressViewController.h"
+
 #import "SummerAddAdressViewController.h"
 #import "SummerSelectAddressTableViewCell.h"
 
@@ -23,7 +24,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"编辑收货地址";
     
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - 64) style:UITableViewStylePlain];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height) style:UITableViewStylePlain];
     _mTableView.delegate   = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight  = 85;
@@ -40,6 +41,12 @@
     SummerSelectAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerAddAdressViewController *editeVC = [[SummerAddAdressViewController alloc] init];
+    editeVC.editeType = SummerEditeAddAdressTypeEidteOrDelete;
+    [self.navigationController pushViewController:editeVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

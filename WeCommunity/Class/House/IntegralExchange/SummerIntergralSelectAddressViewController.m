@@ -52,7 +52,7 @@
 
 - (void)selectAddress{
     SummerAddAdressViewController *addressVC = [[SummerAddAdressViewController alloc] init];
-    
+    addressVC.editeType = SummerEditeAddAdressTypeAdd;
     [self.navigationController pushViewController:addressVC animated:YES];
 }
 
