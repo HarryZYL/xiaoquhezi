@@ -51,6 +51,7 @@
         [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
     }
     
+    
     [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
         // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
         if (result) {
