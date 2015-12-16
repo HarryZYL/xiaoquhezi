@@ -118,7 +118,9 @@
 
 - (void)initBMKMapViewManagerAndNotificationwithLaunOptions:(NSDictionary *)launchOptins withApplication:(UIApplication *)application{
     [WXApi registerApp:@"wx8728578ba70796d9"];
-    [[CrashReporter sharedInstance] installWithAppId:@"900012985"];
+    [[CrashReporter sharedInstance] installWithAppId:@"900015258"];
+    [[CrashReporter sharedInstance] enableBlockMonitor:YES];
+    
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"l6923BycoPgnF11rWXOAdLIG" generalDelegate:self];
     if (!ret) {
