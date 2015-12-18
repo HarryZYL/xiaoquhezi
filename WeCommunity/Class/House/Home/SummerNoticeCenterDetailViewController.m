@@ -476,6 +476,9 @@
                                                                    self.summerInputView.summerInputLabNumbers.text = 0;
 //                                                                   self.summerInputView.btnSenderMessage.enabled = NO;
                                                                    self.summerInputView.summerInputView.text = nil;
+                                                                   if (_mTableView.mj_footer.state == MJRefreshStateNoMoreData) {
+                                                                       [_mTableView.mj_footer resetNoMoreData];
+                                                                   }
                                                                    [self getReceveData];
                                                                }];
     }else{
@@ -495,6 +498,9 @@
                                                                        weakSelf.summerInputView.summerInputLabNumbers.hidden = YES;
                                                                        weakSelf.summerInputView.summerInputLabNumbers.text = 0;
                                                                        weakSelf.summerInputView.summerInputView.text = nil;
+                                                                       if (_mTableView.mj_footer.state == MJRefreshStateNoMoreData) {
+                                                                           [_mTableView.mj_footer resetNoMoreData];
+                                                                       }
                                                                        [weakSelf summerKeybordViewWillHide:nil];
                                                                        [weakSelf getReceveData];
                                                                    }];
@@ -509,6 +515,9 @@
                                                              @"content":self.summerInputView.summerInputView.text,
                                                              @"parentId":_identifyNotice.objectID,
                                                              } success:^(id responseObject) {
+                                                                 if (_mTableView.mj_footer.state == MJRefreshStateNoMoreData) {
+                                                                     [_mTableView.mj_footer resetNoMoreData];
+                                                                 }
                                                                  [self getReceveData];
                                                              }];
 }

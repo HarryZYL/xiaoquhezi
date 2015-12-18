@@ -17,8 +17,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     UIImage *img = [UIImage imageNamed:@"contactflag_star_mark"];
     for (NSInteger index = 0; index < 5; index ++) {
-        CGRect rectImg = CGRectMake(13 * index, 0, 13, 13);
-        drawImage(context, img.CGImage, rectImg);
+        drawImage(context, img.CGImage, CGRectMake(index *rect.size.height, 0, rect.size.height, rect.size.height));
     }
 //    CGContextRelease(context);
 }

@@ -80,7 +80,6 @@
 - (void)menu:(DOPDropDownMenu *)menu didSelectRowAtIndexPath:(DOPIndexPath *)indexPath {
     
     switch (indexPath.column) {
-            
         case 0:
             switch (indexPath.row) {
                 case 0:
@@ -98,25 +97,6 @@
             
             break;
         case 1:
-//            switch (indexPath.row) {
-//                case 0:
-//                    self.houseTypeArr = @[@"Sale",@"Rent"];
-//                    [self retrireveData];
-//                    break;
-//                case 1:
-//                    self.houseTypeArr = @[@"Sale"];
-//                    [self retrireveData];
-//                    break;
-//                case 2:
-//                    self.houseTypeArr = @[@"Rent"];
-//                    [self retrireveData];
-//                    break;
-//                    
-//                default:
-//                    break;
-//            }
-            
-            
             break;
         default:
             

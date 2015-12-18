@@ -7,9 +7,10 @@
 //
 
 #import "SummerBusinessDetailViewController.h"
+#import "SummerBusinessDetailTableViewCell.h"
 
-@interface SummerBusinessDetailViewController ()
-
+@interface SummerBusinessDetailViewController ()<UITableViewDataSource ,UITableViewDelegate>
+@property(nonatomic,weak) IBOutlet UITableView *mTableView;
 @end
 
 @implementation SummerBusinessDetailViewController
@@ -17,6 +18,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return 280;
+    }
+    return 0;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 8;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    SummerBusinessDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellHeader" forIndexPath:indexPath];
+    
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SummerBusinessSearchViewController : UIViewController
+@interface SummerBusinessSearchViewController : UIViewController<UITableViewDataSource ,UITableViewDelegate>
 @property (nonatomic ,weak)IBOutlet UITableView *mTableView;
 
 @end

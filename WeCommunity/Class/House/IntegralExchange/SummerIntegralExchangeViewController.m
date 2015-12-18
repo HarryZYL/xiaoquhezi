@@ -8,10 +8,11 @@
 
 #import "SummerIntegralExchangeViewController.h"
 #import "SummerIntergralDetailViewController.h"
+#import "SummerScoreSegmentControl.h"
 #import "SummerScoreTableViewCell.h"
 
 @interface SummerIntegralExchangeViewController ()<UITableViewDataSource ,UITableViewDelegate>
-@property (nonatomic ,strong)UISegmentedControl *mSegmentControl;
+@property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
 @property (nonatomic ,strong)UITableView *mTableView;
 @end
 
@@ -25,20 +26,21 @@
     self.navigationItem.rightBarButtonItem = itemRight;
     
     __weak typeof(self)weakSelf = self;
-    _mSegmentControl = [[UISegmentedControl alloc] initWithItems:@[@"所有兑换",@"我的兑换"]];
-    _mSegmentControl.selectedSegmentIndex = 0;
-    _mSegmentControl.tintColor = THEMECOLOR;
+    _mSegmentControl = [[SummerScoreSegmentControl alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 45)];
+    _mSegmentControl.items = @[@"所有兑换",@"我的兑换"];
+    _mSegmentControl.currentSelectIndex = 0;
+    _mSegmentControl.tapIndexTag = ^(NSInteger index){
+        [weakSelf segmentControlDidSelectIndex:index];
+    };
     [self.view addSubview:_mSegmentControl];
-    [_mSegmentControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(weakSelf.view.mas_left).offset(0);
-        make.top.equalTo(weakSelf.view.mas_top).offset(64);
-        make.right.equalTo(weakSelf.view.mas_right).offset(0);
-        make.height.mas_equalTo(45);
-    }];
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, SCREENSIZE.width, SCREENSIZE.height - 120 - 50) style:UITableViewStylePlain];
+    
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, SCREENSIZE.width, SCREENSIZE.height - 120) style:UITableViewStylePlain];
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight = 105;
+    _mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshingHeaderView)];
+    _mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshingFooterView)];
+    
     _mTableView.backgroundColor = self.view.backgroundColor;
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerScoreTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
@@ -51,6 +53,11 @@
     bgLayer.backgroundColor = THEMECOLOR.CGColor;
     [self.view.layer addSublayer:bgLayer];
     
+    UILabel *scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(15, SCREENSIZE.height - 50, 100, 40)];
+    scoreLab.textColor = [UIColor whiteColor];
+    scoreLab.font = [UIFont systemFontOfSize:14];
+    scoreLab.text = @"积分：200";
+    [self.view addSubview:scoreLab];
 //    UILabel *btnScore = [UILabel new];
 //    btnScore.backgroundColor = THEMECOLOR;
 //    btnScore.layer.cornerRadius = 5;
@@ -78,6 +85,19 @@
 
 - (void)scoreInformation{
     
+}
+
+
+- (void)refreshingHeaderView{
+    [_mTableView.mj_header endRefreshing];
+}
+
+- (void)refreshingFooterView{
+    [_mTableView.mj_footer endRefreshing];
+}
+
+- (void)segmentControlDidSelectIndex:(NSInteger)index{
+    NSLog(@"--->%i",index);
 }
 
 - (void)didReceiveMemoryWarning {

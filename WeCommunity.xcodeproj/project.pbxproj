@@ -184,6 +184,8 @@
 		D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */; };
 		D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */; };
 		D475C63F1C16B22C00E5549C /* SummerQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D475C63E1C16B22C00E5549C /* SummerQRCodeViewController.m */; };
+		D478D0781C22919F0025C00C /* SummerBusinessDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D478D0771C22919F0025C00C /* SummerBusinessDetailTableViewCell.m */; };
+		D478D07B1C22C67F0025C00C /* SummerScoreSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D478D07A1C22C67F0025C00C /* SummerScoreSegmentControl.m */; };
 		D47996821BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */; };
 		D47996831BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */; };
 		D47996861BF04E7200994024 /* SummerNoticeCenterDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D47996851BF04E7200994024 /* SummerNoticeCenterDetailModel.m */; };
@@ -673,6 +675,10 @@
 		D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBillConfirmViewController.m; sourceTree = "<group>"; };
 		D475C63D1C16B22C00E5549C /* SummerQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerQRCodeViewController.h; path = UserDetail/SummerQRCodeViewController.h; sourceTree = "<group>"; };
 		D475C63E1C16B22C00E5549C /* SummerQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerQRCodeViewController.m; path = UserDetail/SummerQRCodeViewController.m; sourceTree = "<group>"; };
+		D478D0761C22919F0025C00C /* SummerBusinessDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerBusinessDetailTableViewCell.h; path = WeCommunity/Class/Business/BusinessView/SummerBusinessDetailTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		D478D0771C22919F0025C00C /* SummerBusinessDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBusinessDetailTableViewCell.m; path = WeCommunity/Class/Business/BusinessView/SummerBusinessDetailTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		D478D0791C22C67F0025C00C /* SummerScoreSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerScoreSegmentControl.h; path = IntegralExchange/SummerScoreSegmentControl.h; sourceTree = "<group>"; };
+		D478D07A1C22C67F0025C00C /* SummerScoreSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerScoreSegmentControl.m; path = IntegralExchange/SummerScoreSegmentControl.m; sourceTree = "<group>"; };
 		D479967F1BF02DD500994024 /* SummerRentTakeNoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentTakeNoteTableViewCell.h; sourceTree = "<group>"; };
 		D47996801BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentTakeNoteTableViewCell.m; sourceTree = "<group>"; };
 		D47996811BF02DD500994024 /* SummerRentTakeNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerRentTakeNoteTableViewCell.xib; sourceTree = "<group>"; };
@@ -1593,6 +1599,8 @@
 				D4DBDE421BFEC05E0000BE3B /* SummerBusinessTableViewCell.m */,
 				D4499FEC1C11368300894D4B /* SummerBusinessHeaderTableViewCell.h */,
 				D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */,
+				D478D0761C22919F0025C00C /* SummerBusinessDetailTableViewCell.h */,
+				D478D0771C22919F0025C00C /* SummerBusinessDetailTableViewCell.m */,
 			);
 			name = BusinessViewCell;
 			sourceTree = "<group>";
@@ -1942,6 +1950,8 @@
 				D4FCD0EF1C19598D0007B040 /* SummerSelectAddressTableViewCell.h */,
 				D4FCD0F01C19598D0007B040 /* SummerSelectAddressTableViewCell.m */,
 				D4FCD0F11C19598D0007B040 /* SummerSelectAddressTableViewCell.xib */,
+				D478D0791C22C67F0025C00C /* SummerScoreSegmentControl.h */,
+				D478D07A1C22C67F0025C00C /* SummerScoreSegmentControl.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -2211,6 +2221,7 @@
 				4ACCCE6E1BBF384F0001227A /* creatorInfo.m in Sources */,
 				4A118EB51BA4900400BC2C4E /* ELCAssetCell.m in Sources */,
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
+				D478D07B1C22C67F0025C00C /* SummerScoreSegmentControl.m in Sources */,
 				D425C07F1C0C45910013E1B8 /* SummerSelectCityTableViewController.m in Sources */,
 				D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */,
 				4A118E941BA48FFC00BC2C4E /* AvoidKeyboardVC.m in Sources */,
@@ -2221,6 +2232,7 @@
 				D454EAA91BE4949E0089333D /* openssl_wrapper.m in Sources */,
 				D454EAA81BE4949E0089333D /* NSDataEx.m in Sources */,
 				4ACCD04B1BBF49600001227A /* ImagePickerCollectionVC.m in Sources */,
+				D478D0781C22919F0025C00C /* SummerBusinessDetailTableViewCell.m in Sources */,
 				D454EAAA1BE4949E0089333D /* RSADataSigner.m in Sources */,
 				4ACCCE721BBF3E840001227A /* BasicHeader.m in Sources */,
 				4ACCD0371BBF49600001227A /* AccreditationPostViewController.m in Sources */,
@@ -2461,8 +2473,8 @@
 			baseConfigurationReference = 9914193A5A7538191672005B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2504,7 +2516,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2515,9 +2527,9 @@
 			baseConfigurationReference = E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2559,7 +2571,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
