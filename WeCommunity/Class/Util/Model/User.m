@@ -62,12 +62,6 @@
     }else{
         return YES;
     }
-    
-//    if ([event isEqualToString:@"0"] || event == nil  || password == nil ) {
-//        return false;
-//    }else{
-//        return true;
-//    }
 }
 
 

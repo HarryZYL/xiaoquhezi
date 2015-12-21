@@ -13,7 +13,7 @@
 @end
 
 @implementation SummerScoreSegmentControl
-
+@synthesize currentSelectIndex = _currentSelectIndex;
 - (id)initWithFrame:(CGRect)frame{
     if (self == [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
@@ -48,7 +48,6 @@
         }
         
     }
-    
 }
 
 - (void)btnSelectCurrentIndex:(UIButton *)sender{
@@ -66,6 +65,7 @@
 }
 
 - (void)setCurrentSelectIndex:(NSInteger)currentSelectIndex{
+    
     UIButton *btnSelect = (UIButton *)[self viewWithTag:currentSelectIndex + 1];
     UIButton *btnSelected = (UIButton *)[self viewWithTag:_selectedIndex + 1];
     
@@ -74,15 +74,15 @@
     
     UILabel *lineLab = (UILabel *)[self viewWithTag:currentSelectIndex + 20];
     UILabel *lineLabSelected = (UILabel *)[self viewWithTag:_selectedIndex + 20];
+    
     if (_selectedIndex != currentSelectIndex) {
         lineLab.hidden = NO;
         lineLabSelected.hidden = YES;
     }else{
         lineLab.hidden = NO;
     }
-    
     _selectedIndex = currentSelectIndex;
-    
+    _currentSelectIndex = currentSelectIndex;
 }
 
 @end

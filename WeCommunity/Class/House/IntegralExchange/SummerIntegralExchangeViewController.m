@@ -12,8 +12,12 @@
 #import "SummerScoreTableViewCell.h"
 
 @interface SummerIntegralExchangeViewController ()<UITableViewDataSource ,UITableViewDelegate>
+{
+    NSInteger pageNumers;
+}
 @property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
 @property (nonatomic ,strong)UITableView *mTableView;
+@property (nonatomic ,strong)NSMutableArray *dataArrary;
 @end
 
 @implementation SummerIntegralExchangeViewController
@@ -24,7 +28,7 @@
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
 //    UIBarButtonItem *itemRight = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(scoreInformation)];
 //    self.navigationItem.rightBarButtonItem = itemRight;
-    
+    _dataArrary = [[NSMutableArray alloc] initWithCapacity:0];
     __weak typeof(self)weakSelf = self;
     _mSegmentControl = [[SummerScoreSegmentControl alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 45)];
     _mSegmentControl.items = @[@"所有兑换",@"我的兑换"];
@@ -58,6 +62,7 @@
     scoreLab.font = [UIFont systemFontOfSize:14];
     scoreLab.text = @"积分：200";
     [self.view addSubview:scoreLab];
+    [self refreshingHeaderView];
 //    UILabel *btnScore = [UILabel new];
 //    btnScore.backgroundColor = THEMECOLOR;
 //    btnScore.layer.cornerRadius = 5;
@@ -73,7 +78,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-    
+    NSLog(@"--->%d",_mSegmentControl.currentSelectIndex);
     return cell;
 }
 
@@ -89,14 +94,49 @@
 
 
 - (void)refreshingHeaderView{
-    [_mTableView.mj_header endRefreshing];
+    NSString *strUrl;
+    NSDictionary *parama;
+    pageNumers = 0;
+    if (_mSegmentControl.currentSelectIndex == 0) {
+        strUrl =  JIN_EXPORY;
+        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
+    }else{
+        strUrl =  JIN_MY_EXPORY;
+        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
+    }
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:strUrl parameters:parama success:^(id responseObject) {
+        [weakSelf.mTableView.mj_header endRefreshing];
+        if (weakSelf.dataArrary.count < 30) {
+            [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
+    
 }
 
 - (void)refreshingFooterView{
-    [_mTableView.mj_footer endRefreshing];
+    NSString *strUrl;
+    NSDictionary *parama;
+    pageNumers ++;
+    if (_mSegmentControl.currentSelectIndex == 0) {
+        strUrl =  JIN_EXPORY;
+        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
+    }else{
+        strUrl =  JIN_MY_EXPORY;
+        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
+    }
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:strUrl parameters:parama success:^(id responseObject) {
+        [weakSelf.mTableView.mj_footer endRefreshing];
+        if (weakSelf.dataArrary.count < pageNumers * 30) {
+            [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+    }];
+    
 }
 
 - (void)segmentControlDidSelectIndex:(NSInteger)index{
+    [self refreshingHeaderView];
     NSLog(@"--->%i",index);
 }
 

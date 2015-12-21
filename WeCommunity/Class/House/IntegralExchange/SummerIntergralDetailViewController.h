@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef enum : NSUInteger {
+    DetailMySelf,
+    DetailGoods,
+} DetailType;
 @interface SummerIntergralDetailViewController : UIViewController
-
+@property(assign)DetailType intergralType;
+@property(nonatomic ,strong)NSDictionary *detailGoods;
 @end

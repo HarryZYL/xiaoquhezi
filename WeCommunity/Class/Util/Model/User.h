@@ -28,6 +28,9 @@
 @property (nonatomic,strong) NSString *lastSignTime;
 @property (nonatomic,strong) NSString *token;
 
+@property (nonatomic,copy) NSString *userJinLeve;/**<用户金马会等级*/
+@property (nonatomic,copy) NSString *userJinPoint;/**<用户金马会积分*/
+
 - (id) initWithData;
 +(NSString*)getUserToken;
 

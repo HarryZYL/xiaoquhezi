@@ -105,9 +105,14 @@
         make.height.mas_equalTo(33);
         make.width.mas_equalTo(71);
     }];
+    [self chooseMyAddressList];
 }
 
-
+- (void)chooseMyAddressList{
+    [Networking retrieveData:JIN_ADD_ADDRESS parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+        
+    }];
+}
 
 - (void)selectAddress{
     SummerIntergralSelectAddressViewController *selectAddressVC = [[SummerIntergralSelectAddressViewController alloc] init];

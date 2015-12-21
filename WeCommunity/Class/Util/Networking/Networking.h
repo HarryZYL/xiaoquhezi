@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 
 #define HOST_URL @"http://www.wshequ.net"
-//#define HOST_URL @"http://192.168.1.101:10000/wsq"
+#define HOST_URL_Basic @"http://192.168.1.101"
 
 #define get_reply_notice      (HOST_URL @"/notice/replyNotice") /**<回复公告*/
 #define GET_NOTICE_REPLIS     (HOST_URL @"/notice/getReplies") //查询公告回复
 #define GET_REPLY_TO_REPLY    (HOST_URL @"/notice/replyToReply")//楼中楼回复
 #define get_Reply_Replies     (HOST_URL @"/notice/getReplyReplies")//查询楼中楼
 #define getNoticesOfCommunity (HOST_URL @"/notice/getNoticesOfCommunity")//小区公告
-#define getNoticeDetail       (HOST_URL @"/notice/getNotice")//公告详情
+#define getNoticeDetail       (HOST_URL @"/notice/getNotice")           //公告详情
 #define getMyAuthentications  (HOST_URL @"/user/getMyAuthentications")
 
 #define get_COMPLAINTS_DETAIL (HOST_URL @"/complaint/getComplaint")//投诉详情
@@ -104,6 +104,15 @@
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 
 #define get_Baidu_Push (HOST_URL @"/user/baidu/setPushId")   //推送
+//金马会兑换
+#define JIN_EXPORY (HOST_URL_Basic @"/member/prize/list/get")/**所有兑奖*/
+#define JIN_MY_EXPORY   (HOST_URL_Basic @"/user/prize/cash/my/list")/**我的兑奖*/
+#define JIN_EXPORY_DEFULT (HOST_URL_Basic @"/member/prize/detail/get")/**兑奖详情*/
+#define JIN_EXPORY_SURE   (HOST_URL_Basic @"/user/prize/cash")/**确认兑奖*/
+#define JIN_MY_CITY_LIST  (HOST_URL_Basic @"/user/address/my/list")/**查询地址列表*/
+#define JIN_ADD_ADDRESS   (HOST_URL_Basic @"/user/address/add/phone")/**添加地址*/
+#define JIN_UPDATE_ADD    (HOST_URL_Basic @"/user/address/update/phone")/**更新地址*/
+#define JIN_DELETE_ADD    (HOST_URL_Basic @"/user/address/delete/phone")/**删除地址*/
 
 @interface Networking : NSObject
 
