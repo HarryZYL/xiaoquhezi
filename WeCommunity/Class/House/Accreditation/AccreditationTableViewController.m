@@ -100,6 +100,7 @@
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
         [self.tableView reloadData];
+        
     } addition:^{
         [self.loadingView removeFromSuperview];
     }];

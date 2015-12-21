@@ -7,6 +7,7 @@
 //
 
 #import "RentViewController.h"
+#import "AccreditationTableViewController.h"
 #import "SummerSelectSellerOrOrderView.h"
 @interface RentViewController ()
 {
@@ -441,7 +442,7 @@
 }
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 1 && alertView.tag == 10) {
+    if (buttonIndex == 1 && (alertView.tag == 10 || alertView.tag == 1000)) {
         AccreditationPostViewController *postView = [[AccreditationPostViewController alloc] init];
         [self pushVC:postView title:@"发布认证"];
     }
@@ -455,6 +456,7 @@
         }
         [self pushVC:postVC title:@"发布"];
     }
+    
 }
 
 - (void)resavedRequsetRefeshing{
