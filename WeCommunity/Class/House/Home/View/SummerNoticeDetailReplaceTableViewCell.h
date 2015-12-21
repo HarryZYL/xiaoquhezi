@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AsyncDisplayKit/ASDisplayNode.h>
 #import "SummerNoticeCenterDetailModel.h"
 
 @protocol SummerNoticeDetailReplaceTableViewCellDelegate <NSObject>
@@ -21,9 +22,7 @@
 @property (nonatomic ,weak)IBOutlet UILabel *cellNameLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellTimeLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellContenLab;
-
 @property (nonatomic ,weak)IBOutlet UIButton *cellFloorBtn;
-
 @property (nonatomic ,weak) id delegate;
 @property (nonatomic ,copy) void(^tapImageView)(UIImageView *);
 

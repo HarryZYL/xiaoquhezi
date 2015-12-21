@@ -136,6 +136,7 @@
 		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */; };
 		D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44893B31C199761004FD9E8 /* SummerPriceListView.m */; };
+		D4495F6D1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */; };
 		D4499FEE1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
 		D44D60541BED01EF00E877F9 /* SummerRentDetailBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */; };
@@ -515,6 +516,8 @@
 		D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerReAccreditationViewController.m; sourceTree = "<group>"; };
 		D44893B21C199761004FD9E8 /* SummerPriceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceListView.h; path = ComplaintCell/SummerPriceListView.h; sourceTree = "<group>"; };
 		D44893B31C199761004FD9E8 /* SummerPriceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceListView.m; path = ComplaintCell/SummerPriceListView.m; sourceTree = "<group>"; };
+		D4495F6B1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerGoldenHorseAuthenticationViewController.h; path = IntegralExchange/SummerGoldenHorseAuthenticationViewController.h; sourceTree = "<group>"; };
+		D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerGoldenHorseAuthenticationViewController.m; path = IntegralExchange/SummerGoldenHorseAuthenticationViewController.m; sourceTree = "<group>"; };
 		D4499FEC1C11368300894D4B /* SummerBusinessHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBusinessHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBusinessHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailReplaceTableViewCell.xib; sourceTree = "<group>"; };
@@ -1580,6 +1583,8 @@
 				D4FCD0E31C19516B0007B040 /* cells */,
 				D402C0A91C192B0A0063F667 /* SummerIntegralExchangeViewController.h */,
 				D402C0AA1C192B0A0063F667 /* SummerIntegralExchangeViewController.m */,
+				D4495F6B1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.h */,
+				D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */,
 				D4FCD0E41C1951A40007B040 /* SummerIntergralDetailViewController.h */,
 				D4FCD0E51C1951A40007B040 /* SummerIntergralDetailViewController.m */,
 				D4FCD0EC1C1958760007B040 /* SummerIntergralSelectAddressViewController.h */,
@@ -2234,6 +2239,7 @@
 				4ACCD04B1BBF49600001227A /* ImagePickerCollectionVC.m in Sources */,
 				D478D0781C22919F0025C00C /* SummerBusinessDetailTableViewCell.m in Sources */,
 				D454EAAA1BE4949E0089333D /* RSADataSigner.m in Sources */,
+				D4495F6D1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m in Sources */,
 				4ACCCE721BBF3E840001227A /* BasicHeader.m in Sources */,
 				4ACCD0371BBF49600001227A /* AccreditationPostViewController.m in Sources */,
 				4ACCD0411BBF49600001227A /* FuntionItem.m in Sources */,

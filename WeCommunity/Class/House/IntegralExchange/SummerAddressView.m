@@ -42,7 +42,9 @@
                 {
                     _nameText = [UITextField new];
                     _nameText.placeholder = @"您的姓名";
+//                    _nameText.attributedPlaceholder = [[NSMutableAttributedString alloc] initWithString:@"您的姓名" attributes:@{NSForegroundColorAttributeName: [UIColor redColor]}];
                     _nameText.font = [UIFont systemFontOfSize:15];
+                    _nameText.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
                     [self addSubview:_nameText];
                     [self confirmAutoLayoutWithView:_nameText leftControll:nameLab];
                 }
@@ -51,6 +53,7 @@
                 {
                     _phoneText = [UITextField new];
                     _phoneText.placeholder = @"联系您的电话";
+                    _phoneText.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
                     _phoneText.font = [UIFont systemFontOfSize:15];
                     _phoneText.keyboardType = UIKeyboardTypePhonePad;
                     [self addSubview:_phoneText];
@@ -61,7 +64,7 @@
                 {
                     _btnAddress = [UIButton buttonWithType:UIButtonTypeCustom];
                     [_btnAddress setTitle:@"所在区域" forState:UIControlStateNormal];
-                    [_btnAddress setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+                    [_btnAddress setTitleColor:[UIColor colorWithWhite:0.498 alpha:0.700] forState:UIControlStateNormal];
                     [_btnAddress setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
                     _btnAddress.titleLabel.font = [UIFont systemFontOfSize:15];
                     [self addSubview:_btnAddress];
@@ -72,6 +75,7 @@
                 {
                     _addressInformation = [UITextField new];
                     _addressInformation.placeholder = @"您的门牌号等详细信息";
+                    _addressInformation.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
                     _addressInformation.font = [UIFont systemFontOfSize:15];
                     [self addSubview:_addressInformation];
                     [self confirmAutoLayoutWithView:_addressInformation leftControll:nameLab];

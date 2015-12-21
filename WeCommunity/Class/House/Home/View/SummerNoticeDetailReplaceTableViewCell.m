@@ -84,14 +84,12 @@
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
                 imgViewInfo.hidden = NO;
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-//                imgViewInfo.image = [UIImage imageNamed:@"loadingLogo"];
             }
         }else if(dicTemp.detailNoticeModel.pictures.count <= 3 && dicTemp.detailNoticeModel.pictures.count > 0){
             for (NSInteger index = 0; index < dicTemp.detailNoticeModel.pictures.count; index ++) {
                 UIImageView *imgViewInfo = (UIImageView *)[self.contentView viewWithTag:index + 1];
                 imgViewInfo.hidden = NO;
                 [imgViewInfo sd_setImageWithURL:[NSURL URLWithString:dicTemp.detailNoticeModel.pictures[index]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-//                imgViewInfo.image = [UIImage imageNamed:@"loadingLogo"];
             }
         }
 //        [self performSelectorOnMainThread:@selector(reupdateImage:) withObject:dicTemp.detailNoticeModel.pictures waitUntilDone:NO modes:@[NSDefaultRunLoopMode]];
