@@ -78,6 +78,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    if (_mSegmentControl.currentSelectIndex == 0) {
+        
+    }else{
+        
+    }
     NSLog(@"--->%d",_mSegmentControl.currentSelectIndex);
     return cell;
 }
@@ -102,7 +107,7 @@
         parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
     }else{
         strUrl =  JIN_MY_EXPORY;
-        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
+        parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers],@"token":[User getUserToken]};
     }
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:strUrl parameters:parama success:^(id responseObject) {
@@ -111,7 +116,6 @@
             [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
-    
 }
 
 - (void)refreshingFooterView{

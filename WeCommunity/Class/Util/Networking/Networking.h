@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define HOST_URL @"http://www.wshequ.net"
+//#define HOST_URL @"http://192.168.1.101"
 #define HOST_URL_Basic @"http://192.168.1.101"
 
 #define get_reply_notice      (HOST_URL @"/notice/replyNotice") /**<回复公告*/
@@ -104,9 +105,13 @@
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 
 #define get_Baidu_Push (HOST_URL @"/user/baidu/setPushId")   //推送
-//金马会兑换
-#define JIN_EXPORY (HOST_URL_Basic @"/member/prize/list/get")/**所有兑奖*/
-#define JIN_MY_EXPORY   (HOST_URL_Basic @"/user/prize/cash/my/list")/**我的兑奖*/
+/**
+ *
+ *  金马会兑换
+ *
+ */
+#define JIN_EXPORY        (HOST_URL_Basic @"/member/prize/list/get")/**所有兑奖*/
+#define JIN_MY_EXPORY     (HOST_URL_Basic @"/user/prize/cash/my/list")/**我的兑奖*/
 #define JIN_EXPORY_DEFULT (HOST_URL_Basic @"/member/prize/detail/get")/**兑奖详情*/
 #define JIN_EXPORY_SURE   (HOST_URL_Basic @"/user/prize/cash")/**确认兑奖*/
 #define JIN_MY_CITY_LIST  (HOST_URL_Basic @"/user/address/my/list")/**查询地址列表*/

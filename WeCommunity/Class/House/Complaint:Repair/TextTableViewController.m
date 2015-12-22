@@ -14,6 +14,7 @@
 
 @interface TextTableViewController ()<MWPhotoBrowserDelegate ,TextPostViewControllerDelegate ,UIAlertViewDelegate ,SummerRepairListTableViewCellDelegate>
 @property (nonatomic ,strong) NSMutableArray *photos;
+@property (nonatomic ,strong) UIImageView *imgViewError;
 @end
 
 @implementation TextTableViewController
@@ -36,7 +37,12 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     
-    self.dataArray = [[NSMutableArray alloc] initWithCapacity:10];
+    self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _imgViewError.image = [UIImage imageNamed:@"error_code"];
+    _imgViewError.contentMode = UIViewContentModeCenter;
+    _imgViewError.hidden = YES;
+    [self.view addSubview:_imgViewError];
     
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
@@ -173,6 +179,11 @@
     }
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         weakSelf.dataArray = responseObject[@"rows"];
+        if (weakSelf.dataArray.count < 1) {
+            weakSelf.imgViewError.hidden = NO;
+        }else{
+            weakSelf.imgViewError.hidden = YES;
+        }
         [weakSelf.tableView reloadData];
     } addition:^{
         [weakSelf.loadingView removeFromSuperview];
@@ -180,6 +191,7 @@
 }
 
 -(void)refreshHeader{
+    __weak typeof(self)weakSelf = self;
     NSDictionary *parameters = @{@"token":[User getUserToken],@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     NSString *url = @"";
     if ([self.function isEqualToString:@"complaint"]) {
@@ -189,6 +201,11 @@
     }
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
+        if (weakSelf.dataArray.count < 1) {
+            weakSelf.imgViewError.hidden = NO;
+        }else{
+            weakSelf.imgViewError.hidden = YES;
+        }
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer resetNoMoreData];
