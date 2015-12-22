@@ -73,11 +73,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return _dataArrary.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
+    NSDictionary *dicTemp = _dataArrary[indexPath.row];
+    [cell.cellImgView sd_setImageWithURL:[NSURL URLWithString:dicTemp[@"picture"]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
+    cell.cellTitleLab.text = dicTemp[@"name"];
+    cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
     if (_mSegmentControl.currentSelectIndex == 0) {
         
     }else{
@@ -89,7 +93,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerIntergralDetailViewController *intergralDetailVC = [[SummerIntergralDetailViewController alloc] init];
-    
+    intergralDetailVC.intergralType = _mSegmentControl.currentSelectIndex == 0? DetailGoods:DetailMySelf;
+    intergralDetailVC.detailGoods = _dataArrary[indexPath.row];
     [self.navigationController pushViewController:intergralDetailVC animated:YES];
 }
 
@@ -101,7 +106,7 @@
 - (void)refreshingHeaderView{
     NSString *strUrl;
     NSDictionary *parama;
-    pageNumers = 0;
+    pageNumers = 1;
     if (_mSegmentControl.currentSelectIndex == 0) {
         strUrl =  JIN_EXPORY;
         parama = @{@"row": @30,@"page":[NSNumber numberWithInteger:pageNumers]};
@@ -112,9 +117,11 @@
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:strUrl parameters:parama success:^(id responseObject) {
         [weakSelf.mTableView.mj_header endRefreshing];
-        if (weakSelf.dataArrary.count < 30) {
+        _dataArrary = responseObject[@"rows"];
+        if (_dataArrary.count < 30) {
             [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
         }
+        [weakSelf.mTableView reloadData];
     }];
 }
 

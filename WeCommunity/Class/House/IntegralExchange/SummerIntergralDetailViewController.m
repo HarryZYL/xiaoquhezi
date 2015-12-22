@@ -12,6 +12,7 @@
 
 @interface SummerIntergralDetailViewController ()
 @property (nonatomic ,strong)UIButton *btnAddAdress;
+@property (nonatomic ,strong)NSArray *addressArrary;
 @end
 
 @implementation SummerIntergralDetailViewController
@@ -34,7 +35,7 @@
     [self.view addSubview:_btnAddAdress];
     __weak typeof(self)weakSelf = self;
     UIImageView *contentImg = [UIImageView new];
-    contentImg.image = [UIImage imageNamed:@"house3"];
+    [contentImg sd_setImageWithURL:[NSURL URLWithString:_detailGoods[@"picture"]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
     contentImg.backgroundColor = [UIColor greenColor];
     [self.view addSubview:contentImg];
     [contentImg mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -46,7 +47,7 @@
     }];
     
     UILabel *nameLab = [UILabel new];
-    nameLab.text = @"兑换书房咖啡优惠券";
+    nameLab.text = _detailGoods[@"name"];
     nameLab.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
 //    nameLab.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
     nameLab.font = [UIFont systemFontOfSize:16];
@@ -69,7 +70,7 @@
     
     UILabel *contentLab = [UILabel new];
     contentLab.textColor = [UIColor colorWithWhite:.259 alpha:1];
-    contentLab.text = @"文字介绍";
+    contentLab.text = _detailGoods[@"description"];
     [contentLab sizeToFit];
     [self.view addSubview:contentLab];
     [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,7 +82,7 @@
     
     UILabel *scoreLab = [UILabel new];
     scoreLab.backgroundColor = THEMECOLOR;
-    scoreLab.text = @"   3500积分";
+    scoreLab.text = [NSString stringWithFormat:@"   %@积分",[_detailGoods[@"point"] stringValue]];
     scoreLab.textColor = [UIColor whiteColor];
     [self.view addSubview:scoreLab];
     [scoreLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -109,7 +110,17 @@
 }
 
 - (void)chooseMyAddressList{
-    [Networking retrieveData:JIN_ADD_ADDRESS parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+        if (responseObject) {
+            _addressArrary = responseObject[@"row"];
+            NSLog(@"--->%@",responseObject);
+            if (_addressArrary.count < 1) {
+                
+            }else{
+                
+            }
+        }
         
     }];
 }

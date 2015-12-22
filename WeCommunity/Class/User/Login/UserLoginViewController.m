@@ -91,7 +91,9 @@ static int timeToGetCaptcha = 60;
     [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+        
         NSDictionary *password = @{@"password":self.loginView.passwordField1.text};
+        
         [FileManager saveDataToFile:data filePath:@"MyAppCache"];
         [FileManager saveDataToFile:password filePath:@"Password"];
         [User SaveAuthentication];

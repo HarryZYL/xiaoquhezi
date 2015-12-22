@@ -145,6 +145,7 @@
 		D44EDC101BEDE379003C1E96 /* SummerHomeDetailNoticeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44EDC0F1BEDE379003C1E96 /* SummerHomeDetailNoticeModel.m */; };
 		D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */; };
 		D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */; };
+		D45028081C2947DF000E0220 /* SummerIntegralModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D45028071C2947DF000E0220 /* SummerIntegralModel.m */; };
 		D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */; };
 		D45206901BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D452068E1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m */; };
 		D45206911BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D452068F1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib */; };
@@ -532,6 +533,8 @@
 		D44F0AC01BE51515005BB948 /* SummerAuthV2Info.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAuthV2Info.m; path = BillModel/SummerAuthV2Info.m; sourceTree = "<group>"; };
 		D44F803F1BE649D9002A55CE /* SummerPhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerPhoneViewController.h; sourceTree = "<group>"; };
 		D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerPhoneViewController.m; sourceTree = "<group>"; };
+		D45028061C2947DF000E0220 /* SummerIntegralModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerIntegralModel.h; path = IntegralExchange/Model/SummerIntegralModel.h; sourceTree = "<group>"; };
+		D45028071C2947DF000E0220 /* SummerIntegralModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerIntegralModel.m; path = IntegralExchange/Model/SummerIntegralModel.m; sourceTree = "<group>"; };
 		D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+Data.h"; sourceTree = "<group>"; };
 		D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+Data.m"; sourceTree = "<group>"; };
 		D452068D1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerCommunityBrowserTableViewCell.h; sourceTree = "<group>"; };
@@ -1580,6 +1583,7 @@
 		D402C0A51C192AAB0063F667 /* IntegralExchange */ = {
 			isa = PBXGroup;
 			children = (
+				D45028051C2947B8000E0220 /* Model */,
 				D4FCD0E31C19516B0007B040 /* cells */,
 				D402C0A91C192B0A0063F667 /* SummerIntegralExchangeViewController.h */,
 				D402C0AA1C192B0A0063F667 /* SummerIntegralExchangeViewController.m */,
@@ -1608,6 +1612,15 @@
 				D478D0771C22919F0025C00C /* SummerBusinessDetailTableViewCell.m */,
 			);
 			name = BusinessViewCell;
+			sourceTree = "<group>";
+		};
+		D45028051C2947B8000E0220 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D45028061C2947DF000E0220 /* SummerIntegralModel.h */,
+				D45028071C2947DF000E0220 /* SummerIntegralModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		D454D9771C0C2FD6003218B7 /* views */ = {
@@ -2200,6 +2213,7 @@
 				4ACCD0511BBF49600001227A /* ImagePickerLayout.m in Sources */,
 				D47996821BF02DD500994024 /* SummerRentTakeNoteTableViewCell.m in Sources */,
 				D45300D51BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m in Sources */,
+				D45028081C2947DF000E0220 /* SummerIntegralModel.m in Sources */,
 				4ACCCEE21BBF456F0001227A /* SecondHandPostView.m in Sources */,
 				4ACCCE681BBF37A70001227A /* Activity.m in Sources */,
 				4A6037201BBC99F000D3A067 /* BottomButton.m in Sources */,

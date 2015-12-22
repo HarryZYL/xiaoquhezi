@@ -36,6 +36,8 @@
             self.headPhoto = [NSURL URLWithString:[NSString stringWithFormat:@"%@",data[@"headPhoto"]]];
             self.continuousSignDay = data[@"continuousSignDay"];
             self.hobby = data[@"hobby"];
+            self.userJinLeve = [NSString stringWithFormat:@"%@",data[@"level"]];
+            self.userJinPoint = [NSString stringWithFormat:@"%@",data[@"point"]];
         }
     }
     
@@ -51,7 +53,7 @@
 +(BOOL)judgeLogin{
     NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
     NSDictionary *data = [FileManager getData:@"MyAppCache"];
-    NSString *event = [NSString stringWithFormat:@"%@",data[@"user"][@"userName"]];
+    NSString *event = [NSString stringWithFormat:@"%@",data[@"user"][@"nickName"]];
     NSDictionary *password = [FileManager getData:@"Password"];
     if (wxIDd.length < 1 || wxIDd == nil) {
         if ([event isEqualToString:@"0"] || [event length] < 1 || event == nil || password == nil || [password[@"password"] isEqualToString:@"0"]) {
@@ -67,7 +69,7 @@
 
 //用户登陆
 +(void)login{
-    if ([self judgeLogin]) {
+    if (![self judgeLogin]) {
         NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
         NSDictionary *parameters;
         NSString *strUrl;

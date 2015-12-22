@@ -59,7 +59,7 @@
     self.navigationItem.titleView = titleViewItem;
     [self setupAppearance];
     
-    [User login];
+//    [User login];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
