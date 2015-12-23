@@ -82,6 +82,7 @@
     
     UILabel *scoreLab = [UILabel new];
     scoreLab.backgroundColor = THEMECOLOR;
+    User *userModel = [[User alloc] initWithData];
     scoreLab.text = [NSString stringWithFormat:@"   %@积分",[_detailGoods[@"point"] stringValue]];
     scoreLab.textColor = [UIColor whiteColor];
     [self.view addSubview:scoreLab];
@@ -112,14 +113,10 @@
 - (void)chooseMyAddressList{
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
-        if (responseObject) {
-            _addressArrary = responseObject[@"row"];
-            NSLog(@"--->%@",responseObject);
-            if (_addressArrary.count < 1) {
-                
-            }else{
-                
-            }
+        _addressArrary = responseObject;
+        NSLog(@"--->%@",responseObject);
+        if (_addressArrary.count > 0) {
+            
         }
         
     }];
@@ -127,6 +124,7 @@
 
 - (void)selectAddress{
     SummerIntergralSelectAddressViewController *selectAddressVC = [[SummerIntergralSelectAddressViewController alloc] init];
+    
     [self.navigationController pushViewController:selectAddressVC animated:YES];
 }
 

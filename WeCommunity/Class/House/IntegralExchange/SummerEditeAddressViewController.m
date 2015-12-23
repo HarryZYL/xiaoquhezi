@@ -13,7 +13,7 @@
 
 @interface SummerEditeAddressViewController ()<UITableViewDataSource ,UITableViewDelegate>
 @property (nonatomic ,strong)UITableView *mTableView;
-
+@property (nonatomic ,strong)NSMutableArray *addressArrary;
 @end
 
 @implementation SummerEditeAddressViewController
@@ -32,21 +32,35 @@
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerSelectAddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
+    [self receveAddress];
+}
+
+- (void)receveAddress{
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+//        for (NSDictionary *dic in (NSArray *)responseObject) {
+//            [weakSelf.addressArrary addObject:dic];
+//        }
+        _addressArrary = responseObject;
+        [weakSelf.mTableView reloadData];
+    }];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return _addressArrary.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerSelectAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-   
+    [cell confirmCellContentWithData:_addressArrary[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerAddAdressViewController *editeVC = [[SummerAddAdressViewController alloc] init];
     editeVC.editeType = SummerEditeAddAdressTypeEidteOrDelete;
+    editeVC.addressDic = _addressArrary[indexPath.row];
     [self.navigationController pushViewController:editeVC animated:YES];
 }
 

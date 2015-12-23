@@ -138,6 +138,7 @@
 		D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44893B31C199761004FD9E8 /* SummerPriceListView.m */; };
 		D4495F6D1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */; };
 		D4499FEE1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */; };
+		D44A13981C2A730000FD0A43 /* SummerJinSubmiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44A13971C2A730000FD0A43 /* SummerJinSubmiteViewController.m */; };
 		D44C22BE1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */; };
 		D44D60541BED01EF00E877F9 /* SummerRentDetailBootomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */; };
 		D44D9C791BE5DD16006340E2 /* SummerMemberAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44D9C781BE5DD16006340E2 /* SummerMemberAlertView.m */; };
@@ -521,6 +522,8 @@
 		D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerGoldenHorseAuthenticationViewController.m; path = IntegralExchange/SummerGoldenHorseAuthenticationViewController.m; sourceTree = "<group>"; };
 		D4499FEC1C11368300894D4B /* SummerBusinessHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBusinessHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerBusinessHeaderTableViewCell.m; sourceTree = "<group>"; };
+		D44A13961C2A730000FD0A43 /* SummerJinSubmiteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerJinSubmiteViewController.h; path = IntegralExchange/SummerJinSubmiteViewController.h; sourceTree = "<group>"; };
+		D44A13971C2A730000FD0A43 /* SummerJinSubmiteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerJinSubmiteViewController.m; path = IntegralExchange/SummerJinSubmiteViewController.m; sourceTree = "<group>"; };
 		D44C22BD1BEF50EE004D58E4 /* SummerNoticeDetailReplaceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerNoticeDetailReplaceTableViewCell.xib; sourceTree = "<group>"; };
 		D44D60521BED01EF00E877F9 /* SummerRentDetailBootomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerRentDetailBootomView.h; sourceTree = "<group>"; };
 		D44D60531BED01EF00E877F9 /* SummerRentDetailBootomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerRentDetailBootomView.m; sourceTree = "<group>"; };
@@ -1597,6 +1600,8 @@
 				D44330D71C1E91BE0035F923 /* SummerEditeAddressViewController.m */,
 				D4FCD0F41C195DA60007B040 /* SummerAddAdressViewController.h */,
 				D4FCD0F51C195DA60007B040 /* SummerAddAdressViewController.m */,
+				D44A13961C2A730000FD0A43 /* SummerJinSubmiteViewController.h */,
+				D44A13971C2A730000FD0A43 /* SummerJinSubmiteViewController.m */,
 			);
 			name = IntegralExchange;
 			sourceTree = "<group>";
@@ -2187,6 +2192,7 @@
 			files = (
 				D4DA2D1F1BE53734003C61C7 /* ApiXml.mm in Sources */,
 				D4A53DB91C00A306008699DD /* SummerRePostMyRentViewController.m in Sources */,
+				D44A13981C2A730000FD0A43 /* SummerJinSubmiteViewController.m in Sources */,
 				4ACCD0461BBF49600001227A /* NoticeView.m in Sources */,
 				4A118EB31BA4900400BC2C4E /* ELCAlbumPickerController.m in Sources */,
 				4ACCCEDD1BBF456F0001227A /* ActivityDetailView.m in Sources */,

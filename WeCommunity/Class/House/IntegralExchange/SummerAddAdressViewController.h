@@ -14,5 +14,7 @@ typedef NS_ENUM(NSUInteger, SummerEditeAddAdressType) {
 @interface SummerAddAdressViewController : UIViewController
 
 @property(nonatomic ,assign)SummerEditeAddAdressType editeType;
+@property(nonatomic ,strong)NSDictionary *addressDic;
+@property(nonatomic ,copy)voidBlock updataAddressSeccess;
 
 @end

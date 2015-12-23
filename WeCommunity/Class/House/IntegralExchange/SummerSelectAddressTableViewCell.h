@@ -10,4 +10,9 @@
 
 @interface SummerSelectAddressTableViewCell : UITableViewCell
 
+@property(nonatomic ,weak)IBOutlet UILabel *cellNameContent;
+@property(nonatomic ,weak)IBOutlet UILabel *cellAddressLab;
+
+- (void)confirmCellContentWithData:(NSDictionary *)dic;
+
 @end

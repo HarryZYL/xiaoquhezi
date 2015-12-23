@@ -13,6 +13,7 @@
 @interface SummerIntergralSelectAddressViewController ()<UITableViewDataSource ,UITableViewDelegate>
 @property (nonatomic ,strong)UITableView *mTableView;
 @property (nonatomic ,strong)UIButton *btnAddAdress;
+@property (nonatomic ,strong)NSArray  *addressArrary;
 @end
 
 @implementation SummerIntergralSelectAddressViewController
@@ -38,21 +39,35 @@
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerSelectAddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
+    [self receveAddress];
+}
+
+- (void)receveAddress{
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
+        _addressArrary = responseObject;
+        [weakSelf.mTableView reloadData];
+    }];
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 8;
+    return _addressArrary.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerSelectAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-    
+    [cell confirmCellContentWithData:_addressArrary[indexPath.row]];
     return cell;
 }
 
 - (void)selectAddress{
     SummerAddAdressViewController *addressVC = [[SummerAddAdressViewController alloc] init];
     addressVC.editeType = SummerEditeAddAdressTypeAdd;
+    __weak typeof(self)weakSelf = self;
+    addressVC.updataAddressSeccess = ^{
+        [weakSelf receveAddress];
+    };
     [self.navigationController pushViewController:addressVC animated:YES];
 }
 

@@ -23,13 +23,12 @@
 #define get_COMPLAINTS_DETAIL (HOST_URL @"/complaint/getComplaint")//投诉详情
 #define get_REPLIES_DETAIL    (HOST_URL @"/complaint/getReplies")//查询投诉回复
 
-#define getMyAuthentictionDelete      (HOST_URL @"/authc/delete") //删除认证
+#define getMyAuthentictionDelete (HOST_URL @"/authc/delete") //删除认证
+#define get_HOUSE_LEVEL          (HOST_URL @"/community/house/level/get")
 
-#define get_HOUSE_LEVEL (HOST_URL @"/community/house/level/get")
-
-#define getMyComplaints (HOST_URL @"/complaint/user/getMyComplaints")
-#define getMyRepairs (HOST_URL @"/repair/user/getMyRepairs")
-#define getPraisesOfCommunity (HOST_URL @"/praise/getPraisesOfCommunity")
+#define getMyComplaints          (HOST_URL @"/complaint/user/getMyComplaints")
+#define getMyRepairs             (HOST_URL @"/repair/user/getMyRepairs")
+#define getPraisesOfCommunity    (HOST_URL @"/praise/getPraisesOfCommunity")
 #define getHouseDealsOfCommunity (HOST_URL @"/houseDeal/getHouseDealsOfCommunity")//小区房屋交易
 #define getMyHouseDealsOfCommunity (HOST_URL @"/houseDeal/user/getMyHouseDeals")
 #define getAllHouseDeals (HOST_URL @"/houseDeal/getAllHouseDeals")
@@ -105,6 +104,11 @@
 #define get_Order_LIST (HOST_URL @"/fee/property/order/create")//生成订单
 
 #define get_Baidu_Push (HOST_URL @"/user/baidu/setPushId")   //推送
+
+#define GET_CITY_PROVINCE   (HOST_URL @"/city/getAllProvinces") //省份
+#define GET_CITY_CITYS      (HOST_URL @"/city/getCities")  // 指定省份城市列表
+#define GET_CITY_DISTRICTS  (HOST_URL @"/city/getDistricts")  //指定城市县区
+
 /**
  *
  *  金马会兑换

@@ -61,6 +61,10 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="cellAddressLab" destination="MQs-wD-J4P" id="P90-7M-B5q"/>
+                <outlet property="cellNameContent" destination="Jax-z3-uB4" id="uc7-pp-ti7"/>
+            </connections>
             <point key="canvasLocation" x="109" y="129.5"/>
         </tableViewCell>
     </objects>

@@ -14,6 +14,11 @@
     // Initialization code
 }
 
+- (void)confirmCellContentWithData:(NSDictionary *)dic{
+    _cellNameContent.text = [NSString stringWithFormat:@"%@%@",dic[@"name"],dic[@"phone"]];
+    _cellAddressLab.text = [NSString stringWithFormat:@"%@%@%@",dic[@"provinceName"],dic[@"cityName"],dic[@"districtName"]];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

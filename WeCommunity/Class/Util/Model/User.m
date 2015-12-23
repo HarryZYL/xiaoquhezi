@@ -36,8 +36,8 @@
             self.headPhoto = [NSURL URLWithString:[NSString stringWithFormat:@"%@",data[@"headPhoto"]]];
             self.continuousSignDay = data[@"continuousSignDay"];
             self.hobby = data[@"hobby"];
-            self.userJinLeve = [NSString stringWithFormat:@"%@",data[@"level"]];
-            self.userJinPoint = [NSString stringWithFormat:@"%@",data[@"point"]];
+            self.userJinLeve = data[@"level"];
+            self.userJinPoint = [NSString stringWithFormat:@"%@",data[@"jmhPoint"]];
         }
     }
     

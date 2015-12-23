@@ -8,6 +8,7 @@
 
 #import "SummerIntegralExchangeViewController.h"
 #import "SummerIntergralDetailViewController.h"
+#import "SummerJinSubmiteViewController.h"
 #import "SummerScoreSegmentControl.h"
 #import "SummerScoreTableViewCell.h"
 
@@ -18,6 +19,7 @@
 @property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
 @property (nonatomic ,strong)UITableView *mTableView;
 @property (nonatomic ,strong)NSMutableArray *dataArrary;
+@property (nonatomic ,strong)UIButton *btnSubmite;
 @end
 
 @implementation SummerIntegralExchangeViewController
@@ -26,8 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
-//    UIBarButtonItem *itemRight = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"cross"] style:UIBarButtonItemStylePlain target:self action:@selector(scoreInformation)];
-//    self.navigationItem.rightBarButtonItem = itemRight;
     _dataArrary = [[NSMutableArray alloc] initWithCapacity:0];
     __weak typeof(self)weakSelf = self;
     _mSegmentControl = [[SummerScoreSegmentControl alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 45)];
@@ -60,8 +60,21 @@
     UILabel *scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(15, SCREENSIZE.height - 50, 100, 40)];
     scoreLab.textColor = [UIColor whiteColor];
     scoreLab.font = [UIFont systemFontOfSize:14];
-    scoreLab.text = @"积分：200";
+    User *userModel = [[User alloc] initWithData];
+    scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinPoint];
     [self.view addSubview:scoreLab];
+    _btnSubmite = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnSubmite.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_btnSubmite addTarget:self action:@selector(submiteInformation) forControlEvents:UIControlEventTouchUpInside];
+    _btnSubmite.frame = CGRectMake(SCREENSIZE.width - 160, SCREENSIZE.height - 50, 150, 40);
+    [_btnSubmite setTitle:@"提交资料获得50积分" forState:UIControlStateNormal];
+    [self.view addSubview:_btnSubmite];
+    if (userModel.userJinLeve.integerValue > 0) {
+        _btnSubmite.hidden = YES;
+    }
+    
+    
+    
     [self refreshingHeaderView];
 //    UILabel *btnScore = [UILabel new];
 //    btnScore.backgroundColor = THEMECOLOR;
@@ -149,6 +162,10 @@
 - (void)segmentControlDidSelectIndex:(NSInteger)index{
     [self refreshingHeaderView];
     NSLog(@"--->%i",index);
+}
+
+- (void)submiteInformation{
+    [self.navigationController pushViewController:[[SummerJinSubmiteViewController alloc] init] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
