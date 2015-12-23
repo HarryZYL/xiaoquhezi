@@ -11,4 +11,6 @@
 
 @interface SummerIntergralSelectAddressViewController : UIViewController
 
+@property(nonatomic ,copy)void (^tapSelectAddressBlock)(NSDictionary *);
+
 @end

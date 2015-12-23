@@ -109,6 +109,8 @@
 #define GET_CITY_CITYS      (HOST_URL @"/city/getCities")  // 指定省份城市列表
 #define GET_CITY_DISTRICTS  (HOST_URL @"/city/getDistricts")  //指定城市县区
 
+#define GET_ALL_CITY (HOST_URL @"/city/getAll")//所有城市
+
 /**
  *
  *  金马会兑换

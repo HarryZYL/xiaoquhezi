@@ -44,6 +44,7 @@
 
 - (void)receveAddress{
     __weak typeof(self)weakSelf = self;
+    
     [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
         _addressArrary = responseObject;
         [weakSelf.mTableView reloadData];
@@ -59,6 +60,14 @@
     SummerSelectAddressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     [cell confirmCellContentWithData:_addressArrary[indexPath.row]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSDictionary *dic = _addressArrary[indexPath.row];
+    if (_tapSelectAddressBlock) {
+        _tapSelectAddressBlock(dic);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)selectAddress{

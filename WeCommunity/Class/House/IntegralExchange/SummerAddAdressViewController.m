@@ -100,7 +100,16 @@
     [btnSureCansole setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_selectAddressView addSubview:btnSureCansole];
     
-    
+//    [self getAllCityNameAndID];
+}
+
+- (void)getAllCityNameAndID{//所有城市信息
+    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
+    [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
+        for (NSDictionary *dic in responseObject) {
+            
+        }
+    }];
 }
 
 - (void)saveAddress{
@@ -131,8 +140,8 @@
                                                      @"phone":_contentView.phoneText.text,
                                                      @"name":_contentView.nameText.text} success:^(id responseObject) {
                                                          if ([responseObject count] > 0) {
-                                                             if (_updataAddressSeccess) {
-                                                                 _updataAddressSeccess();
+                                                             if (weakSelf.updataAddressSeccess) {
+                                                                 weakSelf.updataAddressSeccess();
                                                              }
                                                              [weakSelf.navigationController popViewControllerAnimated:YES];
                                                          }
@@ -147,9 +156,10 @@
                                                              @"address":_contentView.addressInformation.text,
                                                              @"phone":_contentView.phoneText.text,
                                                              @"name":_contentView.nameText.text}];
-        if (_updataAddressSeccess) {
-            _updataAddressSeccess();
+        if (weakSelf.updataAddressSeccess) {
+            weakSelf.updataAddressSeccess();
         }
+        [weakSelf.navigationController popViewControllerAnimated:YES];
     }
     
 
@@ -159,8 +169,8 @@
     __weak typeof(self)weakSelf = self;
     if ([sender.currentTitle isEqualToString:@"删除地址"]) {
          [Networking retrieveData:JIN_DELETE_ADD parameters:@{@"token": [User getUserToken],@"id":_addressDic[@"id"]}];
-        if (_updataAddressSeccess) {
-            _updataAddressSeccess();
+        if (weakSelf.updataAddressSeccess) {
+            weakSelf.updataAddressSeccess();
         }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }

@@ -5,7 +5,6 @@
 //  Created by Harry on 7/20/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
 #import "HouseViewController.h"
 #import "UIButton+WebCache.h"
 #import "SummerRentMyViewController.h"
@@ -58,8 +57,6 @@
     [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
     self.navigationItem.titleView = titleViewItem;
     [self setupAppearance];
-    
-//    [User login];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

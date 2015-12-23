@@ -9,10 +9,11 @@
 #import "SummerIntergralDetailViewController.h"
 #import "SummerIntergralSelectAddressViewController.h"
 #import "SummerIntergralDetailTableViewCell.h"
+#import "UIViewController+HUD.h"
 
 @interface SummerIntergralDetailViewController ()
 @property (nonatomic ,strong)UIButton *btnAddAdress;
-@property (nonatomic ,strong)NSArray *addressArrary;
+@property (nonatomic ,strong)NSMutableArray *addressArrary;
 @end
 
 @implementation SummerIntergralDetailViewController
@@ -23,6 +24,7 @@
 //    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"兑换详情";
+    _addressArrary = [[NSMutableArray alloc] initWithCapacity:1];
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 40);
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
@@ -82,7 +84,7 @@
     
     UILabel *scoreLab = [UILabel new];
     scoreLab.backgroundColor = THEMECOLOR;
-    User *userModel = [[User alloc] initWithData];
+    
     scoreLab.text = [NSString stringWithFormat:@"   %@积分",[_detailGoods[@"point"] stringValue]];
     scoreLab.textColor = [UIColor whiteColor];
     [self.view addSubview:scoreLab];
@@ -95,6 +97,7 @@
     UIButton *scoreBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [scoreBtn setTitle:@"兑换" forState:UIControlStateNormal];
     [scoreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [scoreBtn addTarget:self action:@selector(btnExchange) forControlEvents:UIControlEventTouchUpInside];
     scoreBtn.layer.cornerRadius = 5;
     scoreBtn.layer.masksToBounds = YES;
     scoreBtn.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -110,16 +113,48 @@
     [self chooseMyAddressList];
 }
 
+- (void)btnExchange{
+    User *userModel = [[User alloc] initWithData];
+    if (userModel.userJinLeve.integerValue < 1) {
+        [self showHint:@"你还不是金马会员，需要去认证"];
+        return;
+    }
+    if ([_btnAddAdress.currentTitle isEqualToString:@"  点击添加地址"]) {
+        [self showHint:@"请选择收货地址"];
+        return;
+    }
+    
+    if (userModel.userJinPoint.integerValue < [_detailGoods[@"point"] integerValue]) {
+        [self showHint:@"积分不够啊!"];
+    }
+    NSDictionary *dic = _addressArrary.firstObject;
+    [Networking retrieveData:JIN_EXPORY_SURE parameters:@{@"token":[User getUserToken],@"id":_detailGoods[@"id"],@"addressId":dic[@"id"]}];
+}
+
 - (void)chooseMyAddressList{
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
-        _addressArrary = responseObject;
+        NSArray *arrData = responseObject;
         NSLog(@"--->%@",responseObject);
-        if (_addressArrary.count > 0) {
-            
+        if ([arrData count] > 0) {
+            for (NSDictionary *dic in arrData) {
+                if ([dic[@"isLastSelected"] boolValue]) {
+                    [_addressArrary addObject:dic];
+                    [weakSelf setAddressTitleContent];
+                    return;
+                }
+            }
+            [_addressArrary addObject:[responseObject firstObject]];
+            [weakSelf setAddressTitleContent];
         }
         
     }];
+}
+
+- (void)setAddressTitleContent{
+    NSDictionary *dic = _addressArrary.firstObject;
+    [_btnAddAdress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
+    [_btnAddAdress setTitle:[NSString stringWithFormat:@"  %@ %@%@%@",dic[@"name"],dic[@"provinceName"],dic[@"cityName"],dic[@"districtName"]] forState:UIControlStateNormal];
 }
 
 - (void)selectAddress{

@@ -15,6 +15,6 @@ typedef NS_ENUM(NSUInteger, SummerEditeAddAdressType) {
 
 @property(nonatomic ,assign)SummerEditeAddAdressType editeType;
 @property(nonatomic ,strong)NSDictionary *addressDic;
-@property(nonatomic ,copy)voidBlock updataAddressSeccess;
+@property(nonatomic ,copy)void(^updataAddressSeccess)(void);
 
 @end

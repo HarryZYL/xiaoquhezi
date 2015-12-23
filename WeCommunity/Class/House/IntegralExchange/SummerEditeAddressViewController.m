@@ -61,6 +61,10 @@
     SummerAddAdressViewController *editeVC = [[SummerAddAdressViewController alloc] init];
     editeVC.editeType = SummerEditeAddAdressTypeEidteOrDelete;
     editeVC.addressDic = _addressArrary[indexPath.row];
+    __weak typeof(self)weakSelf = self;
+    editeVC.updataAddressSeccess = ^{
+        [weakSelf receveAddress];
+    };
     [self.navigationController pushViewController:editeVC animated:YES];
 }
 

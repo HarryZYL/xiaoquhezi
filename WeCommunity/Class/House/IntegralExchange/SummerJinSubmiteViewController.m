@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"提交认证";
     self.view.backgroundColor = [UIColor whiteColor];
     __weak typeof(self)weakSelf = self;
     _nameText = [UITextField new];
