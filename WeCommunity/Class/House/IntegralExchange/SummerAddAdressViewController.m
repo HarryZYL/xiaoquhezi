@@ -49,16 +49,6 @@
         make.height.mas_equalTo(183);
     }];
     
-    _selectAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height, SCREENSIZE.width, 200)];
-    _selectAddressView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_selectAddressView];
-    
-    _cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, SCREENSIZE.width,150)];
-    _cityPickerView.backgroundColor = [UIColor whiteColor];
-    _cityPickerView.delegate   = self;
-    _cityPickerView.dataSource = self;
-    [_selectAddressView addSubview:_cityPickerView];
-    
     if (_editeType == 0) {
         self.title = @"添加收货地址";
     }else{
@@ -85,6 +75,15 @@
             make.height.mas_equalTo(35);
         }];
     }
+    _selectAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height, SCREENSIZE.width, 200)];
+    _selectAddressView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_selectAddressView];
+    
+    _cityPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 50, SCREENSIZE.width,150)];
+    _cityPickerView.backgroundColor = [UIColor whiteColor];
+    _cityPickerView.delegate   = self;
+    _cityPickerView.dataSource = self;
+    [_selectAddressView addSubview:_cityPickerView];
     
     UIButton *btnSure = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSure.frame = CGRectMake(SCREENSIZE.width - 60, 0, 60, 40);
@@ -100,26 +99,26 @@
     [btnSureCansole setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_selectAddressView addSubview:btnSureCansole];
     
-//    [self getAllCityNameAndID];
+    [self getAllCityNameAndID];
 }
 
-//- (void)getAllCityNameAndID{//所有城市信息
-//    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
-//    [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
-//        for (NSDictionary *dic in responseObject) {
-//            NSArray *provinArrary = dic[@"children"];
-//            
-//            for (NSDictionary *dic2 in provinArrary) {
-//                NSArray *citysArrary = dic2[@"children"];
-//                
-//                for (NSDictionary *dic3 in citysArrary) {
-//                    NSArray *districteArrary = dic3[@"children"];
-//                    
-//                }
-//            }
-//        }
-//    }];
-//}
+- (void)getAllCityNameAndID{//所有城市信息
+    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
+    [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
+        for (NSDictionary *dic in responseObject) {
+            NSArray *provinArrary = dic[@"children"];
+            
+            for (NSDictionary *dic2 in provinArrary) {
+                NSArray *citysArrary = dic2[@"children"];
+                
+                for (NSDictionary *dic3 in citysArrary) {
+                    NSArray *districteArrary = dic3[@"children"];
+                    
+                }
+            }
+        }
+    }];
+}
 
 - (void)saveAddress{
     if (_contentView.nameText.text.length < 1) {

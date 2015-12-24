@@ -7,6 +7,7 @@
 //
 
 #import "SummerQRCodeViewController.h"
+#import "SummerJinSubmiteViewController.h"
 
 @interface SummerQRCodeViewController ()<AVCaptureMetadataOutputObjectsDelegate ,UIAlertViewDelegate>
 {
@@ -53,13 +54,20 @@
         [_avSession stopRunning];
         
         NSData *qrCode = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?flag=xqhz_admin",metadataObject.stringValue]] options:NSDataReadingMapped error:nil];
-        
+        __weak typeof(self)weakSelf = self;
         NSDictionary *strUrlData = [NSJSONSerialization JSONObjectWithData:qrCode options:NSJSONReadingAllowFragments error:nil];
         if ([strUrlData[@"state"] boolValue]) {
             NSString *qrID = strUrlData[@"msg"][@"id"];
             [Networking retrieveData:JIN_CARD_BIND parameters:@{@"token":[User getUserToken],@"cardId":qrID}];
+            User *userModel = [User shareUserDefult];
+            if (userModel.userJinDic.jinLevel == nil) {
+                SummerJinSubmiteViewController *jinSubmitVC = [[SummerJinSubmiteViewController alloc] init];
+                jinSubmitVC.submitType = SummerJinSubmiteViewTypeBind;
+                [weakSelf.navigationController pushViewController:jinSubmitVC animated:YES];
+            }else{
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
         }
-        
     }
 }
 

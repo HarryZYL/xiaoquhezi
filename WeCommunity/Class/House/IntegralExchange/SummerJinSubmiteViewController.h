@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, SummerJinSubmiteViewType) {
+    SummerJinSubmiteViewTypeSub,
+    SummerJinSubmiteViewTypeBind,
+};
 @interface SummerJinSubmiteViewController : UIViewController
+
+@property (assign) SummerJinSubmiteViewType submitType;
 
 @end

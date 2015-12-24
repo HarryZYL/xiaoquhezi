@@ -73,6 +73,9 @@
         User *userModel = [User shareUserDefult];
         userModel.userJinDic.jinLevel = responseObject[@"level"];
         userModel.userJinDic.jinPoint = responseObject[@"jmhPoint"];
+        if (_submitType == SummerJinSubmiteViewTypeBind) {
+            [weakSelf.navigationController popToRootViewControllerAnimated:YES];
+        }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
 }
