@@ -24,8 +24,8 @@
             NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
             
             NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-        
-            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+            User *userModel = [User shareUserDefult];
+            [userModel initWithData:data];
             [User SaveAuthentication];
             isLoading = YES;
         }

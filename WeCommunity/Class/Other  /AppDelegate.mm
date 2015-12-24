@@ -31,7 +31,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
-    
+    [User getUserModel];
 
     return YES;
 }
@@ -45,7 +45,7 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     //注册成功，把deviceToken发给后台
     NSLog(@"------>%@",deviceToken);
-    User *userModel = [[User alloc] initWithData];
+    User *userModel = [User shareUserDefult];
     [BPush registerDeviceToken:deviceToken];
     if ([User getUserToken] && [BPush getChannelId] && userModel.Userid) {
         [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
@@ -77,6 +77,8 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
+    User *userModel = [User shareUserDefult];
+    [userModel saveKeyUnarchiver];
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }

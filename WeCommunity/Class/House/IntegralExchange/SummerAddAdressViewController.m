@@ -103,14 +103,23 @@
 //    [self getAllCityNameAndID];
 }
 
-- (void)getAllCityNameAndID{//所有城市信息
-    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
-    [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
-        for (NSDictionary *dic in responseObject) {
-            
-        }
-    }];
-}
+//- (void)getAllCityNameAndID{//所有城市信息
+//    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
+//    [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
+//        for (NSDictionary *dic in responseObject) {
+//            NSArray *provinArrary = dic[@"children"];
+//            
+//            for (NSDictionary *dic2 in provinArrary) {
+//                NSArray *citysArrary = dic2[@"children"];
+//                
+//                for (NSDictionary *dic3 in citysArrary) {
+//                    NSArray *districteArrary = dic3[@"children"];
+//                    
+//                }
+//            }
+//        }
+//    }];
+//}
 
 - (void)saveAddress{
     if (_contentView.nameText.text.length < 1) {

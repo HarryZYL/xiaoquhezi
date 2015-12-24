@@ -29,7 +29,7 @@
 
 -(void)setupAppearance{
     
-    User *user = [[User alloc] initWithData];
+    User *user = [User shareUserDefult];
     
     self.nameField = [[UITextField alloc] initWithFrame:CGRectMake(30, 84, self.view.frame.size.width-60, 40)];
     [self.nameField setBorderStyle:UITextBorderStyleRoundedRect];

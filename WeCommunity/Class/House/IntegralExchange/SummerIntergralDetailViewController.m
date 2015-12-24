@@ -114,9 +114,9 @@
 }
 
 - (void)btnExchange{
-    User *userModel = [[User alloc] initWithData];
-    if (userModel.userJinLeve.integerValue < 1) {
-        [self showHint:@"你还不是金马会员，需要去认证"];
+    User *userModel = [User shareUserDefult];
+    if (userModel.userJinDic.jinLevel.integerValue < 1) {
+        [self showHint:@"你还不是金马会员，需要去认证提交资料"];
         return;
     }
     if ([_btnAddAdress.currentTitle isEqualToString:@"  点击添加地址"]) {
@@ -124,11 +124,12 @@
         return;
     }
     
-    if (userModel.userJinPoint.integerValue < [_detailGoods[@"point"] integerValue]) {
+    if (userModel.userJinDic.jinPoint.integerValue < [_detailGoods[@"point"] integerValue]) {
         [self showHint:@"积分不够啊!"];
     }
     NSDictionary *dic = _addressArrary.firstObject;
     [Networking retrieveData:JIN_EXPORY_SURE parameters:@{@"token":[User getUserToken],@"id":_detailGoods[@"id"],@"addressId":dic[@"id"]}];
+    userModel.userJinDic.jinPoint = [NSString stringWithFormat:@"%ld",userModel.userJinDic.jinPoint.integerValue -  [_detailGoods[@"point"] integerValue]];
 }
 
 - (void)chooseMyAddressList{
@@ -144,7 +145,9 @@
                     return;
                 }
             }
-            [_addressArrary addObject:[responseObject firstObject]];
+            if (_addressArrary.count < 1) {
+                [_addressArrary addObject:[responseObject firstObject]];
+            }
             [weakSelf setAddressTitleContent];
         }
         
@@ -159,7 +162,12 @@
 
 - (void)selectAddress{
     SummerIntergralSelectAddressViewController *selectAddressVC = [[SummerIntergralSelectAddressViewController alloc] init];
-    
+    __weak typeof(self)weakSelf = self;
+    selectAddressVC.tapSelectAddressBlock = ^(NSDictionary *dic){
+        [_addressArrary removeAllObjects];
+        [_addressArrary addObject:dic];
+        [weakSelf setAddressTitleContent];
+    };
     [self.navigationController pushViewController:selectAddressVC animated:YES];
 }
 

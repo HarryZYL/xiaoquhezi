@@ -51,7 +51,7 @@
     self.houseDeal = [[HouseDeal alloc] initWithData:self.detailData];
     self.activity = [[Activity alloc] initWithData:self.detailData];
     self.secondHand = [[SecondHand alloc] initWithData:self.detailData];
-    User *user = [[User alloc] initWithData];
+    User *user = [User shareUserDefult];
     if ([self.function isEqualToString:@"rent"]) {
         if (user.Userid.intValue != [self.houseDeal.creatorInfo[@"id"] intValue]) {
             [self setupLoadRoomData];//不是自己发布的,是否预约
@@ -98,7 +98,7 @@
 }
 
 -(void)setupBottomButton{
-    User *user = [[User alloc] initWithData];
+    User *user = [User shareUserDefult];
     if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"id"] intValue]) {
         self.functionBtn = [[SummerRentDetailBootomView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-BOOTOM_HEIGHT, self.view.frame.size.width, BOOTOM_HEIGHT) withItem:2];
         [self.functionBtn.btnRight addTarget:self action:@selector(rentDetailRePaier) forControlEvents:UIControlEventTouchUpInside];
@@ -112,7 +112,7 @@
 }
 
 - (void)confirmBootomButtonTitle{
-    User *user = [[User alloc] initWithData];
+    User *user = [User shareUserDefult];
     if ([self.function isEqualToString:@"rent"]) {
         
         if (user.Userid.intValue == [self.houseDeal.creatorInfo[@"id"] intValue]) {

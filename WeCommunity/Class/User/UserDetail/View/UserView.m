@@ -24,7 +24,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        user = [[User alloc] initWithData];
+        user = [User shareUserDefult];
         authenType = [User getAuthenticationOwnerType];
         if ([authenType isEqualToString:@"认证户主"]) {
             _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];

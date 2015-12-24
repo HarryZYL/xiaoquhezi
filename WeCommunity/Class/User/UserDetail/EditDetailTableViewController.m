@@ -110,11 +110,8 @@
 }
 
 -(void)login{
-    
-    NSDictionary *username = [FileManager getData:@"MyAppCache"];
-    NSDictionary *password = [FileManager getData:@"Password"];
-    
-    NSDictionary *parameters = @{@"phoneNumber":username[@"user"][@"userName"],@"password":password[@"password"]};
+    User *userModel = [User shareUserDefult];
+    NSDictionary *parameters = @{@"phoneNumber":userModel.userName,@"password":userModel.loginPassword};
     
     [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];

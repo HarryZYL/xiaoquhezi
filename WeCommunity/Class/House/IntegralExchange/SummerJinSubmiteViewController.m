@@ -68,7 +68,13 @@
         [self showHint:@"填写正确的身份证号"];
         return;
     }
-    NSLog(@"提交信息");
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:JIN_SUBMITE_INFOR parameters:@{@"token": [User getUserToken],@"realName":_nameText.text,@"cardNumber":_cdCardText.text} success:^(id responseObject) {
+        User *userModel = [User shareUserDefult];
+        userModel.userJinDic.jinLevel = responseObject[@"level"];
+        userModel.userJinDic.jinPoint = responseObject[@"jmhPoint"];
+        [weakSelf.navigationController popViewControllerAnimated:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,3 +93,26 @@
 */
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

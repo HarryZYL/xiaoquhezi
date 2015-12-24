@@ -89,13 +89,12 @@ static int timeToGetCaptcha = 60;
     [self.view endEditing:YES];
     NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"password":self.loginView.passwordField1.text};
     [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
-        NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
-        NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+        User *userModel = [User shareUserDefult];
+        userModel.loginPassword = _loginView.passwordField1.text;
+        userModel.loginUserName = _loginView.tellField.text;
         
-        NSDictionary *password = @{@"password":self.loginView.passwordField1.text};
+        [userModel initWithData:responseObject];
         
-        [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-        [FileManager saveDataToFile:password filePath:@"Password"];
         [User SaveAuthentication];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 
@@ -150,7 +149,6 @@ static int timeToGetCaptcha = 60;
 
 //注册验证
 -(void)registerPhone:(id)sender{
-    
     if (self.loginView.tellField.text.length == 0) {
         [Util alertNetworingError:@"手机号不能为空"];
     }else if (self.loginView.passwordField1.text.length == 0){
@@ -175,12 +173,14 @@ static int timeToGetCaptcha = 60;
     [self.view endEditing:YES];
     NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"password":self.loginView.passwordField1.text,@"captcha":self.loginView.captchaField.text};
     [Networking retrieveData:phoneRegister parameters:parameters success:^(id responseObject) {
+        User *user = [User shareUserDefult];
         
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-        NSDictionary *password = @{@"password":self.loginView.passwordField1.text};
-        [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-        [FileManager saveDataToFile:password filePath:@"Password"];
+        
+        [user initWithData:data];
+        user.loginUserName = _loginView.tellField.text;
+        user.loginPassword = _loginView.passwordField1.text;
         [User SaveAuthentication];
         
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
@@ -224,12 +224,12 @@ static int timeToGetCaptcha = 60;
     NSLog(@"--->%@",notDic);
     if ([notDic.userInfo[@"isload"] boolValue]) {
         //直接登录
-        User *user = [[User alloc] initWithData];
+        User *user = [User shareUserDefult];
         [Networking retrieveData:get_WXAPP_LOADING parameters:@{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid} success:^(id responseObject) {
             NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
             NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-            
+            [user initWithData:data];
+            user.loginPassword = _loginView.passwordField1.text;
             [User SaveAuthentication];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         }];

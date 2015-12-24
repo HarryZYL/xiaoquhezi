@@ -38,9 +38,9 @@
     
     lineLayer = [UIImageView new];
     lineLayer.frame = CGRectMake(0, 0, 200, 3);
-    
-    UIImage *lineImg = [UIImage imageNamed:@"qr_code_line"];
-    lineLayer.image = [lineImg resizableImageWithCapInsets:UIEdgeInsetsMake(10, 2, 10, 2)];
+    lineLayer.backgroundColor = THEMECOLOR;
+//    UIImage *lineImg = [UIImage imageNamed:@"qr_code_line"];
+//    lineLayer.image = [lineImg resizableImageWithCapInsets:UIEdgeInsetsMake(.5, 1, .5, 1)];
     [imgBound addSubview:lineLayer];
     
     [self reading];
@@ -49,10 +49,16 @@
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection{
     if (metadataObjects.count > 0) {
         AVMetadataMachineReadableCodeObject *metadataObject = [metadataObjects objectAtIndex:0];
-        NSLog(@"--------->%@",metadataObject.stringValue);
-        [[[UIAlertView alloc] initWithTitle:nil message:metadataObject.stringValue delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil] show];
         [lineLayer.layer removeAnimationForKey:@"rotation"];
         [_avSession stopRunning];
+        
+        NSData *qrCode = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?flag=xqhz_admin",metadataObject.stringValue]] options:NSDataReadingMapped error:nil];
+        
+        NSDictionary *strUrlData = [NSJSONSerialization JSONObjectWithData:qrCode options:NSJSONReadingAllowFragments error:nil];
+        if ([strUrlData[@"state"] boolValue]) {
+            NSString *qrID = strUrlData[@"msg"][@"id"];
+            [Networking retrieveData:JIN_CARD_BIND parameters:@{@"token":[User getUserToken],@"cardId":qrID}];
+        }
         
     }
 }
@@ -90,6 +96,7 @@
     CGContextSetRGBFillColor(context, 1, 1, 1, 1.f);
     CGContextAddRect(context, imgBound.frame);
     CGContextFillPath(context);
+    
     UIImage *maskImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

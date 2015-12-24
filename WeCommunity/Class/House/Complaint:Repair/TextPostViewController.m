@@ -58,7 +58,7 @@
         [self getCommunityHoom];
     }
     
-    self.user = [[User alloc] initWithData];
+    self.user = [User shareUserDefult];
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在上传";
     [self setupAppearance];

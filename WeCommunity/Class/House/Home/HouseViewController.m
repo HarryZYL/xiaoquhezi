@@ -41,9 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-    User *userInfo = [[User alloc] initWithData];
+    User *userInfo = [User shareUserDefult];
     [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
     UITapGestureRecognizer *titleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userOption:)];
     [barButtonItemView.touchViews addGestureRecognizer:titleView];
@@ -77,7 +76,7 @@
         }
         
     }
-    User *userInfo = [[User alloc] initWithData];
+    User *userInfo = [User shareUserDefult];
     [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
 
 }

@@ -60,8 +60,8 @@
     UILabel *scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(15, SCREENSIZE.height - 50, 100, 40)];
     scoreLab.textColor = [UIColor whiteColor];
     scoreLab.font = [UIFont systemFontOfSize:14];
-    User *userModel = [[User alloc] initWithData];
-    scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinPoint];
+    User *userModel = [User shareUserDefult];
+    scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinDic.jinPoint];
     [self.view addSubview:scoreLab];
     _btnSubmite = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnSubmite.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -69,7 +69,7 @@
     _btnSubmite.frame = CGRectMake(SCREENSIZE.width - 160, SCREENSIZE.height - 50, 150, 40);
     [_btnSubmite setTitle:@"提交资料获得50积分" forState:UIControlStateNormal];
     [self.view addSubview:_btnSubmite];
-    if (userModel.userJinLeve.integerValue > 0) {
+    if (userModel.userJinDic.jinPoint.integerValue > 0) {
         _btnSubmite.hidden = YES;
     }
     
@@ -98,7 +98,7 @@
     if (_mSegmentControl.currentSelectIndex == 0) {
         
     }else{
-        
+        [cell.cellExchange setTitle:@"兑换成功" forState:UIControlStateNormal];
     }
     NSLog(@"--->%d",_mSegmentControl.currentSelectIndex);
     return cell;

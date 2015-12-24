@@ -125,6 +125,10 @@
 #define JIN_UPDATE_ADD    (HOST_URL @"/user/address/update/phone")/**更新地址*/
 #define JIN_DELETE_ADD    (HOST_URL @"/user/address/delete/phone")/**删除地址*/
 
+#define JIN_SUBMITE_INFOR    (HOST_URL @"/user/info/member/fill")  //提交资料
+#define JIN_CARD_BIND        (HOST_URL @"/user/card/member/bind")  //绑定会员卡
+#define JIN_CARD_BIND_CANCEL (HOST_URL @"/user/card/member/cancel") //解除绑定
+
 @interface Networking : NSObject
 
 +(void)retrieveData:(NSString*)url parameters:(NSDictionary*)parameters success:(void (^)(id responseObject))ablock;

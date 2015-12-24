@@ -48,7 +48,7 @@
 
 
 -(void)setupUserData{
-    User *user = [[User alloc] initWithData];
+    User *user = [User shareUserDefult];
     self.titleArray = @[@"头像",@"昵称",@"性别",@"职业",@"爱好"];
     self.detailArray = @[[NSString stringWithFormat:@"%@",user.headPhoto],user.nickName,user.sexName,user.job,user.hobby];
     self.messageArray = @[@"headPhoto",@"nickName",@"sex",@"job",@"hobby"];

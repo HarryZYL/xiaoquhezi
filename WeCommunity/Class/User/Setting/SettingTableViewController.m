@@ -18,9 +18,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-    
     self.functionArr = @[@"推送提醒",@"关于我们",@"退出"];
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,12 +76,11 @@
         aboutVC.title = @"关于我们";
         [self.navigationController pushViewController:aboutVC animated:YES];
     }else{
-        NSDictionary *data = @{@"user":@{@"userName": @"0"}};
-        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"WX_ID"];
-        [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-        
-        NSDictionary *password = @{@"password":@"0"};
-        [FileManager saveDataToFile:password filePath:@"Password"];
+        User *userModel = [User shareUserDefult];
+        userModel.loginUserName = nil;
+        userModel.loginPassword = nil;
+        [userModel saveKeyUnarchiver];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WX_ID"];
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
   
