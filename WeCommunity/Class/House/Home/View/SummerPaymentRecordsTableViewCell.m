@@ -8,6 +8,10 @@
 
 #import "SummerPaymentRecordsTableViewCell.h"
 
+@interface SummerPaymentRecordsTableViewCell ()
+
+@end
+
 @implementation SummerPaymentRecordsTableViewCell
 
 - (void)awakeFromNib {

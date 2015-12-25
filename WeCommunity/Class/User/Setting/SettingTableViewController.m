@@ -79,6 +79,7 @@
         User *userModel = [User shareUserDefult];
         userModel.loginUserName = nil;
         userModel.loginPassword = nil;
+        userModel.headPhoto = nil;
         [userModel saveKeyUnarchiver];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"WX_ID"];
         [self.navigationController popToRootViewControllerAnimated:NO];

@@ -34,6 +34,7 @@
     }];
     _cdCardText = [UITextField new];
     _cdCardText.placeholder = @"身份证号";
+    _cdCardText.keyboardType = UIKeyboardTypeNumberPad;
     _cdCardText.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:_cdCardText];
     [_cdCardText mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -73,11 +74,16 @@
         User *userModel = [User shareUserDefult];
         userModel.userJinDic.jinLevel = responseObject[@"level"];
         userModel.userJinDic.jinPoint = responseObject[@"jmhPoint"];
+        [weakSelf showHint:@"提交认证成功"];
         if (_submitType == SummerJinSubmiteViewTypeBind) {
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -8,7 +8,7 @@
 
 #import "SummerSelectCommunityViewController.h"
 #import "SummerSelectCommunityTableViewCell.h"
-
+#import "SummerCityModel.h"
 
 @interface SummerSelectCommunityViewController ()<UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,BMKGeoCodeSearchDelegate>
 {
@@ -32,7 +32,7 @@
     strCityName = [[NSUserDefaults standardUserDefaults] objectForKey:@"CITY_NAME"];
     isLocation = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
-    _dataArrary = [[NSMutableArray alloc] init];
+    _dataArrary = [[NSMutableArray alloc] initWithCapacity:10];
     UIBarButtonItem *cityItem  = [[UIBarButtonItem alloc] initWithTitle:@"切换城市" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityOfName)];
     self.navigationItem.rightBarButtonItem = cityItem;
     
@@ -108,19 +108,22 @@
 #pragma mark - Refreshing
 
 - (void)refreshHeader{
+    [_mTabelView.mj_footer resetNoMoreData];
     pageNumber = 1;
     if (!strCityName) {
         return;
-    }
-    if (_dataArrary.count) {
-        _dataArrary = nil;
     }
     NSDictionary *parameters = [self returnPostParama];
     __weak typeof(self) weakSelf = self;
     if (isLocation) {
         [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
             [weakSelf.mTabelView.mj_header endRefreshing];
-            weakSelf.dataArrary = responseObject[@"rows"];
+            if (weakSelf.dataArrary.count) {
+                [weakSelf.dataArrary removeAllObjects];
+            }
+            for (NSDictionary *dic in responseObject[@"rows"]) {
+                [weakSelf.dataArrary addObject:[[SummerCityModel alloc] initWithData:dic]];
+            }
             if (weakSelf.dataArrary.count < pageNumber*30) {
                 [weakSelf.mTabelView.mj_footer endRefreshingWithNoMoreData];
             }
@@ -129,7 +132,12 @@
     }else{
         [Networking retrieveData:getCommnityOfCity parameters:parameters success:^(id responseObject) {
             [weakSelf.mTabelView.mj_header endRefreshing];
-            weakSelf.dataArrary = responseObject[@"rows"];
+            if (weakSelf.dataArrary.count) {
+                [weakSelf.dataArrary removeAllObjects];
+            }
+            for (NSDictionary *dic in responseObject[@"rows"]) {
+                [weakSelf.dataArrary addObject:[[SummerCityModel alloc] initWithData:dic]];
+            }
             if (weakSelf.dataArrary.count < pageNumber*30) {
                 [weakSelf.mTabelView.mj_footer endRefreshingWithNoMoreData];
             }
@@ -193,7 +201,9 @@
     if (isLocation) {
         [Networking retrieveData:getNearbyCommnity parameters:parameters success:^(id responseObject) {
             [weakSelf.mTabelView.mj_footer endRefreshing];
-            weakSelf.dataArrary = responseObject[@"rows"];
+            for (NSDictionary *dic in responseObject[@"rows"]) {
+                [weakSelf.dataArrary addObject:[[SummerCityModel alloc] initWithData:dic]];
+            }
             if (weakSelf.dataArrary.count < pageNumber*30) {
                 [weakSelf.mTabelView.mj_footer endRefreshingWithNoMoreData];
             }
@@ -202,10 +212,15 @@
     }else{
         [Networking retrieveData:getCommnityOfCity parameters:parameters success:^(id responseObject) {
             [weakSelf.mTabelView.mj_footer endRefreshing];
-            weakSelf.dataArrary = responseObject[@"rows"];
+            
+            for (NSDictionary *dic in responseObject[@"rows"]) {
+                [weakSelf.dataArrary addObject:[[SummerCityModel alloc] initWithData:dic]];
+            }
+            
             if (weakSelf.dataArrary.count < pageNumber*30) {
                 [weakSelf.mTabelView.mj_footer endRefreshingWithNoMoreData];
             }
+            
             [weakSelf.mTabelView reloadData];
         }];
     }
@@ -218,27 +233,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerSelectCommunityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
-    NSDictionary *dicTem = _dataArrary[indexPath.row];
-    cell.cellNameLab.text = dicTem[@"name"];
-    cell.cellDetailLab.text = dicTem[@"roadName"];
-    if ([dicTem[@"distance"] integerValue] > 999) {
-        cell.cellDistanceLab.text = [NSString stringWithFormat:@"%.2fKm",[dicTem[@"distance"] floatValue]/1000];
+    SummerCityModel *dicTem = _dataArrary[indexPath.row];
+    cell.cellNameLab.text = dicTem.name;
+    cell.cellDetailLab.text = dicTem.roadName;
+    if ([dicTem.distance integerValue] > 999) {
+        cell.cellDistanceLab.text = [NSString stringWithFormat:@"%.2fKm",[dicTem.distance floatValue]/1000];
     }else{
-        cell.cellDistanceLab.text = [NSString stringWithFormat:@"%@m",dicTem[@"distance"]];
+        cell.cellDistanceLab.text = [NSString stringWithFormat:@"%@m",dicTem.distance];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSDictionary *dicTemp = _dataArrary[indexPath.row];
+    SummerCityModel *dicTemp = _dataArrary[indexPath.row];
     
     NSDictionary *dicTempCommunity = [FileManager getData:@"historyCommynity"];
     
     NSMutableArray *arrCommunity = [[NSMutableArray alloc] initWithArray:dicTempCommunity[@"communityNames"]];
 
     NSDictionary *community = @{
-                                @"communityName":dicTemp[@"name"],
-                                @"communityID":dicTemp[@"id"]
+                                @"communityName":dicTemp.name,
+                                @"communityID":dicTemp.cityID,
                                 };
     if (![arrCommunity containsObject:community]) {
         [arrCommunity addObject:community];
@@ -248,8 +263,12 @@
     }
     if (_backViewBlock) {
         _backViewBlock(community);
-        [self.navigationController popToRootViewControllerAnimated:YES];
-        [self dismissViewControllerAnimated:YES completion:nil];
+        if (_selectCityType == LocationTableViewControllerStyleDefult) {
+            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
     }
 }
 
@@ -274,6 +293,7 @@
     SummerSelectCityTableViewController *selectCityVC = [[SummerSelectCityTableViewController alloc] init];
     selectCityVC.cityBlock = ^(NSDictionary *dicCity){
         [weakSelf selectCityNameWithCityIDWithCityName:dicCity];
+        [weakSelf.mTabelView.mj_footer resetNoMoreData];
     };
     [self.navigationController pushViewController:selectCityVC animated:YES];
 }
@@ -299,14 +319,19 @@
 }
 
 - (void)receveCityCommunityWithParama:(NSDictionary *)paraDic{
-    _dataArrary = nil;
-    
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:getCommnityOfCity parameters:paraDic success:^(id responseObject) {
-        if (pageNumber * 30 > [responseObject[@"total"] integerValue]) {
-            [_mTabelView.mj_footer endRefreshingWithNoMoreData];
-            _dataArrary = responseObject[@"rows"];
-            [_mTabelView reloadData];
+        if (weakSelf.dataArrary.count) {
+            [weakSelf.dataArrary removeAllObjects];
         }
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [weakSelf.dataArrary addObject:[[SummerCityModel alloc] initWithData:dic]];
+        }
+        
+        if (weakSelf.dataArrary.count < pageNumber * 30) {
+            [weakSelf.mTabelView.mj_footer endRefreshingWithNoMoreData];
+        }
+        [weakSelf.mTabelView reloadData];
     }];
 }
 

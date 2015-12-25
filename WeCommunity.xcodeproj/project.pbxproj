@@ -136,6 +136,7 @@
 		D44756041C06F3960085DDF8 /* SummerRentAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44756031C06F3960085DDF8 /* SummerRentAlertView.m */; };
 		D44891501C07F73400472ADE /* SummerReAccreditationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */; };
 		D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */ = {isa = PBXBuildFile; fileRef = D44893B31C199761004FD9E8 /* SummerPriceListView.m */; };
+		D44902071C2D676500E06710 /* SummerCityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D44902061C2D676500E06710 /* SummerCityModel.m */; };
 		D4495F6D1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */; };
 		D4499FEE1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D4499FED1C11368300894D4B /* SummerBusinessHeaderTableViewCell.m */; };
 		D44A13981C2A730000FD0A43 /* SummerJinSubmiteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44A13971C2A730000FD0A43 /* SummerJinSubmiteViewController.m */; };
@@ -520,6 +521,8 @@
 		D448914F1C07F73400472ADE /* SummerReAccreditationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerReAccreditationViewController.m; sourceTree = "<group>"; };
 		D44893B21C199761004FD9E8 /* SummerPriceListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceListView.h; path = ComplaintCell/SummerPriceListView.h; sourceTree = "<group>"; };
 		D44893B31C199761004FD9E8 /* SummerPriceListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceListView.m; path = ComplaintCell/SummerPriceListView.m; sourceTree = "<group>"; };
+		D44902051C2D676500E06710 /* SummerCityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerCityModel.h; sourceTree = "<group>"; };
+		D44902061C2D676500E06710 /* SummerCityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerCityModel.m; sourceTree = "<group>"; };
 		D4495F6B1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerGoldenHorseAuthenticationViewController.h; path = IntegralExchange/SummerGoldenHorseAuthenticationViewController.h; sourceTree = "<group>"; };
 		D4495F6C1C23DA7B002726B6 /* SummerGoldenHorseAuthenticationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerGoldenHorseAuthenticationViewController.m; path = IntegralExchange/SummerGoldenHorseAuthenticationViewController.m; sourceTree = "<group>"; };
 		D4499FEC1C11368300894D4B /* SummerBusinessHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerBusinessHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -1368,6 +1371,8 @@
 				D425C07D1C0C45910013E1B8 /* SummerSelectCityTableViewController.h */,
 				D425C07E1C0C45910013E1B8 /* SummerSelectCityTableViewController.m */,
 				D454D9771C0C2FD6003218B7 /* views */,
+				D44902051C2D676500E06710 /* SummerCityModel.h */,
+				D44902061C2D676500E06710 /* SummerCityModel.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -2285,6 +2290,7 @@
 				D44F0AC11BE51515005BB948 /* SummerAuthV2Info.m in Sources */,
 				4ACCCEE11BBF456F0001227A /* SecondHandPostViewController.m in Sources */,
 				D454EAA51BE4949E0089333D /* DataSigner.m in Sources */,
+				D44902071C2D676500E06710 /* SummerCityModel.m in Sources */,
 				D48C41171BE8970B00A5DF45 /* SummerNoticeDetailViewController.m in Sources */,
 				D44330D81C1E91BE0035F923 /* SummerEditeAddressViewController.m in Sources */,
 				D475C63F1C16B22C00E5549C /* SummerQRCodeViewController.m in Sources */,
@@ -2512,8 +2518,8 @@
 			baseConfigurationReference = 9914193A5A7538191672005B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2555,7 +2561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2566,9 +2572,9 @@
 			baseConfigurationReference = E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2610,7 +2616,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

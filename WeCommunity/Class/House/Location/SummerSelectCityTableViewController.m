@@ -23,18 +23,16 @@
     [super viewDidLoad];
     self.title = @"城市切换";
     _cityArrary = [[NSMutableArray alloc] init];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.cityTableView];
     _mProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     
     [_mProgressHUD show:YES];
-    
-    [self initOfData];
+//    NSDictionary *dic = [FileManager getData:@"All_City_Name"];
+//    _cityArrary = dic[@"citys_Name"];
+//    if (_cityArrary.count < 1) {
+        [self initOfData];
+//    }
 }
 
 - (UITableView *)cityTableView{
@@ -133,9 +131,13 @@
                 
             }
             [weakSelf.mProgressHUD removeFromSuperview];
+            
             [_cityTableView reloadData];
+//            [FileManager saveDataToFile:@{@"citys_Name":_cityArrary} filePath:@"All_City_Name"];
         }];
+    
     }
+
 }
 
 

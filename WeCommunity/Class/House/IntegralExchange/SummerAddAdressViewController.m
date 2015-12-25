@@ -99,7 +99,7 @@
     [btnSureCansole setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_selectAddressView addSubview:btnSureCansole];
     
-    [self getAllCityNameAndID];
+//    [self getAllCityNameAndID];
 }
 
 - (void)getAllCityNameAndID{//所有城市信息

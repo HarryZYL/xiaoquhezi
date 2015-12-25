@@ -32,8 +32,7 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     pageNumber = 1;
     _dataArrary = [[NSMutableArray alloc] init];
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
     self.tableView.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
     [self.tableView registerNib:[UINib nibWithNibName:@"SummerPaymentRecordsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellpayment"];
     

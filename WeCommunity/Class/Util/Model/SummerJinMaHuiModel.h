@@ -14,6 +14,7 @@
 @property (nonatomic ,copy)NSString *jinCardNumber;
 @property (nonatomic ,copy)NSString *jinPoint;
 @property (nonatomic ,copy)NSString *jinLevel;
+@property (nonatomic ,copy)NSString *jinCardID;
 
 - (instancetype)initWithData:(NSDictionary *)dic;
 @end

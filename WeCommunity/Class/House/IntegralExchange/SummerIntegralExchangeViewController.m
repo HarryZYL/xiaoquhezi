@@ -17,6 +17,7 @@
 {
     NSInteger pageNumers;
     UILabel *scoreLab;
+    MBProgressHUD *hudProgress;
 }
 @property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
 @property (nonatomic ,strong)UITableView *mTableView;
@@ -74,17 +75,11 @@
     if (userModel.userJinDic.jinPoint.integerValue > 0) {
         _btnSubmite.hidden = YES;
     }
-    
-    
+    hudProgress = [[MBProgressHUD alloc] initWithView:self.view];
+    hudProgress.labelText = @"加载网络中";
+    [hudProgress show:YES];
     
     [self refreshingHeaderView];
-//    UILabel *btnScore = [UILabel new];
-//    btnScore.backgroundColor = THEMECOLOR;
-//    btnScore.layer.cornerRadius = 5;
-//    btnScore.layer.masksToBounds = YES;
-//    btnScore.text = @"积分40000";
-//    btnScore.frame = CGRectMake(10, SCREENSIZE.height - 30, SCREENSIZE.width - 20, 20);
-//    [self.view addSubview:btnScore];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -153,6 +148,7 @@
     }
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:strUrl parameters:parama success:^(id responseObject) {
+        hudProgress.hidden = YES;
         [weakSelf.mTableView.mj_header endRefreshing];
         _dataArrary = responseObject[@"rows"];
         if (_dataArrary.count < 30) {
@@ -184,6 +180,7 @@
 }
 
 - (void)segmentControlDidSelectIndex:(NSInteger)index{
+    hudProgress.hidden = NO;
     [self refreshingHeaderView];
     NSLog(@"--->%i",index);
 }

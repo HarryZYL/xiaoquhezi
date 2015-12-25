@@ -26,13 +26,24 @@
     if (self) {
         user = [User shareUserDefult];
         authenType = [User getAuthenticationOwnerType];
-        if ([authenType isEqualToString:@"认证户主"]) {
-            _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];
-            _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"扫码40x40",@"设置"];
+        if (user.userJinDic.jinLevel == nil) {//不是金马会员
+            if ([authenType isEqualToString:@"认证户主"]) {
+                _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"设置"];
+                _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"设置"];
+            }else{
+                _functionArray = @[@"租售管理",@"缴费记录",@"设置"];
+                _functionImage = @[@"我的活动",@"缴费记录",@"设置"];
+            }
         }else{
-            _functionArray = @[@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];
-            _functionImage = @[@"我的活动",@"缴费记录",@"扫码40x40",@"设置"];
+            if ([authenType isEqualToString:@"认证户主"]) {
+                _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];
+                _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"扫码40x40",@"设置"];
+            }else{
+                _functionArray = @[@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];
+                _functionImage = @[@"我的活动",@"缴费记录",@"扫码40x40",@"设置"];
+            }
         }
+        
         _mTableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
         _mTableView.scrollEnabled   = NO;
         _mTableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
@@ -137,45 +148,84 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_functionArray.count == 5) {
-        switch (indexPath.row) {
-            case 0:
-                viewType = UserViewTableViewCellTypeMemberManager;
-                break;
-            case 1:
-                viewType = UserViewTableViewCellTypeSalesManagement;
-                break;
-            case 2:
-                viewType = UserViewTableViewCellTypePaymentRecords;
-                break;
-            case 3:
-                viewType = UserViewTableViewCellTypeScanBarCode;
-                break;
-            case 4:
-                viewType = UserViewTableViewCellTypeSeeting;
-                break;
-            default:
+    if (user.userJinDic.jinLevel == nil) {
+        if (_functionArray.count == 4) {
+            switch (indexPath.row) {
+                case 0:
+                    viewType = UserViewTableViewCellTypeMemberManager;
+                    break;
+                case 1:
+                    viewType = UserViewTableViewCellTypeSalesManagement;
+                    break;
+                case 2:
+                    viewType = UserViewTableViewCellTypePaymentRecords;
+                    break;
+                case 3:
+                    viewType = UserViewTableViewCellTypeSeeting;
+                    break;
+                default:
+                    
+                    break;
+            }
+            [self.delegate userViewDidSelectType:viewType];
+        }else{
+            switch (indexPath.row) {
+                case 0:
+                    viewType = UserViewTableViewCellTypeSalesManagement;
+                    break;
+                case 1:
+                    viewType = UserViewTableViewCellTypePaymentRecords;
+                    break;
+                case 2:
+                    viewType = UserViewTableViewCellTypeSeeting;
+                    break;
+                default:
+                    break;
+            }
+            [self.delegate userViewDidSelectType:viewType];
+        }
 
-                break;
-        }
-        [self.delegate userViewDidSelectType:viewType];
     }else{
-        switch (indexPath.row) {
-            case 0:
-                viewType = UserViewTableViewCellTypeSalesManagement;
-                break;
-            case 1:
-                viewType = UserViewTableViewCellTypePaymentRecords;
-                break;
-            case 2:
-                viewType = UserViewTableViewCellTypeScanBarCode;
-                break;
-            case 3:
-                viewType = UserViewTableViewCellTypeSeeting;
-            default:
-                break;
+        if (_functionArray.count == 5) {
+            switch (indexPath.row) {
+                case 0:
+                    viewType = UserViewTableViewCellTypeMemberManager;
+                    break;
+                case 1:
+                    viewType = UserViewTableViewCellTypeSalesManagement;
+                    break;
+                case 2:
+                    viewType = UserViewTableViewCellTypePaymentRecords;
+                    break;
+                case 3:
+                    viewType = UserViewTableViewCellTypeScanBarCode;
+                    break;
+                case 4:
+                    viewType = UserViewTableViewCellTypeSeeting;
+                    break;
+                default:
+                    
+                    break;
+            }
+            [self.delegate userViewDidSelectType:viewType];
+        }else{
+            switch (indexPath.row) {
+                case 0:
+                    viewType = UserViewTableViewCellTypeSalesManagement;
+                    break;
+                case 1:
+                    viewType = UserViewTableViewCellTypePaymentRecords;
+                    break;
+                case 2:
+                    viewType = UserViewTableViewCellTypeScanBarCode;
+                    break;
+                case 3:
+                    viewType = UserViewTableViewCellTypeSeeting;
+                default:
+                    break;
+            }
+            [self.delegate userViewDidSelectType:viewType];
         }
-        [self.delegate userViewDidSelectType:viewType];
     }
 }
 

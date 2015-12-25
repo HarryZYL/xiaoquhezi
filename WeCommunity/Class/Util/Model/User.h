@@ -43,7 +43,7 @@
 +(NSString*)getUserToken;
 
 +(BOOL)judgeLogin;
-//+(void)login;
++(void)login;
 +(void)SaveAuthentication;
 +(NSString*)getAuthenticationAddress;
 +(NSString*)getAuthenticationOwnerType;

@@ -32,6 +32,7 @@
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
     [User getUserModel];
+    [User login];
 
     return YES;
 }

@@ -141,6 +141,7 @@
 - (void)selectCommunity{
     __weak typeof(self)weakSelf = self;
     SummerSelectCommunityViewController *selectCommunityVC = [[SummerSelectCommunityViewController alloc] init];
+    selectCommunityVC.selectCityType = _locationStyle;
     selectCommunityVC.backViewBlock = ^(NSDictionary *tempDic){
         NSDictionary *community = @{
                                     @"communityName":tempDic[@"communityName"],
@@ -148,6 +149,7 @@
                                     };
         [FileManager saveDataToFile:community filePath:@"Community"];
         [User SaveAuthentication];
+        
         if (weakSelf.locationStyle == LocationTableViewControllerStyleDefult) {
             [self.navigationController popToRootViewControllerAnimated:YES];
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];

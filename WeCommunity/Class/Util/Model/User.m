@@ -112,32 +112,31 @@ static User *shareUserModel = nil;
 }
 
 
-////用户登陆
-//+(void)login{
-//    if (![self judgeLogin]) {
-//        NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
-//        NSDictionary *parameters;
-//        NSString *strUrl;
-//        if (wxIDd.length < 1) {
-//            NSDictionary *username = [FileManager getData:@"MyAppCache"];
-//            NSDictionary *password = [FileManager getData:@"Password"];
-//            parameters = @{@"phoneNumber":username[@"user"][@"userName"],@"password":password[@"password"]};
-//            strUrl = phoneLogin;
-//        }else{
-//            User *user = [User shareUserDefult];
-//            
-//            parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid};
-//            strUrl = get_WXAPP_LOADING;
-//        }
-//        [Networking retrieveData:strUrl parameters:parameters success:^(id responseObject) {
-//            NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
-//            
-//            NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-//            [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-//            [User SaveAuthentication];
-//        }];
-//    }
-//}
+//用户登陆
++(void)login{
+    NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
+    NSDictionary *parameters;
+    NSString *strUrl;
+    User *userModel = [User shareUserDefult];
+    if (wxIDd.length < 1) {
+        if (userModel.loginUserName == nil||userModel.loginPassword == nil) {
+            return;
+        }
+        parameters = @{@"phoneNumber":userModel.loginUserName,@"password":userModel.loginPassword};
+        strUrl = phoneLogin;
+    }else{
+        parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":userModel.Userid};
+        strUrl = get_WXAPP_LOADING;
+    }
+    [Networking retrieveData:strUrl parameters:parameters success:^(id responseObject) {
+        NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+        
+        NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
+
+        [[User shareUserDefult] initWithData:data];
+        [User SaveAuthentication];
+    }];
+}
 
 +(void)SaveAuthentication{
     

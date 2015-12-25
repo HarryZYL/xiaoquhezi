@@ -15,6 +15,7 @@
         _jinRealName = dic[@"realName"];
         _jinCardNumber = dic[@"cardNumber"];
         _jinLevel = dic[@"cardTypeLevel"];
+        _jinCardID = dic[@"cardId"];
         _jinPoint = dic[@"point"];
     }
     
