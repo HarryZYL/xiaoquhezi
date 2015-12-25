@@ -165,7 +165,9 @@
 }
 
 - (void)submiteInformation{
-    [self.navigationController pushViewController:[[SummerJinSubmiteViewController alloc] init] animated:YES];
+    SummerJinSubmiteViewController *submiteVC = [[SummerJinSubmiteViewController alloc] init];
+    submiteVC.submitType = SummerJinSubmiteViewTypeSub;
+    [self.navigationController pushViewController:submiteVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

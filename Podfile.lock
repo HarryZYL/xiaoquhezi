@@ -23,14 +23,19 @@ PODS:
   - AsyncDisplayKit (1.9.3):
     - AsyncDisplayKit/ASDealloc2MainObject (= 1.9.3)
   - AsyncDisplayKit/ASDealloc2MainObject (1.9.3)
-  - Bugly (1.4.3)
+  - Bugly (1.4.4)
   - DACircularProgress (2.3.1)
   - DOPDropDownMenu-Enhanced (1.0.0)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
   - JSONKit (1.5pre)
   - libWeChatSDK (1.6)
   - Masonry (0.6.3)
-  - MBProgressHUD (0.9.1)
-  - MJRefresh (3.0.7)
+  - MBProgressHUD (0.9.2)
+  - MJRefresh (3.0.8)
   - MWPhotoBrowser (2.1.1):
     - DACircularProgress (~> 2.3)
     - MBProgressHUD (~> 0.9)
@@ -48,6 +53,7 @@ DEPENDENCIES:
   - Bugly
   - DACircularProgress (~> 2.3.1)
   - DOPDropDownMenu-Enhanced (~> 1.0.0)
+  - FMDB (~> 2.5)
   - JSONKit (~> 1.5pre)
   - libWeChatSDK
   - Masonry (~> 0.6.3)
@@ -62,14 +68,15 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AsyncDisplayKit: 87d340329280dba0363da3587a43f9d1bbe62aac
-  Bugly: b8d350be5047a468adf037cb016ab22762bc287c
+  Bugly: 2458242832b6f5273025fb9455cbee4f87f61cc2
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   DOPDropDownMenu-Enhanced: 9ec473b16351b5b0b2d6ef87e7f666fe5ff54ad5
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   JSONKit: bae313ce6a6c444f40489a6c0b023f399888871f
   libWeChatSDK: 248280c10e6edd275e0efab54ac7ad42a62b6a57
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
-  MJRefresh: f3e1228ec3d38c7ba5208d58032631a52f39f495
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
   Pgyer: 26edfcc8da6da6383fabfdbccd2f77c623b9d6eb
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
