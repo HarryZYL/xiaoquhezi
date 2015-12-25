@@ -41,10 +41,10 @@
     UIStoryboard *homeStory = [UIStoryboard storyboardWithName:@"HomeStoryboard" bundle:nil];
     UINavigationController *homeNav =  (UINavigationController *)[homeStory instantiateViewControllerWithIdentifier:@"HOME_STORY"];
 
-    UIStoryboard *businessStory = [UIStoryboard storyboardWithName:@"BusinessStoryboard" bundle:nil];
-    UINavigationController *businessNav = (UINavigationController *)[businessStory instantiateViewControllerWithIdentifier:@"BUSINESS_STORY"];
+//    UIStoryboard *businessStory = [UIStoryboard storyboardWithName:@"BusinessStoryboard" bundle:nil];
+//    UINavigationController *businessNav = (UINavigationController *)[businessStory instantiateViewControllerWithIdentifier:@"BUSINESS_STORY"];
 
-    self.viewControllers = @[homeNav,businessNav];
+    self.viewControllers = @[homeNav];
 }
 
 

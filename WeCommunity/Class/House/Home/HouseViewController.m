@@ -220,7 +220,7 @@
 
 -(void)pushVC:(UIViewController*)vc title:(NSString*)title{
     vc.navigationItem.title = title;
-    [vc setHidesBottomBarWhenPushed:YES];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -238,16 +238,6 @@
 - (void)configurationSlider{
     self.userBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+60)];
     self.userBgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-//    if ([[[UIDevice currentDevice] systemVersion] floatValue] < 8.0) {
-//        self.userBgView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.3];
-//    }
-//    else{
-//        UIBlurEffect *effectBlur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effectBlur];
-//        effectView.frame = self.userBgView.frame;
-//        effectView.alpha = .8;
-//        [self.userBgView addSubview:effectView];
-//    }
     [self.view.window addSubview:self.userBgView];
     
     self.userView = [[UserView alloc] initWithFrame:CGRectMake(-self.view.frame.size.width*0.7, 0, self.view.frame.size.width*0.7, self.view.frame.size.height+60)];
@@ -259,7 +249,7 @@
     
     [self.navigationController.view.window addSubview:self.userView];
     
-    [self hideTabBar];
+//    [self hideTabBar];
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(removeUserview)];
     tapGesture.numberOfTouchesRequired = 1;
     [self.userBgView addGestureRecognizer:tapGesture];
@@ -272,7 +262,7 @@
         self.userView.center = CGPointMake(self.userView.center.x - self.userView.frame.size.width, self.userView.center.y);
     } completion:^(BOOL finished) {
         [self.userView removeFromSuperview];
-        [self showTabBar];
+//        [self showTabBar];
     }];
 }
 
@@ -355,8 +345,7 @@
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
                 SummerMemberManagerTableViewController *memberVC = [[SummerMemberManagerTableViewController alloc] init];
-                memberVC.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:memberVC animated:YES];
+                [self pushVC:memberVC title:nil];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1002;

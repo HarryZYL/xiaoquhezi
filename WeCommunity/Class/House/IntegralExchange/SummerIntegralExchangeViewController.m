@@ -11,6 +11,7 @@
 #import "SummerJinSubmiteViewController.h"
 #import "SummerScoreSegmentControl.h"
 #import "SummerScoreTableViewCell.h"
+#import "MBProgressHUD.h"
 
 @interface SummerIntegralExchangeViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {

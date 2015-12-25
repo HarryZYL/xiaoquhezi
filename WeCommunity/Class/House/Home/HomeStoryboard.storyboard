@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FpN-kQ-8PP">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -8,7 +8,7 @@
         <!--House View Controller-->
         <scene sceneID="1sH-Ow-FqU">
             <objects>
-                <viewController id="oKF-5J-8yO" customClass="HouseViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="oKF-5J-8yO" customClass="HouseViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H4s-Ai-H3R"/>
                         <viewControllerLayoutGuide type="bottom" id="vT0-Wu-oI4"/>
@@ -27,7 +27,7 @@
         <!--管家-->
         <scene sceneID="dpk-xa-Vd5">
             <objects>
-                <navigationController storyboardIdentifier="HOME_STORY" id="FpN-kQ-8PP" customClass="MainViewController" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HOME_STORY" hidesBottomBarWhenPushed="YES" id="FpN-kQ-8PP" customClass="MainViewController" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="管家" image="管家" selectedImage="管家2" id="lhP-If-PNp"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sAr-a5-erq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -39,7 +39,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kmz-Pw-bYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="654" y="-561.75"/>
+            <point key="canvasLocation" x="729" y="-561.75"/>
         </scene>
     </scenes>
     <resources>
