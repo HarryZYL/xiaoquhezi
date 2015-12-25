@@ -16,6 +16,7 @@
 @interface SummerIntegralExchangeViewController ()<UITableViewDataSource ,UITableViewDelegate>
 {
     NSInteger pageNumers;
+    UILabel *scoreLab;
 }
 @property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
 @property (nonatomic ,strong)UITableView *mTableView;
@@ -58,11 +59,11 @@
     bgLayer.backgroundColor = THEMECOLOR.CGColor;
     [self.view.layer addSublayer:bgLayer];
     
-    UILabel *scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(15, SCREENSIZE.height - 50, 100, 40)];
+    scoreLab = [[UILabel alloc] initWithFrame:CGRectMake(15, SCREENSIZE.height - 50, 100, 40)];
     scoreLab.textColor = [UIColor whiteColor];
     scoreLab.font = [UIFont systemFontOfSize:14];
     User *userModel = [User shareUserDefult];
-    scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinDic.jinPoint];
+    
     [self.view addSubview:scoreLab];
     _btnSubmite = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnSubmite.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -86,6 +87,16 @@
 //    [self.view addSubview:btnScore];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    User *userModel = [User shareUserDefult];
+    if (userModel.userJinDic.jinPoint.integerValue < 1) {
+        scoreLab.text = @"积分：0";
+    }else{
+        scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinDic.jinPoint];
+    }
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _dataArrary.count;
 }
@@ -94,11 +105,21 @@
     SummerScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     NSDictionary *dicTemp = _dataArrary[indexPath.row];
     [cell.cellImgView sd_setImageWithURL:[NSURL URLWithString:dicTemp[@"picture"]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    cell.cellTitleLab.text = dicTemp[@"name"];
-    cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
+    [cell.cellExchange setBackgroundColor:THEMECOLOR];
     if (_mSegmentControl.currentSelectIndex == 0) {
+        cell.cellTitleLab.text = dicTemp[@"name"];
+        cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
+        [cell.cellExchange setTitle:@"兑换" forState:UIControlStateNormal];
+        if (![dicTemp[@"remainNumber"] isEqual:[NSNull null]]) {
+            if ([dicTemp[@"remainNumber"] integerValue] == 0) {
+                [cell.cellExchange setTitle:@"兑换完了" forState:UIControlStateNormal];
+                [cell.cellExchange setBackgroundColor:[UIColor lightGrayColor]];
+            }
+        }
         
     }else{
+        cell.cellTitleLab.text = dicTemp[@"prize"][@"name"];
+        cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
         [cell.cellExchange setTitle:@"兑换成功" forState:UIControlStateNormal];
     }
     NSLog(@"--->%d",_mSegmentControl.currentSelectIndex);
@@ -106,10 +127,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    SummerIntergralDetailViewController *intergralDetailVC = [[SummerIntergralDetailViewController alloc] init];
-    intergralDetailVC.intergralType = _mSegmentControl.currentSelectIndex == 0? DetailGoods:DetailMySelf;
-    intergralDetailVC.detailGoods = _dataArrary[indexPath.row];
-    [self.navigationController pushViewController:intergralDetailVC animated:YES];
+    if (_mSegmentControl.currentSelectIndex == 0) {
+        SummerIntergralDetailViewController *intergralDetailVC = [[SummerIntergralDetailViewController alloc] init];
+        intergralDetailVC.intergralType = DetailGoods;
+        intergralDetailVC.detailGoods = _dataArrary[indexPath.row];
+        [self.navigationController pushViewController:intergralDetailVC animated:YES];
+    }
 }
 
 - (void)scoreInformation{

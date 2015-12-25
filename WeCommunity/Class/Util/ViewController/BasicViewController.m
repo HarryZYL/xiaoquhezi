@@ -46,13 +46,12 @@
         contentView = [self.tabBarController.view.subviews objectAtIndex:1];
     else
         contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
-    self.tabBarController.tabBar.hidden = YES;
+        contentView.frame = CGRectMake(contentView.bounds.origin.x,  contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height + self.tabBarController.tabBar.frame.size.height);
+        self.tabBarController.tabBar.hidden = YES;
     
 }
 
 - (void)showTabBar
-
 {
     if (self.tabBarController.tabBar.hidden == NO)
     {
@@ -60,13 +59,10 @@
     }
     UIView *contentView;
     if ([[self.tabBarController.view.subviews objectAtIndex:0] isKindOfClass:[UITabBar class]])
-        
         contentView = [self.tabBarController.view.subviews objectAtIndex:1];
-    
     else
-        
         contentView = [self.tabBarController.view.subviews objectAtIndex:0];
-    contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
+        contentView.frame = CGRectMake(contentView.bounds.origin.x, contentView.bounds.origin.y,  contentView.bounds.size.width, contentView.bounds.size.height - self.tabBarController.tabBar.frame.size.height);
     self.tabBarController.tabBar.hidden = NO;
     
 }

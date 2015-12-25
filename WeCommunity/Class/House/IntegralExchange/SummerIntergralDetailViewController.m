@@ -96,6 +96,12 @@
     
     UIButton *scoreBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [scoreBtn setTitle:@"兑换" forState:UIControlStateNormal];
+    if (![_detailGoods[@"remainNumber"] isEqual:[NSNull null]]) {
+        if ([_detailGoods[@"remainNumber"] integerValue] == 0) {
+            [scoreBtn setTitle:@"兑换完了" forState:UIControlStateNormal];
+            [scoreBtn setBackgroundColor:[UIColor lightGrayColor]];
+        }
+    }
     [scoreBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [scoreBtn addTarget:self action:@selector(btnExchange) forControlEvents:UIControlEventTouchUpInside];
     scoreBtn.layer.cornerRadius = 5;
@@ -126,10 +132,18 @@
     
     if (userModel.userJinDic.jinPoint.integerValue < [_detailGoods[@"point"] integerValue]) {
         [self showHint:@"积分不够啊!"];
+        return;
+    }
+    if (![_detailGoods[@"remainNumber"] isEqual:[NSNull null]]) {
+        if ([_detailGoods[@"remainNumber"] integerValue] == 0) {
+            [self showHint:@"已经兑换完了"];
+            return;
+        }
     }
     NSDictionary *dic = _addressArrary.firstObject;
     [Networking retrieveData:JIN_EXPORY_SURE parameters:@{@"token":[User getUserToken],@"id":_detailGoods[@"id"],@"addressId":dic[@"id"]}];
     userModel.userJinDic.jinPoint = [NSString stringWithFormat:@"%ld",userModel.userJinDic.jinPoint.integerValue -  [_detailGoods[@"point"] integerValue]];
+    [self showHint:@"兑换成功"];
 }
 
 - (void)chooseMyAddressList{
@@ -161,6 +175,11 @@
 }
 
 - (void)selectAddress{
+    User *userModel = [User shareUserDefult];
+    if (userModel.userJinDic.jinLevel.integerValue < 1) {
+        [self showHint:@"你还不是金马会员，需要去认证提交资料"];
+        return;
+    }
     SummerIntergralSelectAddressViewController *selectAddressVC = [[SummerIntergralSelectAddressViewController alloc] init];
     __weak typeof(self)weakSelf = self;
     selectAddressVC.tapSelectAddressBlock = ^(NSDictionary *dic){
