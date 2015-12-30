@@ -23,16 +23,22 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"编辑收货地址";
-    
+//    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height) style:UITableViewStylePlain];
     _mTableView.delegate   = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight  = 85;
-//    _mTableView.editing = YES;
+
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerSelectAddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
     [self receveAddress];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
 }
 
 - (void)receveAddress{

@@ -225,7 +225,7 @@
         self.mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT - 90);
     }
     __weak typeof(self)weakSelf = self;
-    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    [self.summerInputView confirmsSelectImage:self.chosenImages];
     self.summerInputView.tapImageView = ^(NSInteger index){//查看图片
         [weakSelf returnTapImageViewTagIndex:index];
     };
@@ -267,7 +267,7 @@
     [self.photos removeObjectAtIndex:index];
     [self.chosenImages removeObjectAtIndex:index];
     [self.chosenSmallImages removeObjectAtIndex:index];
-    [self.summerInputView confirmsSelectImage:self.chosenSmallImages];
+    [self.summerInputView confirmsSelectImage:self.chosenImages];
     if (self.chosenSmallImages.count < 1) {
         self.summerInputView.frame = CGRectMake(0, SCREENSIZE.height - IMPUT_VIEW_HEIGHT, SCREENSIZE.width, IMPUT_VIEW_HEIGHT);
         _mTableView.frame = CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT);

@@ -599,31 +599,28 @@
 }
 
 // user detail
--(void)configureUserDetailCell:(NSString*)title detail:(NSString*)detail{
+-(void)configureUserDetailCell:(NSString*)title detail:(NSString*)detail withIndex:(NSIndexPath *)index{
     
     self.titleLabel.frame = CGRectMake(20, 10, 50, 30);
     self.titleLabel.text = title;
     
     
     UIFont *font = [UIFont fontWithName:fontName size:18.0f];
+    if ([detail isEqual:[NSNull null]]) {
+        detail = @"";
+    }
     CGSize stringsize = [detail sizeWithAttributes:[NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName, nil]];
-    
-    
-    if (detail.length>30) {
-        
+    if (index.row == 0) {
         self.iconImage.frame = CGRectMake(self.frame.size.width-100, 10, 60 , 60);
         self.iconImage.layer.masksToBounds = YES;
         self.iconImage.layer.cornerRadius = self.iconImage.frame.size.width/2;
         [self.iconImage sd_setImageWithURL:[NSURL URLWithString:detail] placeholderImage:[UIImage imageNamed:@"smile.png"]];
-        
-        
     }else{
         self.detailLabel.frame = CGRectMake(self.frame.size.width-stringsize.width-35, 10, stringsize.width, 30);
         self.detailLabel.text = detail;
         self.detailLabel.textColor = [UIColor grayColor];
+
     }
-    
-    
     //    self.grayLine.frame = CGRectMake(0, self.frame.size.height-1, self.frame.size.width, 1);
     
     self.selectionStyle = NO;

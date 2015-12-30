@@ -18,35 +18,46 @@
 
 @implementation SummerIntergralSelectAddressViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    [self receveAddress];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     self.title = @"选择地址";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editeButtonItem)];
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
-    _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 44);
+    _btnAddAdress.frame = CGRectMake(0, 69, SCREENSIZE.width, 44);
     [_btnAddAdress setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_btnAddAdress setTitle:@"点击添加地址" forState:UIControlStateNormal];
     [_btnAddAdress addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnAddAdress];
     
-    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 113, SCREENSIZE.width, SCREENSIZE.height - 113) style:UITableViewStylePlain];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 118, SCREENSIZE.width, SCREENSIZE.height - 118) style:UITableViewStylePlain];
     _mTableView.delegate = self;
     _mTableView.dataSource = self;
     _mTableView.rowHeight = 85;
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerSelectAddressTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
-    [self receveAddress];
+    
 }
 
 - (void)receveAddress{
     __weak typeof(self)weakSelf = self;
-    
+    _addressArrary = nil;
     [Networking retrieveData:JIN_MY_CITY_LIST parameters:@{@"token": [User getUserToken]} success:^(id responseObject) {
         _addressArrary = responseObject;
+        if (_addressArrary.count > 0) {
+            self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editeButtonItem)];
+        }else{
+            
+        }
         [weakSelf.mTableView reloadData];
     }];
 

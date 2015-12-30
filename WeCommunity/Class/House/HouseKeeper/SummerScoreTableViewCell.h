@@ -13,6 +13,6 @@
 @property (nonatomic ,weak)IBOutlet UIImageView *cellImgView;
 @property (nonatomic ,weak)IBOutlet UILabel *cellTitleLab;
 @property (nonatomic ,weak)IBOutlet UILabel *cellScoreLab;
-@property (nonatomic ,weak)IBOutlet UIButton *cellExchange;
+@property (nonatomic ,weak)IBOutlet UILabel *cellExchange;
 
 @end

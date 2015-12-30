@@ -57,5 +57,5 @@
 
 -(void)configureActivityCellImage:(NSURL *)image title:(NSString *)title detail:(NSString *)detail address:(NSString *)address date:(NSString *)date attends:(NSString*)attends;
 
--(void)configureUserDetailCell:(NSString*)title detail:(NSString*)detail;
+-(void)configureUserDetailCell:(NSString*)title detail:(NSString*)detail withIndex:(NSIndexPath *)index;
 @end

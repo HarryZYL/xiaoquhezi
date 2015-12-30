@@ -149,6 +149,7 @@
 		D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D44F80401BE649D9002A55CE /* SummerPhoneViewController.m */; };
 		D45028081C2947DF000E0220 /* SummerIntegralModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D45028071C2947DF000E0220 /* SummerIntegralModel.m */; };
 		D45136031BE0B0D100770E9D /* UITapGestureRecognizer+Data.m in Sources */ = {isa = PBXBuildFile; fileRef = D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */; };
+		D451AA561C31609600F3D290 /* SummerNavigationBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D451AA551C31609600F3D290 /* SummerNavigationBarView.m */; };
 		D45206901BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D452068E1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m */; };
 		D45206911BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D452068F1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib */; };
 		D452F2381BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D452F2371BDDC3340031C5C8 /* SummerMessageCenterTableViewController.m */; };
@@ -287,8 +288,8 @@
 		4A118E171BA48FFC00BC2C4E /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManager.m; sourceTree = "<group>"; };
 		4A118E181BA48FFC00BC2C4E /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		4A118E191BA48FFC00BC2C4E /* Networking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Networking.m; sourceTree = "<group>"; };
-		4A118E1A1BA48FFC00BC2C4E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		4A118E1B1BA48FFC00BC2C4E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		4A118E1A1BA48FFC00BC2C4E /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../Networking/WebViewController.h; sourceTree = "<group>"; };
+		4A118E1B1BA48FFC00BC2C4E /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../Networking/WebViewController.m; sourceTree = "<group>"; };
 		4A118E201BA48FFC00BC2C4E /* BasicHeadDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicHeadDetailView.h; sourceTree = "<group>"; };
 		4A118E211BA48FFC00BC2C4E /* BasicHeadDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicHeadDetailView.m; sourceTree = "<group>"; };
 		4A118E241BA48FFC00BC2C4E /* BasicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicTableViewCell.h; sourceTree = "<group>"; };
@@ -545,6 +546,8 @@
 		D45028071C2947DF000E0220 /* SummerIntegralModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerIntegralModel.m; path = IntegralExchange/Model/SummerIntegralModel.m; sourceTree = "<group>"; };
 		D45136011BE0B0D100770E9D /* UITapGestureRecognizer+Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITapGestureRecognizer+Data.h"; sourceTree = "<group>"; };
 		D45136021BE0B0D100770E9D /* UITapGestureRecognizer+Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITapGestureRecognizer+Data.m"; sourceTree = "<group>"; };
+		D451AA541C31609600F3D290 /* SummerNavigationBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerNavigationBarView.h; path = IntegralExchange/SummerNavigationBarView.h; sourceTree = "<group>"; };
+		D451AA551C31609600F3D290 /* SummerNavigationBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerNavigationBarView.m; path = IntegralExchange/SummerNavigationBarView.m; sourceTree = "<group>"; };
 		D452068D1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerCommunityBrowserTableViewCell.h; sourceTree = "<group>"; };
 		D452068E1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerCommunityBrowserTableViewCell.m; sourceTree = "<group>"; };
 		D452068F1BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerCommunityBrowserTableViewCell.xib; sourceTree = "<group>"; };
@@ -955,8 +958,6 @@
 				4A118E171BA48FFC00BC2C4E /* FileManager.m */,
 				4A118E181BA48FFC00BC2C4E /* Networking.h */,
 				4A118E191BA48FFC00BC2C4E /* Networking.m */,
-				4A118E1A1BA48FFC00BC2C4E /* WebViewController.h */,
-				4A118E1B1BA48FFC00BC2C4E /* WebViewController.m */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -994,6 +995,8 @@
 		4A118E301BA48FFC00BC2C4E /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4A118E1A1BA48FFC00BC2C4E /* WebViewController.h */,
+				4A118E1B1BA48FFC00BC2C4E /* WebViewController.m */,
 				4A118E311BA48FFC00BC2C4E /* AvoidKeyboardVC.h */,
 				4A118E321BA48FFC00BC2C4E /* AvoidKeyboardVC.m */,
 				4A118E331BA48FFC00BC2C4E /* BasicViewController.h */,
@@ -1617,6 +1620,8 @@
 				D4FCD0F51C195DA60007B040 /* SummerAddAdressViewController.m */,
 				D44A13961C2A730000FD0A43 /* SummerJinSubmiteViewController.h */,
 				D44A13971C2A730000FD0A43 /* SummerJinSubmiteViewController.m */,
+				D451AA541C31609600F3D290 /* SummerNavigationBarView.h */,
+				D451AA551C31609600F3D290 /* SummerNavigationBarView.m */,
 			);
 			name = IntegralExchange;
 			sourceTree = "<group>";
@@ -2380,6 +2385,7 @@
 				D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */,
 				4ACCD03D1BBF49600001227A /* HouseViewController.m in Sources */,
 				D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */,
+				D451AA561C31609600F3D290 /* SummerNavigationBarView.m in Sources */,
 				D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */,
 				D452F2471BDDD7220031C5C8 /* SummerPaymentRecordsTableViewCell.m in Sources */,
 				D452F23F1BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.m in Sources */,

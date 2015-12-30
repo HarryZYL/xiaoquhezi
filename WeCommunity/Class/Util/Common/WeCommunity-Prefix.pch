@@ -39,8 +39,6 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-
-
 //basic class
 #import "Util.h"
 #import "LoadingView.h"

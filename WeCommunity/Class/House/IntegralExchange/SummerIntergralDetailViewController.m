@@ -13,26 +13,30 @@
 
 @interface SummerIntergralDetailViewController ()
 @property (nonatomic ,strong)UIButton *btnAddAdress;
+@property (nonatomic ,strong)UIView *bgView;
 @property (nonatomic ,strong)NSMutableArray *addressArrary;
 @end
 
 @implementation SummerIntergralDetailViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-//    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     self.title = @"兑换详情";
     _addressArrary = [[NSMutableArray alloc] initWithCapacity:1];
     _btnAddAdress = [UIButton buttonWithType:UIButtonTypeCustom];
-    _btnAddAdress.frame = CGRectMake(0, 64, SCREENSIZE.width, 40);
+    _btnAddAdress.frame = CGRectMake(0, 74, SCREENSIZE.width, 44);
     _btnAddAdress.backgroundColor = [UIColor whiteColor];
     [_btnAddAdress setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_btnAddAdress setTitle:@"  点击添加地址" forState:UIControlStateNormal];
     _btnAddAdress.titleLabel.font = [UIFont systemFontOfSize:14];
     
-    _btnAddAdress.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [_btnAddAdress addTarget:self action:@selector(selectAddress) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnAddAdress];
     __weak typeof(self)weakSelf = self;
@@ -51,7 +55,7 @@
     UILabel *nameLab = [UILabel new];
     nameLab.text = _detailGoods[@"name"];
     nameLab.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
-//    nameLab.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+
     nameLab.font = [UIFont systemFontOfSize:16];
     [self.view addSubview:nameLab];
     [nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -84,7 +88,8 @@
     
     UILabel *scoreLab = [UILabel new];
     scoreLab.backgroundColor = THEMECOLOR;
-    
+    scoreLab.layer.cornerRadius = 5;
+    scoreLab.layer.masksToBounds = YES;
     scoreLab.text = [NSString stringWithFormat:@"   %@积分",[_detailGoods[@"point"] stringValue]];
     scoreLab.textColor = [UIColor whiteColor];
     [self.view addSubview:scoreLab];

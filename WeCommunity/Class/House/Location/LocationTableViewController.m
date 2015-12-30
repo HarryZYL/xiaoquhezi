@@ -17,6 +17,7 @@
 }
 
 @property(nonatomic, strong)NSMutableArray *dataArrary;
+@property(nonatomic, strong)UIImageView *imgViewError;
 @end
 
 @implementation LocationTableViewController
@@ -51,9 +52,13 @@
     _mTableView.dataSource = self;
     [self.mTableView registerClass:[BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:_mTableView];
-    
-
     self.mTableView.tableFooterView = [[UIView alloc]init];
+    
+    _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    _imgViewError.image = [UIImage imageNamed:@"error_code"];
+    _imgViewError.contentMode = UIViewContentModeCenter;
+    _imgViewError.hidden = YES;
+    [self.view addSubview:_imgViewError];
     
     UIButton *btnSelectCommunity = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSelectCommunity.backgroundColor = [UIColor orangeColor];
@@ -67,6 +72,13 @@
         make.bottomMargin.equalTo(weakSelf.view.mas_bottom).offset(-20);
         make.height.mas_equalTo(40);
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if (_dataArrary.count < 1) {
+        _imgViewError.hidden = NO;
+    }
 }
 
 - (void)clearCommunity{

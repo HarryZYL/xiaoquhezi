@@ -84,6 +84,8 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     User *userModel = [User shareUserDefult];
     if (userModel.userJinDic.jinPoint.integerValue < 1) {
         scoreLab.text = @"积分：0";
@@ -100,24 +102,24 @@
     SummerScoreTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellItem" forIndexPath:indexPath];
     NSDictionary *dicTemp = _dataArrary[indexPath.row];
     [cell.cellImgView sd_setImageWithURL:[NSURL URLWithString:dicTemp[@"picture"]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    [cell.cellExchange setBackgroundColor:THEMECOLOR];
+    
+    cell.cellExchange.backgroundColor = THEMECOLOR;
     if (_mSegmentControl.currentSelectIndex == 0) {
         cell.cellTitleLab.text = dicTemp[@"name"];
         cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
-        [cell.cellExchange setTitle:@"兑换" forState:UIControlStateNormal];
+        cell.cellExchange.text = @"兑换";
         if (![dicTemp[@"remainNumber"] isEqual:[NSNull null]]) {
             if ([dicTemp[@"remainNumber"] integerValue] == 0) {
-                [cell.cellExchange setTitle:@"兑换完了" forState:UIControlStateNormal];
-                [cell.cellExchange setBackgroundColor:[UIColor lightGrayColor]];
+                cell.cellExchange.text = @"兑换完了";
+                [cell.cellExchange setBackgroundColor:[UIColor colorWithWhite:0.698 alpha:1.000]];
             }
         }
         
     }else{
         cell.cellTitleLab.text = dicTemp[@"prize"][@"name"];
         cell.cellScoreLab.text = [NSString stringWithFormat:@"%@积分",[dicTemp[@"point"] stringValue]];
-        [cell.cellExchange setTitle:@"兑换成功" forState:UIControlStateNormal];
+        cell.cellExchange.text = @"兑换成功";
     }
-    NSLog(@"--->%d",_mSegmentControl.currentSelectIndex);
     return cell;
 }
 

@@ -50,18 +50,17 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-Cm-u9t">
-                        <rect key="frame" x="242" y="57" width="70" height="27"/>
-                        <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="兑换" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGu-At-Hsn">
+                        <rect key="frame" x="242" y="61" width="70" height="27"/>
+                        <color key="backgroundColor" red="0.23921568630000001" green="0.80000000000000004" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="70" id="SdD-GB-zKb"/>
-                            <constraint firstAttribute="height" constant="27" id="gA5-DM-b3a"/>
+                            <constraint firstAttribute="height" constant="27" id="1Ze-ze-4m0"/>
+                            <constraint firstAttribute="width" constant="70" id="iMR-ZA-Vp0"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <state key="normal" title="兑换">
-                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </state>
-                    </button>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
@@ -69,24 +68,24 @@
                     <constraint firstAttribute="trailing" secondItem="qqs-vA-62E" secondAttribute="trailing" constant="8" id="3G0-Ig-O8z"/>
                     <constraint firstItem="ONt-qe-Ua3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="6IK-b4-aFU"/>
                     <constraint firstItem="qqs-vA-62E" firstAttribute="leading" secondItem="z4L-yB-kvT" secondAttribute="trailing" constant="8" id="80P-kZ-92z"/>
+                    <constraint firstAttribute="trailing" secondItem="SGu-At-Hsn" secondAttribute="trailing" constant="8" id="FRO-3Q-DHk"/>
                     <constraint firstAttribute="bottom" secondItem="ONt-qe-Ua3" secondAttribute="bottom" id="I7m-61-MhC"/>
+                    <constraint firstItem="ONt-qe-Ua3" firstAttribute="top" secondItem="SGu-At-Hsn" secondAttribute="bottom" constant="6" id="KN1-Us-OEd"/>
                     <constraint firstItem="z4L-yB-kvT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="PRQ-zZ-8CZ"/>
                     <constraint firstItem="ONt-qe-Ua3" firstAttribute="top" secondItem="C1Z-Ks-cl4" secondAttribute="bottom" constant="12" id="URs-Nc-S5o"/>
-                    <constraint firstItem="ONt-qe-Ua3" firstAttribute="top" secondItem="kdo-Cm-u9t" secondAttribute="bottom" constant="10" id="W1e-dr-hA5"/>
                     <constraint firstItem="z4L-yB-kvT" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Yrt-wB-tvp"/>
                     <constraint firstAttribute="trailing" secondItem="ONt-qe-Ua3" secondAttribute="trailing" id="cLU-WR-zkJ"/>
                     <constraint firstItem="C1Z-Ks-cl4" firstAttribute="leading" secondItem="z4L-yB-kvT" secondAttribute="trailing" constant="8" id="dSe-kD-ShN"/>
-                    <constraint firstAttribute="trailing" secondItem="kdo-Cm-u9t" secondAttribute="trailing" constant="8" id="qfC-gi-Xsn"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="cellExchange" destination="kdo-Cm-u9t" id="gdi-mB-ibQ"/>
+                <outlet property="cellExchange" destination="SGu-At-Hsn" id="lPn-kE-jfb"/>
                 <outlet property="cellImgView" destination="z4L-yB-kvT" id="rgf-ih-76A"/>
                 <outlet property="cellScoreLab" destination="C1Z-Ks-cl4" id="Gp7-iP-WLu"/>
                 <outlet property="cellTitleLab" destination="qqs-vA-62E" id="rgs-tk-NdM"/>
             </connections>
-            <point key="canvasLocation" x="-62" y="77.5"/>
+            <point key="canvasLocation" x="-656" y="50.5"/>
         </tableViewCell>
     </objects>
     <resources>

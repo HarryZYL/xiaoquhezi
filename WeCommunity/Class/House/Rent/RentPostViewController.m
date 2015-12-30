@@ -224,7 +224,7 @@
     [photoBrowser reloadData];
     [self.cameraView chuckSubViews];
     [self addPhotosOrMuteble];
-    [self.cameraView configureImage:self.chosenImagesSmall];
+    [self.cameraView configureImage:self.chosenImages];
     [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -459,7 +459,7 @@
         
         [self addPhotosOrMuteble];
         [self.cameraView chuckSubViews];
-        [self.cameraView configureImage:self.chosenImagesSmall];
+        [self.cameraView configureImage:self.chosenImages];
         [self.cameraView.addImageBtn addTarget:self action:@selector(imagePicker:) forControlEvents:UIControlEventTouchUpInside];
     }
     

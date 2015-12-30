@@ -12,6 +12,7 @@
 
 @property(nonatomic ,weak)IBOutlet UILabel *cellNameContent;
 @property(nonatomic ,weak)IBOutlet UILabel *cellAddressLab;
+@property(nonatomic ,weak)IBOutlet NSLayoutConstraint *bootomLayout;
 
 - (void)confirmCellContentWithData:(NSDictionary *)dic;
 

@@ -90,6 +90,7 @@ static int timeToGetCaptcha = 60;
     NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"password":self.loginView.passwordField1.text};
     [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
         User *userModel = [User shareUserDefult];
+        [userModel initWithData:responseObject];
         userModel.loginPassword = _loginView.passwordField1.text;
         userModel.loginUserName = _loginView.tellField.text;
         

@@ -24,16 +24,16 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="上海市浦东新区XXXX路XXX号XX公寓XX号楼ZXXXX室" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQs-wD-J4P">
-                        <rect key="frame" x="10" y="31" width="300" height="39"/>
+                        <rect key="frame" x="10" y="31" width="300" height="43"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HYV-f4-LaT">
-                        <rect key="frame" x="0.0" y="79" width="320" height="5"/>
-                        <color key="backgroundColor" red="0.85098039219999999" green="0.85098039219999999" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="0.0" y="83" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="5" id="0FU-cx-Zub"/>
+                            <constraint firstAttribute="height" constant="1" id="0FU-cx-Zub"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -62,6 +62,7 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bootomLayout" destination="0FU-cx-Zub" id="K0f-xJ-eeV"/>
                 <outlet property="cellAddressLab" destination="MQs-wD-J4P" id="P90-7M-B5q"/>
                 <outlet property="cellNameContent" destination="Jax-z3-uB4" id="uc7-pp-ti7"/>
             </connections>

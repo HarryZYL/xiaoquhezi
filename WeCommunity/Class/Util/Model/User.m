@@ -164,9 +164,9 @@ static User *shareUserModel = nil;
             NSString *owerType = @"";
             if([responseObject[@"auditStatus"] isEqualToString:@"Success"]){
                 if ([responseObject[@"ownerType"] isEqualToString:@"Owner"]) {
-                    owerType = @"认证户主";
+                    owerType = @"户主";
                 }else if ([responseObject[@"ownerType"] isEqualToString:@"NoOwner"]){
-                    owerType = @"认证业主";
+                    owerType = @"业主";
                 }
             }else if([responseObject[@"auditStatus"] isEqualToString:@"Pending"]){
                  owerType = @"未受理";

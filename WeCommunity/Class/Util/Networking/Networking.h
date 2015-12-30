@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-#define HOST_URL @"http://www.wshequ.net"
-
+//#define HOST_URL @"http://www.wshequ.net"
+#define HOST_URL @"http://www.xiaoquhezi.com"
 //#define HOST_URL @"http://192.168.1.101"
 
 #define get_reply_notice      (HOST_URL @"/notice/replyNotice") /**<回复公告*/

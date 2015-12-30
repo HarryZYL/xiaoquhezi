@@ -25,9 +25,10 @@
     _cityArrary = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.cityTableView];
-    _mProgressHUD = [[MBProgressHUD alloc] initWithView:self.view];
-    
+    _mProgressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _mProgressHUD.labelText = @"努力加载中...";
     [_mProgressHUD show:YES];
+    
 //    NSDictionary *dic = [FileManager getData:@"All_City_Name"];
 //    _cityArrary = dic[@"citys_Name"];
 //    if (_cityArrary.count < 1) {

@@ -7,6 +7,7 @@
 //
 
 #import "SummerAddAdressViewController.h"
+#import "SummerNavigationBarView.h"
 #import "UIViewController+HUD.h"
 #import "SummerAddressView.h"
 #import "NSString+HTML.h"
@@ -15,6 +16,10 @@
     NSString *strProvinceID;
     NSString *strCityID;
     NSString *strDistricteID;
+    
+    NSString *strProvinceCode;
+    NSString *strCityCode;
+    NSString *strDistricteCode;
     
     NSString *strCityName;
     NSString *strProvinceName;
@@ -34,10 +39,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAddress)];
-    __weak typeof(self)weakSelf = self;
     
-    self.view.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAddress)];
+    
+    __weak typeof(self)weakSelf = self;
+    self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
+    if (_editeType == 0) {
+        self.navigationItem.title = @"添加收货地址";
+    }else{
+        //        self.navigationItem.title = @"编辑收货地址";
+        self.navigationController.navigationBarHidden = YES;
+        SummerNavigationBarView *navbarView = [[SummerNavigationBarView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 64)];
+        navbarView.labTitle.text = @"编辑收货地址";
+        [navbarView.btnRight addTarget:self action:@selector(saveAddress) forControlEvents:UIControlEventTouchUpInside];
+        [navbarView.btnLeft addTarget:self action:@selector(backView) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:navbarView];
+    }
     
     _contentView = [SummerAddressView new];
     [_contentView.btnAddress addTarget:self action:@selector(selectCitysID) forControlEvents:UIControlEventTouchUpInside];
@@ -49,30 +68,31 @@
         make.height.mas_equalTo(183);
     }];
     
-    if (_editeType == 0) {
-        self.title = @"添加收货地址";
-    }else{
-        self.title = @"编辑收货地址";
+    if (_editeType != 0) {
         _contentView.nameText.text  = _addressDic[@"name"];
         _contentView.phoneText.text = _addressDic[@"phone"];
         _contentView.addressInformation.text = _addressDic[@"address"];
         [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@%",_addressDic[@"provinceName"],_addressDic[@"cityName"],_addressDic[@"districtName"]] forState:UIControlStateNormal];
-        strProvinceID = _addressDic[@"provinceCode"];
-        strCityID = _addressDic[@"cityCode"];
-        strDistricteID = _addressDic[@"districtCode"];
+        [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
+        strProvinceCode = _addressDic[@"provinceCode"];
+        strCityCode = _addressDic[@"cityCode"];
+        strDistricteCode = _addressDic[@"districtCode"];
         
         UIButton *btnDelete = [UIButton buttonWithType:UIButtonTypeCustom];
-        btnDelete.titleLabel.font = [UIFont systemFontOfSize:15];
+        btnDelete.layer.cornerRadius = 5;
+        btnDelete.layer.masksToBounds = YES;
+        
+        btnDelete.titleLabel.font = [UIFont systemFontOfSize:18];
         [btnDelete addTarget:self action:@selector(deleteAddress:) forControlEvents:UIControlEventTouchUpInside];
         [btnDelete setTitle:@"删除地址" forState:UIControlStateNormal];
         [btnDelete setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnDelete setBackgroundColor:THEMECOLOR];
         [self.view addSubview:btnDelete];
         [btnDelete mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(weakSelf.view.mas_left).offset(10);
-            make.right.equalTo(weakSelf.view.mas_right).offset(-10);
+            make.width.mas_equalTo(320);
             make.bottom.equalTo(weakSelf.view.mas_bottom).offset(-20);
-            make.height.mas_equalTo(35);
+            make.centerX.equalTo(weakSelf.view);
+            make.height.mas_equalTo(40);
         }];
     }
     _selectAddressView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREENSIZE.height, SCREENSIZE.width, 200)];
@@ -99,6 +119,7 @@
     [btnSureCansole setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_selectAddressView addSubview:btnSureCansole];
     
+    
 //    [self getAllCityNameAndID];
 }
 
@@ -121,6 +142,7 @@
 }
 
 - (void)saveAddress{
+    [self.view endEditing:YES];
     if (_contentView.nameText.text.length < 1) {
         [self showHint:@"姓名不能为空"];
         return;
@@ -141,9 +163,9 @@
     if (_editeType == 0) {
         //添加
         [Networking retrieveData:JIN_ADD_ADDRESS parameters:@{@"token": [User getUserToken],
-                                                     @"provinceCode":strProvinceID,
-                                                     @"cityCode":strCityID,
-                                                     @"districtCode":strDistricteID,
+                                                     @"provinceCode":strProvinceCode,
+                                                     @"cityCode":strCityCode,
+                                                     @"districtCode":strDistricteCode,
                                                      @"address":_contentView.addressInformation.text,
                                                      @"phone":_contentView.phoneText.text,
                                                      @"name":_contentView.nameText.text} success:^(id responseObject) {
@@ -158,9 +180,9 @@
         //更新
         [Networking retrieveData:JIN_UPDATE_ADD parameters:@{@"token": [User getUserToken],
                                                              @"id":_addressDic[@"id"],
-                                                             @"provinceCode":strProvinceID,
-                                                             @"cityCode":strCityID,
-                                                             @"districtCode":strDistricteID,
+                                                             @"provinceCode":strProvinceCode,
+                                                             @"cityCode":strCityCode,
+                                                             @"districtCode":strDistricteCode,
                                                              @"address":_contentView.addressInformation.text,
                                                              @"phone":_contentView.phoneText.text,
                                                              @"name":_contentView.nameText.text}];
@@ -180,7 +202,7 @@
         if (weakSelf.updataAddressSeccess) {
             weakSelf.updataAddressSeccess();
         }
-        [weakSelf.navigationController popViewControllerAnimated:YES];
+        [weakSelf.navigationController popToViewController:weakSelf.navigationController.viewControllers[3] animated:YES];
     }
 }
 
@@ -191,7 +213,9 @@
         [weakSelf.cityPickerView reloadComponent:0];
         if (!dicTemp) {
             strProvinceID = _dataProvinceArrary[0][@"id"];
+            strProvinceCode = _dataProvinceArrary[0][@"code"];
             strProvinceName = _dataProvinceArrary[0][@"name"];
+            [weakSelf viewDisplayPikerView];
         }
         [weakSelf getCitysIDWithData:dicTemp];
     }];
@@ -204,6 +228,7 @@
         _dataCitysArray = responseObject;
         [weakSelf.cityPickerView reloadComponent:1];
         strCityID = _dataCitysArray[0][@"id"];
+        strCityCode = _dataCitysArray[0][@"code"];
         strCityName = _dataCitysArray[0][@"name"];
         [weakSelf getDistricteIDWithData:_dataCitysArray[0]];
     }];
@@ -216,30 +241,36 @@
     [Networking retrieveData:GET_CITY_DISTRICTS parameters:@{@"cityCode": dic[@"code"]} success:^(id responseObject) {
         _dataDistricteArrary = responseObject;
         strDistricteID = _dataDistricteArrary[0][@"id"];
+        strDistricteCode = _dataDistricteArrary[0][@"code"];
         strDistricteName = _dataDistricteArrary[0][@"name"];
         [weakSelf.cityPickerView reloadComponent:2];
         
-        [weakSelf.contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@%@%@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
+        [weakSelf.contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
         [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
-        
     }];
 }
 
 - (void)selectCitysID{
     [self getProvinceIDSWihtData:nil];
     [self.view endEditing:YES];
+}
+
+- (void)viewDisplayPikerView{
     _selectAddressView.frame = CGRectMake(0, SCREENSIZE.height - 200, SCREENSIZE.width, 200);
     strProvinceID = _dataProvinceArrary[0][@"id"];
+    strProvinceCode = _dataProvinceArrary[0][@"code"];
     strProvinceName = _dataProvinceArrary[0][@"name"];
     
     strCityID = _dataCitysArray[0][@"id"];
+    strCityCode = _dataCitysArray[0][@"code"];
     strCityName = _dataCitysArray[0][@"name"];
     
     strDistricteID = _dataDistricteArrary[0][@"id"];
+    strDistricteCode = _dataDistricteArrary[0][@"code"];
     strDistricteName = _dataDistricteArrary[0][@"name"];
     
     [self.cityPickerView reloadAllComponents];
-    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@%@%@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
+    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
     [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
 }
 
@@ -296,6 +327,7 @@
         case 0:
         {
             strProvinceID = _dataProvinceArrary[row][@"id"];
+            strProvinceCode = _dataProvinceArrary[row][@"code"];
             strProvinceName = _dataProvinceArrary[row][@"name"];
             [self getCitysIDWithData:_dataProvinceArrary[row]];
         }
@@ -303,6 +335,7 @@
         case 1:
         {
             strCityID = _dataCitysArray[row][@"id"];
+            strCityCode = _dataCitysArray[row][@"code"];
             strCityName = _dataCitysArray[row][@"name"];
             [self getDistricteIDWithData:_dataCitysArray[row]];
         }
@@ -310,6 +343,7 @@
         case 2:
         {
             strDistricteID = _dataDistricteArrary[row][@"id"];
+            strDistricteCode = _dataDistricteArrary[row][@"code"];
             strDistricteName = _dataDistricteArrary[row][@"name"];
         }
             break;
@@ -317,7 +351,7 @@
         default:
             break;
     }
-    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@%@%@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
+    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
@@ -332,6 +366,10 @@
 - (void)btnSelectCansol{
     _selectAddressView.frame = CGRectMake(0, SCREENSIZE.height, SCREENSIZE.width, 200);
     
+}
+
+- (void)backView{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

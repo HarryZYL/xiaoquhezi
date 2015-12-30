@@ -38,7 +38,6 @@
     if (!self.stopLogin) {
         [self login];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,7 +72,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    [cell configureUserDetailCell:self.titleArray[indexPath.row] detail:self.detailArray[indexPath.row]];
+    [cell configureUserDetailCell:self.titleArray[indexPath.row] detail:self.detailArray[indexPath.row]withIndex:indexPath];
     
     
     return cell;
@@ -214,41 +213,51 @@
     
     
     [self.view addSubview:self.loadingView];
-    NSDictionary *parameters = @{};
+    NSDictionary *parameters;
     if ([type isEqualToString:@"sex"]) {
         parameters = @{@"token":[User getUserToken],@"sex":self.sex};
     }else if([type isEqualToString:@"headPhoto"]){
         parameters = @{@"token":[User getUserToken],@"headPhoto":self.headImageString};
-
     }
-    
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:updateBasicInfo parameters:parameters success:^(id responseObject) {
-        [self login];
+        [weakSelf.loadingView removeFromSuperview];
+        [weakSelf login];
     }];
     
 }
 
 
 -(void)login{
- 
-    NSDictionary *username = [FileManager getData:@"MyAppCache"];
-    NSDictionary *password = [FileManager getData:@"Password"];
-    NSDictionary *parameters = @{@"phoneNumber":username[@"user"][@"userName"],@"password":password[@"password"]};
-    [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
+    NSString *wxIDd = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"];
+    NSDictionary *parameters;
+    NSString *strUrl;
+    User *userModel = [User shareUserDefult];
+    if (wxIDd.length < 1) {
+        if (userModel.loginUserName == nil||userModel.loginPassword == nil) {
+            return;
+        }
+        parameters = @{@"phoneNumber":userModel.loginUserName,@"password":userModel.loginPassword};
+        strUrl = phoneLogin;
+    }else{
+        parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":userModel.Userid};
+        strUrl = get_WXAPP_LOADING;
+    }
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:strUrl parameters:parameters success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
+        
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-        [FileManager saveDataToFile:data filePath:@"MyAppCache"];
-        [self setupUserData];
+        
+        [[User shareUserDefult] initWithData:data];
+        [User SaveAuthentication];
+        [weakSelf setupUserData];
         [self.tableView reloadData];
-    } addition:^{
-        [self.loadingView removeFromSuperview];
+        weakSelf.stopLogin = NO;
     }];
-    self.stopLogin = NO;
-    
 }
 
 -(void)upload{
-    
     [Networking uploadOne:self.headImage success:^(id responseObject) {
         self.headImageString = responseObject;
         NSLog(@"%@",self.headImageString);

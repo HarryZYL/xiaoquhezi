@@ -33,6 +33,7 @@
     [[PgyManager sharedPgyManager] setEnableFeedback:NO];
     [User getUserModel];
     [User login];
+    
 
     return YES;
 }
@@ -101,7 +102,7 @@
 
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     
-    
+//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
     NSDictionary *attributes = @{
                                  NSUnderlineStyleAttributeName: @1,
                                  NSForegroundColorAttributeName : THEMECOLOR,
