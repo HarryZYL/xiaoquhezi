@@ -55,7 +55,7 @@
     self.mTableView.tableFooterView = [[UIView alloc]init];
     
     _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imgViewError.image = [UIImage imageNamed:@"error_code"];
+    _imgViewError.image = [UIImage imageNamed:@"暂无数据168"];
     _imgViewError.contentMode = UIViewContentModeCenter;
     _imgViewError.hidden = YES;
     [self.view addSubview:_imgViewError];

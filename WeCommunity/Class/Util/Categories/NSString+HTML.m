@@ -26,7 +26,7 @@
 }
 
 + (BOOL)filterPhoneNumber:(NSString *)phoneNumer{
-    NSString *MOBILE = @"^1[3|4|5|8|][0-9]\\d{8}$";
+    NSString *MOBILE = @"^1[3|7|4|5|8|][0-9]\\d{8}$";
     
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
     

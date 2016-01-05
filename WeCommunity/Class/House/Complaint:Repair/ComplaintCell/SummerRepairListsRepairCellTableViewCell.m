@@ -16,7 +16,12 @@
 
 - (void)confirmsCellDataWithData:(NSDictionary *)dicTemp{
     [self.cellTitleImg sd_setImageWithURL:[NSURL URLWithString:dicTemp[@"creatorInfo"][@"headPhoto"]] placeholderImage:[UIImage imageNamed:@"loadingLogo"]];
-    self.cellTitleName.text = dicTemp[@"creatorInfo"][@"nickName"];
+    if (![dicTemp[@"creatorInfo"][@"nickName"] isEqual:[NSNull null]]) {
+        self.cellTitleName.text = dicTemp[@"creatorInfo"][@"nickName"];
+    }else{
+        self.cellTitleName.text = dicTemp[@"creatorInfo"][@"userName"];
+    }
+    
     self.cellTimeLab.text = [Util formattedDate:dicTemp[@"createTime"] type:1];
     self.cellContent.text = [dicTemp[@"content"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 //    self.cellContent.backgroundColor = [UIColor redColor];

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UINavigationController+BackItem.h"
 
 @interface MainViewController : UINavigationController
 @end

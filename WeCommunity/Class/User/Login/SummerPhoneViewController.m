@@ -125,8 +125,8 @@ static int timeToGetCaptcha = 60;
     [Networking retrieveData:get_THIRD_LOADING parameters:dicTemp success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-        
-        [FileManager saveDataToFile:data filePath:@"MyAppCache"];
+        User *userModel = [User shareUserDefult];
+        [userModel initWithData:data];
         [User SaveAuthentication];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }];
