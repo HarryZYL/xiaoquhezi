@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SummerCityModel : NSObject
+@interface SummerCityModel : NSObject<NSCoding>
 
 @property(nonatomic,copy)NSString *cityID;
 @property(nonatomic,copy)NSString *roadName;

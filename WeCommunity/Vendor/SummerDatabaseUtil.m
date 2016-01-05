@@ -11,16 +11,22 @@
 @implementation SummerDatabaseUtil
 static FMDatabase *db = nil;
 + (FMDatabase *)shareDatabaseUtil{
-    static dispatch_once_t present;
-    dispatch_once(&present, ^{
-        db = [FMDatabase databaseWithPath:[self getPath]];
+    static dispatch_once_t onece;
+    dispatch_once(&onece, ^{
+        db =  [self creatDatabase];
     });
     return db;
 }
-
-+ (NSString *)getPath{
-    NSString *path = [NSHomeDirectory() stringByAppendingString:@"Documents/xiaoquhezi.sqlite"];
-    return path;
++ (FMDatabase*)creatDatabase
+{
+    db = [FMDatabase databaseWithPath:[self getPath]];
+    return db;
+}
++ (NSString*)getPath
+{
+    NSString* path = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString* pathStr = [path  stringByAppendingPathComponent:@"xiaoquhezi.sqlite"];
+    return pathStr;
 }
 
 @end

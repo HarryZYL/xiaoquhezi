@@ -111,6 +111,7 @@
 		4AFFD6901BCD3D5000D33F5C /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD68F1BCD3D5000D33F5C /* PickerView.m */; };
 		4AFFD6931BCE042E00D33F5C /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD6921BCE042E00D33F5C /* AboutViewController.m */; };
 		D402C0AB1C192B0A0063F667 /* SummerIntegralExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D402C0AA1C192B0A0063F667 /* SummerIntegralExchangeViewController.m */; };
+		D40830921C3BBFDD0088332A /* SummerCitysDao.m in Sources */ = {isa = PBXBuildFile; fileRef = D40830911C3BBFDD0088332A /* SummerCitysDao.m */; };
 		D41275ED1BDDFE9D008BD610 /* SummerMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D41275EC1BDDFE9D008BD610 /* SummerMessageDetailViewController.m */; };
 		D41275F11BDE044C008BD610 /* SummerMemberManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D41275EF1BDE044C008BD610 /* SummerMemberManagerTableViewCell.m */; };
 		D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D41275F01BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib */; };
@@ -479,6 +480,8 @@
 		9A6A45E73D8E9EF485B0A714 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D402C0A91C192B0A0063F667 /* SummerIntegralExchangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerIntegralExchangeViewController.h; path = IntegralExchange/SummerIntegralExchangeViewController.h; sourceTree = "<group>"; };
 		D402C0AA1C192B0A0063F667 /* SummerIntegralExchangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerIntegralExchangeViewController.m; path = IntegralExchange/SummerIntegralExchangeViewController.m; sourceTree = "<group>"; };
+		D40830901C3BBFDD0088332A /* SummerCitysDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerCitysDao.h; sourceTree = "<group>"; };
+		D40830911C3BBFDD0088332A /* SummerCitysDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerCitysDao.m; sourceTree = "<group>"; };
 		D41275EB1BDDFE9D008BD610 /* SummerMessageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMessageDetailViewController.h; sourceTree = "<group>"; };
 		D41275EC1BDDFE9D008BD610 /* SummerMessageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerMessageDetailViewController.m; sourceTree = "<group>"; };
 		D41275EE1BDE044C008BD610 /* SummerMemberManagerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerMemberManagerTableViewCell.h; sourceTree = "<group>"; };
@@ -1376,6 +1379,8 @@
 				D454D9771C0C2FD6003218B7 /* views */,
 				D44902051C2D676500E06710 /* SummerCityModel.h */,
 				D44902061C2D676500E06710 /* SummerCityModel.m */,
+				D40830901C3BBFDD0088332A /* SummerCitysDao.h */,
+				D40830911C3BBFDD0088332A /* SummerCitysDao.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -2330,6 +2335,7 @@
 				D413705C1BD9FDE3003BE559 /* SummerNearbyCity.m in Sources */,
 				4A6B35811BBF754D007D3BFE /* TextDetailTableViewController.m in Sources */,
 				4AFFD6901BCD3D5000D33F5C /* PickerView.m in Sources */,
+				D40830921C3BBFDD0088332A /* SummerCitysDao.m in Sources */,
 				D48F8ED81C15820C0003C010 /* SummerStarView.m in Sources */,
 				D4FCD0EE1C1958760007B040 /* SummerIntergralSelectAddressViewController.m in Sources */,
 				D414F3881BE924F6004F9C5B /* SummerNoticeDetailTableViewCell.m in Sources */,

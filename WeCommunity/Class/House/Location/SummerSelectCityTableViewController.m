@@ -8,6 +8,7 @@
 
 #import "SummerSelectCityTableViewController.h"
 #import "MBProgressHUD.h"
+#import "SummerCitysDao.h"
 #import "SummerSelectCityView.h"
 @interface SummerSelectCityTableViewController ()<UITableViewDataSource ,UITableViewDelegate>
 
@@ -25,15 +26,17 @@
     _cityArrary = [[NSMutableArray alloc] init];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.cityTableView];
-    _mProgressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    _mProgressHUD.labelText = @"努力加载中...";
-    [_mProgressHUD show:YES];
+    
+    NSArray *arrary = [SummerCitysDao selectCitysItem];
     
 //    NSDictionary *dic = [FileManager getData:@"All_City_Name"];
 //    _cityArrary = dic[@"citys_Name"];
-//    if (_cityArrary.count < 1) {
+    if (arrary.count < 1) {
         [self initOfData];
-//    }
+    }else{
+        [self confirmCotysOfID:arrary];
+        [self.cityTableView reloadData];
+    }
 }
 
 - (UITableView *)cityTableView{
@@ -94,6 +97,9 @@
 }
 
 - (void)initOfData{
+    _mProgressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    _mProgressHUD.labelText = @"努力加载中...";
+    [_mProgressHUD show:YES];
     __weak typeof(self)weakSelf = self;
     if ([CLLocationManager locationServicesEnabled]) {
         [Networking retrieveData:get_ONLY_CITY parameters:nil success:^(id responseObject) {
@@ -101,46 +107,52 @@
                 return [obj1[@"pinyin"] compare:obj2[@"pinyin"]];
             }];
             NSLog(@"---->%@",sortedArrary);
-            for (int i = 0; i < sortedArrary.count; i ++) {
-                NSDictionary *dic1 = sortedArrary[i];
-                NSMutableArray *dataTemp = [[NSMutableArray alloc] init];
-                if (i == 0) {
-                    [dataTemp addObject:dic1];
-                }
-                for (int j = 0; j < sortedArrary.count; j ++) {
-                    NSDictionary *dic2 = sortedArrary[j];
-                    if ([dic1[@"id"] integerValue] != [dic2[@"id"] integerValue] && [[dic1[@"pinyin"] substringToIndex:1] isEqualToString:[dic2[@"pinyin"] substringToIndex:1]]) {
-                        [dataTemp addObject:dic2];
-                    }
-                }
-                if (_cityArrary.count) {
-                    BOOL iscontent = NO;
-                    for (NSDictionary *dicKeyModel in _cityArrary) {
-                        if ([dicKeyModel[@"citykeys"] isEqualToString:[dic1[@"pinyin"] substringToIndex:1]]) {
-                            iscontent = YES;
-                        }
-                    }
-                    if (!iscontent) {
-                        NSDictionary *dicTemp = @{@"cityNames": dataTemp,@"citykeys":[dic1[@"pinyin"] substringToIndex:1]};
-                        [_cityArrary addObject:dicTemp];
-                    }
-                    
-                }else{
-                    NSDictionary *dicTemp = @{@"cityNames": dataTemp,@"citykeys":[dic1[@"pinyin"] substringToIndex:1]};
-                    [_cityArrary addObject:dicTemp];
-                }
-                
-            }
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                [SummerCitysDao insertNumberOfCitys:sortedArrary];
+            });
+            
+            [weakSelf confirmCotysOfID:sortedArrary];
             [weakSelf.mProgressHUD removeFromSuperview];
             
             [_cityTableView reloadData];
-//            [FileManager saveDataToFile:@{@"citys_Name":_cityArrary} filePath:@"All_City_Name"];
         }];
     
     }
 
 }
 
+- (void)confirmCotysOfID:(NSArray *)sortedArrary{
+    for (int i = 0; i < sortedArrary.count; i ++) {
+        NSDictionary *dic1 = sortedArrary[i];
+        NSMutableArray *dataTemp = [[NSMutableArray alloc] init];
+        if (i == 0) {
+            [dataTemp addObject:dic1];
+        }
+        for (int j = 0; j < sortedArrary.count; j ++) {
+            NSDictionary *dic2 = sortedArrary[j];
+            if ([dic1[@"id"] integerValue] != [dic2[@"id"] integerValue] && [[dic1[@"pinyin"] substringToIndex:1] isEqualToString:[dic2[@"pinyin"] substringToIndex:1]]) {
+                [dataTemp addObject:dic2];
+            }
+        }
+        if (_cityArrary.count) {
+            BOOL iscontent = NO;
+            for (NSDictionary *dicKeyModel in _cityArrary) {
+                if ([dicKeyModel[@"citykeys"] isEqualToString:[dic1[@"pinyin"] substringToIndex:1]]) {
+                    iscontent = YES;
+                }
+            }
+            if (!iscontent) {
+                NSDictionary *dicTemp = @{@"cityNames": dataTemp,@"citykeys":[dic1[@"pinyin"] substringToIndex:1]};
+                [_cityArrary addObject:dicTemp];
+            }
+            
+        }else{
+            NSDictionary *dicTemp = @{@"cityNames": dataTemp,@"citykeys":[dic1[@"pinyin"] substringToIndex:1]};
+            [_cityArrary addObject:dicTemp];
+        }
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

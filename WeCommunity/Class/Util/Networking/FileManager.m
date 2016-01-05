@@ -30,7 +30,6 @@
 // 把数据（保存）到系统里
 +(void)saveDataToFile:(NSDictionary*)data filePath:(NSString*)filePath{
     //文件管理
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *cachesDirectory = [paths objectAtIndex:0];
@@ -41,7 +40,9 @@
         [fileManager createFileAtPath:cachesDirectory contents:nil attributes:nil];
         
     }
-    
-    [data writeToFile:cachesDirectory atomically:YES];
+    BOOL ret = [data writeToFile:cachesDirectory atomically:YES];
+    if (ret) {
+        NSLog(@"写入成功");
+    }
 }
 @end

@@ -12,6 +12,22 @@
 
 @synthesize roadName = _roadName,name = _name,distance = _distance,cityID = _cityID;
 
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    if (self == [super init] && aDecoder) {
+        _roadName = [aDecoder decodeObjectForKey:@"roadName"];
+        _name = [aDecoder decodeObjectForKey:@"name"];
+        _distance = [aDecoder decodeObjectForKey:@"distance"];
+        _cityID = [aDecoder decodeObjectForKey:@"cityID"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder{
+    [aCoder encodeObject:_roadName forKey:@"roadName"];
+    [aCoder encodeObject:_name forKey:@"name"];
+    [aCoder encodeObject:_distance forKey:@"distance"];
+    [aCoder encodeObject:_cityID forKey:@"cityID"];
+}
 
 - (id)initWithData:(NSDictionary *)dic{
     if (self = [super init]) {
