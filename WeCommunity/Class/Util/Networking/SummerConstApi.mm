@@ -112,17 +112,17 @@ NSString *const  GET_ALL_CITY = ServerUrl(@"/city/getAll");//所有城市
  *  金马会兑换
  *
  */
-NSString *const JIN_EXPORY         = ServerUrl(@"/member/prize/list/get");
-NSString *const JIN_MY_EXPORY      = ServerUrl(@"/user/prize/cash/my/list");
-NSString *const  JIN_EXPORY_DEFULT = ServerUrl(@"/member/prize/detail/get");/**兑奖详情*/
-NSString *const  JIN_EXPORY_SURE   = ServerUrl(@"/user/prize/cash");/**确认兑奖*/
-NSString *const  JIN_MY_CITY_LIST  = ServerUrl(@"/user/address/my/list");/**查询地址列表*/
-NSString *const  JIN_ADD_ADDRESS   = ServerUrl(@"/user/address/add/phone");/**添加地址*/
-NSString *const  JIN_UPDATE_ADD    = ServerUrl(@"/user/address/update/phone");/**更新地址*/
-NSString *const  JIN_DELETE_ADD    = ServerUrl(@"/user/address/delete/phone");/**删除地址*/
+NSString *const JIN_EXPORY           = ServerUrl(@"/member/prize/list/get");
+NSString *const JIN_MY_EXPORY        = ServerUrl(@"/user/prize/cash/my/list");
+NSString *const JIN_EXPORY_DEFULT    = ServerUrl(@"/member/prize/detail/get"); /**兑奖详情*/
+NSString *const JIN_EXPORY_SURE      = ServerUrl(@"/user/prize/cash"); /**确认兑奖*/
+NSString *const JIN_MY_CITY_LIST     = ServerUrl(@"/user/address/my/list"); /**查询地址列表*/
+NSString *const JIN_ADD_ADDRESS      = ServerUrl(@"/user/address/add/phone"); /**添加地址*/
+NSString *const JIN_UPDATE_ADD       = ServerUrl(@"/user/address/update/phone"); /**更新地址*/
+NSString *const JIN_DELETE_ADD       = ServerUrl(@"/user/address/delete/phone"); /**删除地址*/
 
-NSString *const  JIN_SUBMITE_INFOR    = ServerUrl(@"/user/info/member/fill");  //提交资料
-NSString *const  JIN_CARD_BIND        = ServerUrl(@"/user/card/member/bind");  //绑定会员卡
-NSString *const  JIN_CARD_BIND_CANCEL = ServerUrl(@"/user/card/member/cancel"); //解除绑定
+NSString *const JIN_SUBMITE_INFOR    = ServerUrl(@"/user/info/member/fill"); //提交资料
+NSString *const JIN_CARD_BIND        = ServerUrl(@"/user/card/member/bind"); //绑定会员卡
+NSString *const JIN_CARD_BIND_CANCEL = ServerUrl(@"/user/card/member/cancel"); //解除绑定
 
 @end

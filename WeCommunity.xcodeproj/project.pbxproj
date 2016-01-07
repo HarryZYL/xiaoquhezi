@@ -104,7 +104,6 @@
 		4AD3DFAA1B731E4B007F51E0 /* Setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4AD3DFA91B731E4B007F51E0 /* Setting.plist */; };
 		4ADDB9851B5D235F002A188E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB9841B5D235F002A188E /* main.m */; };
 		4ADDB9901B5D235F002A188E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ADDB98F1B5D235F002A188E /* Images.xcassets */; };
-		4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ADDB9911B5D235F002A188E /* LaunchScreen.xib */; };
 		4ADDB99F1B5D235F002A188E /* WeCommunityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ADDB99E1B5D235F002A188E /* WeCommunityTests.m */; };
 		4AFFD68C1BCC736000D33F5C /* RDRStickyKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD6891BCC736000D33F5C /* RDRStickyKeyboardView.m */; };
 		4AFFD68D1BCC736000D33F5C /* RDRTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFFD68B1BCC736000D33F5C /* RDRTextView.m */; };
@@ -233,6 +232,9 @@
 		D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D400881BDF72EC005F6095 /* SummerPriceListTableViewCell.xib */; };
 		D4D4008D1BDF7EFB005F6095 /* SummerPriceHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D4008C1BDF7EFB005F6095 /* SummerPriceHeaderView.m */; };
 		D4D4008F1BDF7F13005F6095 /* SummerPriceHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D4008E1BDF7F13005F6095 /* SummerPriceHeaderView.xib */; };
+		D4D7A6231C3CB8E100CDE49C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4D7A6251C3CB8E100CDE49C /* Localizable.strings */; };
+		D4D7A6291C3CBA3600CDE49C /* InfoPlish.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4D7A62B1C3CBA3600CDE49C /* InfoPlish.strings */; };
+		D4D7A6351C3CBFA200CDE49C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4D7A6341C3CBFA200CDE49C /* LaunchScreen.xib */; };
 		D4D9D0CF1BD8731500613AAC /* UIViewController+HUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */; };
 		D4D9D0D81BD8807100613AAC /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D9D0D11BD8807100613AAC /* BaiduMapAPI_Base.framework */; };
 		D4D9D0D91BD8807100613AAC /* BaiduMapAPI_Cloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4D9D0D21BD8807100613AAC /* BaiduMapAPI_Cloud.framework */; };
@@ -464,7 +466,6 @@
 		4ADDB9831B5D235F002A188E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ADDB9841B5D235F002A188E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4ADDB98F1B5D235F002A188E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		4ADDB9921B5D235F002A188E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		4ADDB9981B5D235F002A188E /* WeCommunityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeCommunityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADDB99D1B5D235F002A188E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ADDB99E1B5D235F002A188E /* WeCommunityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeCommunityTests.m; sourceTree = "<group>"; };
@@ -767,6 +768,11 @@
 		D4D4008B1BDF7EFB005F6095 /* SummerPriceHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerPriceHeaderView.h; path = ComplaintCell/SummerPriceHeaderView.h; sourceTree = "<group>"; };
 		D4D4008C1BDF7EFB005F6095 /* SummerPriceHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerPriceHeaderView.m; path = ComplaintCell/SummerPriceHeaderView.m; sourceTree = "<group>"; };
 		D4D4008E1BDF7F13005F6095 /* SummerPriceHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerPriceHeaderView.xib; sourceTree = "<group>"; };
+		D4D7A6301C3CBCF700CDE49C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlish.strings; sourceTree = "<group>"; };
+		D4D7A6311C3CBCF700CDE49C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4D7A6321C3CBD1400CDE49C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlish.strings"; sourceTree = "<group>"; };
+		D4D7A6331C3CBD1400CDE49C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4D7A6341C3CBFA200CDE49C /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		D4D9D0CD1BD8731500613AAC /* UIViewController+HUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HUD.h"; sourceTree = "<group>"; };
 		D4D9D0CE1BD8731500613AAC /* UIViewController+HUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+HUD.m"; sourceTree = "<group>"; };
 		D4D9D0D11BD8807100613AAC /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
@@ -1547,12 +1553,14 @@
 		4ADDB9821B5D235F002A188E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D4D7A6341C3CBFA200CDE49C /* LaunchScreen.xib */,
 				D4B9B7D41BFD714700D82286 /* SummerLoadingPageViewController.h */,
 				D4B9B7D51BFD714700D82286 /* SummerLoadingPageViewController.m */,
-				4ADDB9911B5D235F002A188E /* LaunchScreen.xib */,
 				4A118E121BA48FFC00BC2C4E /* WeCommunity-Prefix.pch */,
 				4ADDB9831B5D235F002A188E /* Info.plist */,
 				4AD3DFA91B731E4B007F51E0 /* Setting.plist */,
+				D4D7A62B1C3CBA3600CDE49C /* InfoPlish.strings */,
+				D4D7A6251C3CB8E100CDE49C /* Localizable.strings */,
 				4ADDB9841B5D235F002A188E /* main.m */,
 			);
 			name = "Supporting Files";
@@ -2080,7 +2088,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4ADDB9761B5D235F002A188E;
 			productRefGroup = 4ADDB9801B5D235F002A188E /* Products */;
@@ -2107,15 +2115,18 @@
 				D452F2401BDDC3FA0031C5C8 /* SummerMessageCenterTableViewCell.xib in Resources */,
 				D42BB1291BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.xib in Resources */,
 				4A118EBA1BA4900400BC2C4E /* ELCAlbumPickerController.xib in Resources */,
+				D4D7A6231C3CB8E100CDE49C /* Localizable.strings in Resources */,
 				D4D4008A1BDF72EC005F6095 /* SummerPriceListTableViewCell.xib in Resources */,
 				4A118EBE1BA4900400BC2C4E /* Overlay@2x.png in Resources */,
 				D45206911BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.xib in Resources */,
+				D4D7A6291C3CBA3600CDE49C /* InfoPlish.strings in Resources */,
 				D43E667C1C0DA7C50090E1E2 /* HomeStoryboard.storyboard in Resources */,
 				D45939AB1BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.xib in Resources */,
 				D454E8411BE481310089333D /* AlipaySDK.bundle in Resources */,
 				D41275F21BDE044C008BD610 /* SummerMemberManagerTableViewCell.xib in Resources */,
 				D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */,
 				D4AC4C081BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.xib in Resources */,
+				D4D7A6351C3CBFA200CDE49C /* LaunchScreen.xib in Resources */,
 				D42BB12E1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.xib in Resources */,
 				D43BD0831BDA1CD1002FFD02 /* SummerUserViewTableViewCell.xib in Resources */,
 				D4FCD0EB1C1954A00007B040 /* SummerIntergralDetailTableViewCell.xib in Resources */,
@@ -2130,7 +2141,6 @@
 				D43E667E1C0DA8150090E1E2 /* BusinessStoryboard.storyboard in Resources */,
 				D48F8ED21C1567860003C010 /* SummerCollectionTableViewCell.xib in Resources */,
 				D4FCD0F31C19598D0007B040 /* SummerSelectAddressTableViewCell.xib in Resources */,
-				4ADDB9931B5D235F002A188E /* LaunchScreen.xib in Resources */,
 				4A118EBB1BA4900400BC2C4E /* ELCAssetPicker.xib in Resources */,
 				4A118EBC1BA4900400BC2C4E /* ELCAssetTablePicker.xib in Resources */,
 				4AD3DFAA1B731E4B007F51E0 /* Setting.plist in Resources */,
@@ -2433,12 +2443,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4ADDB9911B5D235F002A188E /* LaunchScreen.xib */ = {
+		D4D7A6251C3CB8E100CDE49C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				4ADDB9921B5D235F002A188E /* Base */,
+				D4D7A6311C3CBCF700CDE49C /* en */,
+				D4D7A6331C3CBD1400CDE49C /* zh-Hans */,
 			);
-			name = LaunchScreen.xib;
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D4D7A62B1C3CBA3600CDE49C /* InfoPlish.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4D7A6301C3CBCF700CDE49C /* en */,
+				D4D7A6321C3CBD1400CDE49C /* zh-Hans */,
+			);
+			name = InfoPlish.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2530,8 +2550,8 @@
 			baseConfigurationReference = 9914193A5A7538191672005B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2573,7 +2593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2584,9 +2604,9 @@
 			baseConfigurationReference = E6E47B11B814575EFB2FBC74 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Feitao Liang (GGDG8W8UQ9)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2628,7 +2648,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

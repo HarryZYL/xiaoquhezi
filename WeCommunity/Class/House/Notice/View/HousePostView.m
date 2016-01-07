@@ -22,13 +22,13 @@
         [self addSubview:self.noticeImg];
         
         self.headLabel = [[UILabel alloc] initWithFrame:CGRectMake(30, 0, 100, 30)];
-        self.headLabel.text = @"最新公告";
+        self.headLabel.text = NSLocalizedString(@"Home_Notice", nil);
         self.headLabel.textColor = fontColor;
         [self addSubview:self.headLabel];
         
         self.moreButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         self.moreButton.frame = CGRectMake(self.frame.size.width-65, 0, 55, 25);
-        [self.moreButton setTitle:@"更多" forState:UIControlStateNormal];
+        [self.moreButton setTitle:NSLocalizedString(@"Home_More", nil) forState:UIControlStateNormal];
         [self.moreButton setBackgroundImage:[UIImage imageNamed:@"更多"] forState:UIControlStateNormal];
         [self.moreButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.moreButton.tintColor = fontColor;

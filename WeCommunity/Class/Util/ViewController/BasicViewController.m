@@ -18,8 +18,8 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.rightItem = [[UIBarButtonItem alloc] initWithTitle:@"切换" style:UIBarButtonItemStylePlain target:self action:@selector(changeLoction)];
-        self.rightItem.title = @"切换";
+        self.rightItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Home_Switch", nil) style:UIBarButtonItemStylePlain target:self action:@selector(changeLoction)];
+        
         self.navigationItem.rightBarButtonItem = self.rightItem;
     }
     return self;

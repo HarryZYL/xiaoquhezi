@@ -29,7 +29,6 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     __weak typeof(self)weakSelf = self;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-//    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"清除记录" style:UIBarButtonItemStylePlain target:self action:@selector(clearCommunity)];
     btnClearItem = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnClearItem setTitle:@"清除记录" forState:UIControlStateNormal];
     [btnClearItem setTitleColor:THEMECOLOR forState:UIControlStateNormal];
@@ -38,7 +37,7 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:btnClearItem];
     self.navigationItem.rightBarButtonItem = rightItem;
     
-    self.title = @"切换小区";
+    self.title = NSLocalizedString(@"Switch_Community_Title", nil);
     strCommunityName = [Util getCommunityName];
     self.view.backgroundColor = [UIColor whiteColor];
     self.locationArr = @[@"玉兰香苑",@"幸福小区",@"光明小区"];
@@ -62,7 +61,7 @@
     
     UIButton *btnSelectCommunity = [UIButton buttonWithType:UIButtonTypeCustom];
     btnSelectCommunity.backgroundColor = [UIColor orangeColor];
-    [btnSelectCommunity setTitle:@"更换小区" forState:UIControlStateNormal];
+    [btnSelectCommunity setTitle:NSLocalizedString(@"Switch_Nearby_Community", nil) forState:UIControlStateNormal];
     [btnSelectCommunity addTarget:self action:@selector(selectCommunity) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnSelectCommunity];
     

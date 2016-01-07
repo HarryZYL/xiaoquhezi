@@ -7,7 +7,9 @@
 //
 
 #import "Networking.h"
-
+#import "AFHTTPRequestOperation.h"
+#import "AFHTTPRequestOperationManager.h"
+#import "AFURLSessionManager.h"
 
 @implementation Networking
 

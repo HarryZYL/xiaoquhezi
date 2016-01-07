@@ -1,0 +1,35 @@
+/* 
+  localizable.strings
+  WeCommunity
+
+  Created by madarax on 16/1/6.
+  Copyright © 2016年 Jack. All rights reserved.
+*/
+//登陆，注册
+"Login_Title"         = "login";
+"Login_Forget_Psw"    = "reset password";
+"Login_Register"      = "enroll";
+"Login_Name_Text"     = "phone number";
+"Login_Password_Text" = "password";
+"Login_WeChat"        = "WeChat Login";
+
+"Register_Psw"      = "password agin";
+"Register_Auth"     = "auth code";
+"Register_Get_Auth" = "auth code";
+"Forget_Psw_Title" = "Retrieve Password";
+"Forget_Psw_Text" = "new passsword";
+"Forget_Psw_Reset" = "Reset";
+//首页
+"Home_Switch"    = "switch";
+"Home_More"      = "more";
+"Home_Repair"    = "repair";
+"Home_Integral"  = "integral";
+"Home_Rent"      = "rent";
+"Home_Pay"       = "pay";
+"Home_Express"   = "express";
+"Home_Praise"    = "praise";
+"Home_Complaint" = "complaint";
+"Home_Notice"    = "notice";
+
+"Switch_Community_Title" = "Select Community";
+"Switch_Nearby_Community" = "Nearby Community";

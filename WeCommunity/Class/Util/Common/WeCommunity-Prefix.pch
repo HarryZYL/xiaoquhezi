@@ -14,9 +14,7 @@
 
 
 #import "SummerConstApi.h"
-#import "AFHTTPRequestOperation.h"
-#import "AFHTTPRequestOperationManager.h"
-#import "AFURLSessionManager.h"
+
 #import "MWPhotoBrowser.h"
 #import "DOPDropDownMenu.h"
 #import "RDRStickyKeyboardView.h"

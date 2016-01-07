@@ -28,9 +28,7 @@
     [self.view addSubview:self.cityTableView];
     
     NSArray *arrary = [SummerCitysDao selectCitysItem];
-    
-//    NSDictionary *dic = [FileManager getData:@"All_City_Name"];
-//    _cityArrary = dic[@"citys_Name"];
+
     if (arrary.count < 1) {
         [self initOfData];
     }else{
@@ -101,23 +99,21 @@
     _mProgressHUD.labelText = @"努力加载中...";
     [_mProgressHUD show:YES];
     __weak typeof(self)weakSelf = self;
-    if ([CLLocationManager locationServicesEnabled]) {
-        [Networking retrieveData:get_ONLY_CITY parameters:nil success:^(id responseObject) {
-            NSArray *sortedArrary = [responseObject sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
-                return [obj1[@"pinyin"] compare:obj2[@"pinyin"]];
-            }];
-            NSLog(@"---->%@",sortedArrary);
-            dispatch_async(dispatch_get_global_queue(0, 0), ^{
-                [SummerCitysDao insertNumberOfCitys:sortedArrary];
-            });
-            
-            [weakSelf confirmCotysOfID:sortedArrary];
-            [weakSelf.mProgressHUD removeFromSuperview];
-            
-            [_cityTableView reloadData];
+
+    [Networking retrieveData:get_ONLY_CITY parameters:nil success:^(id responseObject) {
+        NSArray *sortedArrary = [responseObject sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+            return [obj1[@"pinyin"] compare:obj2[@"pinyin"]];
         }];
-    
-    }
+        NSLog(@"---->%@",sortedArrary);
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [SummerCitysDao insertNumberOfCitys:sortedArrary];
+        });
+        
+        [weakSelf confirmCotysOfID:sortedArrary];
+        [weakSelf.mProgressHUD removeFromSuperview];
+        
+        [_cityTableView reloadData];
+    }];
 
 }
 

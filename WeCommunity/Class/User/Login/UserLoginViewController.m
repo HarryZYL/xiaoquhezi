@@ -63,7 +63,7 @@ static int timeToGetCaptcha = 60;
 -(void)signin:(id)sender{
     UserLoginViewController *signinView = [[UserLoginViewController alloc] init];
     signinView.function = @"register";
-    [self pushVC:signinView title:@"注册新用户"];
+    [self pushVC:signinView title:NSLocalizedString(@"Login_Register", nil)];
     
 }
 
@@ -71,7 +71,7 @@ static int timeToGetCaptcha = 60;
 -(void)forgetPassword:(id)sender{
     UserLoginViewController *forgetView = [[UserLoginViewController alloc] init];
     forgetView.function = @"forget";
-    [self pushVC:forgetView title:@"忘记密码"];
+    [self pushVC:forgetView title:NSLocalizedString(@"Forget_Psw_Title", nil)];
 }
 
 // 封装的跳转方法
@@ -235,7 +235,6 @@ static int timeToGetCaptcha = 60;
     }else{
         //绑定手机
         SummerPhoneViewController *forgetView = [[SummerPhoneViewController alloc] init];
-        
         [self pushVC:forgetView title:@"绑定手机号"];
     }
 }
