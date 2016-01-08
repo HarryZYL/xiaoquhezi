@@ -39,7 +39,7 @@
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imgViewError.image = [UIImage imageNamed:@"暂无数据"];
+    _imgViewError.image = [UIImage imageNamed:@"暂无数据168"];
     _imgViewError.contentMode = UIViewContentModeCenter;
     _imgViewError.hidden = YES;
     [self.view addSubview:_imgViewError];
@@ -239,7 +239,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1000;
         [alertView show];
-    }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+    }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
         TextPostViewController *textPostVC = [[TextPostViewController alloc] init];
         textPostVC.function = self.function;
         textPostVC.delegate = self;

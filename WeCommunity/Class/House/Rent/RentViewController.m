@@ -290,7 +290,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1000;
         [alertView show];
-    }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+    }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
         if ([self.function isEqualToString:@"rent"]) {//房屋租售／卖房
             orderSelectView.alpha = 1;
         }else if([self.function isEqualToString:@"activity"]){

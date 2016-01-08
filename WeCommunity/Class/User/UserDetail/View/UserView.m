@@ -27,7 +27,7 @@
         user = [User shareUserDefult];
         authenType = [User getAuthenticationOwnerType];
         if (user.userJinDic.jinLevel == nil) {//不是金马会员
-            if ([authenType isEqualToString:@"认证户主"]) {
+            if ([authenType isEqualToString:@"户主"]) {
                 _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"设置"];
                 _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"设置"];
             }else{
@@ -35,7 +35,7 @@
                 _functionImage = @[@"我的活动",@"缴费记录",@"设置"];
             }
         }else{
-            if ([authenType isEqualToString:@"认证户主"]) {
+            if ([authenType isEqualToString:@"户主"]) {
                 _functionArray = @[@"成员管理",@"租售管理",@"缴费记录",@"扫描二维码",@"设置"];
                 _functionImage = @[@"我的房屋",@"我的活动",@"缴费记录",@"扫码40x40",@"设置"];
             }else{

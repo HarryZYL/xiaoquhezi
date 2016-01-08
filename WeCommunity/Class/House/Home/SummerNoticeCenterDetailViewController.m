@@ -281,7 +281,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SummerNoticeCenterDetailModel *detailNotice = _arraryData[indexPath.row];
     _identifyNotice = detailNotice.detailNoticeModel;
-    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"业主"]) {
         self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_identifyNotice.creatorInFo.nickName];
         self.summerInputView.btnAddImg.hidden = YES;
 //        self.summerInputView.summerInputView.frame = CGRectMake(10, 5, SCREENSIZE.width - 88, 30);
@@ -440,7 +440,7 @@
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
-    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"业主"]) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         hud.labelText = @"上传中";
         hud.dimBackground = YES;

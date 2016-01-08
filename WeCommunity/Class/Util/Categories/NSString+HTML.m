@@ -148,9 +148,9 @@
     NSString *owerType = @"";
     if([auditStatus isEqualToString:@"Success"]){
         if ([ownerType isEqualToString:@"Owner"]) {
-            owerType = @"认证户主";
+            owerType = @"户主";
         }else if ([ownerType isEqualToString:@"NoOwner"]){
-            owerType = @"认证业主";
+            owerType = @"业主";
         }
     }else if([auditStatus isEqualToString:@"Pending"]){
         owerType = @"未受理";

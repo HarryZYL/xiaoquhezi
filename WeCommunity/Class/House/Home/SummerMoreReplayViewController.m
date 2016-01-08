@@ -101,7 +101,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     _defaultNoticeModel = _arraryData[indexPath.row];
-    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"业主"]) {
     
         self.summerInputView.summerInputView.text = [NSString stringWithFormat:@"回复 %@",_defaultNoticeModel.creatorInFo.nickName];
         
@@ -113,7 +113,7 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     if (textField == self.summerInputView.summerInputView) {
-        if (![[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] && ![[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]){
+        if (![[User getAuthenticationOwnerType] isEqualToString:@"户主"] && ![[User getAuthenticationOwnerType] isEqualToString:@"业主"]){
             [self showHint:@"认证后，才能评论"];
             [textField resignFirstResponder];
         }
@@ -123,7 +123,7 @@
 //发送信息
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     [self.summerInputView.summerInputView resignFirstResponder];
-    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"业主"]) {
         if (_summerInputView.summerInputView.text.length < 1) {
             [self showHint:@"内容不能为空"];
             return;

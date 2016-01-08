@@ -180,7 +180,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1000;
         [alertView show];
-    }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+    }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
         BillViewController *billVC = [[BillViewController alloc] init];
         [self pushVC:billVC title:@"账单"];
     }else if ([userAuthType isEqualToString:@"认证失败"]){
@@ -275,7 +275,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
-            }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 [self userRent];//租售管理
             }else if ([userAuthType isEqualToString:@"认证失败"]){
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
@@ -295,7 +295,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
-            }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 SummerPaymentRecordsTableViewController *paymentRecordsVC = [[SummerPaymentRecordsTableViewController alloc] init];
                 paymentRecordsVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:paymentRecordsVC animated:YES];
@@ -316,7 +316,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
-            }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 SummerMessageCenterTableViewController*messageCenterVC = [[SummerMessageCenterTableViewController alloc] init];
                 messageCenterVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:messageCenterVC animated:YES];
@@ -342,7 +342,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
-            }else if ([userAuthType isEqualToString:@"认证户主"] || [userAuthType isEqualToString:@"认证业主"]){
+            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 SummerMemberManagerTableViewController *memberVC = [[SummerMemberManagerTableViewController alloc] init];
                 [self pushVC:memberVC title:nil];
             }else if ([userAuthType isEqualToString:@"认证失败"]){

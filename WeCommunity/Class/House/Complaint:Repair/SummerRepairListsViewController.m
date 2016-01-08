@@ -285,7 +285,7 @@
 - (void)btnSenderMessageWithAddImage:(UIButton *)sender{
     [self.view endEditing:YES];
     NSLog(@"123---%@",self.summerInputView.summerInputView.text);
-    if ([[User getAuthenticationOwnerType] isEqualToString:@"认证户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"认证业主"]) {
+    if ([[User getAuthenticationOwnerType] isEqualToString:@"户主"] || [[User getAuthenticationOwnerType] isEqualToString:@"业主"]) {
         if (self.summerInputView.summerInputView.text.length < 1 && self.chosenImages.count < 1) {
             [self showHint:@"发送内容和图片不能都为空"];
             return;
