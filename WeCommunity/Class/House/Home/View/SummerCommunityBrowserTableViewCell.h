@@ -10,7 +10,12 @@
 
 @interface SummerCommunityBrowserTableViewCell : UITableViewCell
 
+@property(nonatomic ,weak)IBOutlet NSLayoutConstraint *lineConstaint;
+
+@property(nonatomic ,weak)IBOutlet UILabel *lineHorizontalBootom;
+
 @property(nonatomic ,weak)IBOutlet UILabel *titleLab;
+@property(nonatomic ,weak)IBOutlet UILabel *phoneLab;
 @property(nonatomic ,weak)IBOutlet UIButton *btnPhoneNumber;
 @property(nonatomic ,weak)IBOutlet UIView *bgView;
 

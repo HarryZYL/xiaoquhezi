@@ -26,10 +26,12 @@
     if ([self.function isEqualToString:@"complaint"]) {
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"ComplaintUpdate" object:nil];
     }else if([self.function isEqualToString:@"repair"]){
         [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"报修" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"RepairUpdate" object:nil];
     }
     
     
@@ -295,6 +297,10 @@
 
 - (void)issueInformationSeccess{
     [self refreshHeader];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

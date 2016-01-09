@@ -20,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = [UIColor whiteColor];
     __weak typeof(self)weakSelf = self;
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FIRST_LOGING"]) {

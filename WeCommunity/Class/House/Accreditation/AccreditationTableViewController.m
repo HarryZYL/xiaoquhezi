@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"Update_Accreditation" object:nil];
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
@@ -153,6 +153,10 @@
     AccreditationPostViewController *acVC = [[AccreditationPostViewController alloc] init];
     acVC.delegate = self;
     [self.navigationController pushViewController:acVC animated:YES];
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -14,6 +14,7 @@
 {
     NSMutableArray *arraryData;
     UITableView *mTableView;
+    UIImageView *headerView;
 }
 @end
 
@@ -23,11 +24,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"小区一览";
+    headerView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, 190)];
+    headerView.image = [UIImage imageNamed:@"my_personal_not_login_bg.jpg"];
+    [self.view addSubview:headerView];
+    self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
+    
     arraryData = [[NSMutableArray alloc] init];
-    mTableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    mTableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 190 + 74, SCREENSIZE.width - 20, SCREENSIZE.height - 190 - 74) style:UITableViewStylePlain];
+    mTableView.backgroundColor = self.view.backgroundColor;
     mTableView.delegate = self;
     mTableView.dataSource = self;
-    mTableView.rowHeight = 70;
+    mTableView.rowHeight = 60;
     mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     mTableView.tableFooterView = [[UIView alloc]init];
     [self.view addSubview:mTableView];
@@ -43,22 +50,8 @@
         if (arraryData.count < 1) {
             [self showHint:@"暂无信息"];
         }
-        NSLog(@"123");
         [mTableView reloadData];
     }];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 173;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [tableView dequeueReusableCellWithIdentifier:@"headerView"];
-    if (!headerView) {
-        headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 173)];
-    }
-    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"my_personal_not_login_bg.jpg"]];
-    return headerView;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -71,8 +64,18 @@
         cell = [[NSBundle mainBundle] loadNibNamed:@"SummerCommunityBrowserTableViewCell" owner:self options:nil].firstObject;
         [cell.btnPhoneNumber addTarget:self action:@selector(communityPhone:) forControlEvents:UIControlEventTouchUpInside];
     }
+    if (indexPath.row%2 == 0) {
+        cell.bgView.backgroundColor = [UIColor colorWithWhite:0.965 alpha:1.000];
+    }else{
+        cell.bgView.backgroundColor = [UIColor whiteColor];
+    }
+    if (indexPath.row == arraryData.count - 1) {
+        cell.lineHorizontalBootom.hidden = NO;
+    }
     NSDictionary *dicTemp = arraryData[indexPath.row];
-    cell.titleLab.text = [NSString stringWithFormat:@"%@：%@",dicTemp[@"name"],dicTemp[@"phone"]];
+    
+    cell.titleLab.text = dicTemp[@"name"];
+    cell.phoneLab.text = dicTemp[@"phone"];
     return cell;
 }
 

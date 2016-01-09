@@ -30,10 +30,9 @@
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
     [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
-    [[PgyManager sharedPgyManager] setEnableFeedback:NO];
+    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
     [User getUserModel];
     [User login];
-    
 
     return YES;
 }
@@ -46,13 +45,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     //注册成功，把deviceToken发给后台
-    NSLog(@"------>%@",deviceToken);
-    User *userModel = [User shareUserDefult];
     [BPush registerDeviceToken:deviceToken];
-    if ([User getUserToken] && [BPush getChannelId] && userModel.Userid) {
-        [Networking retrieveData:get_Baidu_Push parameters:@{@"token": [User getUserToken],@"userId":userModel.Userid,@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
-    }
-    
     
     [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
         // 需要在绑定成功后进行 settag listtag deletetag unbind 操作否则会失败
@@ -70,12 +63,25 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //推送消息
     NSLog(@"----->%@",userInfo);
-    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
-    if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
-        NSLog(@"acitve or background");
-        UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        [alertView show];
+    if ([userInfo[@"dataType"] isEqualToString:@"accreditation"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"Update_Accreditation" object:userInfo];
+        [User login];
     }
+    if ([userInfo[@"dataType"] isEqualToString:@"notice"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"NoticeUpdate" object:userInfo];
+    }
+    if ([userInfo[@"dataType"] isEqualToString:@"complaint"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ComplaintUpdate" object:userInfo];
+    }
+    if ([userInfo[@"dataType"] isEqualToString:@"repair"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"RepairUpdate" object:userInfo];
+    }
+    
+//    if (application.applicationState == UIApplicationStateActive || application.applicationState == UIApplicationStateBackground) {
+//        NSLog(@"acitve or background");
+//        UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"收到一条消息" message:userInfo[@"aps"][@"alert"] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//        [alertView show];
+//    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -102,7 +108,6 @@
 
     [[UINavigationBar appearance] setBarTintColor:[UIColor whiteColor]];
     
-//    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
     NSDictionary *attributes = @{
                                  NSUnderlineStyleAttributeName: @1,
                                  NSForegroundColorAttributeName : THEMECOLOR,
@@ -132,18 +137,20 @@
     }
     
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-    if ([[UIDevice currentDevice] systemVersion].floatValue < 8.0) {
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |UIRemoteNotificationTypeSound | UIRemoteNotificationTypeAlert];
-    }else{
-        UIUserNotificationSettings * s =[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge categories:nil];
-        [[UIApplication sharedApplication] registerUserNotificationSettings:s];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType myTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:myTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
     }
-
-    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:@"回复" withSecondAction:nil withCategory:nil isDebug:NO];
+//l6923BycoPgnF11rWXOAdLIG 发布环境
+//T8GeKkoPAu6fEaVdWAFo7G7p 开发环境
+    [BPush registerChannel:launchOptins apiKey:@"T8GeKkoPAu6fEaVdWAFo7G7p" pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
-        NSLog(@"从消息启动:%@",userInfo);
+        NSLog(@"---->从消息启动:%@",userInfo);
         [BPush handleNotification:userInfo];
     }
 #if TARGET_IPHONE_SIMULATOR
@@ -215,6 +222,10 @@
     [application registerForRemoteNotifications];
     
     
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

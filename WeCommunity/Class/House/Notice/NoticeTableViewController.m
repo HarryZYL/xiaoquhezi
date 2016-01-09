@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     self.page = 1;
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"NoticeUpdate" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView registerClass:[ BasicTableViewCell class ] forCellReuseIdentifier:@"cell"];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

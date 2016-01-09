@@ -12,10 +12,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _bgView.layer.cornerRadius = 3;
-    _bgView.layer.masksToBounds = YES;
-    _bgView.layer.borderColor = [UIColor grayColor].CGColor;
-    _bgView.layer.borderWidth = 1;
+//    _bgView.layer.masksToBounds = YES;
+//    _bgView.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
+//    _bgView.layer.borderWidth = .5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

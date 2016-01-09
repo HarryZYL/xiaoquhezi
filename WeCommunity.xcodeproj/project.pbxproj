@@ -39,7 +39,6 @@
 		4A4C15E71BAAB0760040085C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4C15E61BAAB0760040085C /* CoreTelephony.framework */; };
 		4A6037201BBC99F000D3A067 /* BottomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A60371F1BBC99F000D3A067 /* BottomButton.m */; };
 		4A6B35811BBF754D007D3BFE /* TextDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6B35801BBF754D007D3BFE /* TextDetailTableViewController.m */; };
-		4AA9F8201BA4A6D7006284FF /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9F81F1BA4A6D7006284FF /* MapKit.framework */; };
 		4AA9F8301BA71EDB006284FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */; };
 		4AA9F8371BA87685006284FF /* UILabel+style.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9F8361BA87685006284FF /* UILabel+style.m */; };
 		4AB6B2571BAF0F41000E5FBA /* CameraImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB6B2561BAF0F41000E5FBA /* CameraImageView.m */; };
@@ -339,7 +338,6 @@
 		4A60371F1BBC99F000D3A067 /* BottomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BottomButton.m; sourceTree = "<group>"; };
 		4A6B357F1BBF754D007D3BFE /* TextDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDetailTableViewController.h; sourceTree = "<group>"; };
 		4A6B35801BBF754D007D3BFE /* TextDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetailTableViewController.m; sourceTree = "<group>"; };
-		4AA9F81F1BA4A6D7006284FF /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		4AA9F8351BA87685006284FF /* UILabel+style.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+style.h"; sourceTree = "<group>"; };
 		4AA9F8361BA87685006284FF /* UILabel+style.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+style.m"; sourceTree = "<group>"; };
@@ -852,7 +850,6 @@
 				4AA9F8301BA71EDB006284FF /* CoreLocation.framework in Frameworks */,
 				D4D9D0D81BD8807100613AAC /* BaiduMapAPI_Base.framework in Frameworks */,
 				D4D9D0DC1BD8807100613AAC /* BaiduMapAPI_Radar.framework in Frameworks */,
-				4AA9F8201BA4A6D7006284FF /* MapKit.framework in Frameworks */,
 				3611BC9A83171F384CDA3C36 /* libPods.a in Frameworks */,
 				D454EA361BE48F800089333D /* libcrypto.a in Frameworks */,
 			);
@@ -1608,7 +1605,6 @@
 				4A4C15E61BAAB0760040085C /* CoreTelephony.framework */,
 				4A4C15E41BAAA2750040085C /* SystemConfiguration.framework */,
 				4AA9F82F1BA71EDB006284FF /* CoreLocation.framework */,
-				4AA9F81F1BA4A6D7006284FF /* MapKit.framework */,
 				9A6A45E73D8E9EF485B0A714 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -2070,6 +2066,9 @@
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -2593,7 +2592,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "17976594-efcf-4749-8bba-52ca2271c86b";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};
@@ -2648,7 +2647,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lixiait.xiaoquhezi;
 				PRODUCT_NAME = "小区盒子";
-				PROVISIONING_PROFILE = "05f09768-9e68-431a-82fa-f2114678499c";
+				PROVISIONING_PROFILE = "17976594-efcf-4749-8bba-52ca2271c86b";
 				TARGETED_DEVICE_FAMILY = 1;
 				USE_HEADERMAP = YES;
 			};

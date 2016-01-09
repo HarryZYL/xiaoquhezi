@@ -30,21 +30,11 @@
     __weak typeof(self)weakSelf = self;
     self.title = @"附近的小区";
     strCityName = [[NSUserDefaults standardUserDefaults] objectForKey:@"CITY_NAME"];
-    isLocation = YES;
+    isLocation  = YES;
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     _dataArrary = [[NSMutableArray alloc] initWithCapacity:10];
     UIBarButtonItem *cityItem  = [[UIBarButtonItem alloc] initWithTitle:@"切换城市" style:UIBarButtonItemStylePlain target:self action:@selector(selectCityOfName)];
     self.navigationItem.rightBarButtonItem = cityItem;
-    
-    CLLocationCoordinate2D locationCoordinate;
-    locationCoordinate.longitude = [[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"] doubleValue];
-    locationCoordinate.latitude  =  [[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"] doubleValue];
-    BMKReverseGeoCodeOption *codeOption = [[BMKReverseGeoCodeOption alloc] init];
-    codeOption.reverseGeoPoint = locationCoordinate;
-    
-    _geocodeSearch = [[BMKGeoCodeSearch alloc] init];
-    _geocodeSearch.delegate = self;
-    [_geocodeSearch reverseGeoCode:codeOption];
     
     UIView *bgView = [UIView new];
     bgView.backgroundColor = [UIColor whiteColor];
@@ -88,6 +78,38 @@
     _mTabelView.delegate   = self;
     _mTabelView.dataSource = self;
     [self.view addSubview:_mTabelView];
+    [self getGeocodeCity];
+}
+
+- (void)getGeocodeCity{
+    CLLocationCoordinate2D locationCoordinate;
+    locationCoordinate.longitude = [[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LONG"] doubleValue];
+    locationCoordinate.latitude  =  [[[NSUserDefaults standardUserDefaults] objectForKey:@"USER_LAT"] doubleValue];
+    
+//    CLGeocoder *geocoder = [[CLGeocoder alloc]init];
+//    
+//    CLLocation *location = [[CLLocation alloc] initWithLatitude:locationCoordinate.latitude longitude:locationCoordinate.longitude];
+//    [geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+//        if (placemarks.count > 0) {
+//            strCityName = placemarks.firstObject.addressDictionary[@"name"];
+//        }
+//    }];
+    
+    BMKReverseGeoCodeOption *codeOption = [[BMKReverseGeoCodeOption alloc] init];
+    codeOption.reverseGeoPoint = locationCoordinate;
+    
+    _geocodeSearch = [[BMKGeoCodeSearch alloc] init];
+    _geocodeSearch.delegate = self;
+    BOOL flag = [_geocodeSearch reverseGeoCode:codeOption];
+    
+    if(flag)
+    {
+        NSLog(@"反geo检索发送成功");
+    }
+    else
+    {
+        NSLog(@"反geo检索发送失败");
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -98,7 +120,7 @@
     return YES;
 }
 
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
+-(void) onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error{
     strCityName = result.addressDetail.city;
     _mTextField.placeholder = [NSString stringWithFormat:@"搜索%@的小区",strCityName];
     [[NSUserDefaults standardUserDefaults] setObject:strCityName forKey:@"CITY_NAME"];

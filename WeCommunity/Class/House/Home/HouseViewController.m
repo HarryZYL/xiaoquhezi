@@ -55,6 +55,7 @@
     [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
     self.navigationItem.titleView = titleViewItem;
     [self setupAppearance];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"NoticeUpdate" object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -399,6 +400,9 @@
 }
 
 -(void)noticeDetail{
+    if (!self.headView.pageView.adPageControl.currentPage && self.noticeData.count < 1) {
+        return;
+    }
     NSDictionary *dicTemp = self.noticeData[self.headView.pageView.adPageControl.currentPage];
     SummerNoticeCenterDetailViewController *noticeVC = [[SummerNoticeCenterDetailViewController alloc] init];
     noticeVC.strNoticeID = dicTemp[@"id"];
@@ -493,7 +497,7 @@
 }
 
 - (void)dealloc{
-    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

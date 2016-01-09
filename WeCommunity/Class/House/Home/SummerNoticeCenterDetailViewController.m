@@ -48,12 +48,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"公告详情";
     _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, SCREENSIZE.height - IMPUT_VIEW_HEIGHT) style:UITableViewStyleGrouped];
     self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getReceveData)];
     self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
-
+    
     _mTableView.dataSource = self;
     _mTableView.delegate   = self;
     
@@ -73,6 +74,14 @@
     [self getTableViewHeaderData];
     
     [self getReceveData];
+}
+
+- (void)retrireveDataUpdate:(NSNotification *)sender{
+    NSString *strCommunityID = sender.userInfo[@"communityId"];
+    NSString *strID = sender.userInfo[@"id"];
+    if ([strCommunityID isEqualToString:[Util getCommunityID]] && [strID isEqualToString:_strNoticeID]) {
+        [self getReceveData];
+    }
 }
 
 - (void)getTableViewHeaderData{
@@ -530,6 +539,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveDataUpdate:) name:@"NoticeUpdate" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }

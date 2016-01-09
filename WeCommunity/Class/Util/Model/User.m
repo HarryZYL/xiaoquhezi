@@ -7,6 +7,7 @@
 //
 #import <objc/runtime.h>
 #import "User.h"
+#import "BPush.h"
 #import "FileManager.h"
 
 @implementation User
@@ -51,26 +52,31 @@ static User *shareUserModel = nil;
 }
 
 - (void) initWithData:(NSDictionary *)dataAll {
-    NSDictionary *data = dataAll[@"user"];
-    self.Userid        = data[@"id"];
-    self.token         = dataAll[@"token"];
-    self.userName = data[@"userName"];
+    NSDictionary *data     = dataAll[@"user"];
+    self.Userid            = data[@"id"];
+    self.token             = dataAll[@"token"];
+    self.userName          = data[@"userName"];
     self.continuousSignDay = data[@"continuousSignDay"];
-    self.nickName = data[@"nickName"];
-    self.job = data[@"job"];
-    self.point = data[@"point"];
-    self.sex = data[@"sex"];
-    self.sexName = data[@"sexName"];
-    self.totalSignDay = data[@"totalSignDay"];
-    self.userType = data[@"userType"];
-    self.userTypeName = data[@"userTypeName"];
-    self.lastSignTime = [Util formattedDate:data[@"lastSignTime"] type:1];
-    self.createTime = [Util formattedDate:data[@"createTime"] type:1];
-    self.communityId = data[@"communityId"];
-    self.headPhoto = [NSURL URLWithString:[NSString stringWithFormat:@"%@",data[@"headPhoto"]]];
+    self.nickName          = data[@"nickName"];
+    self.job               = data[@"job"];
+    self.point             = data[@"point"];
+    self.sex               = data[@"sex"];
+    self.sexName           = data[@"sexName"];
+    self.totalSignDay      = data[@"totalSignDay"];
+    self.userType          = data[@"userType"];
+    self.userTypeName      = data[@"userTypeName"];
+    self.lastSignTime      = [Util formattedDate:data[@"lastSignTime"] type:1];
+    self.createTime        = [Util formattedDate:data[@"createTime"] type:1];
+    self.communityId       = data[@"communityId"];
+    self.headPhoto         = [NSURL URLWithString:[NSString stringWithFormat:@"%@",data[@"headPhoto"]]];
     self.continuousSignDay = data[@"continuousSignDay"];
-    self.userJinDic = [[SummerJinMaHuiModel alloc] initWithData:data[@"memberUser"]];
-    self.hobby = data[@"hobby"];
+    self.userJinDic        = [[SummerJinMaHuiModel alloc] initWithData:data[@"memberUser"]];
+    self.hobby             = data[@"hobby"];
+    
+    if ([User getUserToken] && [BPush getChannelId] && self.Userid) {
+        
+        [Networking retrieveData:get_Baidu_Push parameters:@{@"token": self.token,@"userId":[BPush getUserId],@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
+    }
     [self saveKeyUnarchiver];
 }
 
@@ -122,20 +128,21 @@ static User *shareUserModel = nil;
         if (userModel.loginUserName == nil||userModel.loginPassword == nil) {
             return;
         }
-        parameters = @{@"phoneNumber":userModel.loginUserName,@"password":userModel.loginPassword};
+        parameters = @{@"phoneNumber":userModel.loginUserName,@"password":userModel.loginPassword,@"userLoginType":@"IPhone"};
         strUrl = phoneLogin;
     }else{
-        parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":userModel.Userid};
+        parameters = @{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":userModel.Userid,@"userLoginType":@"IPhone"};
         strUrl = get_WXAPP_LOADING;
     }
+    
     [Networking retrieveData:strUrl parameters:parameters success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
-        
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
-
+        
         [[User shareUserDefult] initWithData:data];
         [User SaveAuthentication];
     }];
+    
 }
 
 +(void)SaveAuthentication{
