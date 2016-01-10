@@ -374,7 +374,14 @@
     [super viewWillAppear:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateComplaintInfo:) name:@"ComplaintUpdate" object:nil];
 }
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)summerKeybordViewWillShow:(NSNotification *)aNotificaiton{
     NSDictionary* info = [aNotificaiton userInfo];
     NSValue  *keybordRect = [info objectForKey:UIKeyboardFrameEndUserInfoKey];
@@ -411,8 +418,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+- (void)updateComplaintInfo:(NSNotification *)sender{
+    if ([sender.userInfo[@"id"] isEqualToString:_strDetailID]) {
+        [self getReceveData];
+    }
 }
 
 /*

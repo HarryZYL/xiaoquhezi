@@ -26,6 +26,7 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
+    [self.tableView addSubview:self.loadingView];
     [self retrireveData];
 }
 
@@ -76,7 +77,6 @@
 #pragma mark networking
 
 -(void)retrireveData{
-    [self.tableView addSubview:self.loadingView];
     NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     [Networking retrieveData:getNoticesOfCommunity parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];

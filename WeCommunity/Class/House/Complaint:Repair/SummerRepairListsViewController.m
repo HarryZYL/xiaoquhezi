@@ -369,6 +369,7 @@
     [super viewWillAppear:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(summerKeybordViewWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentRepaireData:) name:@"RepairUpdate" object:nil];
 }
 - (void)summerKeybordViewWillShow:(NSNotification *)aNotificaiton{
     NSDictionary* info = [aNotificaiton userInfo];
@@ -402,6 +403,13 @@
 
 - (void)viewDidDisappear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)updateCurrentRepaireData:(NSNotification *)sender{
+    NSString *strRepairID = sender.userInfo[@"id"];
+    if ([strRepairID isEqualToString:_detailTextModel.Objectid]) {
+        [self getReceveData];
+    }
 }
 
 /*
