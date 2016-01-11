@@ -147,7 +147,7 @@
     }
 //l6923BycoPgnF11rWXOAdLIG 发布环境
 //T8GeKkoPAu6fEaVdWAFo7G7p 开发环境
-    [BPush registerChannel:launchOptins apiKey:@"T8GeKkoPAu6fEaVdWAFo7G7p" pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"---->从消息启动:%@",userInfo);

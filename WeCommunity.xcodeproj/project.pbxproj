@@ -187,6 +187,7 @@
 		D46774291C182EAD000E4E44 /* SummerBusinessSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D46774281C182EAD000E4E44 /* SummerBusinessSearchViewController.m */; };
 		D46ADC0D1BF3588A00AFA6DC /* SummerLikeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D46ADC0B1BF3588A00AFA6DC /* SummerLikeTableViewCell.m */; };
 		D46ADC0E1BF3588A00AFA6DC /* SummerLikeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46ADC0C1BF3588A00AFA6DC /* SummerLikeTableViewCell.xib */; };
+		D4721E021C435C5200F08A11 /* SummerNoInfoError.m in Sources */ = {isa = PBXBuildFile; fileRef = D4721E011C435C5200F08A11 /* SummerNoInfoError.m */; };
 		D474AB681BE387B20046F5F1 /* ThirdUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB671BE387B20046F5F1 /* ThirdUserModel.m */; };
 		D474AB6B1BE39CF40046F5F1 /* SummerInputPhoneNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB6A1BE39CF40046F5F1 /* SummerInputPhoneNumber.m */; };
 		D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D474AB701BE3B7890046F5F1 /* SummerBillConfirmViewController.m */; };
@@ -691,6 +692,8 @@
 		D46ADC0A1BF3588A00AFA6DC /* SummerLikeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerLikeTableViewCell.h; sourceTree = "<group>"; };
 		D46ADC0B1BF3588A00AFA6DC /* SummerLikeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerLikeTableViewCell.m; sourceTree = "<group>"; };
 		D46ADC0C1BF3588A00AFA6DC /* SummerLikeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerLikeTableViewCell.xib; sourceTree = "<group>"; };
+		D4721E001C435C5200F08A11 /* SummerNoInfoError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerNoInfoError.h; path = ComplaintCell/SummerNoInfoError.h; sourceTree = "<group>"; };
+		D4721E011C435C5200F08A11 /* SummerNoInfoError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerNoInfoError.m; path = ComplaintCell/SummerNoInfoError.m; sourceTree = "<group>"; };
 		D474AB381BE313A00046F5F1 /* SummerRegisterID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerRegisterID.h; path = "../../Other  /SummerRegisterID.h"; sourceTree = "<group>"; };
 		D474AB661BE387B20046F5F1 /* ThirdUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThirdUserModel.h; path = WeCommunity/Class/Util/Model/ThirdUserModel.h; sourceTree = SOURCE_ROOT; };
 		D474AB671BE387B20046F5F1 /* ThirdUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThirdUserModel.m; path = WeCommunity/Class/Util/Model/ThirdUserModel.m; sourceTree = SOURCE_ROOT; };
@@ -1899,6 +1902,8 @@
 				D4E508181BF25A050057AFDB /* SummerRepairListTableViewCell.xib */,
 				D44893B21C199761004FD9E8 /* SummerPriceListView.h */,
 				D44893B31C199761004FD9E8 /* SummerPriceListView.m */,
+				D4721E001C435C5200F08A11 /* SummerNoInfoError.h */,
+				D4721E011C435C5200F08A11 /* SummerNoInfoError.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2321,6 +2326,7 @@
 				D44EDC101BEDE379003C1E96 /* SummerHomeDetailNoticeModel.m in Sources */,
 				4ADDB9851B5D235F002A188E /* main.m in Sources */,
 				4ACCD0471BBF49600001227A /* OverViewViewController.m in Sources */,
+				D4721E021C435C5200F08A11 /* SummerNoInfoError.m in Sources */,
 				4A118E891BA48FFC00BC2C4E /* Networking.m in Sources */,
 				D4DBDE431BFEC05E0000BE3B /* SummerBusinessTableViewCell.m in Sources */,
 				4ACCCF651BBF46FE0001227A /* SAMTextView.m in Sources */,

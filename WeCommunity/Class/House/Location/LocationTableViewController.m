@@ -5,7 +5,7 @@
 //  Created by Harry on 8/30/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //
-
+#import "SummerNoInfoError.h"
 #import "LocationTableViewController.h"
 #import "SummerSelectCommunityViewController.h"
 
@@ -17,7 +17,7 @@
 }
 
 @property(nonatomic, strong)NSMutableArray *dataArrary;
-@property(nonatomic, strong)UIImageView *imgViewError;
+@property(nonatomic, strong)SummerNoInfoError *imgViewError;
 @end
 
 @implementation LocationTableViewController
@@ -53,14 +53,13 @@
     [self.view addSubview:_mTableView];
     self.mTableView.tableFooterView = [[UIView alloc]init];
     
-    _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imgViewError.image = [UIImage imageNamed:@"暂无数据168"];
-    _imgViewError.contentMode = UIViewContentModeCenter;
+    _imgViewError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
+    _imgViewError.labNoError.text = @"暂无信息";
     _imgViewError.hidden = YES;
     [self.view addSubview:_imgViewError];
     
     UIButton *btnSelectCommunity = [UIButton buttonWithType:UIButtonTypeCustom];
-    btnSelectCommunity.backgroundColor = [UIColor orangeColor];
+    btnSelectCommunity.backgroundColor = THEMECOLOR;
     [btnSelectCommunity setTitle:NSLocalizedString(@"Switch_Nearby_Community", nil) forState:UIControlStateNormal];
     [btnSelectCommunity addTarget:self action:@selector(selectCommunity) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnSelectCommunity];

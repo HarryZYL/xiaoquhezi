@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
+    barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 40, 44)];
     User *userInfo = [User shareUserDefult];
     [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
     UITapGestureRecognizer *titleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userOption:)];
@@ -48,12 +48,13 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
     
     titleViewItem = [UIButton buttonWithType:UIButtonTypeCustom];
+//    titleViewItem.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     titleViewItem.frame = self.navigationItem.titleView.frame;
-    
     [titleViewItem addTarget:self action:@selector(titleNavigationTap) forControlEvents:UIControlEventTouchUpInside];
     [titleViewItem setTitleColor:[UIColor colorWithRed:61/255.0 green:204/255.0 blue:180/255.0 alpha:1] forState:UIControlStateNormal];
     [titleViewItem setTitle:[Util getCommunityName] forState:UIControlStateNormal];
     self.navigationItem.titleView = titleViewItem;
+    
     [self setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"NoticeUpdate" object:nil];
 }

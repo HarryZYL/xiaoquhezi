@@ -61,6 +61,7 @@
     _mTextField.placeholder = @"搜索附近的小区";
     _mTextField.delegate = self;
     _mTextField.returnKeyType = UIReturnKeySearch;
+    [_mTextField addTarget:self action:@selector(searchContentWithText) forControlEvents:UIControlEventValueChanged];
     UIImageView *searchImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"search"]];
     searchImageView.frame = CGRectMake(0, 0, 26, 36);
     searchImageView.contentMode = UIViewContentModeCenter;

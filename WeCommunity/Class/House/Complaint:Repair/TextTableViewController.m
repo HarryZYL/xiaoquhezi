@@ -5,7 +5,7 @@
 //  Created by Harry on 7/21/15.
 //  Copyright (c) 2015 Harry. All rights reserved.
 //  报修列表
-
+#import "SummerNoInfoError.h"
 #import "TextTableViewController.h"
 #import "UIViewController+HUD.h"
 #import "SummerRepairListTableViewCell.h"
@@ -14,7 +14,7 @@
 
 @interface TextTableViewController ()<MWPhotoBrowserDelegate ,TextPostViewControllerDelegate ,UIAlertViewDelegate ,SummerRepairListTableViewCellDelegate>
 @property (nonatomic ,strong) NSMutableArray *photos;
-@property (nonatomic ,strong) UIImageView *imgViewError;
+@property (nonatomic ,strong) SummerNoInfoError *imgViewError;
 @end
 
 @implementation TextTableViewController
@@ -40,9 +40,8 @@
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
-    _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imgViewError.image = [UIImage imageNamed:@"暂无数据168"];
-    _imgViewError.contentMode = UIViewContentModeCenter;
+    _imgViewError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
+    _imgViewError.labNoError.text = @"暂无报修";
     _imgViewError.hidden = YES;
     [self.view addSubview:_imgViewError];
     
