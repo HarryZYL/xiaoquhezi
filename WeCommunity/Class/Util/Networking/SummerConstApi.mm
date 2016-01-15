@@ -72,8 +72,8 @@ NSString *const POST_CANCELL_BOOKING   = ServerUrl(@"/houseDeal/cancelBooking");
 NSString *const getBooking             = ServerUrl(@"/houseDeal/getBooking"); /**<查询预约看房纪录*/
 NSString *const GET_USER_BOOK          = ServerUrl(@"/houseDeal/isUserBooking"); /**<查询用户是否在当前租售上预约过*/
 NSString *const GET_USER_BOOK_DETAIL   = ServerUrl(@"/houseDeal/getUserBookingOfHouseDeal"); /**<查询用户在指定房屋上的预约看房记录*/
-NSString *const getMyRepairsOfCommunity    = ServerUrl(@"/repair/user/getMyRepairsOfCommunity");
 NSString *const getMyComplaintsOfCommunity = ServerUrl(@"/complaint/user/getMyComplaintsOfCommunity");
+NSString *const getMyRepairsOfCommunity    = ServerUrl(@"/repair/user/getMyRepairsOfCommunity");
 NSString *const get_reply_complaint        = ServerUrl(@"/complaint/reply"); /**<回复投诉>*/
 
 #pragma mark - 维修
@@ -82,12 +82,12 @@ NSString *const  GET_REPLISE      = ServerUrl(@"/repair/getReplies");  /**<查�
 NSString *const  GET_REPAIR_REPLY = ServerUrl(@"/repair/reply");       /**<查询回复报修*/
 
 #pragma mark - 附近的小区
-NSString *const  get_Nearby_Phones_list = ServerUrl(@"/community/getPhones");
-NSString *const  getNearbyCommnity      = ServerUrl(@"/community/getNearby");          /**<附近小区*/
-NSString *const  getCommnityOfCity      = ServerUrl(@"/community/getCommunityOfCity"); /**<城市小区*/
 NSString *const  get_ONLY_CITY          = ServerUrl(@"/dd/getOnlyCity");               /**<获取城市*/
 NSString *const  get_reply_repair       = ServerUrl(@"/repair/reply"); /**<回复报修*/
+NSString *const  getNearbyCommnity      = ServerUrl(@"/community/getNearby");          /**<附近小区*/
+NSString *const  getCommnityOfCity      = ServerUrl(@"/community/getCommunityOfCity"); /**<城市小区*/
 NSString *const  get_COMMNITY_PRICE     = ServerUrl(@"/repair/getPrice");
+NSString *const  get_Nearby_Phones_list = ServerUrl(@"/community/getPhones");
 NSString *const  get_COMMNITY_PHONE_NMBER = ServerUrl(@"/community/getPropertyPhone");
 
 NSString *const  get_ORDER_LIST_DELETE    = ServerUrl(@"/fee/property/order/delete");    //删除缴费记录
@@ -96,9 +96,9 @@ NSString *const  get_ORDER_LIST_FEE       = ServerUrl(@"/fee/property/order/paye
  *  第三方登录接口
  */
 NSString *const  get_LOGIN_CODE        = ServerUrl(@"/third/login/weixin/get"); //根据code 查询用户
-NSString *const  get_THIRD_LOGIN_WXAPP = ServerUrl(@"/third/login/captcha/get"); //获取验证码
 NSString *const  get_THIRD_LOADING     = ServerUrl(@"/third/login/weixin/bind");
 NSString *const  get_WXAPP_LOADING     = ServerUrl(@"/third/login");
+NSString *const  get_THIRD_LOGIN_WXAPP = ServerUrl(@"/third/login/captcha/get"); //获取验证码
 // 订单
 NSString *const  get_Order_LIST     = ServerUrl(@"/fee/property/order/create"); //生成订单
 NSString *const  get_Baidu_Push     = ServerUrl(@"/user/baidu/setPushId"); //推送

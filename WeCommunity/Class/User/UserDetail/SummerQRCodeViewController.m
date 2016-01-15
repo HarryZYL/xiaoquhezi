@@ -41,8 +41,6 @@
     lineLayer = [UIImageView new];
     lineLayer.frame = CGRectMake(0, 0, 200, 3);
     lineLayer.backgroundColor = THEMECOLOR;
-//    UIImage *lineImg = [UIImage imageNamed:@"qr_code_line"];
-//    lineLayer.image = [lineImg resizableImageWithCapInsets:UIEdgeInsetsMake(.5, 1, .5, 1)];
     [imgBound addSubview:lineLayer];
     
     [self reading];
@@ -55,6 +53,7 @@
         [_avSession stopRunning];
         
         NSData *qrCode = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?flag=xqhz_admin",metadataObject.stringValue]] options:NSDataReadingMapped error:nil];
+        
         __weak typeof(self)weakSelf = self;
         NSDictionary *strUrlData = [NSJSONSerialization JSONObjectWithData:qrCode options:NSJSONReadingAllowFragments error:nil];
         if (strUrlData == nil) {
