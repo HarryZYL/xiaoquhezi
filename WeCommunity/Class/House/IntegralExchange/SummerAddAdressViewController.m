@@ -9,28 +9,19 @@
 #import "SummerAddAdressViewController.h"
 #import "SummerNavigationBarView.h"
 #import "UIViewController+HUD.h"
+#import "SummerProvicesModel.h"
 #import "SummerAddressView.h"
 #import "NSString+HTML.h"
 @interface SummerAddAdressViewController ()<UITextFieldDelegate ,UIPickerViewDataSource ,UIPickerViewDelegate>
-{
-    NSString *strProvinceID;
-    NSString *strCityID;
-    NSString *strDistricteID;
-    
-    NSString *strProvinceCode;
-    NSString *strCityCode;
-    NSString *strDistricteCode;
-    
-    NSString *strCityName;
-    NSString *strProvinceName;
-    NSString *strDistricteName;
-}
+
 @property (nonatomic ,strong) SummerAddressView *contentView;
 @property (nonatomic ,strong) UIPickerView *cityPickerView;
 @property (nonatomic ,strong) UIView *selectAddressView;
-@property (nonatomic ,strong) NSArray *dataProvinceArrary;
-@property (nonatomic ,strong) NSArray *dataCitysArray;
-@property (nonatomic ,strong) NSArray *dataDistricteArrary;
+@property (nonatomic ,strong) NSMutableArray *dataProvinceArrary;
+
+@property (nonatomic ,strong) SummerProvicesModel *provicesModel;
+@property (nonatomic ,strong) SummerCityAddressModel *cityModel;
+@property (nonatomic ,strong) SummerDistrictModel *districtModel;
 
 @end
 
@@ -41,7 +32,18 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:UIBarButtonItemStylePlain target:self action:@selector(saveAddress)];
-    
+    _dataProvinceArrary = [[NSMutableArray alloc] initWithCapacity:0];
+    NSDictionary *dicAdd = [FileManager getData:@"CityAddressModel"];
+    if (dicAdd) {
+        for (NSDictionary *dic in dicAdd[@"cityArrary"]) {
+            [_dataProvinceArrary addObject:[[SummerProvicesModel alloc] initWithData:dic]];
+        }
+        _provicesModel = _dataProvinceArrary[0];
+        _cityModel = _provicesModel.cityArrary[0];
+        _districtModel = _cityModel.districtArrary[0];
+    }else{
+        [self getAllCityNameAndID];
+    }
     __weak typeof(self)weakSelf = self;
     self.view.backgroundColor = [UIColor colorWithRed:0.937 green:0.937 blue:0.957 alpha:1.000];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
@@ -74,9 +76,6 @@
         _contentView.addressInformation.text = _addressDic[@"address"];
         [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@%",_addressDic[@"provinceName"],_addressDic[@"cityName"],_addressDic[@"districtName"]] forState:UIControlStateNormal];
         [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
-        strProvinceCode = _addressDic[@"provinceCode"];
-        strCityCode = _addressDic[@"cityCode"];
-        strDistricteCode = _addressDic[@"districtCode"];
         
         UIButton *btnDelete = [UIButton buttonWithType:UIButtonTypeCustom];
         btnDelete.layer.cornerRadius = 5;
@@ -118,26 +117,22 @@
     [btnSureCansole addTarget:self action:@selector(btnSelectCansol) forControlEvents:UIControlEventTouchUpInside];
     [btnSureCansole setTitleColor:THEMECOLOR forState:UIControlStateNormal];
     [_selectAddressView addSubview:btnSureCansole];
-    
-    
-//    [self getAllCityNameAndID];
 }
 
+- (void)selectCitysID{
+    [self viewDisplayPikerView];
+}
 - (void)getAllCityNameAndID{//所有城市信息
-    NSMutableArray *citysName = [[NSMutableArray alloc] initWithCapacity:33];
     [Networking retrieveData:GET_ALL_CITY parameters:nil success:^(id responseObject) {
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [FileManager saveDataToFile:@{@"cityArrary":responseObject} filePath:@"CityAddressModel"];
+        });
         for (NSDictionary *dic in responseObject) {
-            NSArray *provinArrary = dic[@"children"];
-            
-            for (NSDictionary *dic2 in provinArrary) {
-                NSArray *citysArrary = dic2[@"children"];
-                
-                for (NSDictionary *dic3 in citysArrary) {
-                    NSArray *districteArrary = dic3[@"children"];
-                    
-                }
-            }
+            [_dataProvinceArrary addObject:[[SummerProvicesModel alloc] initWithData:dic]];
         }
+        _provicesModel = _dataProvinceArrary[0];
+        _cityModel = _provicesModel.cityArrary[0];
+        _districtModel = _cityModel.districtArrary[0];
     }];
 }
 
@@ -163,9 +158,9 @@
     if (_editeType == 0) {
         //添加
         [Networking retrieveData:JIN_ADD_ADDRESS parameters:@{@"token": [User getUserToken],
-                                                     @"provinceCode":strProvinceCode,
-                                                     @"cityCode":strCityCode,
-                                                     @"districtCode":strDistricteCode,
+                                                     @"provinceCode":_provicesModel.strCode,
+                                                     @"cityCode":_cityModel.strCode,
+                                                     @"districtCode":_districtModel.strCode,
                                                      @"address":_contentView.addressInformation.text,
                                                      @"phone":_contentView.phoneText.text,
                                                      @"name":_contentView.nameText.text} success:^(id responseObject) {
@@ -180,9 +175,9 @@
         //更新
         [Networking retrieveData:JIN_UPDATE_ADD parameters:@{@"token": [User getUserToken],
                                                              @"id":_addressDic[@"id"],
-                                                             @"provinceCode":strProvinceCode,
-                                                             @"cityCode":strCityCode,
-                                                             @"districtCode":strDistricteCode,
+                                                             @"provinceCode":_provicesModel.strCode,
+                                                             @"cityCode":_cityModel.strCode,
+                                                             @"districtCode":_districtModel.strCode,
                                                              @"address":_contentView.addressInformation.text,
                                                              @"phone":_contentView.phoneText.text,
                                                              @"name":_contentView.nameText.text}];
@@ -206,71 +201,10 @@
     }
 }
 
-- (void)getProvinceIDSWihtData:(NSDictionary *)dicTemp{
-    __weak typeof(self)weakSelf = self;
-    [Networking retrieveData:GET_CITY_PROVINCE parameters:nil success:^(id responseObject) {
-        _dataProvinceArrary = responseObject;
-        [weakSelf.cityPickerView reloadComponent:0];
-        if (!dicTemp) {
-            strProvinceID = _dataProvinceArrary[0][@"id"];
-            strProvinceCode = _dataProvinceArrary[0][@"code"];
-            strProvinceName = _dataProvinceArrary[0][@"name"];
-            [weakSelf viewDisplayPikerView];
-        }
-        [weakSelf getCitysIDWithData:dicTemp];
-    }];
-}
-
-- (void)getCitysIDWithData:(NSDictionary *)dicTemp{
-    __weak typeof(self)weakSelf = self;
-    NSDictionary *dic = dicTemp ? dicTemp:_dataProvinceArrary[0];
-    [Networking retrieveData:GET_CITY_CITYS parameters:@{@"provinceCode": dic[@"code"]} success:^(id responseObject) {
-        _dataCitysArray = responseObject;
-        [weakSelf.cityPickerView reloadComponent:1];
-        strCityID = _dataCitysArray[0][@"id"];
-        strCityCode = _dataCitysArray[0][@"code"];
-        strCityName = _dataCitysArray[0][@"name"];
-        [weakSelf getDistricteIDWithData:_dataCitysArray[0]];
-    }];
-    
-}
-
-- (void)getDistricteIDWithData:(NSDictionary *)dicTemp{
-    __weak typeof(self)weakSelf = self;
-    NSDictionary *dic = dicTemp ? dicTemp : _dataCitysArray[0];
-    [Networking retrieveData:GET_CITY_DISTRICTS parameters:@{@"cityCode": dic[@"code"]} success:^(id responseObject) {
-        _dataDistricteArrary = responseObject;
-        strDistricteID = _dataDistricteArrary[0][@"id"];
-        strDistricteCode = _dataDistricteArrary[0][@"code"];
-        strDistricteName = _dataDistricteArrary[0][@"name"];
-        [weakSelf.cityPickerView reloadComponent:2];
-        
-        [weakSelf.contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
-        [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
-    }];
-}
-
-- (void)selectCitysID{
-    [self getProvinceIDSWihtData:nil];
-    [self.view endEditing:YES];
-}
-
 - (void)viewDisplayPikerView{
     _selectAddressView.frame = CGRectMake(0, SCREENSIZE.height - 200, SCREENSIZE.width, 200);
-    strProvinceID = _dataProvinceArrary[0][@"id"];
-    strProvinceCode = _dataProvinceArrary[0][@"code"];
-    strProvinceName = _dataProvinceArrary[0][@"name"];
-    
-    strCityID = _dataCitysArray[0][@"id"];
-    strCityCode = _dataCitysArray[0][@"code"];
-    strCityName = _dataCitysArray[0][@"name"];
-    
-    strDistricteID = _dataDistricteArrary[0][@"id"];
-    strDistricteCode = _dataDistricteArrary[0][@"code"];
-    strDistricteName = _dataDistricteArrary[0][@"name"];
-    
     [self.cityPickerView reloadAllComponents];
-    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
+    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",_provicesModel.strName,_cityModel.strName,_districtModel.strName] forState:UIControlStateNormal];
     [_contentView.btnAddress setTitleColor:[UIColor colorWithWhite:0.259 alpha:1.000] forState:UIControlStateNormal];
 }
 
@@ -286,10 +220,10 @@
             return _dataProvinceArrary.count;
             break;
         case 1:
-            return _dataCitysArray.count;
+            return _provicesModel.cityArrary.count;
             break;
         case 2:
-            return _dataDistricteArrary.count;
+            return _cityModel.districtArrary.count;
             break;
     }
     return 0;
@@ -299,20 +233,20 @@
     switch (component) {
         case 0:
         {
-            NSDictionary *dic = _dataProvinceArrary[row];
-            return dic[@"name"];
+            SummerProvicesModel *dic = _dataProvinceArrary[row];
+            return dic.strName;
         }
             break;
         case 1:
         {
-            NSDictionary *dic = _dataCitysArray[row];
-            return dic[@"name"];
+            SummerCityAddressModel *dic = _provicesModel.cityArrary[row];
+            return dic.strName;
         }
             break;
         case 2:
         {
-            NSDictionary *dic = _dataDistricteArrary[row];
-            return dic[@"name"];
+            SummerDistrictModel *dic = _cityModel.districtArrary[row];
+            return dic.strName;
         }
             break;
             
@@ -326,32 +260,34 @@
     switch (component) {
         case 0:
         {
-            strProvinceID = _dataProvinceArrary[row][@"id"];
-            strProvinceCode = _dataProvinceArrary[row][@"code"];
-            strProvinceName = _dataProvinceArrary[row][@"name"];
-            [self getCitysIDWithData:_dataProvinceArrary[row]];
+            _provicesModel = _dataProvinceArrary[row];
+            _cityModel = _provicesModel.cityArrary[0];
+            _districtModel = _cityModel.districtArrary[0];
+            [pickerView reloadComponent:1];
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
         }
             break;
         case 1:
         {
-            strCityID = _dataCitysArray[row][@"id"];
-            strCityCode = _dataCitysArray[row][@"code"];
-            strCityName = _dataCitysArray[row][@"name"];
-            [self getDistricteIDWithData:_dataCitysArray[row]];
+            _cityModel = _provicesModel.cityArrary[row];
+            _districtModel = _cityModel.districtArrary[0];
+            [pickerView reloadComponent:2];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
         }
             break;
         case 2:
         {
-            strDistricteID = _dataDistricteArrary[row][@"id"];
-            strDistricteCode = _dataDistricteArrary[row][@"code"];
-            strDistricteName = _dataDistricteArrary[row][@"name"];
+            _districtModel = _cityModel.districtArrary[row];
+            
         }
             break;
             
         default:
             break;
     }
-    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",strProvinceName,strCityName,strDistricteName] forState:UIControlStateNormal];
+    [_contentView.btnAddress setTitle:[NSString stringWithFormat:@"%@ %@ %@",_provicesModel.strName,_cityModel.strName,_districtModel.strName] forState:UIControlStateNormal];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
