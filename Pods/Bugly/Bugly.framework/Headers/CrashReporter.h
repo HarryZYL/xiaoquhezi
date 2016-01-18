@@ -1,6 +1,6 @@
 //
 //  CrashReporter.h
-//  Bugly Version: 1.4.3(30)
+//  Version: 1.4.6(1)
 //
 //  Copyright (c) 2015年 Tencent. All rights reserved.
 //
@@ -41,7 +41,7 @@ extern exp_callback exp_call_back_func;
 /**
  *    @brief  设置卡顿场景判断的Runloop超时阀值，Runloop超时 > 阀值判定为卡顿场景
  *
- *    @param aRunloopTimeout 卡顿阀值，单位毫秒(ms)，默认值 3000 ms，可以在 1000 ms < X < 15000 ms 之间设置
+ *    @param aRunloopTimeout 卡顿阀值，单位毫秒(ms)，默认值 3000 ms，可以在 500 ms <= X < 15000 ms 之间设置
  */
 - (void)setBlockMonitorJudgementLoopTimeout:(NSTimeInterval) aRunloopTimeout;
 
@@ -142,7 +142,7 @@ extern exp_callback exp_call_back_func;
  *    @param aReason    异常发生的原因
  *    @param dict        异常发生时的附加数据
  */
-- (void)reportException:(NSException *) anException reason:(NSString *) aReason extraInfo:(NSDictionary <NSString * ,NSString *> *) dict;
+- (void)reportException:(NSException *) anException reason:(NSString *) aReason extraInfo:(NSDictionary *) dict;
 
 /**
  *    @brief  上报错误
@@ -206,6 +206,8 @@ extern exp_callback exp_call_back_func;
  *    @brief  当卡顿功能开启时，可调用此接口在运行时停止卡顿监控线程
  */
 - (void)stopBlockMonitor;
+
+- (BOOL)checkBlockDataExistAndReport;
 
 /**
  *    @brief  获取SDK记录保存的设备标识
@@ -314,5 +316,12 @@ extern exp_callback exp_call_back_func;
 // [... installWithAppId:BUGLY_APP_ID];
 // exp_call_back_func=&exception_callback_handler;
 //
+
+/**
+ *    @brief  设置是否 开启/关闭 非正常闪退异常捕获
+ *
+ *    @param  enable 开启/关闭 (默认开启)
+ */
+- (void)enableUnexpectedTerminatingDetection:(BOOL)enable;
 
 @end

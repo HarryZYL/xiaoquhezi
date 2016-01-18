@@ -11,8 +11,10 @@
 #import "ASInternalHelpers.h"
 #import "ASAssert.h"
 #import "ASDisplayNodeInternal.h"
+#import "ASDisplayNodeExtras.h"
 #import "ASDisplayNode+Subclasses.h"
 #import "ASDisplayNode+FrameworkPrivate.h"
+#import "ASDisplayNode+Beta.h"
 #import "ASEqualityHelpers.h"
 
 /**
@@ -221,6 +223,8 @@
 
 - (void)setNeedsDisplay
 {
+  _bridge_prologue;
+
   if (_hierarchyState & ASHierarchyStateRasterized) {
     ASPerformBlockOnMainThread(^{
       // The below operation must be performed on the main thread to ensure against an extremely rare deadlock, where a parent node
@@ -238,7 +242,22 @@
       [rasterizedContainerNode setNeedsDisplay];
     });
   } else {
-    [_layer setNeedsDisplay];
+    // If not rasterized (and therefore we certainly have a view or layer),
+    // Send the message to the view/layer first, as scheduleNodeForDisplay may call -displayIfNeeded.
+    // Wrapped / synchronous nodes created with initWithView/LayerBlock: do not need scheduleNodeForDisplay,
+    // as they don't need to display in the working range at all - since at all times onscreen, one
+    // -setNeedsDisplay to the CALayer will result in a synchronous display in the next frame.
+
+    _messageToViewOrLayer(setNeedsDisplay);
+
+    if ([ASDisplayNode shouldUseNewRenderingRange]) {
+      BOOL nowDisplay = ASInterfaceStateIncludesDisplay(_interfaceState);
+      // FIXME: This should not need to recursively display, so create a non-recursive variant.
+      // The semantics of setNeedsDisplay (as defined by CALayer behavior) are not recursive.
+      if (_layer && !_flags.synchronous && nowDisplay && [self __implementsDisplay]) {
+        [ASDisplayNode scheduleNodeForRecursiveDisplay:self];
+      }
+    }
   }
 }
 
@@ -432,19 +451,27 @@
 {
   _bridge_prologue;
   if (__loaded) {
-    return ASDisplayNodeUIContentModeFromCAContentsGravity(_layer.contentsGravity);
+    if (_flags.layerBacked) {
+      return ASDisplayNodeUIContentModeFromCAContentsGravity(_layer.contentsGravity);
+    } else {
+      return _view.contentMode;
+    }
   } else {
     return self.pendingViewState.contentMode;
   }
 }
 
-- (void)setContentMode:(UIViewContentMode)mode
+- (void)setContentMode:(UIViewContentMode)contentMode
 {
   _bridge_prologue;
   if (__loaded) {
-    _layer.contentsGravity = ASDisplayNodeCAContentsGravityFromUIContentMode(mode);
+    if (_flags.layerBacked) {
+      _layer.contentsGravity = ASDisplayNodeCAContentsGravityFromUIContentMode(contentMode);
+    } else {
+      _view.contentMode = contentMode;
+    }
   } else {
-    self.pendingViewState.contentMode = mode;
+    self.pendingViewState.contentMode = contentMode;
   }
 }
 

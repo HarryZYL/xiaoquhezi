@@ -95,7 +95,6 @@
 @property (nonatomic, weak) id <DOPDropDownMenuDelegate> delegate;
 
 @property (nonatomic, assign) UITableViewCellStyle cellStyle; // default value1
-@property (nonatomic, assign) NSInteger currentRowNumber;/**<当前展开列的行数*/
 @property (nonatomic, strong) UIColor *indicatorColor;      // 三角指示器颜色
 @property (nonatomic, strong) UIColor *textColor;           // 文字title颜色
 @property (nonatomic, strong) UIColor *textSelectedColor;   // 文字title选中颜色

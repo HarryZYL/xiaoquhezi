@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import <Bugly/CrashReporter.h>
 #import <AlipaySDK/AlipaySDK.h>
-#import <PgySDK/PgyManager.h>
+//#import <PgySDK/PgyManager.h>
 #import "SummerTabBarViewController.h"
 #import "SummerRegisterID.h"
 #import "ThirdUserModel.h"
@@ -29,8 +29,8 @@
     [self customizeUserInterface];
     [self initBMKMapViewManagerAndNotificationwithLaunOptions:launchOptions withApplication:application];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
-    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
-    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
+//    [[PgyManager sharedPgyManager] startManagerWithAppId:@"d4cd9e183269a551719cb63806f2ef52"];
+//    [[PgyManager sharedPgyManager] setEnableFeedback:YES];
     [User getUserModel];
     [User login];
 
@@ -147,7 +147,7 @@
     }
 //l6923BycoPgnF11rWXOAdLIG 发布环境
 //T8GeKkoPAu6fEaVdWAFo7G7p 开发环境
-    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+    [BPush registerChannel:launchOptins apiKey:@"l6923BycoPgnF11rWXOAdLIG" pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:NO];
     NSDictionary *userInfo = [launchOptins objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
     if (userInfo) {
         NSLog(@"---->从消息启动:%@",userInfo);
@@ -222,10 +222,6 @@
     [application registerForRemoteNotifications];
     
     
-}
-
-- (void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

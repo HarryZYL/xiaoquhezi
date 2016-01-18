@@ -108,15 +108,15 @@
 #define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
 #define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
 
-#define kTableViewCellHeight 45
+#define kTableViewCellHeight 43
 #define kTableViewHeight 300
 #define kButtomImageViewHeight 21
 
-#define kTextColor [UIColor colorWithWhite:0.259 alpha:1.000]
-#define kDetailTextColor [UIColor colorWithWhite:0.259 alpha:1.000]
+#define kTextColor [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1]
+#define kDetailTextColor [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1]
 #define kSeparatorColor [UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:1]
 #define kCellBgColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
-#define kTextSelectColor [UIColor colorWithRed:0.239 green:0.800 blue:0.706 alpha:1.000]
+#define kTextSelectColor [UIColor colorWithRed:246/255.0 green:79/255.0 blue:0/255.0 alpha:1]
 
 @implementation DOPDropDownMenu {
     CGFloat _tableViewHeight;
@@ -272,24 +272,17 @@
         CATextLayer *title = [self createTextLayerWithNSString:titleString withColor:self.textColor andPosition:titlePosition];
         [self.layer addSublayer:title];
         [tempTitles addObject:title];
-        
         //indicator
-        CAShapeLayer *indicator = [self createIndicatorWithColor:self.indicatorColor andPosition:CGPointMake(titlePosition.x + title.bounds.size.width / 2 + 12, self.frame.size.height / 2)];
+        CAShapeLayer *indicator = [self createIndicatorWithColor:self.indicatorColor andPosition:CGPointMake((i + 1)*separatorLineInterval - 10, self.frame.size.height / 2)];
         [self.layer addSublayer:indicator];
         [tempIndicators addObject:indicator];
         
-        if (i > 0) {
-            CALayer *lineProtroyLay = [[CALayer alloc] init];
-            lineProtroyLay.frame = CGRectMake(self.frame.size.width/2-1, 0, .5, self.frame.size.height);
-            lineProtroyLay.backgroundColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
-            [self.layer addSublayer:lineProtroyLay];
-        }
         //separator
-//        if (i != _numOfMenu - 1) {
-//            CGPoint separatorPosition = CGPointMake(ceilf((i + 1) * separatorLineInterval-1), self.frame.size.height / 2);
-//            CAShapeLayer *separator = [self createSeparatorLineWithColor:self.separatorColor andPosition:separatorPosition];
-//            [self.layer addSublayer:separator];
-//        }
+        if (i != _numOfMenu - 1) {
+            CGPoint separatorPosition = CGPointMake(ceilf((i + 1) * separatorLineInterval-1), self.frame.size.height / 2);
+            CAShapeLayer *separator = [self createSeparatorLineWithColor:self.separatorColor andPosition:separatorPosition];
+            [self.layer addSublayer:separator];
+        }
         
         
     }
@@ -306,7 +299,7 @@
         _origin = origin;
         _currentSelectedMenudIndex = -1;
         _show = NO;
-        _fontSize = 15;
+        _fontSize = 14;
         _cellStyle = UITableViewCellStyleValue1;
         _separatorColor = kSeparatorColor;
         _textColor = kTextColor;
@@ -323,8 +316,7 @@
         _leftTableView.dataSource = self;
         _leftTableView.delegate = self;
         _leftTableView.separatorColor = kSeparatorColor;
-//        _leftTableView.separatorInset = UIEdgeInsetsZero;
-        _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _leftTableView.separatorInset = UIEdgeInsetsZero;
         _leftTableView.tableFooterView = [[UIView alloc]init];
         
         //righttableView init
@@ -333,7 +325,7 @@
         _rightTableView.dataSource = self;
         _rightTableView.delegate = self;
         _rightTableView.separatorColor = kSeparatorColor;
-        _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _rightTableView.separatorInset = UIEdgeInsetsZero;
         //_rightTableView.tableFooterView = [[UIView alloc]init];
         
         _buttomImageView = [[UIImageView alloc]initWithFrame:CGRectMake(origin.x, self.frame.origin.y + self.frame.size.height, self.frame.size.width, kButtomImageViewHeight)];
@@ -433,9 +425,10 @@
 
 - (CGSize)calculateTitleSizeWithString:(NSString *)string
 {
-    NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:16]};
+    //CGFloat fontSize = 14.0;
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont systemFontOfSize:_fontSize]};
     CGSize size = [string boundingRectWithSize:CGSizeMake(280, 0) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil].size;
-    return size;
+    return CGSizeMake(ceilf(size.width)+2, size.height);
 }
 
 #pragma mark - gesture handle
@@ -624,7 +617,6 @@
     //NSAssert(_dataSource != nil, @"menu's dataSource shouldn't be nil");
     if (_leftTableView == tableView) {
         if (_dataSourceFlags.numberOfRowsInColumn) {
-            _currentRowNumber = [_dataSource menu:self numberOfRowsInColumn:_currentSelectedMenudIndex];
             return [_dataSource menu:self
                 numberOfRowsInColumn:_currentSelectedMenudIndex];
         } else {
@@ -651,8 +643,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:_cellStyle reuseIdentifier:identifier];
         //cell.separatorInset = UIEdgeInsetsZero;
         DOPBackgroundCellView *bg = [[DOPBackgroundCellView alloc]init];
-//        bg.backgroundColor = [UIColor whiteColor];
-        bg.backgroundColor = kCellBgColor;
+        bg.backgroundColor = [UIColor whiteColor];
         cell.selectedBackgroundView = bg;
         cell.textLabel.highlightedTextColor = _textSelectedColor;
         cell.textLabel.textColor = _textColor;
@@ -661,10 +652,6 @@
             cell.detailTextLabel.textColor = _detailTextColor;
             cell.detailTextLabel.font = _detailTextFont;
         }
-        UILabel *lineLab = [[UILabel alloc] initWithFrame:CGRectMake(0, cell.frame.size.height, SCREEN_WIDTH, 1)];
-        lineLab.backgroundColor = kSeparatorColor;
-        lineLab.tag = 1;
-        [cell addSubview:lineLab];
     }
     //NSAssert(_dataSource != nil, @"menu's datasource shouldn't be nil");
     if (tableView == _leftTableView) {
@@ -704,8 +691,8 @@
         } else {
             cell.accessoryView = nil;
         }
-//        cell.backgroundColor = kCellBgColor
-        cell.backgroundColor = [UIColor whiteColor];
+        
+        cell.backgroundColor = kCellBgColor;
         
     } else {
         if (_dataSourceFlags.titleForItemsInRowAtIndexPath) {
@@ -742,12 +729,7 @@
         cell.backgroundColor = [UIColor whiteColor];
         cell.accessoryView = nil;
     }
-    UILabel *lineLab = (UILabel *)[cell viewWithTag:1];
-    if (_currentRowNumber - 1 == indexPath.row) {
-        lineLab.hidden = YES;
-    }else{
-        lineLab.hidden = NO;
-    }
+    
     return cell;
 }
 

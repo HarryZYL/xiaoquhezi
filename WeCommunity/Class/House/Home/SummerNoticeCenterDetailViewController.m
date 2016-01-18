@@ -9,7 +9,7 @@
 #import "SummerMoreReplayViewController.h"
 #import "UIViewController+HUD.h"
 #import "SummerHomeDetailNoticeModel.h"
-#import "UITableView+FDTemplateLayoutCell.h"
+//#import "UITableView+FDTemplateLayoutCell.h"
 #import "SummerNoticeCenterDetailViewController.h"
 #import "SummerNoticeDetailReplaceTableViewCell.h"
 #import "SummerNoticeDetailTableViewCell.h"

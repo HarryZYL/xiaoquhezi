@@ -29,11 +29,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JSONKit.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -59,17 +54,12 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods.xcscheme</key>
+		<key>Pods-WeCommunity.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -82,6 +72,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>2F2A1BED3AB8CEE9AF784E5682F96A9F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>410B25DF16EA5C5B3E2698F74F9625FB</key>
 		<dict>
 			<key>primary</key>
@@ -97,17 +92,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7463575E7366B9C403572A967933723A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>8F74D9EA91F4C43190670066BAC37D44</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9263F04173724A039E094968AE75604D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,27 +107,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>B6EF649B5A2546A1BB0721A1F9DE8B48</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C1019E2FE3DD81FD1D817F2A2EC4EC7D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>DE3B07ED7FF04F506B0C5E00F4973589</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E2FE87384A67337831E53490EEA8BF11</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E421B7471C420C1C227C435C434E45A9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FC87ABDC77278211ADDD2D50D948781D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FDE55DC53BAB5BC9F8F6CB55772C7C39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
