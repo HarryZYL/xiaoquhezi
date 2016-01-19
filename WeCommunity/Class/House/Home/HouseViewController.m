@@ -42,7 +42,7 @@
     [super viewDidLoad];
     barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 40, 44)];
     User *userInfo = [User shareUserDefult];
-    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"管家2"]];
     UITapGestureRecognizer *titleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userOption:)];
     [barButtonItemView.touchViews addGestureRecognizer:titleView];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
@@ -78,8 +78,7 @@
         
     }
     User *userInfo = [User shareUserDefult];
-    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"管家2"]];
-
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"管家2"]];
 }
 
 

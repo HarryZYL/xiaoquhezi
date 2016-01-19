@@ -10,7 +10,7 @@
 
 @interface SummerUserHeaderView : UIView
 
-@property (nonatomic ,strong)UIButton *btnUserImageView;
+@property (nonatomic ,strong)UIImageView *btnUserImageView;
 @property (nonatomic ,strong)UIView *touchViews;
 
 @end

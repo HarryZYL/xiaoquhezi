@@ -68,6 +68,7 @@
     //        设置头像
     UIImageView *userHeadImg = [[UIImageView alloc] init];
     userHeadImg.backgroundColor = [UIColor whiteColor];
+    userHeadImg.contentMode = UIViewContentModeScaleAspectFill;
     userHeadImg.frame = CGRectMake(20, 50, 65, 65);
     userHeadImg.layer.masksToBounds = YES;
     userHeadImg.layer.cornerRadius = userHeadImg.frame.size.width/2;

@@ -17,8 +17,9 @@
         leftImage.image = [UIImage imageNamed:@"点点点个人主页"];
         [self addSubview:leftImage];
         
-        _btnUserImageView = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnUserImageView = [UIImageView new];
         [_btnUserImageView setFrame:CGRectMake(10, 6, 32, 32)];
+        _btnUserImageView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:_btnUserImageView];
         _btnUserImageView.layer.cornerRadius = 16;
         _btnUserImageView.layer.masksToBounds = YES;
