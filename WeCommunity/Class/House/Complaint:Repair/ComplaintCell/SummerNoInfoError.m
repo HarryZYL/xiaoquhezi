@@ -20,10 +20,10 @@
         [errorImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.height.mas_equalTo(84);
             make.centerX.equalTo(weakSelf.mas_centerX);
-            make.centerY.equalTo(weakSelf.mas_centerY).offset(-40);
+            make.centerY.equalTo(weakSelf.mas_centerY).offset(-120);
         }];
         _labNoError = [[UILabel alloc] init];
-        _labNoError.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
+        _labNoError.textColor = [UIColor lightGrayColor];
         _labNoError.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_labNoError];
         [_labNoError mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -31,6 +31,17 @@
             make.centerX.equalTo(errorImage.mas_centerX);
             make.height.mas_equalTo(20);
             make.width.equalTo(weakSelf.mas_width);
+        }];
+        _addNoErrorMore = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_addNoErrorMore setBackgroundColor:THEMECOLOR];
+        _addNoErrorMore.layer.cornerRadius = 5;
+        _addNoErrorMore.layer.masksToBounds = YES;
+        [self addSubview:_addNoErrorMore];
+        [_addNoErrorMore mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(weakSelf.labNoError.mas_bottom).offset(20);
+            make.width.mas_equalTo(60);
+            make.height.mas_equalTo(30);
+            make.centerX.equalTo(weakSelf.labNoError.mas_centerX);
         }];
     }
     return self;

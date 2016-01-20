@@ -23,7 +23,8 @@
             make.centerY.equalTo(weakSelf.mas_centerY).offset(-120);
         }];
         _labNoError = [[UILabel alloc] init];
-        _labNoError.textColor = [UIColor colorWithWhite:0.851 alpha:1.000];
+        _labNoError.font = [UIFont systemFontOfSize:13];
+        _labNoError.textColor = [UIColor lightGrayColor];
         _labNoError.textAlignment = NSTextAlignmentCenter;
         _labNoError.text = @"你还没有认证信息，快去添加认证啦~";
         [self addSubview:_labNoError];
@@ -40,8 +41,8 @@
         [_addAccredi setTitle:@"添加认证" forState:UIControlStateNormal];
         [self addSubview:_addAccredi];
         [_addAccredi mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(120);
-            make.height.mas_equalTo(30);
+            make.width.mas_equalTo(110);
+            make.height.mas_equalTo(40);
             make.top.equalTo(weakSelf.labNoError.mas_bottom).offset(20);
             make.centerX.equalTo(weakSelf.labNoError.mas_centerX);
         }];

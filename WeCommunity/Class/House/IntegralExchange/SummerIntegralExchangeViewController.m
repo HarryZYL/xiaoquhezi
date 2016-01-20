@@ -11,6 +11,7 @@
 #import "SummerJinSubmiteViewController.h"
 #import "SummerScoreSegmentControl.h"
 #import "SummerScoreTableViewCell.h"
+#import "SummerNoInfoError.h"
 #import "MBProgressHUD.h"
 
 @interface SummerIntegralExchangeViewController ()<UITableViewDataSource ,UITableViewDelegate>
@@ -20,6 +21,7 @@
     MBProgressHUD *hudProgress;
 }
 @property (nonatomic ,strong)SummerScoreSegmentControl *mSegmentControl;
+@property (nonatomic ,strong) SummerNoInfoError *imgViewError;
 @property (nonatomic ,strong)UITableView *mTableView;
 @property (nonatomic ,strong)NSMutableArray *dataArrary;
 @property (nonatomic ,strong)UIButton *btnSubmite;
@@ -52,6 +54,12 @@
     _mTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [_mTableView registerNib:[UINib nibWithNibName:@"SummerScoreTableViewCell" bundle:nil] forCellReuseIdentifier:@"cellItem"];
     [self.view addSubview:_mTableView];
+    
+    _imgViewError = [[SummerNoInfoError alloc] initWithFrame:CGRectMake(0, 120, SCREENSIZE.width, SCREENSIZE.height - 120)];
+    _imgViewError.addNoErrorMore.hidden = YES;
+    _imgViewError.labNoError.text = @"暂无兑换信息";
+    _imgViewError.hidden = YES;
+    [self.view addSubview:_imgViewError];
     
     CALayer *bgLayer = [CALayer layer];
     bgLayer.frame = CGRectMake(10, SCREENSIZE.height - 50, SCREENSIZE.width - 20, 40);
@@ -155,6 +163,11 @@
         _dataArrary = responseObject[@"rows"];
         if (_dataArrary.count < 30) {
             [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
+        }
+        if (_dataArrary.count) {
+            _imgViewError.hidden = YES;
+        }else{
+            _imgViewError.hidden = NO;
         }
         [weakSelf.mTableView reloadData];
     }];

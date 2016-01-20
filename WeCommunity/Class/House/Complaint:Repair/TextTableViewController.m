@@ -36,15 +36,18 @@
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"ComplaintUpdate" object:nil];
-        _imgViewError.labNoError.text = @"暂无投诉";
+        [_imgViewError.addNoErrorMore setTitle:@"投诉" forState:UIControlStateNormal];
+        _imgViewError.labNoError.text = @"暂无投诉，点击投诉";
     }else if([self.function isEqualToString:@"repair"]){
         [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
         UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"报修" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
         self.navigationItem.rightBarButtonItem = postBtn;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"RepairUpdate" object:nil];
-        _imgViewError.labNoError.text = @"暂无报修";
+        _imgViewError.labNoError.text = @"暂无报修，点击报修";
+        [_imgViewError.addNoErrorMore setTitle:@"报修" forState:UIControlStateNormal];
+        
     }
-    
+    [_imgViewError.addNoErrorMore addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
 }

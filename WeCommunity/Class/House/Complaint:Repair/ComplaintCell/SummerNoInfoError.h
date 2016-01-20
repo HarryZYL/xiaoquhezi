@@ -11,6 +11,7 @@
 @interface SummerNoInfoError : UIView
 
 @property (nonatomic ,strong) UILabel *labNoError;
+@property (nonatomic ,strong) UIButton *addNoErrorMore;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
