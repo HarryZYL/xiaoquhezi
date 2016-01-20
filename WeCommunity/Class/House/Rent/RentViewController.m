@@ -7,6 +7,7 @@
 //
 
 #import "RentViewController.h"
+#import "UIViewController+HUD.h"
 #import "AccreditationTableViewController.h"
 #import "SummerSelectSellerOrOrderView.h"
 @interface RentViewController ()
@@ -275,19 +276,26 @@
     if (sender.tag == 1) {
         //出租
         postVC.houseDealType = SummerHouseDealTypeRent;
+        postVC.step = 0;
+        [self pushVC:postVC title:@"发布"];
     }else{
         //出售
-        postVC.houseDealType = SummerHouseDealTypeSale;
+        NSString *userAuthType = [User getAuthenticationOwnerType];
+        if ([userAuthType isEqualToString:@"户主"]) {
+            postVC.houseDealType = SummerHouseDealTypeSale;
+            postVC.step = 0;
+            [self pushVC:postVC title:@"发布"];
+        }else{
+            [self showHint:@"只有认证户主才能发布出售"];
+        }
+        
     }
-    postVC.step = 0;
-    [self pushVC:postVC title:@"发布"];
-    
 }
 
 -(void)post:(id)sender{
     NSString *userAuthType = [User getAuthenticationOwnerType];
     if ([userAuthType isEqualToString:@"未认证"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1000;
         [alertView show];
     }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
@@ -300,12 +308,13 @@
             SecondHandPostViewController *postVC  = [[SecondHandPostViewController alloc] init];
             [self pushVC:postVC title:@"发布"];
         }
+        
     }else if ([userAuthType isEqualToString:@"认证失败"]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"认证失败，是否再次去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1002;
         [alertView show];
     }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还在认证中" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还在认证中" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1001;
         [alertView show];
     }

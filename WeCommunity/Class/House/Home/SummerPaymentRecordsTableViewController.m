@@ -16,7 +16,7 @@
 {
     NSInteger pageNumber;
     LoadingView *loadingView;
-    UILabel *labNoRecords;
+    SummerNoInfoError *labNoRecords;
 }
 @property (nonatomic ,strong) NSMutableArray *dataArrary;
 @property (nonatomic ,assign) NSInteger indexRow;
@@ -63,16 +63,22 @@
         }else{
             [self takeNoRecords];
         }
-        
+        if (_dataArrary.count) {
+            labNoRecords.hidden = NO;
+        }else{
+            labNoRecords.hidden = YES;
+        }
     }];
 }
 
 - (void)takeNoRecords{
-    labNoRecords = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREENSIZE.width, 30)];
-    labNoRecords.textAlignment = NSTextAlignmentCenter;
-    labNoRecords.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
-    labNoRecords.textColor = [UIColor colorWithRed:0.634 green:0.633 blue:0.647 alpha:1.000];
-    labNoRecords.text = @"暂无记录";
+    labNoRecords = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
+//    labNoRecords.textAlignment = NSTextAlignmentCenter;
+//    labNoRecords.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
+//    labNoRecords.textColor = [UIColor colorWithRed:0.634 green:0.633 blue:0.647 alpha:1.000];
+//    labNoRecords.text = @"暂无记录";
+    labNoRecords.labNoError.text = @"暂无记录";
+    labNoRecords.hidden = YES;
     [self.view addSubview:labNoRecords];
 }
 

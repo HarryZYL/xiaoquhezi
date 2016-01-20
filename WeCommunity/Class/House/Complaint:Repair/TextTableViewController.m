@@ -23,27 +23,27 @@
     [super viewDidLoad];
     self.photos = [[NSMutableArray alloc] init];
     self.page = 1;
-    if ([self.function isEqualToString:@"complaint"]) {
-        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
-        self.navigationItem.rightBarButtonItem = postBtn;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"ComplaintUpdate" object:nil];
-    }else if([self.function isEqualToString:@"repair"]){
-        [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
-        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"报修" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
-        self.navigationItem.rightBarButtonItem = postBtn;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"RepairUpdate" object:nil];
-    }
-    
-    
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:0];
     _imgViewError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
-    _imgViewError.labNoError.text = @"暂无报修";
+    
     _imgViewError.hidden = YES;
     [self.view addSubview:_imgViewError];
+    if ([self.function isEqualToString:@"complaint"]) {
+        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"投诉" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
+        self.navigationItem.rightBarButtonItem = postBtn;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"ComplaintUpdate" object:nil];
+        _imgViewError.labNoError.text = @"暂无投诉";
+    }else if([self.function isEqualToString:@"repair"]){
+        [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+        UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"报修" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
+        self.navigationItem.rightBarButtonItem = postBtn;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(retrireveData) name:@"RepairUpdate" object:nil];
+        _imgViewError.labNoError.text = @"暂无报修";
+    }
     
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";

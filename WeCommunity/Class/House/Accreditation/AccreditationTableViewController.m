@@ -7,9 +7,9 @@
 //
 
 #import "AccreditationTableViewController.h"
-
+#import "SummerAccreditationView.h"
 @interface AccreditationTableViewController ()
-@property(nonatomic ,strong) UIImageView *imgViewError;
+@property(nonatomic ,strong) SummerAccreditationView *imgViewError;
 @end
 
 @implementation AccreditationTableViewController
@@ -32,10 +32,9 @@
     
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
-    _imgViewError = [[UIImageView alloc] initWithFrame:self.view.bounds];
-    _imgViewError.image = [UIImage imageNamed:@"error_code"];
-    _imgViewError.contentMode = UIViewContentModeCenter;
+    _imgViewError = [[SummerAccreditationView alloc] initWithFrame:self.view.bounds];
     _imgViewError.hidden = YES;
+    [_imgViewError.addAccredi addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_imgViewError];
     
     if ([User judgeLogin]) {
@@ -122,6 +121,11 @@
     NSDictionary *parameters = @{@"token":[User getUserToken],@"page":@1,@"row":[NSNumber numberWithInt:row]};
     [Networking retrieveData:getMyAuthentications parameters:parameters success:^(id responseObject) {
         self.dataArray = responseObject[@"rows"];
+        if (self.dataArray.count < 1) {
+            _imgViewError.hidden = NO;
+        }else{
+            _imgViewError.hidden = YES;
+        }
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer resetNoMoreData];

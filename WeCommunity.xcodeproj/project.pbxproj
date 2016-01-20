@@ -183,6 +183,7 @@
 		D454EAAB1BE4949E0089333D /* RSADataVerifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAA31BE4949E0089333D /* RSADataVerifier.m */; };
 		D454EAFA1BE49DB20089333D /* SummerBillOrderList.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAF91BE49DB20089333D /* SummerBillOrderList.m */; };
 		D454EAFE1BE4C9390089333D /* SummerSelectPayWayView.m in Sources */ = {isa = PBXBuildFile; fileRef = D454EAFD1BE4C9390089333D /* SummerSelectPayWayView.m */; };
+		D457685A1C4E6380001AC5C3 /* SummerAccreditationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D45768591C4E6380001AC5C3 /* SummerAccreditationView.m */; };
 		D45939AA1BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D45939A81BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.m */; };
 		D45939AB1BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45939A91BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.xib */; };
 		D4637E351C2BD9DC00602AB2 /* SummerJinMaHuiModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D4637E341C2BD9DC00602AB2 /* SummerJinMaHuiModel.m */; };
@@ -690,6 +691,8 @@
 		D454EAF91BE49DB20089333D /* SummerBillOrderList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerBillOrderList.m; path = BillModel/SummerBillOrderList.m; sourceTree = "<group>"; };
 		D454EAFC1BE4C9390089333D /* SummerSelectPayWayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerSelectPayWayView.h; path = BillViews/SummerSelectPayWayView.h; sourceTree = "<group>"; };
 		D454EAFD1BE4C9390089333D /* SummerSelectPayWayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerSelectPayWayView.m; path = BillViews/SummerSelectPayWayView.m; sourceTree = "<group>"; };
+		D45768581C4E6380001AC5C3 /* SummerAccreditationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerAccreditationView.h; sourceTree = "<group>"; };
+		D45768591C4E6380001AC5C3 /* SummerAccreditationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerAccreditationView.m; sourceTree = "<group>"; };
 		D45939A71BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerComplainDetailHeaderTableViewCell.h; sourceTree = "<group>"; };
 		D45939A81BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerComplainDetailHeaderTableViewCell.m; sourceTree = "<group>"; };
 		D45939A91BEF882300DBD9E8 /* SummerComplainDetailHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SummerComplainDetailHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -1846,6 +1849,8 @@
 		D474AB3F1BE356A40046F5F1 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				D45768581C4E6380001AC5C3 /* SummerAccreditationView.h */,
+				D45768591C4E6380001AC5C3 /* SummerAccreditationView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -2375,6 +2380,7 @@
 				D4D4007F1BDF160F005F6095 /* SummerAlertView.m in Sources */,
 				D4532C811C201BC700A0E381 /* SummerAddressView.m in Sources */,
 				D4E6E7241BE73E3600C3E6C4 /* SummerInputView.m in Sources */,
+				D457685A1C4E6380001AC5C3 /* SummerAccreditationView.m in Sources */,
 				4ACCCEA01BBF40120001227A /* SettingTableViewController.m in Sources */,
 				D4AC4C071BF22C76000D008C /* SummerRepairListsRepairCellTableViewCell.m in Sources */,
 				D454EAFE1BE4C9390089333D /* SummerSelectPayWayView.m in Sources */,

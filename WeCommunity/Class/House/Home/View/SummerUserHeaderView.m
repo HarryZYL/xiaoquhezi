@@ -23,7 +23,6 @@
         [self addSubview:_btnUserImageView];
         _btnUserImageView.layer.cornerRadius = 16;
         _btnUserImageView.layer.masksToBounds = YES;
-        
         _touchViews = [[UIView alloc] initWithFrame:frame];
         [self addSubview:_touchViews];
     }

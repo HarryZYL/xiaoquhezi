@@ -42,7 +42,7 @@
     [super viewDidLoad];
     barButtonItemView = [[SummerUserHeaderView alloc] initWithFrame:CGRectMake(0, 0, 40, 44)];
     User *userInfo = [User shareUserDefult];
-    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"管家2"]];
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"home_title_smile"]];
     UITapGestureRecognizer *titleView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userOption:)];
     [barButtonItemView.touchViews addGestureRecognizer:titleView];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButtonItemView];
@@ -78,7 +78,7 @@
         
     }
     User *userInfo = [User shareUserDefult];
-    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"管家2"]];
+    [barButtonItemView.btnUserImageView sd_setImageWithURL:userInfo.headPhoto placeholderImage:[UIImage imageNamed:@"home_title_smile"]];
 }
 
 
@@ -178,14 +178,14 @@
 -(void)bill:(id)sender{
     NSString *userAuthType = [User getAuthenticationOwnerType];
     if ([userAuthType isEqualToString:@"未认证"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1000;
         [alertView show];
     }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
         BillViewController *billVC = [[BillViewController alloc] init];
         [self pushVC:billVC title:@"账单"];
     }else if ([userAuthType isEqualToString:@"认证失败"]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"认证失败，是否再次去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 1002;
         [alertView show];
     }else{
@@ -196,11 +196,6 @@
 -(void)houseKeeper:(id)sender{
     HouseKeeperViewController *houseKeeperVC = [[HouseKeeperViewController alloc] init];
     [self pushVC:houseKeeperVC title:@"管家"];
-}
-
--(void)signin:(id)sender{
-    SigninViewController *signinVC = [[SigninViewController alloc] init];
-    [self pushVC:signinVC title:@"每日签到"];
 }
 
 -(void)reward:(id)sender{
@@ -273,13 +268,13 @@
         {
             NSString *userAuthType = [User getAuthenticationOwnerType];
             if ([userAuthType isEqualToString:@"未认证"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 [self userRent];//租售管理
             }else if ([userAuthType isEqualToString:@"认证失败"]){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"认证失败，是否再次去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1002;
                 [alertView show];
             }else{
@@ -291,22 +286,22 @@
         case 1:
         {
 //            @"消息中心",@"缴费记录",@"设置"
-            NSString *userAuthType = [User getAuthenticationOwnerType];
-            if ([userAuthType isEqualToString:@"未认证"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                alertView.tag = 1000;
-                [alertView show];
-            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
+//            NSString *userAuthType = [User getAuthenticationOwnerType];
+//            if ([userAuthType isEqualToString:@"未认证"]) {
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//                alertView.tag = 1003;
+//                [alertView show];
+//            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 SummerPaymentRecordsTableViewController *paymentRecordsVC = [[SummerPaymentRecordsTableViewController alloc] init];
                 paymentRecordsVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:paymentRecordsVC animated:YES];
-            }else if ([userAuthType isEqualToString:@"认证失败"]){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-                alertView.tag = 1002;
-                [alertView show];
-            }else{
-                [self showHint:@"还在认证中"];
-            }
+//            }else if ([userAuthType isEqualToString:@"认证失败"]){
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//                alertView.tag = 1002;
+//                [alertView show];
+//            }else{
+//                [self showHint:@"还在认证中"];
+//            }
             
         }
             break;
@@ -314,7 +309,7 @@
         {
             NSString *userAuthType = [User getAuthenticationOwnerType];
             if ([userAuthType isEqualToString:@"未认证"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
@@ -322,7 +317,7 @@
                 messageCenterVC.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:messageCenterVC animated:YES];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"认证失败，是否再次去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1002;
                 [alertView show];
             }else{
@@ -340,14 +335,14 @@
         {//成员管理
             NSString *userAuthType = [User getAuthenticationOwnerType];
             if ([userAuthType isEqualToString:@"未认证"]) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"还未认证，是否现在去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1000;
                 [alertView show];
             }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
                 SummerMemberManagerTableViewController *memberVC = [[SummerMemberManagerTableViewController alloc] init];
                 [self pushVC:memberVC title:nil];
             }else if ([userAuthType isEqualToString:@"认证失败"]){
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"认证失败，是否再次去认证" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
                 alertView.tag = 1002;
                 [alertView show];
             }else{
@@ -468,8 +463,8 @@
         case 1000:
         {//认证
             if (buttonIndex == 1) {
-                AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
-                [self pushVC:accreditation title:@"认证信息"];
+                AccreditationPostViewController *accreditation = [[AccreditationPostViewController alloc] init];
+                [self pushVC:accreditation title:@"添加认证信息"];
             }
         }
             break;
@@ -478,12 +473,19 @@
         case 1002:
         {
             if (buttonIndex == 1) {
-                AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
-                [self pushVC:accreditation title:@"认证信息"];
+                AccreditationPostViewController *accreditation = [[AccreditationPostViewController alloc] init];
+                [self pushVC:accreditation title:@"添加认证信息"];
             }
         }
             break;
-            
+        case 1003:
+        {
+            if (buttonIndex == 1) {
+                AccreditationTableViewController *accreditation = [[AccreditationTableViewController alloc] init];
+                [self pushVC:accreditation title:@"添加认证信息"];
+            }
+        }
+            break;
         default:
         {
             if (buttonIndex == 1) {

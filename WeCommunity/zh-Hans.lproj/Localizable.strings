@@ -10,7 +10,7 @@
 "Login_Forget_Psw"    = "忘记密码";
 "Login_Register"      = "注册新用户";
 "Login_Name_Text"     = "请输入手机号";
-"Login_Password_Text" = "请输入密码";
+"Login_Password_Text" = "请输入6～20位密码";
 "Login_WeChat"        = "微信账号登陆";
 "Register_Psw"        = "请再次输入密码";
 "Register_Auth"       = "请输入验证码";

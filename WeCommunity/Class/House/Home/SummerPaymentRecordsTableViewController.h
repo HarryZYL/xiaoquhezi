@@ -7,6 +7,7 @@
 //  缴费记录
 
 #import <UIKit/UIKit.h>
+#import "SummerNoInfoError.h"
 
 @interface SummerPaymentRecordsTableViewController : UITableViewController
 
