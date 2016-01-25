@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BasicTableViewCell.h"
+#import "MBProgressHUD.h"
 #import "User.h"
 
 @interface EditDetailTableViewController : UITableViewController<UITextFieldDelegate>
@@ -16,5 +17,6 @@
 @property (nonatomic,strong) NSString *titleMessage;
 @property (nonatomic,strong) NSString *updateMessage;// 更新的字段
 @property (nonatomic,strong) NSString *changedMessage;//更新的信息
-@property (nonatomic,strong) LoadingView *loadingView;
+@property (nonatomic,strong) MBProgressHUD *loadingView;
+
 @end

@@ -146,6 +146,7 @@
     if ([Util judgeAuthentication]) {
         TextTableViewController *textPostVC = [[TextTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
         textPostVC.function = @"complaint";
+        
         [self pushVC:textPostVC title:@"投诉"];
     }else{
         [self authentication];

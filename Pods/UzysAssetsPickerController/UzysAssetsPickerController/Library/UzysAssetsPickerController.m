@@ -175,9 +175,9 @@
         self.segmentedControl.hidden = YES;
         self.labelSelectedMedia.hidden = NO;
         if(_maximumNumberOfSelection > 1)
-            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose media", @"UzysAssetsPickerController", nil);
+            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片", @"UzysAssetsPickerController", nil);
         else
-            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose a media", @"UzysAssetsPickerController", nil);
+            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片", @"UzysAssetsPickerController", nil);
         
     }
     else

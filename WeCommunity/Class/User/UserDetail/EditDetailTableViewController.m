@@ -19,10 +19,6 @@
        
     [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
     [self setupButton];
-    
-    self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
-    self.loadingView.titleLabel.text = @"正在更新";
-
 }
 
 //设置导航器的button
@@ -33,8 +29,6 @@
     
     UIBarButtonItem *rightBtn = [[UIBarButtonItem alloc] initWithTitle:@"确认" style:UIBarButtonItemStylePlain target:self action:@selector(confirmEdit:)];
     self.navigationItem.rightBarButtonItem = rightBtn;
-    
-    
 }
 
 //取消修改
@@ -100,10 +94,13 @@
 #pragma mark networking
 
 -(void)retrireveData{
-    
-    [self.view addSubview:self.loadingView];
+    __weak typeof(self)weakSelf = self;
+    self.loadingView = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.loadingView.labelText = @"正在更新";
+    [self.loadingView hide:YES afterDelay:2];
     NSDictionary *parameters = @{@"token":[User getUserToken],self.updateMessage:self.changedMessage};
     [Networking retrieveData:updateBasicInfo parameters:parameters success:^(id responseObject) {
+        [weakSelf.loadingView hide:YES];
         [self login];
     }];
 
