@@ -210,8 +210,6 @@
 #pragma mark networking
 
 -(void)retrireveData:(NSString*)type{
-    
-    
     [self.view addSubview:self.loadingView];
     NSDictionary *parameters;
     if ([type isEqualToString:@"sex"]) {

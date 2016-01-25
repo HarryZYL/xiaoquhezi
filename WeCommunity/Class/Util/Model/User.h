@@ -29,8 +29,8 @@
 @property (nonatomic,strong) NSString *totalSignDay;
 @property (nonatomic,strong) NSString *lastSignTime;
 @property (nonatomic,strong) NSString *token;
-@property (nonatomic,copy) NSString *loginPassword;
-@property (nonatomic,copy) NSString *loginUserName;
+@property (nonatomic,copy) NSString *loginPassword;/**<登录密码信息*/
+@property (nonatomic,copy) NSString *loginUserName;/**<登录名信息*/
 @property (nonatomic,strong) SummerJinMaHuiModel *userJinDic;/**<用户金马会信息*/
 
 + (User *)shareUserDefult;

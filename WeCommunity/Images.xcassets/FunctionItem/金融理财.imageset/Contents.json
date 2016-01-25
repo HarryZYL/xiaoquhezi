@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "金融理财.png"
+      "filename" : "积分兑换110new.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "金融理财@2x.png"
+      "filename" : "积分兑换110new@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "金融理财@3x.png"
+      "filename" : "积分兑换110new@3x.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

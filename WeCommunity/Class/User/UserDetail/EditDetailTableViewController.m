@@ -7,7 +7,7 @@
 //
 
 #import "EditDetailTableViewController.h"
-
+#import "UIViewController+HUD.h"
 @interface EditDetailTableViewController ()
 
 @end
@@ -95,20 +95,26 @@
 
 -(void)retrireveData{
     __weak typeof(self)weakSelf = self;
+    [self.view endEditing:YES];
     self.loadingView = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.loadingView.labelText = @"正在更新";
     [self.loadingView hide:YES afterDelay:2];
     NSDictionary *parameters = @{@"token":[User getUserToken],self.updateMessage:self.changedMessage};
-    [Networking retrieveData:updateBasicInfo parameters:parameters success:^(id responseObject) {
+    [Networking retrieveData:updateBasicInfo parameters:parameters roomSuccess:^(id responseObject) {
+        NSLog(@"--->%@",responseObject);
         [weakSelf.loadingView hide:YES];
-        [self login];
+        if ([responseObject[@"state"] boolValue]) {
+            [weakSelf login];
+        }else{
+            [weakSelf showHint:responseObject[@"msg"]];
+        }
     }];
 
 }
 
 -(void)login{
     User *userModel = [User shareUserDefult];
-    NSDictionary *parameters = @{@"phoneNumber":userModel.userName,@"password":userModel.loginPassword};
+    NSDictionary *parameters = @{@"phoneNumber":userModel.loginUserName,@"password":userModel.loginPassword};
     
     [Networking retrieveData:phoneLogin parameters:parameters success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];

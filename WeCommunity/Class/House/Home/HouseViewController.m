@@ -108,7 +108,7 @@
     [self.scrollView addSubview:self.headView];
     
     self.functionView = [[FunctionView alloc] initWithFrame:CGRectMake(30, 290, self.view.frame.size.width-60, 230)];
-    [self.functionView setupFunctionViewFirst:@"rent" title1:NSLocalizedString(@"Home_Rent", nil) Second:@"bill" title2:NSLocalizedString(@"Home_Pay", nil) Third:@"repair" title3:NSLocalizedString(@"Home_Repair", nil) Fourth:@"快递" title4:NSLocalizedString(@"Home_Express", nil) Fifth:@"积分兑换110" title5:NSLocalizedString(@"Home_Integral",nil) Sixth:@"其他Home" title6:NSLocalizedString(@"Home_More",nil)];
+    [self.functionView setupFunctionViewFirst:@"rent" title1:NSLocalizedString(@"Home_Rent", nil) Second:@"bill" title2:NSLocalizedString(@"Home_Pay", nil) Third:@"repair" title3:NSLocalizedString(@"Home_Repair", nil) Fourth:@"快递" title4:NSLocalizedString(@"Home_Express", nil) Fifth:@"金融理财" title5:NSLocalizedString(@"Home_Integral",nil) Sixth:@"其他Home" title6:NSLocalizedString(@"Home_More",nil)];
 //    [self.functionView setupFunctionViewFirst:@"rent" title1:@"租售" Second:@"bill" title2:@"缴费" Third:@"repair" title3:@"维修" Fourth:@"快递" title4:@"快递" Fifth:@"其他Home" title5:@"更多" Sixth:nil title6:nil];
     [self.functionView.firstItem.functionButton addTarget:self action:@selector(rent:) forControlEvents:UIControlEventTouchUpInside];
     [self.functionView.secondItem.functionButton addTarget:self action:@selector(bill:) forControlEvents:UIControlEventTouchUpInside];
@@ -286,24 +286,9 @@
             break;
         case 1:
         {
-//            @"消息中心",@"缴费记录",@"设置"
-//            NSString *userAuthType = [User getAuthenticationOwnerType];
-//            if ([userAuthType isEqualToString:@"未认证"]) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//                alertView.tag = 1003;
-//                [alertView show];
-//            }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
-                SummerPaymentRecordsTableViewController *paymentRecordsVC = [[SummerPaymentRecordsTableViewController alloc] init];
-                paymentRecordsVC.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:paymentRecordsVC animated:YES];
-//            }else if ([userAuthType isEqualToString:@"认证失败"]){
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-//                alertView.tag = 1002;
-//                [alertView show];
-//            }else{
-//                [self showHint:@"还在认证中"];
-//            }
-            
+            SummerPaymentRecordsTableViewController *paymentRecordsVC = [[SummerPaymentRecordsTableViewController alloc] init];
+            paymentRecordsVC.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:paymentRecordsVC animated:YES];
         }
             break;
         case 2:
