@@ -53,7 +53,7 @@ DEPENDENCIES:
   - Masonry (~> 0.6.3)
   - MBProgressHUD
   - MJRefresh (~> 3.0.1)
-  - MWPhotoBrowser (~> 2.1.1)
+  - MWPhotoBrowser
   - SDWebImage (~> 3.7)
   - UzysAssetsPickerController (~> 0.9.9)
 
@@ -72,6 +72,6 @@ SPEC CHECKSUMS:
   SDWebImage: 247edd7dd80dd6124197b0d6a17846fe9d1df968
   UzysAssetsPickerController: 47c27bd96955467925f3d4d80b1e2e8aaeff766d
 
-PODFILE CHECKSUM: de566d150f41117950e0952f4afb2b808ee4372d
+PODFILE CHECKSUM: 4a5db345c862c10c153c2232bba7133d137286d5
 
 COCOAPODS: 1.0.0.beta.2

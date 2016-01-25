@@ -269,7 +269,7 @@
     if (self.buildingId == nil) {
         [Util alertNetworingError:@"请先选择楼号"];
     }else{
-        if (self.houseArr.count==0) {
+        if (self.arraryUnit.count == 0) {
             [Util alertNetworingError:@"此栋楼暂未录入"];
         }else{
             [self getHouseIDSender:sender];
@@ -373,27 +373,12 @@
 }
 
 -(void)confirmPicker:(id)sender{
-    
     [self.pickerView removeFromSuperview];
-    
     if (self.pickerStr) {
         if ([self.pickerTag isEqualToString:@"1"]) {
             [self.owerTypeBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else if ([self.pickerTag isEqualToString:@"2"]){
             [self.buildingIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
-//            [Networking retrieveData:getBuilding parameters:@{@"buildingId":self.buildingId,@"id":self.buildingId} success:^(id responseObject) {
-//                [self.houseIDBtn setTitle:@"正在加载" forState:UIControlStateNormal];
-//                self.houseIDBtn.enabled = NO;
-//                self.houseArr = responseObject;
-//                if (self.houseArr.count == 0) {
-//                    [self.houseIDBtn setTitle:@"-此栋楼暂未录入-" forState:UIControlStateNormal];
-//                }else{
-//                    [self.houseIDBtn setTitle:@"-点击选择房号-" forState:UIControlStateNormal];
-//                    self.houseIDBtn.enabled = YES;
-//                }
-//                
-//            }];
-            
         }else if([self.pickerTag isEqualToString:@"3"]){
             [self.houseIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else{
@@ -403,8 +388,6 @@
             }
         }
     }
-    
-    self.pickerStr = nil;
 }
 
 -(void)cancelPicker:(id)sender{
@@ -430,7 +413,6 @@
 #pragma mark - did Upload
 
 -(void)uploadAccreditation{
-    
     if (self.nameField.text.length == 0) {
         [Util alertNetworingError:@"请输入姓名"];
     }else if(self.cardNumberField.text.length == 0 || ![NSString filterIDCard:self.cardNumberField.text]){
@@ -483,12 +465,10 @@
         [botomSubView removeFromSuperview];
     }
     [self initViewsLeves];//当前小区层级
-//    [self.communityName setTitle:_strCommunityName forState:UIControlStateNormal];
 }
 
 - (void)getOtherCommunityName{
     LocationTableViewController *locationVC = [[LocationTableViewController alloc] init];
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:locationVC];
     locationVC.delegate = self;
     locationVC.locationStyle = LocationStyleSelectCommunityNameAndID;
     [self.navigationController pushViewController:locationVC animated:YES];

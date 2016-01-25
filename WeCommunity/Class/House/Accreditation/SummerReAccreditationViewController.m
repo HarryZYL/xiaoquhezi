@@ -309,6 +309,10 @@
 }
 
 - (void)getUnitID:(id)sender{
+    if (!self.buildingId) {
+        [self showHint:@"请选择楼号"];
+        return;
+    }
     NSDictionary *parama = @{@"communityId":self.strCommunityID,@"id":self.buildingId};
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.arraryUnit = responseObject;
@@ -317,6 +321,10 @@
 }
 
 - (void)getHouseIDSender:(id)sender{
+    if (!self.strUnit) {
+        [self showHint:@"请选择单元号"];
+        return;
+    }
     NSDictionary *parama = @{@"communityId":self.strCommunityID,@"id":self.strUnit};
     [Networking retrieveData:getBuilding parameters:parama success:^(id responseObject) {
         self.houseArr = responseObject;
@@ -353,6 +361,7 @@
     if ([self.pickerTag isEqualToString:@"1"]) {
         self.pickerStr =  self.owerTypeArr[0];
         self.owerType = self.owerTypeArrEn[0];
+        
     }else if ([self.pickerTag isEqualToString:@"2"]){
         self.pickerStr = self.buildingArr[0][@"name"];
         self.buildingId = self.buildingArr[0][@"id"];
@@ -438,12 +447,17 @@
             [self.owerTypeBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else if ([self.pickerTag isEqualToString:@"2"]){
             [self.buildingIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
-            
+            self.strUnit = nil;
+            self.houseId = nil;
+            [btnUnit setTitle:@"请选择单元号" forState:UIControlStateNormal];
+            [self.houseIDBtn setTitle:@"点击选择房号" forState:UIControlStateNormal];
         }else if([self.pickerTag isEqualToString:@"3"]){
             [self.houseIDBtn setTitle:self.pickerStr forState:UIControlStateNormal];
         }else{
             [btnUnit setTitle:self.pickerStr forState:UIControlStateNormal];
             self.strUnit = self.arraryUnit.firstObject[@"id"];
+            self.houseId = nil;
+            [self.houseIDBtn setTitle:@"点击选择房号" forState:UIControlStateNormal];
         }
     }
     self.pickerStr = nil;
@@ -497,21 +511,8 @@
     self.loadingView.titleLabel.text = @"正在加载";
     [Networking retrieveData:get_HOUSE_LEVEL parameters:@{@"communityId": self.strCommunityID} success:^(id responseObject) {
         hourseLeve = responseObject;
-        [self setupData];
+        [self initWithBootomViews];
     }];
-}
-
--(void)setupData{
-//    if (hourseLeve.count == 2) {
-//        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-//        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择房号"];
-//        self.titleArray = @[section1,section2];
-//    }else if (hourseLeve.count == 3){
-//        NSArray *section1 = @[@"请输入你的真实姓名",@"请输入你的身份证号码",@"点击选择身份类型"];
-//        NSArray *section2 = @[self.strCommunityName,@"点击选择楼号",@"点击选择单元号",@"点击选择房号"];
-//        self.titleArray = @[section1,section2];
-//    }
-    [self initWithBootomViews];
 }
 
 - (void)didReceiveMemoryWarning {

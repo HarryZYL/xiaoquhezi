@@ -291,7 +291,7 @@
                 postVC.houseData.sittingRoom = self.postView.sittingRoomField.text;
                 postVC.houseData.bathRoom = self.postView.bathRoomField.text;
                 postVC.houseData.floor = self.postView.floorField.text;
-                postVC.houseData.totalFloor = self.postView.floorField.text;
+                postVC.houseData.totalFloor = self.postView.totalFloorField.text;
                 postVC.houseData.houseOrientation = self.houseOrientation;
                 break;
             }
@@ -390,7 +390,6 @@
 //返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    
     if ([self.pickerTag isEqualToString:@"1"]) {
         self.pickerStr =  self.houseTypeArr[row];
        

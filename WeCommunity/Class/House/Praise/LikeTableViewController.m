@@ -164,7 +164,6 @@
 #pragma mark networking
 
 -(void)retrireveData{
-    
     [self.tableView addSubview:self.loadingView];
     NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
      [Networking retrieveData:getPraisesOfCommunity parameters:parameters success:^(id responseObject) {

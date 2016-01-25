@@ -26,7 +26,7 @@ FOUNDATION_EXPORT NSString *const getMyComplaints          ;
 FOUNDATION_EXPORT NSString *const getMyRepairs             ;
 FOUNDATION_EXPORT NSString *const getPraisesOfCommunity    ;
 FOUNDATION_EXPORT NSString *const getHouseDealsOfCommunity ;//小区房屋交易
-FOUNDATION_EXPORT NSString *const getMyHouseDealsOfCommunity ;
+FOUNDATION_EXPORT NSString *const getMyHouseDealsOfCommunity ;//个人房屋交易
 FOUNDATION_EXPORT NSString *const getAllHouseDeals;
 FOUNDATION_EXPORT NSString *const getActivityOfCommunity ;
 FOUNDATION_EXPORT NSString *const getFleaMarketOfCommunity ;

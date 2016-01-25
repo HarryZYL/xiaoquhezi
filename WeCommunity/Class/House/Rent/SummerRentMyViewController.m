@@ -22,7 +22,7 @@
     if (self.playAdvertise) {
         [self setupAdvertisement];
     }
-    [self setupChooseList];
+//    [self setupChooseList];
     [self setupTableView];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -61,9 +61,9 @@
 }
 
 #pragma mark filter button
--(void)setupChooseList{
-    
-}
+//-(void)setupChooseList{
+//    
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -79,7 +79,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     // Return the number of rows in the section.
     return self.dataArray.count;
 }
@@ -87,7 +86,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     BasicTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
     if ([self.function isEqualToString:@"rent"]) {
         
         HouseDeal *houseDeal = [[HouseDeal alloc] initWithData:self.dataArray[indexPath.row]];
@@ -132,67 +130,20 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
-#pragma mark action
-
--(void)post:(id)sender{
-    NSString *userAuthType = [User getAuthenticationOwnerType];
-    if ([userAuthType isEqualToString:@"未认证"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还未认证，是否现在去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = 1000;
-        [alertView show];
-    }else if ([userAuthType isEqualToString:@"户主"] || [userAuthType isEqualToString:@"业主"]){
-        if ([self.function isEqualToString:@"rent"]) {//房屋租售／卖房
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"你要出售还是出租" delegate:self cancelButtonTitle:@"出售" otherButtonTitles:@"出租", nil];
-            alertView.tag = 11;
-            [alertView show];
-        }else if([self.function isEqualToString:@"activity"]){
-            ActivityPostViewController *postVC  = [[ActivityPostViewController alloc] init];
-            [self pushVC:postVC title:@"发布"];
-        }else if([self.function isEqualToString:@"secondHand"]){
-            SecondHandPostViewController *postVC  = [[SecondHandPostViewController alloc] init];
-            [self pushVC:postVC title:@"发布"];
-        }
-    }else if ([userAuthType isEqualToString:@"认证失败"]){
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"认证失败，是否再次去认证" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = 1002;
-        [alertView show];
-    }else{
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"还在认证中" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-        alertView.tag = 1001;
-        [alertView show];
-    }
-}
-
 #pragma mark networking
 
 -(void)retrireveData{
     [self.view addSubview:self.loadingView];
     NSDictionary *parameters;
     NSString *url;
-    if ([self.function isEqualToString:@"rent"]) {
-        if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getAllHouseDeals;
-        }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getHouseDealsOfCommunity;
-        }
-        
-        
-    }else if([self.function isEqualToString:@"activity"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
-        url = getActivityOfCommunity;
-        
-    }else if([self.function isEqualToString:@"secondHand"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"fleaMarketType":@[@"Sale",@"Buy"],@"page":@1,@"row":[NSNumber numberWithInt:row]};
-        url = getFleaMarketOfCommunity;
-        
-    }else if ([self.function isEqualToString:@"user"]) {
-        parameters = @{@"token":[User getUserToken],@"houseDealTypes":@[@"Sale",@"Rent"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
+    if (self.communityAll) {
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
         url = getMyHouseDealsOfCommunity;
-        
+    }else{
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
+        url = getMyHouseDealsOfCommunity;
     }
+
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         weakSelf.dataArray = responseObject[@"rows"];
@@ -208,28 +159,14 @@
     NSDictionary *parameters;
     NSString *url;
     
-    if ([self.function isEqualToString:@"rent"]) {
-        if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getAllHouseDeals;
-        }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getHouseDealsOfCommunity;
-        }
-        
-        
-    }else if([self.function isEqualToString:@"activity"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
-        url = getActivityOfCommunity;
-        
-    }else if([self.function isEqualToString:@"secondHand"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"fleaMarketType":@[@"Sale",@"Buy"],@"page":@1,@"row":[NSNumber numberWithInt:row]};
-        url = getFleaMarketOfCommunity;
-    }else if ([self.function isEqualToString:@"user"]) {
-        parameters = @{@"token":[User getUserToken],@"houseDealTypes":@[@"Sale",@"Rent"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
+    if (self.communityAll) {
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
         url = getMyHouseDealsOfCommunity;
-        
+    }else{
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
+        url = getMyHouseDealsOfCommunity;
     }
+    
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         weakSelf.dataArray = responseObject[@"rows"];
@@ -244,36 +181,19 @@
     NSDictionary *parameters;
     NSString *url;
     self.page ++;
-    
-    if ([self.function isEqualToString:@"rent"]) {
-        if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getAllHouseDeals;
-        }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
-            url = getHouseDealsOfCommunity;
-        }
-        
-        
-    }else if([self.function isEqualToString:@"activity"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
-        url = getActivityOfCommunity;
-        
-    }else if([self.function isEqualToString:@"secondHand"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"fleaMarketType":@[@"Sale",@"Buy"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
-        url = getFleaMarketOfCommunity;
-        
-    }else if ([self.function isEqualToString:@"user"]) {
-        parameters = @{@"token":[User getUserToken],@"houseDealTypes":@[@"Sale",@"Rent"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
+    if (self.communityAll) {
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
         url = getMyHouseDealsOfCommunity;
-        
+    }else{
+        parameters = @{@"token":[User getUserToken],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
+        url = getMyHouseDealsOfCommunity;
     }
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         weakSelf.dataArray = responseObject[@"rows"];
         [weakSelf.tableView reloadData];
         [weakSelf.tableView.mj_footer endRefreshing];
-        if (weakSelf.dataArray.count < row*self.page) {
+        if (weakSelf.dataArray.count < 30*self.page) {
             [weakSelf.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];

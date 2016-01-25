@@ -192,7 +192,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if (textField == self.totalFloorField && self.totalFloorField.text < self.floorField.text) {
+    if (textField == self.totalFloorField && self.totalFloorField.text.integerValue < self.floorField.text.integerValue) {
         [self.delegate textFieldReturnWarning:@"楼层数不能大于总层数"];
         [self.totalFloorField becomeFirstResponder];
         return;

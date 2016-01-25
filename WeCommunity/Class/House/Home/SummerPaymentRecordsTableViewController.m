@@ -43,7 +43,7 @@
     loadingView = [[LoadingView alloc] initWithFrame:self.view.bounds];
     loadingView.titleLabel.text = @"正在加载";
     [self.view addSubview:loadingView];
-    
+    [self takeNoRecords];
     [self receveData];
 }
 
@@ -52,33 +52,24 @@
         NSLog(@"---->%@",responseObject);
         [loadingView removeFromSuperview];
         if (responseObject[@"rows"]&&![responseObject[@"rows"] isEqual:[NSNull null]]) {
-            if ([responseObject[@"rows"] count] == 0) {
-                [self takeNoRecords];
-                return;
-            }
             for (NSDictionary *dicTemp in responseObject[@"rows"]) {
                 [_dataArrary addObject:[[SummerPaymentListModel alloc] initWithJson:dicTemp]];
             }
             [self.tableView reloadData];
-        }else{
-            [self takeNoRecords];
         }
         if (_dataArrary.count) {
-            labNoRecords.hidden = NO;
-        }else{
             labNoRecords.hidden = YES;
+        }else{
+            labNoRecords.hidden = NO;
         }
     }];
 }
 
 - (void)takeNoRecords{
     labNoRecords = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
-//    labNoRecords.textAlignment = NSTextAlignmentCenter;
-//    labNoRecords.center = CGPointMake(self.view.center.x, self.view.center.y - 100);
-//    labNoRecords.textColor = [UIColor colorWithRed:0.634 green:0.633 blue:0.647 alpha:1.000];
-//    labNoRecords.text = @"暂无记录";
     labNoRecords.labNoError.text = @"暂无记录";
     labNoRecords.hidden = YES;
+    labNoRecords.addNoErrorMore.hidden = YES;
     [self.view addSubview:labNoRecords];
 }
 

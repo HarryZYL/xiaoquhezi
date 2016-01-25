@@ -19,8 +19,6 @@
         
         // head part
         self.headView = [[BasicHeadDetailView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.width+100)];
-//        self.headView.layer.borderWidth = 1;
-//        self.headView.layer.borderColor = [UIColor colorWithWhite:0.851 alpha:1.000].CGColor;
         self.headImg = [[PageView alloc] initWithFrame:self.headView.headImg.frame andImagePathArr:self.houseDeal.pictures pageControl:NO];
         [self.headImg configureImagePageView:self.houseDeal.pictures];
         [self.headView addSubview:self.headImg];
@@ -28,9 +26,11 @@
         self.headView.headTitle.text = self.houseDeal.title;
         self.headView.headTitle.textColor = [UIColor colorWithWhite:0.259 alpha:1.000];
         [self.headView setUpPrice:[NSString stringWithFormat:@"%@",self.houseDeal.price]];
-        
-        self.headView.headPriceUnit.text = @"元/月";
-        
+        if ([self.houseDeal.dealType isEqualToString:@"Sale"]) {
+            self.headView.headPriceUnit.text = @"元";
+        }else{
+            self.headView.headPriceUnit.text = @"元/月";
+        }
         self.headView.headDate.text = self.houseDeal.createTime;
         self.headView.headDate.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
         [self addSubview:self.headView];

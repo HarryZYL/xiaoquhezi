@@ -12,6 +12,7 @@
 #import "RentDetailViewController.h"
 #import "HouseDeal.h"
 #import "LoadingView.h"
+#import "SDCycleScrollView.h"
 #import "RentPostViewController.h"
 #import "ActivityPostViewController.h"
 #import "SecondHandPostViewController.h"

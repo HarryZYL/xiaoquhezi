@@ -3,7 +3,7 @@ platform :ios, '8.0'
 target 'WeCommunity' do
 pod 'libWeChatSDK', '~> 1.6'
 pod 'UzysAssetsPickerController', '~> 0.9.9'
-pod 'MWPhotoBrowser', '~> 2.1.1'
+pod "MWPhotoBrowser"
 pod 'SDWebImage', '~>3.7'
 pod 'AFNetworking', '~> 2.0'
 pod 'Masonry', '~> 0.6.3'

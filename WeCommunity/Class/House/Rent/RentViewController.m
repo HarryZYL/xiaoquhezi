@@ -10,18 +10,17 @@
 #import "UIViewController+HUD.h"
 #import "AccreditationTableViewController.h"
 #import "SummerSelectSellerOrOrderView.h"
-@interface RentViewController ()
+@interface RentViewController ()<SDCycleScrollViewDelegate>
 {
     SummerSelectSellerOrOrderView *orderSelectView;
 }
-@property (nonatomic ,strong)AdScrollView *adView;
+@property (nonatomic ,strong)SDCycleScrollView *adView;
 @end
 
 @implementation RentViewController
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
-    _adView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
 }
 
 - (void)viewDidLoad {
@@ -58,18 +57,15 @@
 
 -(void)setupAdvertisement{
     NSArray *imageArray = @[@"house1",@"house2",@"house3"];
-    _adView = [[AdScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, 150)];
-    _adView.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-    _adView.imageNameArray = imageArray;
-    _adView.PageControlShowStyle = UIPageControlShowStyleCenter;
-    _adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    _adView.pageControl.currentPageIndicatorTintColor = [UIColor grayColor];
+    _adView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150 + 44) shouldInfiniteLoop:YES imageNamesGroup:imageArray];
+//    _adView.contentMode = YES;
+//    _adView.delegate = self;
+    _adView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     [self.view addSubview:_adView];
 }
 
 
 -(void)setupTableView{
-    
     if (!self.playAdvertise) {
         self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 114, self.view.frame.size.width, self.view.frame.size.height-114) style:UITableViewStylePlain];
     }else{
@@ -335,15 +331,15 @@
 
 -(void)retrireveData{
     [self.view addSubview:self.loadingView];
-    
     NSDictionary *parameters;
     NSString *url;
+    self.page = 1;
     if ([self.function isEqualToString:@"rent"]) {
         if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
             url = getAllHouseDeals;
         }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
             url = getHouseDealsOfCommunity;
         }
     }else if([self.function isEqualToString:@"activity"]){
@@ -361,7 +357,13 @@
     }
 
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
+//        self.dataArray = responseObject[@"rows"];
+        if (self.dataArray.count > 0) {
+            [self.dataArray removeAllObjects];
+        }
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [self.dataArray addObject:dic];
+        }
         [self.tableView reloadData];
     } addition:^{
         [self.loadingView removeFromSuperview];
@@ -370,20 +372,17 @@
 }
 
 -(void)refreshHeader{
-
+    self.page = 1;
     NSDictionary *parameters;
     NSString *url;
-    
     if ([self.function isEqualToString:@"rent"]) {
         if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
             url = getAllHouseDeals;
         }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":@30};
             url = getHouseDealsOfCommunity;
         }
-
-        
     }else if([self.function isEqualToString:@"activity"]){
         parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
         url = getActivityOfCommunity;
@@ -398,11 +397,13 @@
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
+        [self.dataArray removeAllObjects];
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [self.dataArray addObject:dic];
+        }
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer resetNoMoreData];
-        self.page = 1;
     }];
 }
 
@@ -410,23 +411,20 @@
     NSDictionary *parameters;
     NSString *url;
     self.page ++;
-    
     if ([self.function isEqualToString:@"rent"]) {
         if (self.communityAll) {
-            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"houseDealTypes":self.houseTypeArr,@"page":[NSNumber numberWithInt:self.page],@"row":@30};
             url = getAllHouseDeals;
         }else{
-            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":@1,@"row":[NSNumber numberWithInt:row]};
+            parameters = @{@"communityId":[Util getCommunityID],@"houseDealTypes":self.houseTypeArr,@"page":[NSNumber numberWithInt:self.page],@"row":@30};
             url = getHouseDealsOfCommunity;
         }
-
-        
     }else if([self.function isEqualToString:@"activity"]){
         parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
         url = getActivityOfCommunity;
         
     }else if([self.function isEqualToString:@"secondHand"]){
-        parameters = @{@"communityId":[Util getCommunityID],@"fleaMarketType":@[@"Sale",@"Buy"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
+        parameters = @{@"communityId":[Util getCommunityID],@"fleaMarketType":@[@"Sale",@"Buy"],@"page":[NSNumber numberWithInt:self.page],@"row":[NSNumber numberWithInt:row*self.page]};
         url = getFleaMarketOfCommunity;
         
     }else if ([self.function isEqualToString:@"user"]) {
@@ -436,10 +434,12 @@
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [self.dataArray addObject:dic];
+        }
         [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
-        if (self.dataArray.count < row*self.page) {
+        if (self.dataArray.count < 30*self.page) {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];

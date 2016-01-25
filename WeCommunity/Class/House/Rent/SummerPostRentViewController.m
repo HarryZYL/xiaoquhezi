@@ -45,8 +45,6 @@
     self.scollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+10);
     [self.view addSubview:self.scollView];
     [self setupStepView:self.step];
-    
-    
     switch (self.step) {
         case 0:
             self.postView = [[RentPostView alloc]  initWithFrame:CGRectMake(0, 120, self.view.frame.size.width,190)] ;

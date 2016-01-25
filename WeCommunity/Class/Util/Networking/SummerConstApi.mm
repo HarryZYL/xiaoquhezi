@@ -15,7 +15,7 @@
 //#define HOST_URL @"http://www.xiaoquhezi.com"
 //#define HOST_URL @"http://192.168.1.101"
 NSString *const kServerUrl = @"http://www.xiaoquhezi.com";
-
+//NSString *const kServerUrl = @"http://192.168.1.101";
 NSString *const get_reply_notice      = ServerUrl(@"/notice/replyNotice"); /**<回复公告*/
 NSString *const GET_NOTICE_REPLIS     = ServerUrl(@"/notice/getReplies"); //查询公告回复
 NSString *const GET_REPLY_TO_REPLY    = ServerUrl(@"/notice/replyToReply");//楼中楼回复

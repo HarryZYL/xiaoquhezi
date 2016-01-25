@@ -56,6 +56,7 @@
     _imgViewError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
     _imgViewError.labNoError.text = @"暂无信息";
     _imgViewError.hidden = YES;
+    _imgViewError.addNoErrorMore.hidden = YES;
     [self.view addSubview:_imgViewError];
     
     UIButton *btnSelectCommunity = [UIButton buttonWithType:UIButtonTypeCustom];

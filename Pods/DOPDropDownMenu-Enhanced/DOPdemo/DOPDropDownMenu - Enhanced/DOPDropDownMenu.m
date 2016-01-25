@@ -116,7 +116,7 @@
 #define kDetailTextColor [UIColor colorWithRed:136/255.0 green:136/255.0 blue:136/255.0 alpha:1]
 #define kSeparatorColor [UIColor colorWithRed:219/255.0 green:219/255.0 blue:219/255.0 alpha:1]
 #define kCellBgColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1]
-#define kTextSelectColor [UIColor colorWithRed:246/255.0 green:79/255.0 blue:0/255.0 alpha:1]
+#define kTextSelectColor [UIColor colorWithRed:0.235 green:0.800 blue:0.706 alpha:1.000]
 
 @implementation DOPDropDownMenu {
     CGFloat _tableViewHeight;

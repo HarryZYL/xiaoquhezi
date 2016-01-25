@@ -166,6 +166,13 @@
 		D45300D51BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D45300D31BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.m */; };
 		D45300D61BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */; };
 		D4532C811C201BC700A0E381 /* SummerAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = D4532C801C201BC700A0E381 /* SummerAddressView.m */; };
+		D453CA7E1C5649740008CA5A /* TAAbstractDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA711C5649740008CA5A /* TAAbstractDotView.m */; };
+		D453CA7F1C5649740008CA5A /* TAAnimatedDotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA731C5649740008CA5A /* TAAnimatedDotView.m */; };
+		D453CA801C5649740008CA5A /* TADotView.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA751C5649740008CA5A /* TADotView.m */; };
+		D453CA811C5649740008CA5A /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA771C5649740008CA5A /* TAPageControl.m */; };
+		D453CA821C5649740008CA5A /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA791C5649740008CA5A /* SDCollectionViewCell.m */; };
+		D453CA831C5649740008CA5A /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA7B1C5649740008CA5A /* SDCycleScrollView.m */; };
+		D453CA841C5649740008CA5A /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D453CA7D1C5649740008CA5A /* UIView+SDExtension.m */; };
 		D454D9761C0C2491003218B7 /* SummerSelectCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */; };
 		D454D97B1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D454D9791C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m */; };
 		D454D97C1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D454D97A1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.xib */; };
@@ -586,6 +593,20 @@
 		D45300D41BF2100C003654BF /* SummerRepairListsHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SummerRepairListsHeaderTableViewCell.xib; path = ComplaintCell/SummerRepairListsHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		D4532C7F1C201BC700A0E381 /* SummerAddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummerAddressView.h; path = IntegralExchange/SummerAddressView.h; sourceTree = "<group>"; };
 		D4532C801C201BC700A0E381 /* SummerAddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummerAddressView.m; path = IntegralExchange/SummerAddressView.m; sourceTree = "<group>"; };
+		D453CA701C5649740008CA5A /* TAAbstractDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAbstractDotView.h; sourceTree = "<group>"; };
+		D453CA711C5649740008CA5A /* TAAbstractDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAbstractDotView.m; sourceTree = "<group>"; };
+		D453CA721C5649740008CA5A /* TAAnimatedDotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAAnimatedDotView.h; sourceTree = "<group>"; };
+		D453CA731C5649740008CA5A /* TAAnimatedDotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAAnimatedDotView.m; sourceTree = "<group>"; };
+		D453CA741C5649740008CA5A /* TADotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TADotView.h; sourceTree = "<group>"; };
+		D453CA751C5649740008CA5A /* TADotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TADotView.m; sourceTree = "<group>"; };
+		D453CA761C5649740008CA5A /* TAPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAPageControl.h; sourceTree = "<group>"; };
+		D453CA771C5649740008CA5A /* TAPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAPageControl.m; sourceTree = "<group>"; };
+		D453CA781C5649740008CA5A /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
+		D453CA791C5649740008CA5A /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
+		D453CA7A1C5649740008CA5A /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
+		D453CA7B1C5649740008CA5A /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
+		D453CA7C1C5649740008CA5A /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
+		D453CA7D1C5649740008CA5A /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
 		D454D9741C0C2491003218B7 /* SummerSelectCommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityViewController.h; sourceTree = "<group>"; };
 		D454D9751C0C2491003218B7 /* SummerSelectCommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SummerSelectCommunityViewController.m; sourceTree = "<group>"; };
 		D454D9781C0C3011003218B7 /* SummerSelectCommunityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SummerSelectCommunityTableViewCell.h; sourceTree = "<group>"; };
@@ -1020,6 +1041,7 @@
 		4A118E961BA4900400BC2C4E /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D453CA6D1C5649740008CA5A /* Lib */,
 				D4DA2D171BE53734003C61C7 /* WXApp */,
 				D454E83E1BE481310089333D /* AlipaySDK */,
 				D4D400781BDF059B005F6095 /* BaiduPush */,
@@ -1678,6 +1700,43 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		D453CA6D1C5649740008CA5A /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				D453CA6E1C5649740008CA5A /* SDCycleScrollView */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		D453CA6E1C5649740008CA5A /* SDCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				D453CA6F1C5649740008CA5A /* PageControl */,
+				D453CA781C5649740008CA5A /* SDCollectionViewCell.h */,
+				D453CA791C5649740008CA5A /* SDCollectionViewCell.m */,
+				D453CA7A1C5649740008CA5A /* SDCycleScrollView.h */,
+				D453CA7B1C5649740008CA5A /* SDCycleScrollView.m */,
+				D453CA7C1C5649740008CA5A /* UIView+SDExtension.h */,
+				D453CA7D1C5649740008CA5A /* UIView+SDExtension.m */,
+			);
+			path = SDCycleScrollView;
+			sourceTree = "<group>";
+		};
+		D453CA6F1C5649740008CA5A /* PageControl */ = {
+			isa = PBXGroup;
+			children = (
+				D453CA701C5649740008CA5A /* TAAbstractDotView.h */,
+				D453CA711C5649740008CA5A /* TAAbstractDotView.m */,
+				D453CA721C5649740008CA5A /* TAAnimatedDotView.h */,
+				D453CA731C5649740008CA5A /* TAAnimatedDotView.m */,
+				D453CA741C5649740008CA5A /* TADotView.h */,
+				D453CA751C5649740008CA5A /* TADotView.m */,
+				D453CA761C5649740008CA5A /* TAPageControl.h */,
+				D453CA771C5649740008CA5A /* TAPageControl.m */,
+			);
+			path = PageControl;
+			sourceTree = "<group>";
+		};
 		D454D9771C0C2FD6003218B7 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -2256,6 +2315,7 @@
 				4A118EB31BA4900400BC2C4E /* ELCAlbumPickerController.m in Sources */,
 				4ACCCEDD1BBF456F0001227A /* ActivityDetailView.m in Sources */,
 				4ACCCE691BBF37A70001227A /* SecondHand.m in Sources */,
+				D453CA841C5649740008CA5A /* UIView+SDExtension.m in Sources */,
 				4ACCCE9E1BBF40120001227A /* UserLoginViewController.m in Sources */,
 				D47996891BF08F2E00994024 /* SummerMoreReplayViewController.m in Sources */,
 				D4CDD5571BE7537A00B782DB /* SummerBillBootomView.m in Sources */,
@@ -2298,6 +2358,7 @@
 				D44893B41C199761004FD9E8 /* SummerPriceListView.m in Sources */,
 				D42BB12D1BF18FF900FA5FE5 /* SummerNoticeMoreReplysRowTableViewCell.m in Sources */,
 				D45206901BF0CB0000D0147C /* SummerCommunityBrowserTableViewCell.m in Sources */,
+				D453CA801C5649740008CA5A /* TADotView.m in Sources */,
 				4ACCCEA31BBF40120001227A /* UserView.m in Sources */,
 				D454EAA41BE4949E0089333D /* base64.m in Sources */,
 				4A118EC11BA490EB00BC2C4E /* UIImageView+Scale.m in Sources */,
@@ -2306,6 +2367,7 @@
 				D4FCD0E61C1951A40007B040 /* SummerIntergralDetailViewController.m in Sources */,
 				4ACCCE6E1BBF384F0001227A /* creatorInfo.m in Sources */,
 				4A118EB51BA4900400BC2C4E /* ELCAssetCell.m in Sources */,
+				D453CA7F1C5649740008CA5A /* TAAnimatedDotView.m in Sources */,
 				4ACCD03A1BBF49600001227A /* BillViewController.m in Sources */,
 				D478D07B1C22C67F0025C00C /* SummerScoreSegmentControl.m in Sources */,
 				D425C07F1C0C45910013E1B8 /* SummerSelectCityTableViewController.m in Sources */,
@@ -2364,6 +2426,7 @@
 				D4D400841BDF6A9B005F6095 /* SummerPriceListViewController.m in Sources */,
 				D4FCD0F71C195DA60007B040 /* SummerAddAdressViewController.m in Sources */,
 				D42BB1281BF18A4600FA5FE5 /* SummerNoticeMoreReplysTableViewCell.m in Sources */,
+				D453CA811C5649740008CA5A /* TAPageControl.m in Sources */,
 				D454D97B1C0C3011003218B7 /* SummerSelectCommunityTableViewCell.m in Sources */,
 				4ACCD0491BBF49600001227A /* OverView.m in Sources */,
 				D44F80421BE649D9002A55CE /* SummerPhoneViewController.m in Sources */,
@@ -2394,6 +2457,7 @@
 				4ACCD0431BBF49600001227A /* LocationTableViewController.m in Sources */,
 				4A118E8A1BA48FFC00BC2C4E /* WebViewController.m in Sources */,
 				D4FCD0EA1C1954A00007B040 /* SummerIntergralDetailTableViewCell.m in Sources */,
+				D453CA7E1C5649740008CA5A /* TAAbstractDotView.m in Sources */,
 				4ACCD0501BBF49600001227A /* ImagePickerCollectionViewCell.m in Sources */,
 				4ACCD0451BBF49600001227A /* HousePostView.m in Sources */,
 				D474AB711BE3B7890046F5F1 /* SummerBillConfirmViewController.m in Sources */,
@@ -2402,6 +2466,7 @@
 				4ACCD0421BBF49600001227A /* HouseKeeperViewController.m in Sources */,
 				D45300D11BF20F40003654BF /* SummerRepairListsViewController.m in Sources */,
 				D4CDD55A1BE7659D00B782DB /* SummerBillRoomViewController.m in Sources */,
+				D453CA821C5649740008CA5A /* SDCollectionViewCell.m in Sources */,
 				4ACCCE5A1BBF36410001227A /* TextDeal.m in Sources */,
 				D433741B1BE1E55800BD438F /* SummerUserHeaderView.m in Sources */,
 				D4DA2D211BE53734003C61C7 /* WXUtil.mm in Sources */,
@@ -2446,6 +2511,7 @@
 				4ACCCEDC1BBF456F0001227A /* ActivityPostViewController.m in Sources */,
 				D4D400891BDF72EC005F6095 /* SummerPriceListTableViewCell.m in Sources */,
 				4ACCD03B1BBF49600001227A /* TextPostViewController.m in Sources */,
+				D453CA831C5649740008CA5A /* SDCycleScrollView.m in Sources */,
 				4ACCD0521BBF49600001227A /* RentDetailView.m in Sources */,
 				D4C1453B1BF02B7F007C25A2 /* SummerRentTakeNoteViewController.m in Sources */,
 				4ACCCE621BBF36EA0001227A /* HouseDeal.m in Sources */,
