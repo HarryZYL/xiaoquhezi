@@ -27,7 +27,7 @@
         _labNoError.font = [UIFont systemFontOfSize:13];
         _labNoError.textColor = [UIColor colorWithWhite:0.533 alpha:1.000];
         _labNoError.textAlignment = NSTextAlignmentCenter;
-        _labNoError.text = @"暂无认证信息";
+        _labNoError.text = @"享受物业升级服务～快来添加认证啦～";
         [self addSubview:_labNoError];
         [_labNoError mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(errorImage.mas_bottom).offset(20);

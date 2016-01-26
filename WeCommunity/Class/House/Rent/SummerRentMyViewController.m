@@ -7,9 +7,9 @@
 // 我的租售
 
 #import "SummerRentMyViewController.h"
-
+#import "SummerNoInfoError.h"
 @interface SummerRentMyViewController ()
-
+@property(nonatomic,strong)SummerNoInfoError *imgViewError;
 @end
 
 @implementation SummerRentMyViewController
@@ -24,6 +24,11 @@
     }
 //    [self setupChooseList];
     [self setupTableView];
+    _imgViewError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
+    _imgViewError.labNoError.text = @"暂无信息";
+    _imgViewError.hidden = YES;
+    _imgViewError.addNoErrorMore.hidden = YES;
+    [self.view addSubview:_imgViewError];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:10];
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
@@ -61,9 +66,6 @@
 }
 
 #pragma mark filter button
-//-(void)setupChooseList{
-//    
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -147,6 +149,12 @@
     __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
         weakSelf.dataArray = responseObject[@"rows"];
+        if (weakSelf.dataArray.count > 0) {
+            
+        }else{
+            weakSelf.imgViewError.hidden = NO;
+            
+        }
         [weakSelf.tableView reloadData];
     } addition:^{
         [weakSelf.loadingView removeFromSuperview];

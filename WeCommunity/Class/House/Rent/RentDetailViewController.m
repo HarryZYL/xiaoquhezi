@@ -184,13 +184,16 @@
     }else{
         [self.photos removeAllObjects];
     }
+    if ([self.houseDeal.pictures.firstObject length] < 5) {
+        return;
+    }
     for (int i = 0; i<self.houseDeal.pictures.count; i++) {
         MWPhoto *photo = [MWPhoto photoWithURL:[NSURL URLWithString:self.houseDeal.pictures[i]]];
         [self.photos addObject:photo];
     }
-    // Create browser
     MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
     browser = [Util fullImageSetting:browser];
+    browser.displayActionButton = NO;
     [browser setCurrentPhotoIndex:self.rentView.headImg.adPageControl.currentPage];
     [self.navigationController pushViewController:browser animated:YES];
     
@@ -198,7 +201,6 @@
 
 - (void)rentDetailRePaier{
     //修改,房屋信息
-    
     SummerRePostMyRentViewController *postVC = [[SummerRePostMyRentViewController alloc] init];
     postVC.houseDeal = self.houseDeal;
     if ([self.houseDeal.dealType isEqualToString:@"Rent"]) {

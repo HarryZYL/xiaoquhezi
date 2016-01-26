@@ -36,8 +36,8 @@ FOUNDATION_EXPORT NSString *const phoneRegister ;
 FOUNDATION_EXPORT NSString *const updateBasicInfo ;
 FOUNDATION_EXPORT NSString *const getPhoneRegisterCaptcha ;
 FOUNDATION_EXPORT NSString *const getResetUserPasswordCaptcha ;
-FOUNDATION_EXPORT NSString *const uploadImage   ;//1M图片空间
-FOUNDATION_EXPORT NSString *const upload_Images ;//5M图片空间
+FOUNDATION_EXPORT NSString *const uploadImage   ;//1M图片上传空间
+FOUNDATION_EXPORT NSString *const upload_Images ;//5M图片上传空间
 
 FOUNDATION_EXPORT NSString *const market_add ;
 FOUNDATION_EXPORT NSString *const getBuilding ;/**<查找房号，楼号，单元号*/

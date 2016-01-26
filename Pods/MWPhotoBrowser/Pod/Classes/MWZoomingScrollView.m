@@ -46,7 +46,7 @@
 		// Image view
 		_photoImageView = [[MWTapDetectingImageView alloc] initWithFrame:CGRectZero];
 		_photoImageView.tapDelegate = self;
-		_photoImageView.contentMode = UIViewContentModeCenter;
+		_photoImageView.contentMode = UIViewContentModeScaleAspectFit;
 		_photoImageView.backgroundColor = [UIColor blackColor];
 		[self addSubview:_photoImageView];
 		
@@ -139,16 +139,16 @@
 			// Set image
 			_photoImageView.image = img;
 			_photoImageView.hidden = NO;
-			
+            _photoImageView.contentMode = UIViewContentModeScaleAspectFit;
 			// Setup photo frame
 			CGRect photoImageViewFrame;
 			photoImageViewFrame.origin = CGPointZero;
-			photoImageViewFrame.size = img.size;
+            CGSize rectSize = [UIScreen mainScreen].bounds.size;
+			photoImageViewFrame.size = rectSize;
 			_photoImageView.frame = photoImageViewFrame;
 			self.contentSize = photoImageViewFrame.size;
-
 			// Set zoom to minimum zoom
-			[self setMaxMinZoomScalesForCurrentBounds];
+//			[self setMaxMinZoomScalesForCurrentBounds];
 			
 		} else  {
 
@@ -249,8 +249,7 @@
     if (_photoImageView.image == nil) return;
     
     // Reset position
-    _photoImageView.frame = CGRectMake(0, 0, _photoImageView.frame.size.width, _photoImageView.frame.size.height);
-	
+    _photoImageView.frame = self.bounds;
     // Sizes
     CGSize boundsSize = self.bounds.size;
     CGSize imageSize = _photoImageView.image.size;
@@ -345,7 +344,6 @@
 	// Center
 	if (!CGRectEqualToRect(_photoImageView.frame, frameToCenter))
 		_photoImageView.frame = frameToCenter;
-	
 }
 
 #pragma mark - UIScrollViewDelegate
