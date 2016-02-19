@@ -85,7 +85,10 @@
     }
     for (NSInteger index = 0; index < imgArrary.count; index ++) {
         UIImageView *imgView = [[UIImageView alloc] initWithImage:imgArrary[index]];
+        imgView.contentMode = UIViewContentModeScaleAspectFill;
+        imgView.clipsToBounds = YES;
         imgView.userInteractionEnabled = YES;
+        
         NSInteger xLine = 10 + 80 * index;
         NSInteger yRow  = 10;
         imgView.frame = CGRectMake(xLine, yRow, 70, 70);
