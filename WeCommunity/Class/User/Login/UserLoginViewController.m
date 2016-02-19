@@ -172,7 +172,7 @@ static int timeToGetCaptcha = 60;
     
     [self.view addSubview:self.loadingView];
     [self.view endEditing:YES];
-    NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"password":self.loginView.passwordField1.text,@"captcha":self.loginView.captchaField.text};
+    NSDictionary *parameters = @{@"phoneNumber":self.loginView.tellField.text,@"password":self.loginView.passwordField1.text,@"captcha":self.loginView.captchaField.text,@"userLoginType":@"IPhone"};
     [Networking retrieveData:phoneRegister parameters:parameters success:^(id responseObject) {
         User *user = [User shareUserDefult];
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
@@ -224,7 +224,7 @@ static int timeToGetCaptcha = 60;
     if ([notDic.userInfo[@"isload"] boolValue]) {
         //直接登录
         User *user = [User shareUserDefult];
-        [Networking retrieveData:get_WXAPP_LOADING parameters:@{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid} success:^(id responseObject) {
+        [Networking retrieveData:get_WXAPP_LOADING parameters:@{@"accountType":@"WeiXin",@"thirdId":[[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],@"userId":user.Userid,@"userLoginType":@"IPhone"} success:^(id responseObject) {
             NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
             NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};
             [user initWithData:data];

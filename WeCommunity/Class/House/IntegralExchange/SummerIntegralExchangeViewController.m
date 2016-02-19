@@ -201,8 +201,16 @@
 }
 
 - (void)submiteInformation{
+    __weak typeof(self)weakSelf = self;
     SummerJinSubmiteViewController *submiteVC = [[SummerJinSubmiteViewController alloc] init];
     submiteVC.submitType = SummerJinSubmiteViewTypeSub;
+    submiteVC.submiteSeccess = ^{
+        User *userModel = [User shareUserDefult];
+        if (userModel.userJinDic.jinPoint.integerValue > 0) {
+            weakSelf.btnSubmite.hidden = YES;
+            scoreLab.text = [NSString stringWithFormat:@"积分：%@",userModel.userJinDic.jinPoint];
+        }
+    };
     [self.navigationController pushViewController:submiteVC animated:YES];
 }
 

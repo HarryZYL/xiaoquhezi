@@ -8,9 +8,11 @@
 
 #import "LikeTableViewController.h"
 #import "SummerLikeTableViewCell.h"
+#import "SummerNoInfoError.h"
 #import "AccreditationTableViewController.h"
 @interface LikeTableViewController ()<TextPostViewControllerDelegate ,MWPhotoBrowserDelegate>
 @property(nonatomic ,strong)NSMutableArray *photos;
+@property(nonatomic ,strong)SummerNoInfoError *noInfoError;
 @end
 
 @implementation LikeTableViewController
@@ -18,15 +20,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
+    self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *postBtn = [[UIBarButtonItem alloc] initWithTitle:@"点赞" style:UIBarButtonItemStylePlain target:self action:@selector(post:)];
     self.navigationItem.rightBarButtonItem = postBtn;
+    _dataArray = [[NSMutableArray alloc] initWithCapacity:0];
+    _noInfoError = [[SummerNoInfoError alloc] initWithFrame:self.view.bounds];
+    _noInfoError.labNoError.text = @"物业还没有收到赞，快去点赞吧～";
+    [_noInfoError.addNoErrorMore setTitle:@"点赞" forState:UIControlStateNormal];
+    [_noInfoError.addNoErrorMore addTarget:self action:@selector(post:) forControlEvents:UIControlEventTouchUpInside];
+    _noInfoError.hidden = YES;
+    [self.view addSubview:_noInfoError];
     
-    [self.tableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    _mTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREENSIZE.width, SCREENSIZE.height - 64) style:UITableViewStyleGrouped];
+    _mTableView.delegate = self;
+    _mTableView.dataSource = self;
+    [self.mTableView registerClass:[BasicTableViewCell class] forCellReuseIdentifier:@"cell"];
+    self.mTableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
+    self.mTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
+    self.mTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
+    [self.view addSubview:self.mTableView];
     
-    self.tableView.separatorStyle =  UITableViewCellSeparatorStyleNone;
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeader)];
-    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooter)];
-
     self.loadingView = [[LoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.titleLabel.text = @"正在加载";
     [self retrireveData];
@@ -55,7 +68,6 @@
     }
     
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
@@ -164,12 +176,21 @@
 #pragma mark networking
 
 -(void)retrireveData{
-    [self.tableView addSubview:self.loadingView];
-    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+    [self.mTableView addSubview:self.loadingView];
+    __weak typeof(self)weakSelf = self;
+    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":@30};
      [Networking retrieveData:getPraisesOfCommunity parameters:parameters success:^(id responseObject) {
-         self.dataArray = responseObject[@"rows"];
-         self.totalLike = responseObject[@"total"];
-         [self.tableView reloadData];
+         weakSelf.totalLike = responseObject[@"total"];
+         for (NSDictionary *dic in responseObject[@"rows"]) {
+             [weakSelf.dataArray addObject:dic];
+         }
+         if (weakSelf.dataArray.count > 0) {
+             [weakSelf.mTableView reloadData];
+         }else{
+             weakSelf.mTableView.hidden = YES;
+             _noInfoError.hidden = NO;
+         }
+         
      } addition:^{
          [self.loadingView removeFromSuperview];
      }];
@@ -177,30 +198,42 @@
 
 -(void)refreshHeader{
     __weak typeof(self)weakSelf = self;
-    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row]};
+    
+    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":@30};
     [Networking retrieveData:getPraisesOfCommunity parameters:parameters success:^(id responseObject) {
-        if (weakSelf.dataArray.count) {
-            weakSelf.dataArray = nil;
+        if (weakSelf.dataArray.count > 0) {
+            [weakSelf.dataArray removeAllObjects];
         }
-        weakSelf.dataArray = responseObject[@"rows"];
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [weakSelf.dataArray addObject:dic];
+        }
         weakSelf.totalLike = responseObject[@"total"];
-        [weakSelf.tableView reloadData];
-        [weakSelf.tableView.mj_header endRefreshing];
-        [weakSelf.tableView.mj_footer resetNoMoreData];
-        weakSelf.page = 1;
+        [weakSelf.mTableView reloadData];
+        if (weakSelf.dataArray.count > 0) {
+            [weakSelf.mTableView reloadData];
+        }else{
+            weakSelf.mTableView.hidden = YES;
+            _noInfoError.hidden = NO;
+        }
+        [weakSelf.mTableView.mj_header endRefreshing];
+        [weakSelf.mTableView.mj_footer resetNoMoreData];
+       weakSelf.page = 1;
     }];
 }
 
 -(void)refreshFooter{
     self.page ++;
-    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
+    __weak typeof(self)weakSelf = self;
+    NSDictionary *parameters = @{@"communityId":[Util getCommunityID],@"page":[NSNumber numberWithInt:self.page],@"row":@30};
     [Networking retrieveData:getPraisesOfCommunity parameters:parameters success:^(id responseObject) {
-        self.dataArray = responseObject[@"rows"];
-        self.totalLike = responseObject[@"total"];
-        [self.tableView reloadData];
-        [self.tableView.mj_footer endRefreshing];
-        if (self.dataArray.count < row*self.page) {
-            [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        for (NSDictionary *dic in responseObject[@"rows"]) {
+            [weakSelf.dataArray addObject:dic];
+        }
+        weakSelf.totalLike = responseObject[@"total"];
+        [weakSelf.mTableView reloadData];
+        [weakSelf.mTableView.mj_footer endRefreshing];
+        if (weakSelf.dataArray.count < 30*self.page) {
+            [weakSelf.mTableView.mj_footer endRefreshingWithNoMoreData];
         }
     }];
 }

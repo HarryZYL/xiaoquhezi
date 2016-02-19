@@ -121,7 +121,8 @@ static int timeToGetCaptcha = 60;
     }
     NSDictionary *dicTemp = @{@"unionId": [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ID"],
                               @"phoneNumber":self.tellField.text,
-                              @"captcha":self.captchaField.text};
+                              @"captcha":self.captchaField.text,
+                              @"userLoginType":@"IPhone"};
     [Networking retrieveData:get_THIRD_LOADING parameters:dicTemp success:^(id responseObject) {
         NSDictionary *userData = [Util removeNullInDictionary:responseObject[@"user"]];
         NSDictionary *data = @{@"token":responseObject[@"token"],@"user":userData};

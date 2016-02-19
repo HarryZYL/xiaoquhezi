@@ -74,7 +74,6 @@ static User *shareUserModel = nil;
     self.hobby             = data[@"hobby"];
     
     if ([User getUserToken] && [BPush getChannelId] && self.Userid) {
-        
         [Networking retrieveData:get_Baidu_Push parameters:@{@"token": self.token,@"userId":[BPush getUserId],@"channelId":[BPush getChannelId],@"deviceType":@"iOS"}];
     }
     [self saveKeyUnarchiver];

@@ -133,6 +133,7 @@ NSString * const ID = @"cycleCell";
     flowLayout.minimumLineSpacing = 0;
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _flowLayout = flowLayout;
+    
     UICollectionView *mainView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height) collectionViewLayout:flowLayout];
 //    mainView.contentOffset = CGPointMake(0, -44);
     mainView.backgroundColor = [UIColor whiteColor];

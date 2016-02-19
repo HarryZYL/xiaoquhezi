@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SummerConstApi : NSObject
-
+FOUNDATION_EXPORT NSString *const kServerUrl;
 FOUNDATION_EXPORT NSString *const get_reply_notice      ;/**<回复公告*/
 FOUNDATION_EXPORT NSString *const GET_NOTICE_REPLIS     ;//查询公告回复
 FOUNDATION_EXPORT NSString *const GET_REPLY_TO_REPLY    ;//楼中楼回复
@@ -96,6 +96,9 @@ FOUNDATION_EXPORT NSString *const GET_CITY_PROVINCE  ; //省份
 FOUNDATION_EXPORT NSString *const GET_CITY_CITYS     ; // 指定省份城市列表
 FOUNDATION_EXPORT NSString *const GET_CITY_DISTRICTS ; //指定城市县区
 FOUNDATION_EXPORT NSString *const GET_ALL_CITY ;//所有城市
+
+#pragma mark - 广告接口
+FOUNDATION_EXPORT NSString *const RENT_POSTER;/**<租售广告*/
 
 #pragma mark - 金马会
 FOUNDATION_EXPORT NSString *const JIN_EXPORY;

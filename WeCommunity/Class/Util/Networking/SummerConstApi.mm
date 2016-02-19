@@ -23,6 +23,7 @@ NSString *const get_Reply_Replies     = ServerUrl(@"/notice/getReplyReplies");//
 NSString *const getNoticesOfCommunity = ServerUrl(@"/notice/getNoticesOfCommunity");//小区公告
 NSString *const getNoticeDetail       = ServerUrl(@"/notice/getNotice");           //公告详情
 NSString *const getMyAuthentications  = ServerUrl(@"/user/getMyAuthentications");
+NSString *const RENT_POSTER           = ServerUrl(@"/advert/housedeal/getList");
 
 NSString *const get_COMPLAINTS_DETAIL = ServerUrl(@"/complaint/getComplaint");//投诉详情
 NSString *const get_REPLIES_DETAIL    = ServerUrl(@"/complaint/getReplies");//查询投诉回复

@@ -15,5 +15,6 @@ typedef NS_ENUM(NSUInteger, SummerJinSubmiteViewType) {
 @interface SummerJinSubmiteViewController : UIViewController
 
 @property (assign) SummerJinSubmiteViewType submitType;
+@property (nonatomic,copy)voidBlock submiteSeccess;
 
 @end

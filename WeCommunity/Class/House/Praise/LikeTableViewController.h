@@ -13,9 +13,10 @@
 #import "LoadingView.h"
 #import "Like.h"
 #import "AccreditationPostViewController.h"
-@interface LikeTableViewController : UITableViewController<UIAlertViewDelegate>
+@interface LikeTableViewController : UIViewController<UIAlertViewDelegate ,UITableViewDataSource ,UITableViewDelegate>
 @property (nonatomic,strong) BasicHeader *headView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) UITableView *mTableView;
 @property (nonatomic,strong) LoadingView *loadingView;
 @property (nonatomic) int page;
 @property (nonatomic,strong) NSString *totalLike;

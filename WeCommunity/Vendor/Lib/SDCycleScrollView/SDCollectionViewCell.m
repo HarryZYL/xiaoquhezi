@@ -93,7 +93,7 @@
 {
     [super layoutSubviews];
     
-    _imageView.frame = self.bounds;
+    _imageView.frame = CGRectMake(0, 0, SCREENSIZE.width + 3, self.frame.size.height);
     
     CGFloat titleLabelW = self.sd_width;
     CGFloat titleLabelH = _titleLabelHeight;

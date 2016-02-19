@@ -165,7 +165,7 @@
 }
 
 -(void)like:(id)sender{
-    LikeTableViewController *likeVC = [[LikeTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    LikeTableViewController *likeVC = [[LikeTableViewController alloc] init];
     [self pushVC:likeVC title:@"表扬"];
 }
 

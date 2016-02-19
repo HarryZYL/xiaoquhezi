@@ -58,11 +58,10 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     NSDictionary *parameters = @{@"webType":action};
-    [manager POST:[NSString stringWithFormat:@"%@/weblink/getByType",kInitURL ] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager POST:[NSString stringWithFormat:@"%@/weblink/getByType",kServerUrl ] parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         WebViewController *webVC = [[WebViewController alloc] init];
         webVC.webURL = responseObject[@"msg"][@"url"];
-        
         if ([action isEqualToString:@"weather"]) {
             [self pushVC:webVC title:@"天气查询"];
         }else{

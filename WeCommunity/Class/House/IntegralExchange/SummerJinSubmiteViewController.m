@@ -78,6 +78,7 @@
         if (_submitType == SummerJinSubmiteViewTypeBind) {
             [weakSelf.navigationController popToRootViewControllerAnimated:YES];
         }
+        weakSelf.submiteSeccess();
         [weakSelf.navigationController popViewControllerAnimated:YES];
     }];
 }

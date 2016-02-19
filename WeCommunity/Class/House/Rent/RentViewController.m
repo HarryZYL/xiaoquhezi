@@ -8,6 +8,7 @@
 
 #import "RentViewController.h"
 #import "UIViewController+HUD.h"
+#import "SummerNoInfoError.h"
 #import "AccreditationTableViewController.h"
 #import "SummerSelectSellerOrOrderView.h"
 @interface RentViewController ()<SDCycleScrollViewDelegate>
@@ -15,6 +16,10 @@
     SummerSelectSellerOrOrderView *orderSelectView;
 }
 @property (nonatomic ,strong)SDCycleScrollView *adView;
+@property (nonatomic ,strong)SummerNoInfoError *networkError;
+
+@property (nonatomic ,strong)NSArray *arrPoster;//广告
+
 @end
 
 @implementation RentViewController
@@ -32,11 +37,16 @@
     self.navigationItem.rightBarButtonItem = postBtn;
     
     if (self.playAdvertise) {
-        [self setupAdvertisement];
+        [self recaviedDataPoster];
     }
     
     [self setupChooseList];
     [self setupTableView];
+    _networkError = [[SummerNoInfoError alloc] initWithFrame:self.tableView.frame];
+    _networkError.addNoErrorMore.hidden = YES;
+    _networkError.labNoError.text = @"暂无信息";
+    _networkError.hidden = YES;
+    [self.view addSubview:_networkError];
     
     self.dataArray = [[NSMutableArray alloc] initWithCapacity:10];
     
@@ -56,14 +66,26 @@
 }
 
 -(void)setupAdvertisement{
-    NSArray *imageArray = @[@"house1",@"house2",@"house3"];
-    _adView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150 + 44) shouldInfiniteLoop:YES imageNamesGroup:imageArray];
+    NSMutableArray *imageArray = [[NSMutableArray alloc] initWithCapacity:0];
+    for (NSDictionary *dic in self.arrPoster) {
+        [imageArray addObject:dic[@"photo"]];
+    }
+    _adView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 150 + 44)imageURLStringsGroup:imageArray];
 //    _adView.contentMode = YES;
 //    _adView.delegate = self;
+    _adView.placeholderImage = [UIImage imageNamed:@"loadingLogo"];
     _adView.pageControlStyle = SDCycleScrollViewPageContolStyleAnimated;
     [self.view addSubview:_adView];
 }
 
+- (void)recaviedDataPoster{
+    __weak typeof(self)weakSelf = self;
+    [Networking retrieveData:RENT_POSTER parameters:@{@"count":@30} success:^(id responseObject) {
+        NSLog(@"--->%@",responseObject);
+        weakSelf.arrPoster = responseObject;
+        [weakSelf setupAdvertisement];
+    }];
+}
 
 -(void)setupTableView{
     if (!self.playAdvertise) {
@@ -355,14 +377,21 @@
         url = getMyHouseDealsOfCommunity;
         
     }
-
+    __weak typeof(self)weakSelf = self;
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {
 //        self.dataArray = responseObject[@"rows"];
-        if (self.dataArray.count > 0) {
-            [self.dataArray removeAllObjects];
+        if (weakSelf.dataArray.count > 0) {
+            [weakSelf.dataArray removeAllObjects];
         }
         for (NSDictionary *dic in responseObject[@"rows"]) {
-            [self.dataArray addObject:dic];
+            [weakSelf.dataArray addObject:dic];
+        }
+        if (weakSelf.dataArray.count > 0) {
+            weakSelf.tableView.hidden = NO;
+            weakSelf.networkError.hidden = YES;
+        }else{
+            weakSelf.tableView.hidden = YES;
+            weakSelf.networkError.hidden = NO;
         }
         [self.tableView reloadData];
     } addition:^{
@@ -393,7 +422,6 @@
     }else if ([self.function isEqualToString:@"user"]) {
         parameters = @{@"token":[User getUserToken],@"houseDealTypes":@[@"Sale",@"Rent"],@"page":@1,@"row":[NSNumber numberWithInt:row*self.page]};
         url = getMyHouseDealsOfCommunity;
-        
     }
     
     [Networking retrieveData:url parameters:parameters success:^(id responseObject) {

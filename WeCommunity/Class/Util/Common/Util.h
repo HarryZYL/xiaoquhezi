@@ -16,7 +16,7 @@
 
 static NSString *fontName= @"HelveticaNeue";
 //接口数据
-static NSString *kInitURL = @"http://www.wshequ.net";
+//static NSString *kInitURL = @"http://www.wshequ.net";
 //static NSString *kInitURL = @"http://192.168.1.101";
 static int row = 15;
 @interface Util : NSObject
